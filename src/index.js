@@ -1,0 +1,5 @@
+export { Note } from './Note'
+export { NotesHash } from './NotesHash'
+export * from './Patterns'
+export * from './Addons'
+export {Piano} from './Piano'
