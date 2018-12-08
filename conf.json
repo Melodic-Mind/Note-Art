@@ -1,0 +1,44 @@
+{
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "include": [
+            "src"
+        ],
+        "exclude": [
+            ".git",
+            ".meteor",
+            "node_modules",
+            ".idea",
+            "dist",
+            "docs",
+            "test",
+            ".vscode"
+        ],
+        "includePattern": ".+\\.js(x|doc)?$"
+    },
+    "plugins": ["plugins/markdown"],
+    "templates": {
+        "logoFile": "",
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "dateFormat": "ddd MMM Do YYYY",
+        "outputSourceFiles": true,
+        "outputSourcePath": true,
+        "systemName": "Note-Art",
+        "footer": "Music",
+        "copyright": "Copyright © 2018-2019 Musitelligence inc.",
+        "navType": "vertical",
+        "theme": "cosmo",
+        "linenums": true,
+        "collapseSymbols": false,
+        "inverseNav": true,
+        "protocol": "html://",
+        "methodHeadingReturns": false
+    },
+    "markdown": {
+        "parser": "gfm",
+        "hardwrap": true
+    }
+}
