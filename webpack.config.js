@@ -3,13 +3,15 @@ const libraryName = 'note-art'
 const outputFile = libraryName + '.js'
 module.exports = {
   entry: __dirname + '/src/index.js',
-  mode: 'development',
   output: {
     filename: outputFile,
     path: path.resolve(__dirname, 'dist'),
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true
+  },
+  performance: {
+    hints: process.env.NODE_ENV === 'production' ? "warning" : false
   },
   module: {
     rules: [{

@@ -4,10 +4,11 @@
   "description": "Music programming package",
   "main": "./dist/note-art.js",
   "scripts": {
-    "build": "webpack",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
     "prepare": "npm run build",
     "test": "mocha --require @babel/register \"test/**/*.spec.js\"",
-    "docs": "jsdoc -d docs -c /home/seanitzel/Documents/Programming/Note-Art/node_modules/ink-docstrap/template/conf.json -t ./node_modules/ink-docstrap/template -R README.md ."
+    "docs": "jsdoc -d docs -c conf.json -t ./node_modules/ink-docstrap/template -R README.md ."
   },
   "keywords": [
     "music",

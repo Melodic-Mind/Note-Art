@@ -19,7 +19,7 @@ it will also be used to attempt development of different projects combining musi
 <!-- toc -->
 
 - [Installation](#Installation)
-- [Basic Use](#Basic)
+- [Usage](#Usage)
 
 <!-- tocstop -->
 </details>
@@ -27,11 +27,30 @@ it will also be used to attempt development of different projects combining musi
 ## Installation
 
 ``` bash
-# go to project folder
 npm install note-art
 ```
 
-## Basic Use
+## Usage
+##### Creating and playing a note
+```
+const A = new Note({note: 'a', octave: 4})
+A.play() //note is played
+```
+##### Getting a note's frequency
+```
+console.log(A.frequency) // outputs 440
+```
+##### Getting a note's interval by semi-tones(5 semi -tones are a perfect fourth interval)
+```
+const fourth = A.interval(5) // fourth is the note E with octave 5
+```
+##### Print note
+```
+console.log(A.toString()) // outputs: A4
+```
 
+Notes also have a duration and instrument properties which default to 'q' and 'Piano'.
+
+See the docs for more
 ----------------------------------------------------------------------
 > Musical Project By Sean Dvir
