@@ -1,3 +1,4 @@
+> Musical Project By Sean Dvir
 ###### *A Work in progress*
 # Note-Art JS
 * Music is a highly versatile art that originates in nature, and has been taken up by mankind as a way of expression and also as an art.
@@ -66,4 +67,3 @@ Notes also have a duration and instrument properties which default to 'q' and 'P
 >>>>>>> 0c418e50ea9273d341f0399cc468c62df27fa305
 See the docs for more
 ----------------------------------------------------------------------
-> Musical Project By Sean Dvir
