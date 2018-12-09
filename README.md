@@ -1,4 +1,4 @@
-###### *A Work in progress*
+> Musical Project By Sean Dvir - *A Work in progress*
 # Note-Art JS
 * Music is a highly versatile art that originates in nature, and has been taken up by mankind as a way of expression and also as an art.
 Now, it's going to be taken up by machines as well.
@@ -15,14 +15,9 @@ it will also be used to attempt development of different projects combining musi
 > – Albert Einstein
 
 ## Table of Contents
-<details>
-<!-- toc -->
 
 - [Installation](#Installation)
 - [Usage](#Usage)
-
-<!-- tocstop -->
-</details>
 
 ## Installation
 
@@ -30,19 +25,11 @@ it will also be used to attempt development of different projects combining musi
 npm install note-art
 ```
 
-<<<<<<< HEAD
 ## Usage
 ##### Creating and playing a note
 ```
 const A = new Note({note: 'a', octave: 4})
 A.play() //note is played
-=======
-## Basic Use
-##### Creating and playing a note
-```
-const A = new Note({note: 'a', octave: 4})
-A.play()
->>>>>>> 0c418e50ea9273d341f0399cc468c62df27fa305
 ```
 ##### Getting a note's frequency
 ```
@@ -56,14 +43,8 @@ const fourth = A.interval(5) // fourth is the note E with octave 5
 ```
 console.log(A.toString()) // outputs: A4
 ```
-<<<<<<< HEAD
 
 Notes also have a duration and instrument properties which default to 'q' and 'Piano'.
 
-=======
-
-Notes also have a duration and instrument properties which default to 'q' and 'Piano'.
->>>>>>> 0c418e50ea9273d341f0399cc468c62df27fa305
 See the docs for more
 ----------------------------------------------------------------------
-> Musical Project By Sean Dvir
