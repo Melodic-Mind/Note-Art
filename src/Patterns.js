@@ -4,7 +4,7 @@
 
 const scales = require('./Scales.json') //with path
 
-const diatonicScales = all_scales.filter(scale => scale.Length == 7)
+const diatonicScales = scales.filter(scale => scale.Length == 7)
 
 const FifthsCircle = ['C', 'G', 'D', 'A', 'E', 'B', 'F#']
 const FourthsCircle = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb']
@@ -65,6 +65,8 @@ const octaveFrequencies = {
     '9': [8137, 16000],
 }
 
+const instruments = ['Piano']
+
 export {
     notes,
     FourthsCircle,
@@ -75,7 +77,7 @@ export {
     noteDurations,
     allNotes,
     noteLetters,
-    scale_intervals,
     scales,
-    diatonicScales
+    diatonicScales,
+    instruments
 }
