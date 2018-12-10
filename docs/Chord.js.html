@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Note-Art Source: Chord.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Note-Art</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Chord.html">Chord</a></li><li><a href="Note.html">Note</a></li><li><a href="NotesHash.html">NotesHash</a></li><li><a href="Piano.html">Piano</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#firstToUpper">firstToUpper</a></li><li><a href="global.html#getMinDuration">getMinDuration</a></li><li><a href="global.html#playMelodically">playMelodically</a></li><li><a href="global.html#scales">scales</a></li><li><a href="global.html#twoDigitFormat">twoDigitFormat</a></li><li><a href="global.html#validateDuration">validateDuration</a></li><li><a href="global.html#validateInstrument">validateInstrument</a></li><li><a href="global.html#validateNoteAndOctave">validateNoteAndOctave</a></li><li><a href="global.html#validateNoteName">validateNoteName</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: Chord.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">import {
+    Note,
+    chords
+} from '.'
+import { NotAChordException } from './Exceptions'
+
+/**
+ * @classdesc Represents a Chord.
+ * @class
+ */
+export class Chord {
+    /**
+     * Creates a Chord instance.
+     * @param {Note} root root of the chord
+     * @param {String} chord_type type of the chord
+     */
+    constructor(root, chord_type) {
+        this.attributes = []
+        this.attributes[Chord.INFO] = chords.find((chord) => chord_type === chord['Type'])
+        if (!this.attributes[Chord.INFO]) throw new NotAChordException(chord_type)
+        this.attributes[Chord.NOTES] = []
+        this.attributes[Chord.NOTES].push(root)
+        JSON.parse(this.attributes[Chord.INFO]['Formula(semi-tones)'])
+            .forEach(interval => this.attributes[Chord.NOTES].push(root.interval(interval)))
+    }
+
+    /**
+     * Index of chord information object.
+     * @returns {Number}
+     */
+    static get INFO() { return 0 }
+
+    /**
+     * Index of chord notes array.
+     * @returns {Number}
+     */
+    static get NOTES() { return 1 }
+
+    /**
+     * Array of the notes in the chord.
+     * @type {Array}
+     * @readonly
+     */
+    get notes() { return this.attributes[Chord.NOTES] }
+
+    /**
+     * Name of the chord.
+     * @type {String}
+     * @readonly
+     */
+    get name() { return this.attributes[Chord.INFO]['Name'] }
+
+    /**
+     * Type of the chord.
+     * @type {String}
+     * @readonly
+     */
+    get type() { return this.attributes[Chord.INFO]['Type'] }
+
+    /**
+     * Play the chord.
+     * @type {void}
+     */
+    play() { this.notes.forEach(note => note.play()) }
+
+    /**
+     * Transforms the chord into its root position.
+     */
+    rootPosition() {
+        // TODO
+    }
+
+    /**
+     * Transforms the chord into its 1st-inversion.
+     */
+    inversionFirst() {
+        //TODO
+    }
+
+    /**
+     * Transforms the chord into its 2st-inversion.
+     */
+    inversionSecond() {
+        //TODO
+    }
+
+    /**
+     * Get a string of the chord's name
+     * @returns {String}
+     */
+    toString() {
+        return `${this.notes[0].note} ${this.name}`
+    }
+
+    /**
+     * Generate a new chord with the same notes but a different duration.
+     * @param {String} duration the new duration
+     * @returns {Chord}
+     */
+    newDuration(duration) {
+        return new Chord(this.notes[0].changeDuration(duration), this.type)
+    }
+
+    /**
+     * Generates a new chord with the interval applied
+     * @param {Number} interval the interval to apply
+     * @returns {Chord}
+     */
+    tranpose(interval) {
+        return new Chord(this.notes[0].transpose(interval), this.type)
+    }
+}</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+	Music
+
+
+	<span class="copyright">
+	Copyright © 2018-2019 Musitelligence inc.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Tue Dec 11th 2018
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
