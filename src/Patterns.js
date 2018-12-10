@@ -4,6 +4,8 @@
 
 const scales = require('./Scales.json') //with path
 
+const chords = require('./Chords.json') //with path
+
 const diatonicScales = scales.filter(scale => scale.Length == 7)
 
 const FifthsCircle = ['C', 'G', 'D', 'A', 'E', 'B', 'F#']
@@ -34,6 +36,25 @@ const allNotes = [
     'Bb',
     'B',
 ]
+
+const intervals = {
+    'U': 0,
+    'm2': 1,
+    'M2':2,
+    'm3':3,
+    'M3':4,
+    'P4':5,
+    'aug4':6,
+    'dim5':6,
+    'P5':7, 
+    'm6':8,
+    'M6':9,
+    'm7':10,
+    'M7':11,
+    'P8':12
+}
+
+
 
 const noteDurations = {
     'w': 1,
@@ -79,5 +100,7 @@ export {
     noteLetters,
     scales,
     diatonicScales,
-    instruments
+    instruments,
+    intervals,
+    chords
 }

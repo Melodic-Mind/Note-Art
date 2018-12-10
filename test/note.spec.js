@@ -177,18 +177,11 @@ describe('Note', () => {
         it('transpose ', () => {
             expect(c.transpose(5)).to.eql(c.interval(5))
         })
-        it('clone ', () => {
-            expect(c.clone()).to.eql(c)
-        })
         it('calculate frequency ', () => {
             expect(piano.note('a4q').calculateFrequency()).to.eql(440)
         })
         it('change duration ', () => {
             expect(c.changeDuration('e').duration).to.eql('e')
-        })
-        it('print ', () => {
-            const stub = "{Note: C, Octave: 3}"
-            expect(c.print()).to.eql(stub)
         })
     })
 })

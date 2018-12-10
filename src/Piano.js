@@ -10,14 +10,15 @@ export class Piano {
      */
     constructor() {
         this.piano = new Map()
+        console.log(Object.keys(noteDurations))
         for (let i = 1; i <= 7; i++)
-            for (const n of allNotes)
-                for (let l in noteDurations)
+            allNotes.forEach(n =>
+                Object.keys(noteDurations).forEach(l =>
                     this.setKey(n, i, l)
-        const otherNotes = [{ note: 'A', octave: 0 }, { note: 'A#', octave: 0 }, { note: 'Bb', octave: 0 }, { note: 'B', octave: 0 }, { note: 'C', octave: 8 }]
-        for (let l in noteDurations)
-            for (const n of otherNotes)
-                this.setKey(n.note, n.octave, l)
+                )
+            );
+        [{ note: 'A', octave: 0 }, { note: 'A#', octave: 0 }, { note: 'Bb', octave: 0 }, { note: 'B', octave: 0 }, { note: 'C', octave: 8 }]
+        .forEach(n => Object.keys(noteDurations).forEach(l => this.setKey(n.note, n.octave, l)))
     }
     /**
      * Binds a note to the piano map object.
@@ -26,7 +27,7 @@ export class Piano {
      * @param {String} duration 
      * @private
      */
-    setKey( note, octave, duration ) { this.piano.set(note + octave + duration, new Note({ note, octave, duration, instrument: 'Piano' })) }
+    setKey(note, octave, duration) { this.piano.set(note + octave + duration, new Note({ note, octave, duration, instrument: 'Piano' })) }
 
     /**
      * Gets a string consisting of:

@@ -72,11 +72,23 @@ const validateDuration = (duration) => noteDurations.hasOwnProperty(duration) ? 
  */
 const validateInstrument = (instrument) => instruments.includes(instrument) ? instrument : 'Piano'
 
+/**
+ * play all the notes in the chord as a melody.
+ */
+const playMelodically = (notes, time_interval) => {
+    notes.forEach((note, i) => {
+        setTimeout(() => {
+           note.play()
+        }, i * time_interval)
+    })
+}
+
 export {
     firstToUpper,
     getMinDuration,
     twoDigitFormat,
     validateNoteAndOctave,
     validateDuration,
-    validateInstrument
+    validateInstrument,
+    playMelodically
 }

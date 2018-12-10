@@ -1,5 +1,5 @@
 import { notes, FourthsCircle, semitone, validateNoteAndOctave, validateDuration, validateInstrument } from "."
-import {NotesHash} from './NotesHash'
+import { NotesHash } from './NotesHash'
 const sounds = NotesHash.getNotesHash()
 
 /**
@@ -17,16 +17,26 @@ export class Note {
      * {String} instrument Piano/Guitar/etc...
      */
     constructor({ note, octave, duration, instrument }) {
-        this.attributes = []
-        const valid = validateNoteAndOctave(note, octave)
-        this.attributes[Note.NOTE] = valid[0]
-        this.attributes[Note.OCTAVE] = valid[1]
-        this.attributes[Note.DURATION] = validateDuration(duration)
-        this.attributes[Note.INSTRUMENT] = validateInstrument(instrument)
+        this.attributes = [];
+        [this.attributes[Note.NOTE], this.attributes[Note.OCTAVE], this.attributes[Note.DURATION], this.attributes[Note.INSTRUMENT]] = Note.validateProperties(note, octave, duration, instrument)
         this.attributes[Note.FAMILY] = FourthsCircle.includes(this.note) ? "b" : "#"
         this.attributes[Note.INDEX] = notes[this.family].indexOf(this.note)
         this.attributes[Note.FREQUENCY] = this.calculateFrequency()
         sounds.set(this)
+    }
+
+    /**
+     * Validates the properties the user entered.
+     * @param {String} note 
+     * @param {Number} octave 
+     * @param {String} duration 
+     * @param {String} instrument 
+     */
+    static validateProperties(note, octave, duration, instrument){
+        const valid_values = validateNoteAndOctave(note, octave)
+        valid_values.push(validateDuration(duration))
+        valid_values.push(validateInstrument(instrument))
+        return valid_values
     }
 
     /**
@@ -147,12 +157,6 @@ export class Note {
      * returns a clone of the note(new instance).
      * @type {Note}
      */
-    clone() { return new Note(this) }
-
-    /**
-     * returns a clone of the note(new instance).
-     * @type {Note}
-     */
     changeDuration(duration) {
         const { note, octave, instrument } = this
         return new Note({ note, octave, duration, instrument })
@@ -187,21 +191,10 @@ export class Note {
     }
 
     /**
-     * ALias for interval()
+     * Alias for interval()
      * @param {Number} interval 
      */
     transpose(interval) { return this.interval(interval) }
-
-    // getMajorChord() {
-    //     return new Chord(this, this.interval(4), this.interval(7))
-    // }
-    getMajorScale() {
-        let scale = [this.note]
-        for (let i of major_scale) {
-            scale.push(this.interval(i))
-        }
-        return toString(scale)
-    }
 
     /**
      * Returns the note name and octave.
@@ -215,11 +208,6 @@ export class Note {
      * @param {Note} note
      */
     isEqual({ note, octave }) { return this.note === note && this.octave === octave }
-
-    /**
-     * Returns string of the note fields formatted as an object.
-     */
-    print() { return `{Note: ${this.note}, Octave: ${this.octave}}` }
 
     /**
      * Play the note.
