@@ -11,7 +11,7 @@
 	<![endif]-->
 	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
 
-	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+	<link type="text/css" rel="stylesheet" href="styles/site.cyborg.css">
 
 </head>
 
@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Chord.html">Chord</a></li><li><a href="Note.html">Note</a></li><li><a href="NotesHash.html">NotesHash</a></li><li><a href="Piano.html">Piano</a></li>
+					<li><a href="AudioManager.html">AudioManager</a></li><li><a href="Chord.html">Chord</a></li><li><a href="Measure.html">Measure</a></li><li><a href="MusicTheoryStructures.html">MusicTheoryStructures</a></li><li><a href="Note.html">Note</a></li><li><a href="OctaveRule.html">OctaveRule</a></li><li><a href="Paginator.html">Paginator</a></li><li><a href="Piano.html">Piano</a></li><li><a href="Pitch.html">Pitch</a></li><li><a href="PitchClass.html">PitchClass</a></li><li><a href="PitchClassRule.html">PitchClassRule</a></li><li><a href="PlayableNote.html">PlayableNote</a></li><li><a href="Scale.html">Scale</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#firstToUpper">firstToUpper</a></li><li><a href="global.html#getMinDuration">getMinDuration</a></li><li><a href="global.html#playMelodically">playMelodically</a></li><li><a href="global.html#scales">scales</a></li><li><a href="global.html#twoDigitFormat">twoDigitFormat</a></li><li><a href="global.html#validateDuration">validateDuration</a></li><li><a href="global.html#validateInstrument">validateInstrument</a></li><li><a href="global.html#validateNoteAndOctave">validateNoteAndOctave</a></li><li><a href="global.html#validateNoteName">validateNoteName</a></li>
+					<li><a href="global.html#findQuery">findQuery</a></li><li><a href="global.html#findQueryByArray">findQueryByArray</a></li><li><a href="global.html#findQueryByString">findQueryByString</a></li><li><a href="global.html#firstToUpper">firstToUpper</a></li><li><a href="global.html#freqFromPitch">freqFromPitch</a></li><li><a href="global.html#freqFromRealNumber">freqFromRealNumber</a></li><li><a href="global.html#getMinDuration">getMinDuration</a></li><li><a href="global.html#notesDistance">notesDistance</a></li><li><a href="global.html#playMelodically">playMelodically</a></li><li><a href="global.html#realNumberFromFreq">realNumberFromFreq</a></li><li><a href="global.html#twoDigitFormat">twoDigitFormat</a></li>
 				</ul>
 			</li>
 			
@@ -145,22 +145,158 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
+
+    
+        <h3 class="subsection-title">Methods</h3>
 
         <dl>
             
 <hr>
-<dt class="name" id="scales">
-    <h4 id="scales"><span class="type-signature">&lt;constant> </span>scales<span class="type-signature"></span></h4>
-
+<dt>
+    <h4 class="name" id="findQuery"><span class="type-signature"></span>findQuery( [name] [, pattern], source)</h4>
+    
     
 </dt>
 <dd>
+
     
     <div class="description">
-        <p>All music theory patterns that are used in the project</p>
+        <p>Gets either a name, a pattern, or nothing.<br>checks which one it got<br>and tries to find it in the source.</p>
     </div>
     
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>name</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pattern</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>pattern</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the source to search in</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
     
 
@@ -199,8 +335,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Patterns.js.html">Patterns.js</a>,
-				 <a href="Patterns.js.html#sunlight-1-line-5">line 5</a>
+				<a href="utilities_Addons.js.html">utilities/Addons.js</a>,
+				 <a href="utilities_Addons.js.html#sunlight-1-line-30">line 30</a>
 			</li>
 		</ul>
 	</dd>
@@ -215,15 +351,419 @@
 
 
     
+
+    
+
+    
+
+    
+
+    
+    <h5>Throws:</h5>
+    
+            
+
+    <div class="param-desc">
+    
+        
+<span class="param-type">MissingInformation</span>
+
+
+
+    
+    </div>
+
+
+        
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
 </dd>
 
-        </dl>
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="findQueryByArray"><span class="type-signature"></span>findQueryByArray(source, key, query)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Retrieves data from resource by Array.<br>if not found returns object with<br>name: unknown<br>key: query</p>
+    </div>
     
 
     
-        <h3 class="subsection-title">Methods</h3>
 
-        <dl>
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utilities_Addons.js.html">utilities/Addons.js</a>,
+				 <a href="utilities_Addons.js.html#sunlight-1-line-66">line 66</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="findQueryByString"><span class="type-signature"></span>findQueryByString(name)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Retrieves data from resource by name.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>name of chord</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utilities_Addons.js.html">utilities/Addons.js</a>,
+				 <a href="utilities_Addons.js.html#sunlight-1-line-48">line 48</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Throws:</h5>
+    
+            
+
+    <div class="param-desc">
+    
+        
+<span class="param-type">DataNotFound</span>
+
+
+
+    
+    </div>
+
+
+        
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
             
 <hr>
 <dt>
@@ -331,8 +871,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Addons.js.html">Addons.js</a>,
-				 <a href="Addons.js.html#sunlight-1-line-8">line 8</a>
+				<a href="utilities_Addons.js.html">utilities/Addons.js</a>,
+				 <a href="utilities_Addons.js.html#sunlight-1-line-9">line 9</a>
 			</li>
 		</ul>
 	</dd>
@@ -385,6 +925,266 @@
             
 <hr>
 <dt>
+    <h4 class="name" id="freqFromPitch"><span class="type-signature"></span>freqFromPitch()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Calculate the frequency of a note by its octave and index out of all notes(c, c#, etc...).</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utilities_ScientificFuncs.js.html">utilities/ScientificFuncs.js</a>,
+				 <a href="utilities_ScientificFuncs.js.html#sunlight-1-line-7">line 7</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="freqFromRealNumber"><span class="type-signature"></span>freqFromRealNumber(realNumber)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Generate frequency from real number.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>realNumber</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utilities_ScientificFuncs.js.html">utilities/ScientificFuncs.js</a>,
+				 <a href="utilities_ScientificFuncs.js.html#sunlight-1-line-26">line 26</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id="getMinDuration"><span class="type-signature"></span>getMinDuration(notes)</h4>
     
     
@@ -393,7 +1193,7 @@
 
     
     <div class="description">
-        <p>Returns the duration of the shortest note out of an array of notes.</p>
+        <p>Returns the duration value of the note with the shortest duration out of an array of notes.</p>
     </div>
     
 
@@ -489,8 +1289,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Addons.js.html">Addons.js</a>,
-				 <a href="Addons.js.html#sunlight-1-line-17">line 17</a>
+				<a href="utilities_MusicalAddons.js.html">utilities/MusicalAddons.js</a>,
+				 <a href="utilities_MusicalAddons.js.html#sunlight-1-line-10">line 10</a>
 			</li>
 		</ul>
 	</dd>
@@ -543,7 +1343,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="playMelodically"><span class="type-signature"></span>playMelodically()</h4>
+    <h4 class="name" id="notesDistance"><span class="type-signature"></span>notesDistance(n1, n2)</h4>
     
     
 </dt>
@@ -551,7 +1351,7 @@
 
     
     <div class="description">
-        <p>play all the notes in the chord as a melody.</p>
+        <p>Calculate the pure interval(not considering octave) between 2 notes(in semitones).</p>
     </div>
     
 
@@ -560,6 +1360,80 @@
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>n1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Pitch.html">Pitch</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>first note</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>n2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Pitch.html">Pitch</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>second note</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -597,8 +1471,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Addons.js.html">Addons.js</a>,
-				 <a href="Addons.js.html#sunlight-1-line-78">line 78</a>
+				<a href="utilities_MusicalAddons.js.html">utilities/MusicalAddons.js</a>,
+				 <a href="utilities_MusicalAddons.js.html#sunlight-1-line-30">line 30</a>
 			</li>
 		</ul>
 	</dd>
@@ -623,6 +1497,408 @@
     
 
     
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="playMelodically"><span class="type-signature"></span>playMelodically(notes, timeInterval [, resolve])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Play a group of notes melodically.<br>if resolve is true the melody will resolve to the tonic in higher octave.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>notes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>array of playable notes</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeInterval</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>resolve</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>whether to resolve to tonic</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utilities_MusicalAddons.js.html">utilities/MusicalAddons.js</a>,
+				 <a href="utilities_MusicalAddons.js.html#sunlight-1-line-43">line 43</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="realNumberFromFreq"><span class="type-signature"></span>realNumberFromFreq(frequency)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Generate real number from frequency.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>frequency</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utilities_ScientificFuncs.js.html">utilities/ScientificFuncs.js</a>,
+				 <a href="utilities_ScientificFuncs.js.html#sunlight-1-line-17">line 17</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -735,8 +2011,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Addons.js.html">Addons.js</a>,
-				 <a href="Addons.js.html#sunlight-1-line-30">line 30</a>
+				<a href="utilities_Addons.js.html">utilities/Addons.js</a>,
+				 <a href="utilities_Addons.js.html#sunlight-1-line-18">line 18</a>
 			</li>
 		</ul>
 	</dd>
@@ -773,642 +2049,6 @@
     <dd>
         
 <span class="param-type">Number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="validateDuration"><span class="type-signature"></span>validateDuration(duration)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>gets a string that represents a duration, if its valid returns it,<br>else return 'q' (quarter note)</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>duration</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Addons.js.html">Addons.js</a>,
-				 <a href="Addons.js.html#sunlight-1-line-65">line 65</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="validateInstrument"><span class="type-signature"></span>validateInstrument(instrument)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>gets a string that represents a instument, if its valid returns it,<br>else returns 'Piano'</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>instrument</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Addons.js.html">Addons.js</a>,
-				 <a href="Addons.js.html#sunlight-1-line-73">line 73</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">String</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="validateNoteAndOctave"><span class="type-signature"></span>validateNoteAndOctave(note, octave)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>gets a note name and octave number, checks if they are valid<br>if they are it returns them<br>if the note is not valid returns 'C'<br>if the octave is not valid returns 3</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>note</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>octave</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Addons.js.html">Addons.js</a>,
-				 <a href="Addons.js.html#sunlight-1-line-50">line 50</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="validateNoteName"><span class="type-signature"></span>validateNoteName(note)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Gets a string, returns it if its a valid note, else returns the 'C'</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>note</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Addons.js.html">Addons.js</a>,
-				 <a href="Addons.js.html#sunlight-1-line-37">line 37</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">String</span>
 
 
 
@@ -1477,7 +2117,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on Tue Dec 11th 2018
+		on Wed Mar 13th 2019
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

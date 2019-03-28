@@ -11,7 +11,7 @@
 	<![endif]-->
 	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
 
-	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+	<link type="text/css" rel="stylesheet" href="styles/site.cyborg.css">
 
 </head>
 
@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Chord.html">Chord</a></li><li><a href="Note.html">Note</a></li><li><a href="NotesHash.html">NotesHash</a></li><li><a href="Piano.html">Piano</a></li>
+					<li><a href="AudioManager.html">AudioManager</a></li><li><a href="Chord.html">Chord</a></li><li><a href="Measure.html">Measure</a></li><li><a href="MusicTheoryStructures.html">MusicTheoryStructures</a></li><li><a href="Note.html">Note</a></li><li><a href="OctaveRule.html">OctaveRule</a></li><li><a href="Paginator.html">Paginator</a></li><li><a href="Piano.html">Piano</a></li><li><a href="Pitch.html">Pitch</a></li><li><a href="PitchClass.html">PitchClass</a></li><li><a href="PitchClassRule.html">PitchClassRule</a></li><li><a href="PlayableNote.html">PlayableNote</a></li><li><a href="Scale.html">Scale</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#firstToUpper">firstToUpper</a></li><li><a href="global.html#getMinDuration">getMinDuration</a></li><li><a href="global.html#playMelodically">playMelodically</a></li><li><a href="global.html#scales">scales</a></li><li><a href="global.html#twoDigitFormat">twoDigitFormat</a></li><li><a href="global.html#validateDuration">validateDuration</a></li><li><a href="global.html#validateInstrument">validateInstrument</a></li><li><a href="global.html#validateNoteAndOctave">validateNoteAndOctave</a></li><li><a href="global.html#validateNoteName">validateNoteName</a></li>
+					<li><a href="global.html#findQuery">findQuery</a></li><li><a href="global.html#findQueryByArray">findQueryByArray</a></li><li><a href="global.html#findQueryByString">findQueryByString</a></li><li><a href="global.html#firstToUpper">firstToUpper</a></li><li><a href="global.html#freqFromPitch">freqFromPitch</a></li><li><a href="global.html#freqFromRealNumber">freqFromRealNumber</a></li><li><a href="global.html#getMinDuration">getMinDuration</a></li><li><a href="global.html#notesDistance">notesDistance</a></li><li><a href="global.html#playMelodically">playMelodically</a></li><li><a href="global.html#realNumberFromFreq">realNumberFromFreq</a></li><li><a href="global.html#twoDigitFormat">twoDigitFormat</a></li>
 				</ul>
 			</li>
 			
@@ -81,7 +81,7 @@
         Note
         </h2>
         
-            <div class="class-description"><p>Represents a single musical note.</p></div>
+            <div class="class-description"><p>Represents an abstract musical note.</p></div>
         
     
 </header>
@@ -149,7 +149,105 @@
 
             
 
-            <td class="description last"><p>Object that contains some or all of the following keys:<br>{String} note Musical Note<br>{number} octave Note Octave<br>{String} duration Note duration<br>{String} instrument Piano/Guitar/etc...</p></td>
+            <td class="description last"><p>Object that contains some or all of the following keys:</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pitchClass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>one of the pitch classes('c', 'd', etc...)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>octave</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>note octave</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>duration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>note duration</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -193,8 +291,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-11">line 11</a>
+				<a href="models_Note.js.html">models/Note.js</a>,
+				 <a href="models_Note.js.html#sunlight-1-line-10">line 10</a>
 			</li>
 		</ul>
 	</dd>
@@ -223,7 +321,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">const n = new Note({note: &#x27;c&#x27;, octave: 3, duration: &#x27;q&#x27;, instrument: &#x27;Piano&#x27;})</pre>
+    <pre class="sunlight-highlight-javascript">const n = new Note({note: &#x27;c&#x27;, octave: 3, duration: &#x27;4n&#x27;, instrument: &#x27;Piano&#x27;})</pre>
 
 
     
@@ -248,575 +346,8 @@
         <dl>
             
 <hr>
-<dt class="name" id=".DURATION">
-    <h4 id=".DURATION"><span class="type-signature">&lt;static, readonly> </span>DURATION<span class="type-signature"> :Number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Index of duration in attributes</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-61">line 61</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id=".FAMILY">
-    <h4 id=".FAMILY"><span class="type-signature">&lt;static, readonly> </span>FAMILY<span class="type-signature"> :Number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Index of family in attributes</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-75">line 75</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id=".FREQUENCY">
-    <h4 id=".FREQUENCY"><span class="type-signature">&lt;static, readonly> </span>FREQUENCY<span class="type-signature"> :Number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Index of frequency in attributes</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-89">line 89</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id=".INDEX">
-    <h4 id=".INDEX"><span class="type-signature">&lt;static, readonly> </span>INDEX<span class="type-signature"> :Number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Index of note index in attributes</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-82">line 82</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id=".INSTRUMENT">
-    <h4 id=".INSTRUMENT"><span class="type-signature">&lt;static, readonly> </span>INSTRUMENT<span class="type-signature"> :Number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Index of instrument in attributes</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-68">line 68</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id=".NOTE">
-    <h4 id=".NOTE"><span class="type-signature">&lt;static, readonly> </span>NOTE<span class="type-signature"> :Number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Index of note in attributes</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-47">line 47</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id=".OCTAVE">
-    <h4 id=".OCTAVE"><span class="type-signature">&lt;static, readonly> </span>OCTAVE<span class="type-signature"> :Number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Index of octave in attributes</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-54">line 54</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
 <dt class="name" id="duration">
-    <h4 id="duration"><span class="type-signature">&lt;readonly> </span>duration<span class="type-signature"> :String</span></h4>
+    <h4 id="duration"><span class="type-signature"></span>duration<span class="type-signature"> :String</span></h4>
 
     
 </dt>
@@ -875,575 +406,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-110">line 110</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="family">
-    <h4 id="family"><span class="type-signature">&lt;readonly> </span>family<span class="type-signature"> :String</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Get the family of notes the note belnogs to - sharps or flats</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">String</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-124">line 124</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="family">
-    <h4 id="family"><span class="type-signature"></span>family<span class="type-signature"> :String</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Set the notes family in case needed.</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">String</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-130">line 130</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="frequency">
-    <h4 id="frequency"><span class="type-signature">&lt;readonly> </span>frequency<span class="type-signature"> :String</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Get the frequency of the note.</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">String</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-144">line 144</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="index">
-    <h4 id="index"><span class="type-signature">&lt;readonly> </span>index<span class="type-signature"> :String</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Get the index of the note from the 12 notes (C, Db, etc...).</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">String</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-137">line 137</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="instrument">
-    <h4 id="instrument"><span class="type-signature">&lt;readonly> </span>instrument<span class="type-signature"> :String</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Get the instrument that plays the note</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">String</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-117">line 117</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="note">
-    <h4 id="note"><span class="type-signature">&lt;readonly> </span>note<span class="type-signature"> :String</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Returns the note alphabet representation as a string.</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">String</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-96">line 96</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="octave">
-    <h4 id="octave"><span class="type-signature">&lt;readonly> </span>octave<span class="type-signature"> :Number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Get octave of note.</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-103">line 103</a>
+				<a href="models_Note.js.html">models/Note.js</a>,
+				 <a href="models_Note.js.html#sunlight-1-line-27">line 27</a>
 			</li>
 		</ul>
 	</dd>
@@ -1467,304 +431,6 @@
         <h3 class="subsection-title">Methods</h3>
 
         <dl>
-            
-<hr>
-<dt>
-    <h4 class="name" id=".validateProperties"><span class="type-signature">&lt;static> </span>validateProperties(note, octave, duration, instrument)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Validates the properties the user entered.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>note</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>octave</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>duration</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>instrument</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-35">line 35</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="changeDuration"><span class="type-signature"></span>changeDuration()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>returns a clone of the note(new instance).</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-160">line 160</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
             
 <hr>
 <dt>
@@ -1872,8 +538,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-175">line 175</a>
+				<a href="models_Note.js.html">models/Note.js</a>,
+				 <a href="models_Note.js.html#sunlight-1-line-39">line 39</a>
 			</li>
 		</ul>
 	</dd>
@@ -1915,232 +581,6 @@ console.log(interval.constructor.name) //should output Note.</pre>
             
 <hr>
 <dt>
-    <h4 class="name" id="isEqual"><span class="type-signature"></span>isEqual(note)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Check if 2 notes are equal in letter and octave.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>note</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Note.html">Note</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-210">line 210</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="play"><span class="type-signature"></span>play()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Play the note.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-215">line 215</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
     <h4 class="name" id="toString"><span class="type-signature"></span>toString()</h4>
     
     
@@ -2149,7 +589,7 @@ console.log(interval.constructor.name) //should output Note.</pre>
 
     
     <div class="description">
-        <p>Returns the note name and octave.</p>
+        <p>Returns a string of the note.</p>
     </div>
     
 
@@ -2195,8 +635,8 @@ console.log(interval.constructor.name) //should output Note.</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-204">line 204</a>
+				<a href="models_Note.js.html">models/Note.js</a>,
+				 <a href="models_Note.js.html#sunlight-1-line-60">line 60</a>
 			</li>
 		</ul>
 	</dd>
@@ -2221,12 +661,26 @@ console.log(interval.constructor.name) //should output Note.</pre>
     
 
     
-
+    <h5>Returns:</h5>
     
-        <h5>Example</h5>
-        
-    <pre class="sunlight-highlight-javascript">&#x27;C3&#x27;</pre>
+            
 
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -2339,8 +793,8 @@ console.log(interval.constructor.name) //should output Note.</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Note.js.html">Note.js</a>,
-				 <a href="Note.js.html#sunlight-1-line-197">line 197</a>
+				<a href="models_Note.js.html">models/Note.js</a>,
+				 <a href="models_Note.js.html#sunlight-1-line-52">line 52</a>
 			</li>
 		</ul>
 	</dd>
@@ -2425,7 +879,7 @@ console.log(interval.constructor.name) //should output Note.</pre>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on Tue Dec 11th 2018
+		on Wed Mar 13th 2019
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -1,0 +1,15 @@
+version: "2"
+plugins:
+    editorconfig:
+        enabled: true
+    fixme:
+        enabled: true
+    git-legal:
+        enabled: true
+exclude_patterns:
+    - "docs/"
+    - "dist/"
+    - "coverage/"
+    - "**/test/"
+    - "**/node_modules/"
+    - "src/resources/"

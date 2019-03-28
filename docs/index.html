@@ -11,7 +11,7 @@
 	<![endif]-->
 	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
 
-	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+	<link type="text/css" rel="stylesheet" href="styles/site.cyborg.css">
 
 </head>
 
@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Chord.html">Chord</a></li><li><a href="Note.html">Note</a></li><li><a href="NotesHash.html">NotesHash</a></li><li><a href="Piano.html">Piano</a></li>
+					<li><a href="AudioManager.html">AudioManager</a></li><li><a href="Chord.html">Chord</a></li><li><a href="Measure.html">Measure</a></li><li><a href="MusicTheoryStructures.html">MusicTheoryStructures</a></li><li><a href="Note.html">Note</a></li><li><a href="OctaveRule.html">OctaveRule</a></li><li><a href="Paginator.html">Paginator</a></li><li><a href="Piano.html">Piano</a></li><li><a href="Pitch.html">Pitch</a></li><li><a href="PitchClass.html">PitchClass</a></li><li><a href="PitchClassRule.html">PitchClassRule</a></li><li><a href="PlayableNote.html">PlayableNote</a></li><li><a href="Scale.html">Scale</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#firstToUpper">firstToUpper</a></li><li><a href="global.html#getMinDuration">getMinDuration</a></li><li><a href="global.html#playMelodically">playMelodically</a></li><li><a href="global.html#scales">scales</a></li><li><a href="global.html#twoDigitFormat">twoDigitFormat</a></li><li><a href="global.html#validateDuration">validateDuration</a></li><li><a href="global.html#validateInstrument">validateInstrument</a></li><li><a href="global.html#validateNoteAndOctave">validateNoteAndOctave</a></li><li><a href="global.html#validateNoteName">validateNoteName</a></li>
+					<li><a href="global.html#findQuery">findQuery</a></li><li><a href="global.html#findQueryByArray">findQueryByArray</a></li><li><a href="global.html#findQueryByString">findQueryByString</a></li><li><a href="global.html#firstToUpper">firstToUpper</a></li><li><a href="global.html#freqFromPitch">freqFromPitch</a></li><li><a href="global.html#freqFromRealNumber">freqFromRealNumber</a></li><li><a href="global.html#getMinDuration">getMinDuration</a></li><li><a href="global.html#notesDistance">notesDistance</a></li><li><a href="global.html#playMelodically">playMelodically</a></li><li><a href="global.html#realNumberFromFreq">realNumberFromFreq</a></li><li><a href="global.html#twoDigitFormat">twoDigitFormat</a></li>
 				</ul>
 			</li>
 			
@@ -93,25 +93,50 @@
 
 
     <section class="readme-section">
-        <article><blockquote>
-<p>Musical Project By Sean Dvir - <em>A Work in progress</em></p>
-</blockquote>
-<h1>Note-Art JS</h1><ul>
-<li><p>Music is a highly versatile art that originates in nature, and has been taken up by mankind as a way of expression and also as an art.<br>Now, it's going to be taken up by machines as well.</p>
+        <article><h1>Note-Art JS</h1><h5>A Work in Progress</h5><p><br></p>
+<h4><a href="https://note-art-demo.netlify.com">Demo</a> | <a href="https://github.com/Seanitzel/Note-Art">Repo</a></h4><p><br></p>
+<h4>Some Notes about the project:</h4><ul>
+<li><p>I work on this library all by myself(<a href="https://musitelligence.com/#/about-me">About Me</a>).</p>
 </li>
-<li><p>This project aims to create a library that implements all of music theory(in all it's forms) in code,<br>can be used to play sounds of most musical instruments.<br>It will then be used to create multiple tools for people to practice, learn, enjoy and compose.<br>it will also be used to attempt development of different projects combining music and AI.</p>
+<li><p>This project aims to create a library that implements all of music theory(in all it's forms) in code,<br>and can be used to play sounds of most musical instruments.</p>
 </li>
+<li>This libraries main purpose is to aid me in creating the ultimate platform for musicians - <a href="https://musitelligence.com/#/">Musitelligence</a>, which is already online and has some nice tools availble.</li>
+<li>You can use this library for creating tools for music, researching music theory or just creating music with programming. </li>
+<li>Currently the only availble instrument is piano, the audio files are being loaded from a server i run on heroku.</li>
 </ul>
-<blockquote>
-<p>“Everything is determined … by forces over which we have no<br>control. It is determined for the insects as well as for the star.<br>Human beings, vegetables, or cosmic dust – we all dance to a<br>mysterious tune, intoned in the distance by an invisible piper.”<br>– Albert Einstein</p>
-</blockquote>
-<h2>Table of Contents</h2><ul>
-<li><a href="#Installation">Installation</a></li>
-<li><a href="#Usage">Usage</a></li>
+<h5>If you feel like helping or supporting you can -</h5><ul>
+<li>Email me at <a href="mailto:seandvir12@gmail.com">seandvir12@gmail.com</a> with your ideas and recommendations.</li>
+<li>Support me on <a href="https://www.patreon.com/Seanitzel">patreon</a>.</li>
+<li>Download my app - <a href="https://play.google.com/store/apps/details?id=com.scales.scaleheaven">Scale Heaven</a> on google play(and press the banner once in a while ;)</li>
+<li>Make a pull request.</li>
 </ul>
-<h2>Installation</h2><pre class="prettyprint source lang-bash"><code>npm install note-art</code></pre><h2>Usage</h2><h5>Creating and playing a note</h5><pre class="prettyprint source"><code>const A = new Note({note: 'a', octave: 4})
-A.play() //note is played</code></pre><h5>Getting a note's frequency</h5><pre class="prettyprint source"><code>console.log(A.frequency) // outputs 440</code></pre><h5>Getting a note's interval by semi-tones(5 semi -tones are a perfect fourth interval)</h5><pre class="prettyprint source"><code>const fourth = A.interval(5) // fourth is the note E with octave 5</code></pre><h5>Print note</h5><pre class="prettyprint source"><code>console.log(A.toString()) // outputs: A4</code></pre><p>Notes also have a duration and instrument properties which default to 'q' and 'Piano'.</p>
-<h2>See the docs for more</h2></article>
+<h5>Some examples:</h5><pre class="prettyprint source"><code>// PlayableNote
+
+const A = new PlayableNote({note: 'a', octave: 4})
+
+A.play() //note is played
+
+console.log(A.frequency) // outputs 440
+
+const fourth = A.interval(5) // fourth is the note E with octave 5
+
+console.log(A.toString()) // outputs: A4
+
+//Chord
+
+const A_M = new Chord({note: A, name: 'Major'})
+
+A_M.play() // Chord is played
+
+//Scale
+
+const A_Major = new Scale({tonic: A, name: 'Major'})
+console.log(A_Major.pitchClasses()) // outputs the notes in the scale
+
+//Playable-Notes also have a duration and instrument properties which default to '4n' and 'Piano'.
+
+//There are also Un-playable models such as PitchClass, Pitch, Note which 
+//cant be played and might be used for general music theory research.</code></pre></article>
     </section>
 
 
@@ -163,7 +188,7 @@ A.play() //note is played</code></pre><h5>Getting a note's frequency</h5><pre cl
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on Tue Dec 11th 2018
+		on Wed Mar 13th 2019
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

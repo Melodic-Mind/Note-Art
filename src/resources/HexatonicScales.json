@@ -1,0 +1,644 @@
+[
+    {
+        "Length": "6",
+        "Pattern": "[0, 3, 4, 7, 8, 11]",
+        "AKA": "genus tertium Raga Devamani",
+        "Name": "Augmented,  Messiaen Truncated Mode 3 2457Inverse"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 4, 7, 9]",
+        "AKA": "Blues Dorian Hexatonic",
+        "Name": "Blues Dorian Hex (all b’s) as 9/6789/1 in 12edo)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 3, 4, 7, 9]",
+        "AKA": null,
+        "Name": "Blues Dorian Hexatonic"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 3, 5, 6, 7, 10]",
+        "AKA": null,
+        "Name": "Blues Minor"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 3, 5, 6, 7, 11]",
+        "AKA": null,
+        "Name": "Blues Minor Maj7"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 2, 3, 4, 5]",
+        "AKA": null,
+        "Name": "Chromatic HexaMirror all b"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 3, 5, 6, 9]",
+        "AKA": null,
+        "Name": "Double-Phrygian Hexatonic"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 6, 8, 9]",
+        "AKA": null,
+        "Name": "Eskimo Hexatonic 2"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 6, 8, 11]",
+        "AKA": null,
+        "Name": "Eskimo Hexatonic 2 (North America)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 4, 5, 7, 9, 11]",
+        "AKA": "Chord CMaj6sus4",
+        "Name": "Genus Secundum"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 7, 9, 11]",
+        "AKA": "Nando Kyemyonjo (Korea) • Minor Pentachord",
+        "Name": "Hawaiian"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 3, 5, 6, 10]",
+        "AKA": null,
+        "Name": "Honchoshi Plagal Form"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 7, 9, 11]",
+        "AKA": "Chord CMaj769",
+        "Name": "Lydian Hexatonic"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 3, 4, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Lydian b3 Hexatonic"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Major Bebop Hexatonic"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 3, 5, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Mela Senavati (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 3, 4, 5, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Mela Yagapriya  (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 5, 6, 8, 11]",
+        "AKA": "truncated mode 2",
+        "Name": "Messiaen Mode 2 "
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 5, 6, 7, 11]",
+        "AKA": "respelling",
+        "Name": "Messiaen Mode 5"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 2, 6, 7, 8]",
+        "AKA": null,
+        "Name": "Messiaen Mode 5 (dupe of 11/2348910/5 in 12edo)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 4, 5, 6, 10, 11]",
+        "AKA": null,
+        "Name": "Messiaen Mode 5 Inverse"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 3, 6, 7, 9]",
+        "AKA": "as 11/24581011/6 in 12edo",
+        "Name": "Messiaen Truncated Mode 2 (#1,#2,#4)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 5, 8, 9]",
+        "AKA": "as 13/23478111213/6 in 12edo",
+        "Name": "Messiaen Truncated Mode 3  all #"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 5, 7, 10]",
+        "AKA": "Chord Cm9sus4 - Nayaki, Yo (Japan), Eskimo Hexatonic 1 (North America)",
+        "Name": "Minor Hexatonic"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 5, 7, 9, 10]",
+        "AKA": "Yosen (Japan). Raga Darbar, Narayani, Suposhini (India)",
+        "Name": "Mixolydian Hexatonic"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 3, 5, 7, 8, 10]",
+        "AKA": "Chord Cm7b6b9sus4",
+        "Name": "Phrygian Hexatonic"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 5, 8, 10]",
+        "AKA": null,
+        "Name": "Phrygian no fifth"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 6, 9, 10]",
+        "AKA": null,
+        "Name": "Prometheus F# and Bb) in 12edo)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 6, 9, 10]",
+        "AKA": null,
+        "Name": "Prometheus Neapolitan"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 5, 6, 9]",
+        "AKA": null,
+        "Name": "Pyramid Hexatonic"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 6, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Amarasenapriya (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 5, 9, 10]",
+        "AKA": "Chord Cm69sus4",
+        "Name": "Raga Bagesri,  Sriranjani, Kapijingla (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Bauli (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 3, 4, 5, 7, 10]",
+        "AKA": null,
+        "Name": "Raga Bhanumanjari (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 3, 6, 8, 10]",
+        "AKA": null,
+        "Name": "Raga Bhavani (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 6, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Caturangini (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 2, 6, 7, 9]",
+        "AKA": null,
+        "Name": "Raga Chandrajyoti (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 6, 7, 8]",
+        "AKA": null,
+        "Name": "Raga Dhavalangam (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 5, 6, 7]",
+        "AKA": null,
+        "Name": "Raga Dipak (India)"
+    },
+    {
+        "Length": "6",
+        "AKA": "Chord Cm7b6sus4",
+        "Pattern": "[0, 1, 3, 5, 7, 10]",
+        "Name": "Raga Gandharavam"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 5, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Gaula (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 5, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Ghantana (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 3, 6, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Gujari Todi (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 5, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Hamsa Vinodini (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 6, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Hamsanandi, Puriya (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 6, 8, 9]",
+        "AKA": null,
+        "Name": "Raga Hejjajji (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 6, 7, 10]",
+        "AKA": "Petrushka Chord (C + F#)",
+        "Name": "Raga Indupriya (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 6, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Raga Jaganmohanam (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 5, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Jivantika (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 3, 6, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Raga Jivantini, Gaurikriya (India"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 4, 6, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Raga Jyoti (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Raga Kalagada (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 5, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Raga Kalakanthi (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 5, 7, 9]",
+        "AKA": null,
+        "Name": "Raga Kalavati, Ragamalini (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 4, 5, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Raga Kamalamanohari (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 3, 7, 8, 10]",
+        "AKA": "Chord Cmb6b9",
+        "Name": "Raga Kashyapi (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 4, 5, 7, 9, 10]",
+        "AKA": "Chord C13sus4",
+        "Name": "Raga Khamas, Baduhari (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Latika"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 3, 6, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Raga Madhakauns (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 5, 7, 8]",
+        "AKA": null,
+        "Name": "Raga Malahari (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 6, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Raga Malarani (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Raga Malayamarutam (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 7, 9, 10]",
+        "AKA": "Chord Cm96",
+        "Name": "Raga Manavi (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 6, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Mandari, Gamakakriya (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 3, 5, 7, 9, 10]",
+        "AKA": "Chord Cm13sus4",
+        "Name": "Raga Manohari (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 5, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Raga Megh (India) (same as Raga Megh 11/56891011/2 in 12edo)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 6, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Mrunganandana (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 5, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Nagagandhari (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 5, 7, 11]",
+        "AKA": "Chord CMaj9sus4",
+        "Name": "Raga Nalinakanti, Kedaram (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 5, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Raga Navamanohari (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 6, 8, 9]",
+        "AKA": null,
+        "Name": "Raga Neelangi (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 6, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Nishadi (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 5, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Padi (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 4, 5, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Paraju  Simhavahini India"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 5, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Raga Phenadyuti (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 5, 9, 10]",
+        "AKA": null,
+        "Name": "Raga Rageshri, Nattaikurinji (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 6, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Ranjani, Rangini (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 3, 4, 6, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Rasamanjari (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 5, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Raga Rasavali (India)"
+    },
+    {
+        "Length": "6",
+        "AKA": null,
+        "Pattern": "[0, 1, 4, 5, 9, 10]",
+        "Name": "Raga Rudra Pancama (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 3, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Raga Salagavarali (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 5, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Sarasanana (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 6, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Raga Sarasvati (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 4, 5, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Raga Saravati (b6) (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 3, 5, 7, 8]",
+        "AKA": null,
+        "Name": "Raga Simantini (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 6, 7, 10]",
+        "AKA": null,
+        "Name": "Raga Simharava (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 5, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Sindhura Kafi (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 5, 7, 10]",
+        "AKA": "Chord C9sus4",
+        "Name": "Raga Siva Kambhoji, Vivardhini (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 4, 5, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Sohini (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 5, 7, 9]",
+        "AKA": null,
+        "Name": "Raga Suddha Bangala (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 2, 5, 8, 9]",
+        "AKA": null,
+        "Name": "Raga Suddha Mukhari (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 6, 7, 8]",
+        "AKA": null,
+        "Name": "Raga Syamalam (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 3, 5, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Takka (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 4, 5, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Raga Tilang, Savitri (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 7, 8, 10]",
+        "AKA": "Chord Cm9b13",
+        "Name": "Raga Trimurti"
+    },
+    {
+        "Length": "6",
+        "AKA": null,
+        "Pattern": "[0, 1, 4, 5, 9, 11]",
+        "Name": "Raga Vasanta, Chayavati (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 6, 7, 9]",
+        "AKA": null,
+        "Name": "Raga Vijayanagari"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 2, 6, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Vijayasri (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 4, 6, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Raga Vijayavasanta (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 4, 6, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Raga Vutari (India)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 6, 7, 9]",
+        "AKA": null,
+        "Name": "Raga Yamuna Kalyani"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 3, 5, 8, 10]",
+        "AKA": null,
+        "Name": "Ritsu"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 5, 7, 9]",
+        "AKA": null,
+        "Name": "Scottish Hexatonic Arezzo Major Diatonic Hexachord"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 6, 8, 11]",
+        "AKA": null,
+        "Name": "Takemitsu Tree Line Mode1(3 #s from C)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 3, 6, 8, 10]",
+        "AKA": null,
+        "Name": "Takemitsu Tree Line Mode 2 4b’s"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 1, 3, 5, 8, 11]",
+        "AKA": null,
+        "Name": "Theoretical - No Known Name (as 13/24789101213/6 in 12edo)"
+    },
+    {
+        "Length": "6",
+        "Pattern": "[0, 2, 4, 6, 8, 10]",
+        "AKA": "Raga Gopriya (India) Anhemitonic Hexatonic",
+        "Name": "whole tone #’s in 12edo)"
+    }
+]

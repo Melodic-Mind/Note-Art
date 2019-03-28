@@ -1,0 +1,278 @@
+[
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 4, 5, 7, 8, 10, 11]",
+        "AKA": null,
+        "Name": "* Maqam Hijaz All flat Bb-Ab-Db"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 2, 3, 5, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Adonai Malakh (Israel) 3b’s"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 5, 6, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Algerian"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 3, 4, 6, 7, 9, 10]",
+        "AKA": "Blues Diminished",
+        "Name": "Half-Whole"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 5, 6, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Blues Octatonic"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 2, 3, 4, 5, 6, 7]",
+        "AKA": null,
+        "Name": "Chromatic OctaMirror"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 4, 5, 7, 9, 10, 11]",
+        "AKA": null,
+        "Name": "Dominant Bebop"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 5, 7, 8, 9, 10]",
+        "AKA": null,
+        "Name": "Dorian Aoelian (Al b’s) 11/891011/4 in 12edo)"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 4, 5, 6, 8, 10, 11]",
+        "AKA": null,
+        "Name": "Enigmatic"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 3, 5, 6, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Half-Dimiished Bebop"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 2, 3, 5, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Harmonic Neapolitan Minor 4b’s"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 2, 3, 6, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Hungarian Minor b2"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 3, 4, 5, 7, 9, 10]",
+        "AKA": null,
+        "Name": "JG Octatonic  all 3b"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 4, 6, 7, 9, 10]",
+        "AKA": "Chord Cm693sus4#",
+        "Name": "Lydian Dim b7"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 4, 6, 7, 9, 10, 11]",
+        "AKA": "Lydian with both natural and dominant 7th",
+        "Name": "Lydian Dominant + natural seventh"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 4, 6, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Lydian b3 "
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 3, 4, 6, 8, 9, 11]",
+        "AKA": null,
+        "Name": "Magen Abot (Israel) all sharp"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 4, 5, 7, 8, 9, 11]",
+        "AKA": null,
+        "Name": "Major Bebop"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 4, 5, 6, 7, 9, 11]",
+        "AKA": "Ishikotsucho (Japan)",
+        "Name": "Major Lydian Genus Diatonicum Veterum Correctum"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 3, 4, 5, 6, 9, 10]",
+        "AKA": null,
+        "Name": "Maqam Shadd'araban (6b’s)"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 5, 6, 8, 10, 11]",
+        "AKA": null,
+        "Name": "Messiaen 2 according to Brown"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 5, 6, 8, 9, 11]",
+        "AKA": null,
+        "Name": "Whole-Half"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 3, 5, 6, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Messiaen 3 according to Brown"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 4, 5, 6, 8, 10, 11]",
+        "AKA": null,
+        "Name": "Messiaen 7 according to Brown"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 2, 5, 6, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Messiaen Mode 4"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 2, 3, 6, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Messiaen Mode 4 (all sharp)&#10; "
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 3, 4, 5, 6, 9, 10, 11]",
+        "AKA": null,
+        "Name": "Messiaen Mode 4 Inverse"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 2, 4, 6, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Messiaen Mode 6&#10; "
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 4, 5, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Minor Bebop (As Minor Bebop 11/891011/3 in 12edo) "
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 6, 7, 8, 10, 11]",
+        "AKA": "Minor Gypsy",
+        "Name": "Minor Gypsy"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 3, 6, 7, 8, 10, 11]",
+        "AKA": null,
+        "Name": "Neveseri (Greece)"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 4, 5, 6, 9, 10, 11]",
+        "AKA": null,
+        "Name": "Oriental 2"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 2, 3, 5, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Phrygian Aeolian 2b 4b 6b"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 3, 5, 6, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Phrygian Locrian (All b’s) - 11/891011/6 in 12edo)"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 3, 4, 5, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Phrygian Major,  Flamenco, Spanish Phrygian"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 3, 5, 6, 8, 10, 11]",
+        "AKA": null,
+        "Name": "Prokofiev (All b’s)16/589101113141516/7 in 12 edo)"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 6, 7, 8, 9, 10]",
+        "AKA": null,
+        "Name": "Raga Cintamani (India)"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 5, 7, 9, 10, 11]",
+        "AKA": null,
+        "Name": "Raga Mian Ki Malhar, Bahar (India)"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 4, 5, 6, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Ramkali (India)"
+    },
+    {
+        "Length": "8",
+        "AKA": null,
+        "Pattern": "[0, 1, 4, 5, 7, 8, 9, 11]",
+        "Name": "Raga Saurashtra (India)"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 3, 4, 6, 7, 9, 11]",
+        "AKA": "Shostakovich",
+        "Name": "Shostakovich name in Cyrillic monogram"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 3, 4, 5, 6, 8, 10]",
+        "AKA": null,
+        "Name": " Spanish 8 tones (all b’s) in 12edo) + Fb"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 2, 3, 4, 6, 8, 9]",
+        "AKA": null,
+        "Name": "Theoretical - No Known Name 4#’s"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 1, 2, 3, 4, 6, 9, 10]",
+        "AKA": null,
+        "Name": "Theoretical - No Known Name 4#’s"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 5, 7, 8, 10, 11]",
+        "AKA": "Raga Suha (India) Gregorian Name 4",
+        "Name": "Utility minor 14/38911121314/5 in 12edo)"
+    },
+    {
+        "Length": "8",
+        "Pattern": "[0, 2, 3, 5, 7, 8, 9, 11]",
+        "AKA": null,
+        "Name": "Zirafkend (Arabia)"
+    }
+]

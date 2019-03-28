@@ -11,7 +11,7 @@
 	<![endif]-->
 	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
 
-	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+	<link type="text/css" rel="stylesheet" href="styles/site.cyborg.css">
 
 </head>
 
@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Chord.html">Chord</a></li><li><a href="Note.html">Note</a></li><li><a href="NotesHash.html">NotesHash</a></li><li><a href="Piano.html">Piano</a></li>
+					<li><a href="AudioManager.html">AudioManager</a></li><li><a href="Chord.html">Chord</a></li><li><a href="Measure.html">Measure</a></li><li><a href="MusicTheoryStructures.html">MusicTheoryStructures</a></li><li><a href="Note.html">Note</a></li><li><a href="OctaveRule.html">OctaveRule</a></li><li><a href="Paginator.html">Paginator</a></li><li><a href="Piano.html">Piano</a></li><li><a href="Pitch.html">Pitch</a></li><li><a href="PitchClass.html">PitchClass</a></li><li><a href="PitchClassRule.html">PitchClassRule</a></li><li><a href="PlayableNote.html">PlayableNote</a></li><li><a href="Scale.html">Scale</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#firstToUpper">firstToUpper</a></li><li><a href="global.html#getMinDuration">getMinDuration</a></li><li><a href="global.html#playMelodically">playMelodically</a></li><li><a href="global.html#scales">scales</a></li><li><a href="global.html#twoDigitFormat">twoDigitFormat</a></li><li><a href="global.html#validateDuration">validateDuration</a></li><li><a href="global.html#validateInstrument">validateInstrument</a></li><li><a href="global.html#validateNoteAndOctave">validateNoteAndOctave</a></li><li><a href="global.html#validateNoteName">validateNoteName</a></li>
+					<li><a href="global.html#findQuery">findQuery</a></li><li><a href="global.html#findQueryByArray">findQueryByArray</a></li><li><a href="global.html#findQueryByString">findQueryByString</a></li><li><a href="global.html#firstToUpper">firstToUpper</a></li><li><a href="global.html#freqFromPitch">freqFromPitch</a></li><li><a href="global.html#freqFromRealNumber">freqFromRealNumber</a></li><li><a href="global.html#getMinDuration">getMinDuration</a></li><li><a href="global.html#notesDistance">notesDistance</a></li><li><a href="global.html#playMelodically">playMelodically</a></li><li><a href="global.html#realNumberFromFreq">realNumberFromFreq</a></li><li><a href="global.html#twoDigitFormat">twoDigitFormat</a></li>
 				</ul>
 			</li>
 			
@@ -81,7 +81,7 @@
         Chord
         </h2>
         
-            <div class="class-description"><p>Represents a Chord.</p></div>
+            <div class="class-description"><p>Represents a musical Chord - a number of notes with a specific<br>pattern which can be played together to form a harmonic sound.</p></div>
         
     
 </header>
@@ -93,7 +93,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="Chord"><span class="type-signature"></span>new Chord(root, chord_type)</h4>
+    <h4 class="name" id="Chord"><span class="type-signature"></span>new Chord(attributes)</h4>
     
     
 </dt>
@@ -101,7 +101,7 @@
 
     
     <div class="description">
-        <p>Creates a Chord instance.</p>
+        <p>Creates a Chord instance.<br><b>Either Name or Pattern must be provided!</b></p>
     </div>
     
 
@@ -136,13 +136,13 @@
 
         <tr>
             
-                <td class="name"><code>root</code></td>
+                <td class="name"><code>attributes</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="Note.html">Note</a></span>
+<span class="param-type">Object</span>
 
 
 
@@ -153,31 +153,7 @@
 
             
 
-            <td class="description last"><p>root of the chord</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>chord_type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>type of the chord</p></td>
+            <td class="description last"><p>Object that contains some of the following keys:<br>{Note} root - chords root note<br>{String} name - the chords name(by marking)<br>{Array} pattern - the pattern to build the chord by pitchIntervals</p></td>
         </tr>
 
     
@@ -221,8 +197,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-11">line 11</a>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-18">line 18</a>
 			</li>
 		</ul>
 	</dd>
@@ -245,8 +221,70 @@
     
 
     
+    <h5>Throws:</h5>
+    <ul>
+            <li>
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        <p>When not provided with root and either name or pattern</p>
+        </div>
+    </dt>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">MissingInformation</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+</dl>
+
+</li>
+        
+            <li>
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        <p>When called with name and the name cant be found in the</p>
+        </div>
+    </dt>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">DataNotFound</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+</dl>
+
+</li>
+        </ul>
 
     
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">const c = new Note({note: &#x27;c&#x27;})
+const C_Maj_by_pattern = new Chord({root:c, pattern: [4, 7]}) // new C major chord.
+const C_min_by_name = new Chord({root:c, name: &#x27;m&#x27;}) // new C minor chord.</pre>
+
 
     
 </dd>
@@ -270,148 +308,8 @@
         <dl>
             
 <hr>
-<dt class="name" id=".INFO">
-    <h4 id=".INFO"><span class="type-signature">&lt;static> </span>INFO<span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Index of chord information object.</p>
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-31">line 31</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id=".NOTES">
-    <h4 id=".NOTES"><span class="type-signature">&lt;static> </span>NOTES<span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Index of chord notes array.</p>
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-37">line 37</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="name">
-    <h4 id="name"><span class="type-signature">&lt;readonly> </span>name<span class="type-signature"> :String</span></h4>
+<dt class="name" id="fullName">
+    <h4 id="fullName"><span class="type-signature"></span>fullName<span class="type-signature"> :String</span></h4>
 
     
 </dt>
@@ -470,8 +368,89 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-51">line 51</a>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-57">line 57</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="name">
+    <h4 id="name"><span class="type-signature"></span>name<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Marking of the chord.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-65">line 65</a>
 			</li>
 		</ul>
 	</dd>
@@ -492,7 +471,7 @@
             
 <hr>
 <dt class="name" id="notes">
-    <h4 id="notes"><span class="type-signature">&lt;readonly> </span>notes<span class="type-signature"> :Array</span></h4>
+    <h4 id="notes"><span class="type-signature"></span>notes<span class="type-signature"> :Array</span></h4>
 
     
 </dt>
@@ -551,8 +530,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-44">line 44</a>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-49">line 49</a>
 			</li>
 		</ul>
 	</dd>
@@ -572,15 +551,15 @@
         
             
 <hr>
-<dt class="name" id="type">
-    <h4 id="type"><span class="type-signature">&lt;readonly> </span>type<span class="type-signature"> :String</span></h4>
+<dt class="name" id="octave">
+    <h4 id="octave"><span class="type-signature"></span>octave<span class="type-signature"> :Number</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        <p>Type of the chord.</p>
+        <p>Returns chord root octave.</p>
     </div>
     
 
@@ -589,7 +568,7 @@
         <ul>
             <li>
                 
-<span class="param-type">String</span>
+<span class="param-type">Number</span>
 
 
 
@@ -632,8 +611,159 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-58">line 58</a>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-73">line 73</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="pitchClasses">
+    <h4 id="pitchClasses"><span class="type-signature"></span>pitchClasses<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Returns a string of the chord notes pitch classes.</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-171">line 171</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="pitchIntervals">
+    <h4 id="pitchIntervals"><span class="type-signature"></span>pitchIntervals<span class="type-signature"> :Array</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Array of the intervals from the root to each note in the chord(excluding the root)</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-81">line 81</a>
 			</li>
 		</ul>
 	</dd>
@@ -714,8 +844,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-76">line 76</a>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-148">line 148</a>
 			</li>
 		</ul>
 	</dd>
@@ -802,8 +932,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-83">line 83</a>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-155">line 155</a>
 			</li>
 		</ul>
 	</dd>
@@ -828,164 +958,6 @@
     
 
     
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="newDuration"><span class="type-signature"></span>newDuration(duration)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Generate a new chord with the same notes but a different duration.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>duration</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the new duration</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-100">line 100</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Chord.html">Chord</a></span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
@@ -1048,8 +1020,96 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-64">line 64</a>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-103">line 103</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="playMelody"><span class="type-signature"></span>playMelody()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Play chord notes melodically.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-110">line 110</a>
 			</li>
 		</ul>
 	</dd>
@@ -1136,8 +1196,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-69">line 69</a>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-141">line 141</a>
 			</li>
 		</ul>
 	</dd>
@@ -1170,6 +1230,310 @@
             
 <hr>
 <dt>
+    <h4 class="name" id="setDuration"><span class="type-signature"></span>setDuration(duration)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Generate the same chord with a new duration.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>duration</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-119">line 119</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Chord.html">Chord</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setOctave"><span class="type-signature"></span>setOctave(octave)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Generate the same chord with a new octave.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>octave</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-131">line 131</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Chord.html">Chord</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id="toString"><span class="type-signature"></span>toString()</h4>
     
     
@@ -1178,7 +1542,7 @@
 
     
     <div class="description">
-        <p>Get a string of the chord's name</p>
+        <p>Get a string of the chord's name.</p>
     </div>
     
 
@@ -1224,8 +1588,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-91">line 91</a>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-163">line 163</a>
 			</li>
 		</ul>
 	</dd>
@@ -1278,7 +1642,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="tranpose"><span class="type-signature"></span>tranpose(interval)</h4>
+    <h4 class="name" id="transpose"><span class="type-signature"></span>transpose(interval)</h4>
     
     
 </dt>
@@ -1382,8 +1746,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Chord.js.html">Chord.js</a>,
-				 <a href="Chord.js.html#sunlight-1-line-109">line 109</a>
+				<a href="models_Chord.js.html">models/Chord.js</a>,
+				 <a href="models_Chord.js.html#sunlight-1-line-182">line 182</a>
 			</li>
 		</ul>
 	</dd>
@@ -1488,7 +1852,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on Tue Dec 11th 2018
+		on Wed Mar 13th 2019
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

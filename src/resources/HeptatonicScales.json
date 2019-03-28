@@ -1,0 +1,686 @@
+[
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 6, 8, 9, 11]",
+        "AKA": null,
+        "Name": "Aeolian 2# 4# #5"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 5, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Bhairubahar Thaat (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 5, 6, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Blues Heptatonic"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 5, 6, 7, 10]",
+        "AKA": null,
+        "Name": "Blues Modified"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 5, 6, 7, 10]",
+        "AKA": null,
+        "Name": "Blues Phrygian 11/2891011/6 in 12edo)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 5, 6, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Blues with Leading Tone"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 5, 7, 8, 9]",
+        "AKA": "Raga Kanakambari (India)",
+        "Name": "Chromatic Dorian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 5, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Chromatic Dorian Inverse Raga None (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 3, 4, 5, 6]",
+        "AKA": null,
+        "Name": "Chromatic HeptaMirror #’s"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 4, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Chromatic Hypodorian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 5, 8, 9, 10]",
+        "AKA": null,
+        "Name": "Chromatic Hypodorian Inverse"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 5, 6, 8, 11]",
+        "AKA": null,
+        "Name": "Chromatic Hypolydian Inverse, Persian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 6, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Chromatic Hypolydian, Puravi bVI"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 5, 6, 7, 9]",
+        "AKA": null,
+        "Name": "Chromatic Hypophrygian Inverse"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 5, 6, 9, 11]",
+        "AKA": null,
+        "Name": "Chromatic Lydian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 6, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Chromatic Lydian Inverse, Todi bVI"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 4, 6, 7, 10]",
+        "AKA": null,
+        "Name": "Chromatic Mixolydian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 5, 6, 7, 10]",
+        "AKA": null,
+        "Name": "Chromatic Mixolydian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 5, 6, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Chromatic Mixolydian Inverse"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 5, 8, 10, 11]",
+        "AKA": null,
+        "Name": "Chromatic Phrygian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 4, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Chromatic Phrygian Inverse"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 5, 7, 9, 10]",
+        "AKA": "Chord Cm69sus4 - Eskimo Heptatonic (N. America) Kafi Thaat (India), Embulum (Sumerian)",
+        "Name": "Dorian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 5, 6, 9, 10]",
+        "AKA": null,
+        "Name": "Dorian b5"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 6, 8, 10, 11]",
+        "AKA": "as 15/23457891315/6 in 12edo",
+        "Name": "Enigmatic Ascending (#1,#4,#5,#6)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 5, 8, 10, 11]",
+        "AKA": "as 15/234789121315/6 in 12edo",
+        "Name": "Enigmatic Descending (#1,#5,#6,#7)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 6, 8, 10, 11]",
+        "AKA": null,
+        "Name": "Enigmatic Minor (all b’s)  15/245789101315/6 in 12edo"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 5, 6, 8, 9, 10]",
+        "AKA": null,
+        "Name": "Gipsy Hexatonic, Raga Kalakanti"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 5, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Gypsy Hexatonic"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 5, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Harmonic Major 1, Ethiopian, Nat Bhairava"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 5, 8, 9, 11]",
+        "AKA": "Harmonic Major 2, Ionian #5",
+        "Name": "Altered Ionian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 5, 7, 8, 11]",
+        "AKA": "Raga Kirwani",
+        "Name": "Harmonic Minor"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 5, 7, 9, 10]",
+        "AKA": "Maqam Hicaz (Arabia)",
+        "Name": "Harmonic Minor Inverse or Bhairav"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 5, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Houzam (Greece)   Raga Saildesakshi, Trishuli (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 5, 7, 8, 11]",
+        "AKA": "Bhairav Thaat (India) Mela Mayamalavagaula (India) Raga Paraj (India) Hitzazkiar (Greece)",
+        "Name": "Hungarian Folk or Byzantine Major Gypsy"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 6, 7, 8, 10]",
+        "AKA": "Mela Sanmukhapriya (India)",
+        "Name": "Hungarian Gypsy (allb)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 6, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Hungarian Major Raga Nasamani (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 6, 7, 8, 11]",
+        "AKA": "Maqam Nawa Athar (Arabia), Double Harmonic Minor, Niavent (Greece)",
+        "Name": "Hungarian Minor"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 4, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Indian, Phrygian dim 4th"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 5, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Jazz Minor Inverse. Javanese,  Dorian bII & HIndi"
+    },
+    {
+        "Length": "7",
+        "AKA": null,
+        "Pattern": "[0, 2, 4, 6, 8, 10, 11]",
+        "Name": "Leading Whole-Tone"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 5, 6, 8, 10]",
+        "AKA": "Qablitum (Sumerian)",
+        "Name": "Locrian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 5, 6, 8, 11]",
+        "AKA": null,
+        "Name": "Locrian 2"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 5, 6, 9, 10]",
+        "AKA": "Locrian Natural Maj 6, Pseudo Turkish",
+        "Name": "Altered Locrian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 5, 6, 8, 9]",
+        "AKA": null,
+        "Name": "Locrian bb7"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 6, 7, 9, 11]",
+        "AKA": "Ping (China)  Nis Garb.ri (Mesopotamian)",
+        "Name": "Lydian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 6, 7, 9, 11]",
+        "AKA": "Lydian #2 Raga Kuksumakaram",
+        "Name": "Altered Lydian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 4, 6, 8, 10]",
+        "AKA": "Super Locrian 6 flats",
+        "Name": "Altered Myxolydian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 6, 8, 9, 11]",
+        "AKA": null,
+        "Name": "Lydian Augmented, Hindi #IV & #V"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 6, 7, 9, 11]",
+        "AKA": "Lydian Diminished, Raga Dumyaraga, Madhuvanti, Ambika (India)",
+        "Name": "Altered Dorian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 6, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Lydian Minor, Stravinski Raga Ratipriya (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 6, 7, 9, 10]",
+        "AKA": "Lydian bVIIth, Overtone,  Hindi #IV & bVII, Mela Vacaspati (India) Raga Bhusavati (India) Lydian Mixolydian. Bartok Name, Lydian Dominant",
+        "Name": "Bartok"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 5, 7, 9, 11]",
+        "AKA": "Ionian",
+        "Name": "Major"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 5, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Major Bebop Heptatonic Mela Mararanjani (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 5, 6, 8, 10]",
+        "AKA": null,
+        "Name": "Major Locrian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 5, 7, 8, 10]",
+        "AKA": "Mela Carukesi (India) Raga Tarangini (India)",
+        "Name": "Major Minor, Hindu bVI & bVII"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 6, 7, 9, 11]",
+        "AKA": "Marva Thaat (India)",
+        "Name": "Marva Thaat (India) (as Marva 11/23458/6 in 12 edo)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 6, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Mela  Navanitam (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 6, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Mela Bhavapriya (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 6, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Mela Citrambari (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 6, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Mela Dhatuvardhani (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 6, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Mela Dhavalambari (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 6, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Mela Divamani (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 5, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Mela Ganamurti (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 5, 7, 8, 11]",
+        "AKA": "(Sengiach Greece)",
+        "Name": "Mela Gangeyabhusani (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 6, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Mela Gavambohdi (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 5, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Mela Hatakambari (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 6, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Mela Jalarnava (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 6, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Mela Jhalavarali (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 5, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Mela Jhankaradhvani (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 6, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Mela Jhotisvarupini (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 6, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Mela Kantamani (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 6, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Mela Latangi (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 5, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Mela Manavati (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 5, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Mela Nagananadini (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 6, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Mela Namanararayani (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 6, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Mela Pavani (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 5, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Mela Ragavardhani (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 6, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Mela Raghupriya (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 6, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Mela Rasikapriya (India)"
+    },
+    {
+        "Length": "7",
+        "AKA": null,
+        "Pattern": "[0, 1, 2, 5, 7, 8, 10]",
+        "Name": "Mela Ratnangi (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 5, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Mela Rupavati (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 6, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Mela Salaga (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 6, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Mela Sucaritra (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 6, 7, 8, 9]",
+        "AKA": null,
+        "Name": "Mela Syamalangi (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 5, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Mela Tanarupi (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 5, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Mela Vanaspati (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 5, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Mela Varunapriya (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 6, 7, 10, 11]",
+        "AKA": null,
+        "Name": "Mela Visvambhari (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 5, 7, 9, 11]",
+        "AKA": "Jazz Minor",
+        "Name": "Melodic Minor"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 4, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Minor Bebop (all b’s) 11/2891011/3 in 12edo)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 5, 6, 8, 10]",
+        "AKA": null,
+        "Name": "Minor Locrian, Hindi 3 flats and bV"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 5, 7, 9, 10]",
+        "AKA": " Chord C69sus4 - Ching (China). Mitum (Sumerian) Gregorian Name 7",
+        "Name": "Mixolydian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 5, 6, 9, 10]",
+        "AKA": null,
+        "Name": "Mixolydian b5"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 5, 7, 8, 10]",
+        "AKA": "Aeolian",
+        "Name": "Natural Minor"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 5, 7, 9, 11]",
+        "AKA": "Mela Kokilapriya (India) Raga Kokilaravam (India)",
+        "Name": "Neapolitan Major"
+    },
+    {
+        "Length": "7",
+        "AKA": "Raga Dhunibinnashadjam (India) Maqam Shahnaz Kurdi (Arabia)",
+        "Pattern": "[0, 1, 3, 5, 7, 8, 11]",
+        "Name": "Neapolitan Minor"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 4, 6, 8, 9]",
+        "AKA": null,
+        "Name": "Neapolitan Minor Mode (as 10/48910/11 in 12edo)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 5, 6, 8, 9, 11]",
+        "AKA": null,
+        "Name": "Nohkan (Japan)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 5, 6, 9, 10]",
+        "AKA": "Tsinganikos (Greece). Raga Ahira Lalita (India)",
+        "Name": "Oriental 1"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 5, 7, 8, 10]",
+        "AKA": "Ishartum (Sumerian), Ousak (Greece), Zokuso (Japan) Gregorian Name 3",
+        "Name": "Phrygian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 5, 7, 8, 10]",
+        "AKA": "(India) Alhijaz (Arabia) Ahavh Rabbah (Israel) Hitzaz (Greece) Spanish Gypsy Phrygian Dominant, Dorico Flamenco, Avaha Raba, Spanish Folk, Jewish Major",
+        "Name": "Altered Phrygian"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 5, 6, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Bhatiyar (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 4, 5, 7, 9, 10, 11]",
+        "AKA": null,
+        "Name": "Raga Madhuri 11/4891011/2 in 12edo)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 5, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Raga Nandkauns (India) (same as Rock 11/5891011/3 in 12 edo)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 4, 5, 9, 10, 11]",
+        "AKA": null,
+        "Name": "Raga Ragesri (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 5, 7, 9, 10, 11]",
+        "AKA": null,
+        "Name": "Raga Sorati (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 6, 7, 9, 10]",
+        "AKA": "Petrushka Chord",
+        "Name": "Romanian Major, Purvi bVII"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 2, 3, 4, 7, 8, 10]",
+        "AKA": null,
+        "Name": "Sabach (Greece)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 3, 4, 5, 6, 8, 10]",
+        "AKA": null,
+        "Name": "Spanish Heptatonic "
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 3, 5, 10, 11]",
+        "AKA": null,
+        "Name": "Theoretical - No Known Name "
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 4, 5, 6, 8, 10]",
+        "AKA": null,
+        "Name": "Theoretical - No Known Name "
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 2, 3, 4, 6, 9]",
+        "AKA": null,
+        "Name": "Theoretical - No Known Name 3#’s"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 6, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Todi bVII Mela Sadvidhamargini (India)"
+    },
+    {
+        "Length": "7",
+        "Pattern": "[0, 1, 3, 4, 6, 8, 9]",
+        "AKA": null,
+        "Name": "Ultra Locrian"
+    }
+]

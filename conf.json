@@ -3,9 +3,6 @@
         "allowUnknownTags": true
     },
     "source": {
-        "include": [
-            "src"
-        ],
         "exclude": [
             ".git",
             ".meteor",
@@ -30,7 +27,7 @@
         "footer": "Music",
         "copyright": "Copyright © 2018-2019 Musitelligence inc.",
         "navType": "vertical",
-        "theme": "cosmo",
+        "theme": "cyborg",
         "linenums": true,
         "collapseSymbols": false,
         "inverseNav": true,

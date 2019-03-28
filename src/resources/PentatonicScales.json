@@ -1,0 +1,512 @@
+[
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 5, 7, 9]",
+        "AKA": null,
+        "Name": "Altered Pentatonic"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 4, 6, 7]",
+        "AKA": null,
+        "Name": "Balinese Pentatonic (as 11/23458911/6 in 12edo)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 3, 7, 8]",
+        "AKA": null,
+        "Name": "Balinese, Pelog 1 "
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 2, 3, 5]",
+        "AKA": null,
+        "Name": "Blues PentaCluster 3b’s"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 2, 3, 6]",
+        "AKA": null,
+        "Name": "Blues Pentacluster"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 5, 7, 10]",
+        "AKA": "Blues Pentatonic Minor, Hard Japan descending",
+        "Name": "Minor Pentatonic"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 5, 8, 10]",
+        "AKA": "3b’s &#10;Raga Malkauns 11/567891011/4 in 12edo)",
+        "Name": "Blues Pentatonic Minor, Hard Japan descending "
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 5, 6, 11]",
+        "AKA": null,
+        "Name": "Blues#V (all b’s) 9/25678/4 in 12edo)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[1, 3, 6, 9, 10]",
+        "AKA": "Chord Cdim7(b7) or Cm7 (b5bb7)",
+        "Name": "Cdim7 chord (Bb and Bbb)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 4, 5, 8]",
+        "AKA": null,
+        "Name": "Center-Cluster PentaMirror"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 5, 8, 10]",
+        "AKA": null,
+        "Name": "Chaio (all b’s) 10/4678910/3 in 12 edo)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 2, 3, 4]",
+        "AKA": null,
+        "Name": "Chromatic PentaMirror"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 4, 7, 10]",
+        "AKA": "C9 chord",
+        "Name": "Dominant Pentatonic"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 3, 7, 9]",
+        "AKA": "Akebono I (Japan)",
+        "Name": "Dorian Pentatonic, Kumoi Japan"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 5, 7, 10]",
+        "AKA": null,
+        "Name": "Egyptian , Suspended Pentatonic"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 6, 10, 11]",
+        "AKA": null,
+        "Name": "Half Diminished plus b8"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 5, 7, 8]",
+        "AKA": null,
+        "Name": "Han - kumoi (Japan)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 3, 7, 8]",
+        "AKA": null,
+        "Name": "Hirajoshi Japan"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 4, 5, 7, 11]",
+        "AKA": "Abheri Asc. Carn Raga & Chord CMaj7sus4",
+        "Name": "Ionian Pentatonic Raga Gambhiranata (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 5, 6, 10]",
+        "AKA": null,
+        "Name": "Iwato Japan"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 5, 7, 8]",
+        "AKA": null,
+        "Name": "Japanese, Sakura Pentatonic Soft Descend"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 5, 7, 10]",
+        "AKA": "Miyakobushi (Japan)",
+        "Name": "Kokin-Joshi, Soft Ascend Japan"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 4, 6, 9]",
+        "AKA": null,
+        "Name": "Kung"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 3, 5, 6]",
+        "AKA": null,
+        "Name": "Locrian PentaMirror"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 4, 6, 7]",
+        "AKA": null,
+        "Name": "Lydian Pentachord"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 4, 5, 7]",
+        "AKA": null,
+        "Name": "Major Pentachord"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 4, 7, 9]",
+        "AKA": "Chord C69 - Gong (China) Raga Bhopali, Mohanam, Deskar, Bilahari (India)",
+        "Name": "Major Pentatonic"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 5, 7, 9]",
+        "AKA": "Minor Added Sixth Pentatonic",
+        "Name": "Minor 6th Added"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 3, 5, 7]",
+        "AKA": null,
+        "Name": "Minor Pentachord Chad Gadyo (Israel)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 4, 5, 7, 10]",
+        "AKA": "Chord C7sus4",
+        "Name": "Mixolydian Pentatonic"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 2, 5, 6]",
+        "AKA": null,
+        "Name": "Oriental Pentacluster"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 5, 9, 10]",
+        "AKA": null,
+        "Name": "Oriental Raga Guhamanohari (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 3, 5, 9]",
+        "AKA": null,
+        "Name": "Raga Abhogi"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 3, 5, 8]",
+        "AKA": null,
+        "Name": "Raga Audva Tukhari (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 5, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Bhinna Pancama (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 4, 5, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Bhinna Shadja, Hindolita (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 4, 7, 8]",
+        "AKA": null,
+        "Name": "Raga Bhupeshwari, Janasammodini (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 5, 9, 10]",
+        "AKA": null,
+        "Name": "Raga Chandrakauns Kafi, Surya (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 5, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Chandrakauns Kiravani (India)"
+    },
+    {
+        "Length": "5",
+        "AKA": "Marga Hindola",
+        "Pattern": "[0, 3, 5, 9, 11]",
+        "Name": "Raga Chandrakauns Modern (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 3, 6, 8]",
+        "AKA": null,
+        "Name": "Raga Chhaya Todi (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 3, 5, 8]",
+        "AKA": null,
+        "Name": "Raga Chitthakarshini (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 5, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Desh"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Deshgaur (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 5, 7, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Devaranjani (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 4, 6, 7, 9]",
+        "AKA": "Chord C6sus#4",
+        "Name": "Raga Dhavalashri (India) "
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 5, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Gauri (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 4, 7, 11]",
+        "AKA": "Chord C Major9",
+        "Name": "Raga Hamsadhvani (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 6, 8, 10]",
+        "AKA": null,
+        "Name": "Raga Harikauns (India) (Flats)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 4, 6, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Hindol (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 5, 6, 10]",
+        "AKA": null,
+        "Name": "Raga Jayakauns (india)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 4, 5, 9, 10]",
+        "AKA": null,
+        "Name": "Raga Khamaji Durga (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 5, 7, 8]",
+        "AKA": "Chord C minor 6 sus4",
+        "Name": "Raga Kokil Pancham (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 5, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Kshanika (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 2, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Kumarapriya (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 4, 6, 11]",
+        "AKA": null,
+        "Name": "Raga Kumurdaki (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 4, 6, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Malashri (India) & Chinese"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 4, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Mamata (India) Major 6th"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 4, 5, 7, 9]",
+        "AKA": "Chord C6sus4",
+        "Name": "Raga Mand (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 7, 9, 10]",
+        "AKA": null,
+        "Name": "Raga Matha Kokila (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 4, 5, 8]",
+        "AKA": null,
+        "Name": "Raga Megharanjani (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 4, 5, 11]",
+        "AKA": null,
+        "Name": "Raga Megharanji (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 4, 7, 9]",
+        "AKA": null,
+        "Name": "Raga Mohanangi (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 6, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Multani (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 2, 6, 7]",
+        "AKA": null,
+        "Name": "Raga Nabhomani (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 5, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Nata,  Madhuranjani (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 5, 8, 11]",
+        "AKA": null,
+        "Name": "Raga Priyadharshini (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 5, 7, 9, 11]",
+        "AKA": "Chord - CMaj6sus4",
+        "Name": "Raga Puruhutika, Purvaholika (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 2, 8, 9]",
+        "AKA": null,
+        "Name": "Raga Putrika (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 5, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Rasranjani (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 4, 7, 8]",
+        "AKA": null,
+        "Name": "Raga Reva, Revagupti (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 3, 7, 10]",
+        "AKA": "Chord Cm7b9",
+        "Name": "Raga Rukmangi, Pelog 2"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 6, 7, 10]",
+        "AKA": null,
+        "Name": "Raga Samudhra Priya (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 6, 7, 8]",
+        "AKA": null,
+        "Name": "Raga Saugandhini, Yashranjani (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 3, 7, 8, 10]",
+        "AKA": "Chord C minor7b9",
+        "Name": "Raga Shailaja (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 6, 7, 9]",
+        "AKA": null,
+        "Name": "Raga Shri Kalyan"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 6, 9, 11]",
+        "AKA": null,
+        "Name": "Raga Shubravarni (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 6, 7, 11]",
+        "AKA": null,
+        "Name": "Raga Vaijayanti (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 4, 7, 9, 10]",
+        "AKA": "Chord C13",
+        "Name": "Raga Valaji (India) - Thriteenth e.g.C13"
+    },
+    {
+        "Length": "5",
+        "AKA": null,
+        "Pattern": "[0, 4, 5, 7, 8]",
+        "Name": "Raga Zilaf, (India)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 2, 5, 7, 9]",
+        "AKA": "Zhi (China) Raga Devakriya (India) Ujo (Korea)",
+        "Name": "Ritusen Japan, Scottish Pentatonic (as Slendro example)"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 4, 5, 8, 11]",
+        "AKA": null,
+        "Name": "Romanian Bacovia"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 3, 4, 5]",
+        "AKA": null,
+        "Name": "Spanish Pentacluster"
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 3, 6, 7]",
+        "AKA": null,
+        "Name": "Theoretical - No Known Name "
+    },
+    {
+        "Length": "5",
+        "Pattern": "[0, 1, 7, 9, 11]",
+        "AKA": null,
+        "Name": "Theoretical - No Known Name "
+    }
+]
