@@ -1,12 +1,14 @@
-:fire:[![Build Status](https://semaphoreci.com/api/v1/seanitzel/note-art/branches/master/shields_badge.svg)](https://semaphoreci.com/seanitzel/note-art)
-:fire:[![Maintainability](https://api.codeclimate.com/v1/badges/0206283c6843673ea6d6/maintainability)](https://codeclimate.com/github/Seanitzel/Note-Art/maintainability)
-:fire:[![Test Coverage](https://api.codeclimate.com/v1/badges/0206283c6843673ea6d6/test_coverage)](https://codeclimate.com/github/Seanitzel/Note-Art/test_coverage)
-:fire:[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 :fire:
+[![Build Status](https://semaphoreci.com/api/v1/seanitzel/note-art/branches/master/shields_badge.svg)](https://semaphoreci.com/seanitzel/note-art)
+[![Maintainability](https://api.codeclimate.com/v1/badges/0206283c6843673ea6d6/maintainability)](https://codeclimate.com/github/Seanitzel/Note-Art/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/0206283c6843673ea6d6/test_coverage)](https://codeclimate.com/github/Seanitzel/Note-Art/test_coverage)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+:fire:
+<!--![Downloads](https://img.shields.io/github/downloads/seanitzel/note-art/total.svg)-->
+
 # Note-Art JS :guitar:
 
-##### [Demo :musical_note:](https://note-art-demo.netlify.com/) | [Docs :blue_book:](https://seanitzel.github.io/Note-Art/index.html)
-
+##### [Demo :musical_note:](https://note-art-demo.netlify.com/) | [Docs :blue_book:](https://note-art-docs.netlify.com/)
 <br>
 
 > Music is a highly versatile art that originates in nature, and has been taken up by mankind as a way of expression and also as an art.
