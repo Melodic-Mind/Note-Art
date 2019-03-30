@@ -1,3 +1,5 @@
+const scales = require('./scales.json')
+
 /**
  * @classdesc Contains music theory structures and databases
  * e.g pitch classes, interval names, scales and more.
@@ -79,42 +81,52 @@ export class MusicTheoryStructures {
     }
 
     static get NamedScales() {
-        return require('../resources/NamedScales.json')
+        return scales.filter((scale => scale['Name'] !== 'Theoretical'))
     }
 
     static get HeptatonicScales() {
-        return require('../resources/HeptatonicScales.json')
+        return scales.filter((scale) => {
+            return scale['Length'] === '7' && scale['Name'] !== 'Theoretical'
+        })
     }
 
     static get HexatonicScales() {
-        return require('../resources/HexatonicScales.json')
+        return scales.filter((scale) => {
+            return scale['Length'] === '6' && scale['Name'] !== 'Theoretical'
+        })
     }
 
     static get OctatonicScales() {
-        return require('../resources/OctatonicScales.json')
+        return scales.filter((scale) => {
+            return scale['Length'] === '8' && scale['Name'] !== 'Theoretical'
+        })
     }
 
     static get AboveOctaScales() {
-        return require('../resources/AboveOctaScales.json')
+        return scales.filter((scale) => {
+            return parseInt(scale['Length']) > 8 && scale['Name'] !== 'Theoretical'
+        })
     }
 
     static get PentatonicScales() {
-        return require('../resources/PentatonicScales.json')
-    }
+        return scales.filter((scale) => {
+            return scale['Length'] === '5' && scale['Name'] !== 'Theoretical'
+        })    }
 
     static get TheoreticalScales() {
-        return require('../resources/TheoreticalScales.json')
-    }
+        return scales.filter((scale) => {
+            return scale['Name'] === 'Theoretical'
+        })    }
 
-    static get allScales() {
-        return require('../resources/allScales.json')
+    static get scales() {
+        return scales
     }
 
     static get ClassicScales() {
-        return require('../resources/ClassicScales.json')
+        return require('./classic-scales.json')
     }
 
     static get Chords() {
-        return require('../resources/Chords.json')
+        return require('./chords.json')
     }
 }

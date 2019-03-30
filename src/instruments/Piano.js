@@ -1,6 +1,6 @@
 import {firstToUpper, PlayableNote, MusicTheoryStructures as mts} from '../'
 
-const pianoNotes = require('../resources/PianoNotes.json')
+const pianoNotes = require('../resources/piano-notes.json')
 
 /**
  * @classdesc Piano instance - creates a piano that can play any note from any octave in any duration.

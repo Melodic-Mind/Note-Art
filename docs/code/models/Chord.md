@@ -41,7 +41,10 @@ Creates a Chord instance.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| attributes | <code>Object</code> | Object that contains some of the following keys: {Note} root - chords root note {String} name - the chords name(by marking) {Array} pattern - the pattern to build the chord by pitchIntervals |
+| attributes | <code>Object</code> | Object that contains some of the following keys: |
+| [attributes.root] | <code>Note</code> \| <code>PlayableNote</code> | chords root note |
+| [attributes.name] | <code>String</code> | the chords name(e.g 'M') |
+| [attributes.pattern] | <code>Array</code> | the pattern to build the chord by pitch intervals(e.g [3, 7] |
 
 **Example**  
 ```js

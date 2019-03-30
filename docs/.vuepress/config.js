@@ -11,7 +11,8 @@ module.exports = {
         },
     },
     themeConfig:    {
-        sidebarDepth: 4,
+        sidebarDepth: 0,
+        repo:         'seanitzel/note-art',
         locales:      {
             '/': {
                 nav:     [
@@ -19,10 +20,14 @@ module.exports = {
                         text: 'Home',
                         link: '/',
                     },
+                    {
+                        text: 'Demo',
+                        link: 'https://note-art-demo.netlify.com/',
+                    },
                 ],
                 // Add the generated sidebar
                 sidebar: {
-                    ...sidebarTree('API'),
+                    ...sidebarTree(),
                 },
             },
         },

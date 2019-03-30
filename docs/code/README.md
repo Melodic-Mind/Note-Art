@@ -1,27 +1,23 @@
-# Note-Art JS
-##### A Work in Progress
-<br>
-#### [Demo](https://note-art-demo.netlify.com) | [Repo](https://github.com/Seanitzel/Note-Art)
+# Note-Art JS :musical_note:
+##### #A Work in Progress
 
-<br>
-
-#### Some Notes about the project:
+### About :notes:
 
 * I work on this library all by myself([About Me](https://musitelligence.com/#/about-me)).
 
 * This project aims to create a library that implements all of music theory(in all it's forms) in code,
-  and can be used to play sounds of most musical instruments.
+  and can also be used to play sounds of most musical instruments.
 * This libraries main purpose is to aid me in creating the ultimate platform for musicians - [Musitelligence](https://musitelligence.com/#/), which is already online and has some nice tools availble.
-* You can use this library for creating tools for music, researching music theory or just creating music with programming. 
+* You can use this library to create tools for music, make research on music theory or just create some fun music with programming. 
 * Currently the only availble instrument is piano, the audio files are being loaded from a server i run on heroku.
 
-##### If you feel like helping or supporting you can -
-* Email me at seandvir12@gmail.com with your ideas and recommendations.
+### :pray: _Support & Contribute_ :pray:
+* Email me at [seandvir12@gmail.com](seandvir12@gmail.com) with your ideas and recommendations.
 * Support me on [patreon](https://www.patreon.com/Seanitzel).
-* Download my app - [Scale Heaven](https://play.google.com/store/apps/details?id=com.scales.scaleheaven) on google play(and press the banner once in a while ;)
-* Make a pull request.
+* Download my app - [Scale Heaven](https://play.google.com/store/apps/details?id=com.scales.scaleheaven) on google play(and press the banner once in a while ;))
+* Make a [pull request :avocado:](https://github.com/Seanitzel/Note-Art).
 
-##### Some examples:
+#### Some usage examples:
 ```
 // PlayableNote
 
@@ -51,6 +47,5 @@ console.log(A_Major.pitchClasses()) // outputs the notes in the scale
 //There are also Un-playable models such as PitchClass, Pitch, Note which 
 //cant be played and might be used for general music theory research.
 ```
-
 
 

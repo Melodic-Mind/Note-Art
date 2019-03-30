@@ -13,7 +13,7 @@ describe('Addons', () => {
     })
 
     describe('name or pattern, query from string and pattern', () => {
-        const source = require('../../src/resources/Chords.json')
+        const source = require('../../src/resources/chords.json')
         const stub = {
             "Chord": "Seven Sharp Five Sharp Nine",
             "Name": "7#5#9",

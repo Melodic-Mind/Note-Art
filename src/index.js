@@ -1,5 +1,5 @@
 import {Application}           from './Application'
-import {AudioManager}          from './utilities/AudioManager'
+import {AudioManager}          from './models/AudioManager'
 
 const app = new Application()
 app.set('audio-manager', () => {
@@ -12,8 +12,8 @@ app.set('instruments', () => {
 
 export {app}
 export {Note}                  from './models/Note'
-export {AudioManager}          from './utilities/AudioManager'
-export *                       from './utilities/Addons'
+export {AudioManager}          from './models/AudioManager'
+export *                       from './addons/GlobalFunctions'
 export *                       from './utilities/MusicalAddons'
 export {Piano}                 from './instruments/Piano'
 export {Chord}                 from './models/Chord'
@@ -26,4 +26,4 @@ export {Pitch}                 from './models/Pitch'
 export {PlayableNote}          from './models/PlayableNote'
 export {Piece}                 from './notation/Piece'
 export {Drums}                 from './instruments/Drums'
-export {Paginator}             from './utilities/Paginator'
+export {Paginator}             from './addons/Paginator'

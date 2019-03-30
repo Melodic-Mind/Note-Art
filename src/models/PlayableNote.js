@@ -78,4 +78,8 @@ export class PlayableNote extends Note {
             instrument: this.instrument,
         })).build(true)
     }
+
+    get isPlayable(){
+        return true
+    }
 }

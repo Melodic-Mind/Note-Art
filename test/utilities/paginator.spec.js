@@ -1,4 +1,4 @@
-import { Paginator } from '../../src/utilities/Paginator'
+import { Paginator } from '../../src/addons/Paginator'
 
 Array.range = function (start, stop, step = 1) {
     if (stop === undefined) {

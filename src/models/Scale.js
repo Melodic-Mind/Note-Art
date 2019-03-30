@@ -1,5 +1,5 @@
 import {MissingInformation}                                                  from './../Exceptions'
-import {findQuery}                                                           from '../utilities/Addons'
+import {findQuery}                                                           from '../addons/GlobalFunctions'
 import {notesDistance, Chord, playMelodically, MusicTheoryStructures as mts} from '../'
 
 /**
@@ -27,7 +27,7 @@ export class Scale {
         if (!tonic) {
             throw new MissingInformation('tonic')
         }
-        this.attributes.info  = findQuery(name, pattern, mts.allScales)
+        this.attributes.info  = findQuery(name, pattern, mts.scales)
         this.attributes.notes = []
         this.semitones.forEach(interval =>
             this.notes.push(tonic.interval(interval)),

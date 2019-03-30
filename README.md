@@ -15,20 +15,21 @@
 > Now, it's going to be taken up by machines as well.
 <br>
 
-##  :notes: _About_ :notes:
-* This project aims to create a library that implements all of music theory (in all it's forms) in code,
-  and can be used to research and create different music tools, as well as play sounds of musical instruments. :trumpet:
-* This libraries main purpose is to aid me in creating the ultimate platform for musicians - [Musitelligence :musical_keyboard:](https://musitelligence.com/#/), which is already online and has some nice tools availble.
-* I work on this library all by myself([About Me :blush:](https://musitelligence.com/#/about-me)).
+### About :notes:
 
-* You can use it to create tools for musicians, research music theory or simply creating music with programming.  :saxophone:
-* Currently the only availble instrument is piano, the audio files are being loaded from a server i run on heroku. :panda_face:
+* I work on this library all by myself([About Me](https://musitelligence.com/#/about-me)).
 
-## :pray: _Support & Contribute_ :pray:
-* Email me at seandvir12@gmail.com with your ideas and recommendations.
+* This project aims to create a library that implements all of music theory(in all it's forms) in code,
+  and can also be used to play sounds of most musical instruments.
+* This libraries main purpose is to aid me in creating the ultimate platform for musicians - [Musitelligence](https://musitelligence.com/#/), which is already online and has some nice tools availble.
+* You can use this library to create tools for music, make research on music theory or just create some fun music with programming. 
+* Currently the only availble instrument is piano, the audio files are being loaded from a server i run on heroku.
+
+### :pray: _Support & Contribute_ :pray:
+* Email me at [seandvir12@gmail.com](seandvir12@gmail.com) with your ideas and recommendations.
 * Support me on [patreon](https://www.patreon.com/Seanitzel).
-* Download my app - [Scale Heaven](https://play.google.com/store/apps/details?id=com.scales.scaleheaven) on google play(and press the banner once in a while ;)
-* Make a pull request.
+* Download my app - [Scale Heaven](https://play.google.com/store/apps/details?id=com.scales.scaleheaven) on google play(and press the banner once in a while ;))
+* Make a [pull request :avocado:](https://github.com/Seanitzel/Note-Art).
 
 ## Table of Contents
 
@@ -72,7 +73,7 @@ Playable-Notes also have a duration and instrument properties which default to '
 There are also Un-playable models such as PitchClass, Pitch, Note which 
 cant be played and might be used for general music theory research.
 
-See the [docs](https://seanitzel.github.io/Note-Art/index.html) for more
+See the [docs](https://note-art-docs.netlify.com/) for more
 
 ----------------------------------------------------------------------
 

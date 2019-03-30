@@ -6,6 +6,7 @@ beforeEach(() => {
     c       = new Note({pitchClass: 'c', octave: 3, duration: '4n'})
     C_Major = new Scale({tonic: c, name: 'Major'})
 })
+
 describe('Scale', () => {
     describe('#constructor', () => {
         it('Throws exception when a scale name is not valid', () => {
@@ -33,7 +34,7 @@ describe('Scale', () => {
         })
 
         it('throws exception when the tonic is not a Note instance', () => {
-            
+
         })
     })
 

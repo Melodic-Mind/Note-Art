@@ -40,7 +40,7 @@ const notesDistance = (n1, n2) => {
  * @param {boolean} [resolve = false] whether to resolve to tonic
  */
 function playMelodically(notes, timeInterval, resolve = false) {
-    if (notes[0].constructor.name === 'PlayableNote') {
+    if (notes[0].isPlayable) {
         notes.forEach((note, i) => {
             setTimeout(() => note.play(), i * timeInterval)
         })

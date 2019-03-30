@@ -6,7 +6,11 @@ docs/
 .idea/
 .vscode/
 .vscode/settings.json
-
+.nycrc
+.babelrc
+.codeclimate.yml
+.semaphore/*
+webpack.config.js
 ### Linux ###
 *~
 

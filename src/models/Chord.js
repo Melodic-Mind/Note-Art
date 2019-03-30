@@ -4,7 +4,6 @@ import {findQuery, playMelodically, MusicTheoryStructures as mts} from '../'
 /**
  * @classdesc Represents a musical Chord - a number of notes with a specific
  * pattern which can be played together to form a harmonic sound.
- * @class
  * @throws {MissingInformation} When not provided with root and either name or pattern
  * @throws {DataNotFound} When called with name and the name cant be found in the
  * @example
@@ -14,12 +13,11 @@ import {findQuery, playMelodically, MusicTheoryStructures as mts} from '../'
  */
 export class Chord {
     /**
-     * Creates a Chord instance.
      * <b>Either Name or Pattern must be provided!</b>
      * @param {Object} attributes Object that contains some of the following keys:
-     * {Note} root - chords root note
-     * {String} name - the chords name(by marking)
-     * {Array} pattern - the pattern to build the chord by pitchIntervals
+     * @param {Note|PlayableNote} [attributes.root] - chords root note
+     * @param {String} [attributes.name] - the chords name(e.g 'M')
+     * @param {Array} [attributes.pattern] - the pattern to build the chord by pitch intervals(e.g [3, 7]
      */
     constructor({root, name, pattern}) {
         const attributes = {}
@@ -98,7 +96,7 @@ export class Chord {
      * @type {boolean}
      */
     play() {
-        if (this.notes[0].constructor.name === 'PlayableNote') {
+        if (this.notes[0].isPlayable) {
             this.notes.forEach(note => note.play())
             return true
         }
