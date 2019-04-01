@@ -11,7 +11,7 @@ export class PitchClass {
      */
     constructor(pitchClass) {
         const attributes = {}
-        PitchClassRule.existingClass(pitchClass)
+        PitchClassRule.exists(pitchClass)
         attributes.pitchClass = firstToUpper(pitchClass)
         attributes.classSet   = mts.circleOfFourths.includes(attributes.pitchClass) ? 'b' : '#'
         attributes.classIndex = mts.getPitchClassSet(attributes.classSet).indexOf(attributes.pitchClass)

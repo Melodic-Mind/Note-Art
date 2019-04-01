@@ -1,5 +1,9 @@
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 import {Pitch}                        from '../models/Pitch'
+import {firstToUpper}                 from '../addons/GlobalFunctions'
+import {PitchClassRule}               from '../validation/PitchClassRule'
+import {PianoOctaveRule}              from '../validation/PianoOctaveRule'
+import {InvalidInput}                 from '../Exceptions'
 
 /**
  * Returns the duration value of the note with the shortest duration out of an array of notes.
@@ -26,7 +30,7 @@ function getMinDuration(notes = []) {
  * @param {Pitch} n2 second note
  * @returns {Number}
  */
-const notesDistance = (n1, n2) => {
+function notesDistance(n1, n2) {
     const i1 = n1.classIndex,
           i2 = n2.classIndex
     return i1 - i2 < 0 ? Math.abs(i1 - i2) : 12 - (i1 - i2)
@@ -55,4 +59,38 @@ function playMelodically(notes, timeInterval, resolve = false) {
     return false
 }
 
-export {getMinDuration, playMelodically, notesDistance}
+/**
+ * Turns a pitch into an object with pitch class and octave.
+ * @param {String} pitch Pitch as a string, e.g Ab3
+ * @return {{octave: number, pitchClass: String}}
+ */
+function pitchToObject(pitch) {
+    if (typeof pitch !== 'string') {
+        throw new InvalidInput(`Expected ${pitch} to be a string representing pitch`)
+    }
+    const pitchClass = firstToUpper(pitch.slice(0, pitch.length - 1))
+    const octave     = parseInt(pitch[pitch.length - 1])
+
+    PitchClassRule.exists(pitchClass)
+    PianoOctaveRule.validatePossible(octave)
+
+    return {pitchClass, octave}
+}
+
+function notesInRange(base, range) {
+    let {pitchClass, octave} = pitchToObject(base)
+    const notes              = {}
+    let tmpPitchClass
+
+    for (let i = 0; i <= range; ++i) {
+        tmpPitchClass                 = mts.flatClassNotes[(mts.flatClassNotes.indexOf(pitchClass) + i) % 12]
+        notes[tmpPitchClass + octave] = {pitchClass: tmpPitchClass, octave}
+        if (tmpPitchClass === 'B') {
+            octave++
+        }
+    }
+
+    return notes
+}
+
+export {getMinDuration, playMelodically, notesDistance, notesInRange, pitchToObject}

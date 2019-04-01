@@ -107,7 +107,6 @@ export class Measure {
         if (this.noteSets.length >= index) {
             let valid = []
             set.forEach(note => {
-                console.log(mts.noteDurations[note.duration], this.durationLeft)
                 if (replace) {
                     if (
                         mts.noteDurations[note.duration] <= this.durationLeft + getMinDuration(this.noteSets[index]) ||

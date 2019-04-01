@@ -12,7 +12,7 @@ export class PitchClassRule {
      * @throws {InvalidInput}
      * @returns {boolean}
      */
-    static existingClass(pitchCls) {
+    static exists(pitchCls) {
         if (PitchClassRule.validNotes().includes(pitchCls)) {
             return true
         }
