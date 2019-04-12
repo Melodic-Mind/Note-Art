@@ -2,8 +2,6 @@ version: "2"
 plugins:
     editorconfig:
         enabled: true
-    fixme:
-        enabled: true
     git-legal:
         enabled: true
 exclude_patterns:

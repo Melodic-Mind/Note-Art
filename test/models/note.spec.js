@@ -1,97 +1,84 @@
 import {Note}         from '../../src'
 import {InvalidInput} from '../../src/Exceptions'
 
-const c = new Note({
-    pitchClass: 'c',
-    octave:     3,
-    duration:   '4n',
+let c
+beforeEach(() => {
+    c = new Note('c', 3)
 })
 
 describe('Note', () => {
     describe('#constructor', () => {
         it('throws an error when a pitch-class is invalid', () => {
-            expect(() => new Note({pitchClass: 12, octave: 3, duration: '4n'})).to.throw(InvalidInput)
+            expect(() => new Note(12, 3).to.throw(InvalidInput))
         })
-
-        it('throws an error when a duration is invalid', () => {
-            expect(() => new Note({pitchClass: 'd', octave: 2.5, duration: '4n'})).to.throw(InvalidInput)
-        })
-
-        it('throws an error when a duration is invalid', () => {
-            expect(() => new Note({pitchClass: 'c', octave: 3, duration: '12'})).to.throw(InvalidInput)
-        })
-
         it('a note has the following attributes', () => {
             expect(c.pitchClass).to.eql('C')
             expect(c.octave).to.eql(3)
-            expect(c.duration).to.eql('4n')
             expect(c.classSet).to.eql('b')
             expect(c.classIndex).to.eql(0)
         })
     })
 
-    describe('#interval:', () => {
+    describe('#builder', () => {
+        it('returns a Note instance when note is valid', () => {
+            expect(Note.builder('c3')).to.be.instanceOf(Note)
+        })
+
+        it('throws exception when note is not valid', () => {
+            expect(() => {Note.builder('INVALID')}).to.throw(InvalidInput)
+        })
+    })
+
+    describe('#interval', () => {
         it('Checks the note Db', function () {
-            const db      = new Note({
-                pitchClass: 'db',
-                octave:     5,
-                duration:   '4n',
-            })
+            const db      = new Note('db', 5)
             const db_stub = {
-                '-13': new Note({pitchClass: 'c', octave: 4, duration: '4n'}),
-                '-12': new Note({pitchClass: 'db', octave: 4, duration: '4n'}),
-                '-11': new Note({pitchClass: 'd', octave: 4, duration: '4n'}),
-                '-1':  new Note({pitchClass: 'c', octave: 5, duration: '4n'}),
-                '0':   new Note({pitchClass: 'db', octave: 5, duration: '4n'}),
-                '1':   new Note({pitchClass: 'd', octave: 5, duration: '4n'}),
-                '11':  new Note({pitchClass: 'c', octave: 6, duration: '4n'}),
-                '12':  new Note({pitchClass: 'db', octave: 6, duration: '4n'}),
-                '13':  new Note({pitchClass: 'd', octave: 6, duration: '4n'}),
+                '-13': new Note('c', 4),
+                '-12': new Note('db', 4),
+                '-11': new Note('d', 4),
+                '-1':  new Note('c', 5),
+                '0':   new Note('db', 5),
+                '1':   new Note('d', 5),
+                '11':  new Note('c', 6),
+                '12':  new Note('db', 6),
+                '13':  new Note('d', 6),
             }
             testNoteIntervals(db, db_stub)
         })
 
         it('Checks the note cs', function () {
-            const cs      = new Note({
-                pitchClass: 'c#'
-                , octave:   3, duration: '4n',
-            })
+            const cs      = new Note('c#', 3)
             const cs_stub = {
-                '-13': new Note({pitchClass: 'c', octave: 2, duration: '4n'}),
-                '-12': new Note({pitchClass: 'c#', octave: 2, duration: '4n'}),
-                '-11': new Note({pitchClass: 'd', octave: 2, duration: '4n'}),
-                '-1':  new Note({pitchClass: 'c', octave: 3, duration: '4n'}),
-                '0':   new Note({pitchClass: 'c#', octave: 3, duration: '4n'}),
-                '1':   new Note({pitchClass: 'd', octave: 3, duration: '4n'}),
-                '11':  new Note({pitchClass: 'c', octave: 4, duration: '4n'}),
-                '12':  new Note({pitchClass: 'c#', octave: 4, duration: '4n'}),
-                '13':  new Note({pitchClass: 'd', octave: 4, duration: '4n'}),
+                '-13': new Note('c', 2),
+                '-12': new Note('c#', 2),
+                '-11': new Note('d', 2),
+                '-1':  new Note('c', 3),
+                '0':   new Note('c#', 3),
+                '1':   new Note('d', 3),
+                '11':  new Note('c', 4),
+                '12':  new Note('c#', 4),
+                '13':  new Note('d', 4),
             }
             testNoteIntervals(cs, cs_stub)
         })
-    })
 
-    describe('#setDuration', () => {
-        it('returns a new Note when the duration is valid', () => {
-            expect(c.setDuration('8n').duration).to.be.equal('8n')
-        })
-
-        it('throws an error when the duration is invalid', () => {
-            expect(() => {return c.setDuration('NULL')}).to.throw(InvalidInput)
+        it('should throw an error when interval is not valid', () => {
+            expect(() => {c.interval('Not Interval')}).to.throw(InvalidInput)
         })
     })
-
-    describe('#setOctave', () => {
-        it('returns a new Note when the octave is valid', () => {
-            expect(c.setOctave(20).octave).to.be.equal(20)
-        })
-
-        it('throws an error when the duration is invalid', () => {
-            expect(() => {return c.setOctave('NULL')}).to.throw(InvalidInput)
+    describe('#transpse', () => {
+        it('should alias interval', () => {
+            expect(c.transpose(4)).to.eql(c.interval(4))
         })
     })
 
-    it('#toString ', () => {
+    it('#fromFrequency', () => {
+        const stub = new Note('a', 4)
+        expect(Note.fromFrequency(440)).to.eql(stub)
+    })
+
+    it('#raw, #toString', () => {
+        expect(c.raw).to.eql('C3')
         expect(c.toString()).to.eql('C3')
     })
 })

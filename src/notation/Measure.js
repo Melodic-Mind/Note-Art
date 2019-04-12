@@ -1,4 +1,7 @@
-import {getMinDuration, MusicTheoryStructures as mts} from '../'
+import {MusicTheoryStructures as mts}                 from '../resources/MusicTheoryStructures'
+import {firstToUpper, validateArray, validateRawNote} from '../'
+import {InvalidInput}                                 from '../Exceptions'
+import {Note}                                         from '../models/Note'
 
 /**
  * Represents a single measure as part of a musical piece in musical notation.
@@ -9,32 +12,23 @@ export class Measure {
      * Creates a Measure instance
      * @param {Number} [maxDuration=0] Max duration of the measure(decided by time signature)
      */
-    constructor(maxDuration = 0) {
+    constructor(maxDuration = 64) {
         const attributes       = {}
-        attributes.noteSets    = []
+        attributes.notes       = [{notes: new Set(), duration: '4n'}]
         attributes.maxDuration = maxDuration
-        attributes.duration    = 0
+        attributes.duration    = '4n'
 
         this.attributes = attributes
     }
 
-    /**
-     *
-     */
-    get noteSets() {
-        return this.attributes.noteSets
+    get notes() {
+        return this.attributes.notes
     }
 
-    /**
-     * get the duration
-     */
     get duration() {
         return this.attributes.duration
     }
 
-    /**
-     * set the duration
-     */
     set duration(duration) {
         this.attributes.duration = duration
     }
@@ -43,125 +37,82 @@ export class Measure {
         return this.attributes.maxDuration
     }
 
-    isFull() {
-        return this.duration === this.maxDuration && this.maxDuration !== 0
-    }
-
-    /**
-     * Change notes somewhere inside a measure
-     * @param {Array} set The new set.
-     * @param {Number} i The index of the set to replace with.
-     */
-    changeSet(set, i) {
-        this.noteSets.splice(i, 1, set)
-    }
-
-    mutateSet(set, i) {
-        set.forEach(note => this.noteSets[i].push(note))
-    }
-
-    changeNote(note, noteIndex, setIndex) {
-        this.noteSets[setIndex].splice(noteIndex, 1, note)
-    }
-
     clone() {
-        const clone    = new Measure(this.maxDuration)
-        const noteSets = this.noteSets.map(set => ([...set]))
-        clone.pushSets(noteSets)
-        return clone
+        return this.transpose(0)
     }
 
-    get durationLeft() {
-        return this.maxDuration - this.duration
+    durationLeft(position = this.notes.length) {
+        return this.maxDuration - this.notes.slice(0, position)
+                                      .reduce((prev, curr) => {
+                                          return curr.notes.size ?
+                                                 prev + mts.noteDurations()[curr.duration] : prev + 0
+                                      }, 0)
     }
 
-    /**
-     * Push notes to a measure
-     * @param {Array} notes array of notes
-     */
-    pushSet(set = []) {
-        let valid = []
-        set.forEach(note => {
-            if (
-                mts.noteDurations[note.duration] <= this.durationLeft ||
-                this.maxDuration === 0
-            ) {
-                valid.push(note)
-            }
-        })
-        if (valid.length) {
-            this.noteSets.push(valid)
+    addNote(note, position) {
+        validateRawNote(note)
+        if (this.validateInsertion(position + 1)) {
+            this.notes[position]['notes'].add(firstToUpper(note))
+            this.notes[position]['duration'] = this.duration
+            this.initNext(position + 1)
+            return true
         }
-        this.duration += getMinDuration(valid)
+        return false
     }
 
-    /**
-     * Add sets to the end of the measure
-     * @param {Array} noteSets array of sets
-     */
-    pushSets(noteSets) {
-        noteSets.forEach(set => this.pushSet(set))
-    }
-
-    insertSet(set, index = this.noteSets.length, replace = 0) {
-        if (this.noteSets.length >= index) {
-            let valid = []
-            set.forEach(note => {
-                if (replace) {
-                    if (
-                        mts.noteDurations[note.duration] <= this.durationLeft + getMinDuration(this.noteSets[index]) ||
-                        this.maxDuration === 0
-                    ) {
-                        valid.push(note)
-                    }
-                } else {
-                    if (
-                        mts.noteDurations[note.duration] <= this.durationLeft ||
-                        this.maxDuration === 0
-                    ) {
-                        valid.push(note)
-                    }
-                }
-            })
-            if (valid.length) {
-                this.noteSets.splice(index, replace, valid)
-            }
-            this.duration += getMinDuration(valid)
+    initNext(position) {
+        const durationLeft = this.durationLeft(this.notes.length)
+        if (durationLeft > 0) {
+            this.notes[position] = {notes: new Set(), duration: this.duration}
         }
     }
 
-    deleteNoteSet(noteSetIndex) {
-        this.duration -= getMinDuration(this.noteSets[noteSetIndex])
-        this.noteSets.splice(noteSetIndex, 1)
+    validateInsertion(position) {
+        return !(position > this.notes.length || mts.noteDurations()[this.duration] > this.durationLeft(position) + this.duration)
     }
 
-    deleteNote(noteIndex, noteSetIndex) {
-        if (this.noteSets[noteSetIndex]) {
-            if (this.noteSets[noteSetIndex][noteIndex]) {
-                this.noteSets[noteSetIndex].splice(noteIndex, 1)
-            }
-        }
+    addNotes(notes, position) {
+        validateArray(notes)
+        return notes.every(note => this.addNote(note, position))
+    }
+
+    deleteNote(note, position) {
+        return this.notes[position].notes.delete(firstToUpper(note))
+    }
+
+    deleteNotes(notes, position) {
+        validateArray(notes)
+        return notes.every(note => this.deleteNote(note, position))
     }
 
     transpose(interval) {
-        const transposedSets = this.noteSets.map(set =>
-            set.map(note => note.interval(parseInt(interval))),
-        )
-
         const transposedMeasure = new Measure(this.maxDuration)
-        transposedMeasure.pushSets(transposedSets)
+        this.notes.forEach((data, position) => {
+            transposedMeasure.duration = data.duration
+            data.notes.forEach((note) => {
+                transposedMeasure.addNote(Note.builder(note).interval(interval).raw, position)
+            })
+        })
 
         return transposedMeasure
     }
 
+    clear() {
+        this.notes.length = 0
+        this.initNext(0)
+        return true
+    }
+
     toString() {
         let string = 'Measure: {'
-        this.noteSets.forEach(set => {
-            string += 'Notes: ['
-            set.forEach(note => (string += ' ' + note.toString() + ','))
-            string += ' ], '
+        this.notes.forEach(data => {
+            if (data.notes.size) {
+                string += `Duration: ${data.duration}, Notes: [`
+                data.notes.forEach(note => (string += ' ' + note + ','))
+                string += ' ], '
+            }
         })
-        string += '} '
+        string += '}'
         return string
     }
 }

@@ -1,33 +1,32 @@
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
-import {Pitch}                        from '../models/Pitch'
 import {firstToUpper}                 from '../addons/GlobalFunctions'
 import {PitchClassRule}               from '../validation/PitchClassRule'
 import {PianoOctaveRule}              from '../validation/PianoOctaveRule'
 import {InvalidInput}                 from '../Exceptions'
 
-/**
- * Returns the duration value of the note with the shortest duration out of an array of notes.
- * @param {Array} notes
- * @returns {Number}
- */
-function getMinDuration(notes = []) {
-    if (notes.length) {
-        let min
-        notes.forEach(note => {
-            min =
-                min < mts.noteDurations[note.duration]
-                ? min
-                : mts.noteDurations[note.duration]
-        })
-        return min
-    }
-    return 0
-}
+// /**
+//  * Returns the duration value of the note with the shortest duration out of an array of notes.
+//  * @param {Array} notes
+//  * @returns {Number}
+//  */
+// function getMinDuration(notes = []) {
+//     if (notes.length) {
+//         let min
+//         notes.forEach(note => {
+//             min =
+//                 min < mts.noteDurations[note.duration]
+//                 ? min
+//                 : mts.noteDurations[note.duration]
+//         })
+//         return min
+//     }
+//     return 0
+// }
 
 /**
  * Calculate the pure interval(not considering octave) between 2 notes(in semitones).
- * @param {Pitch} n1 first note
- * @param {Pitch} n2 second note
+ * @param {Note} n1 first note
+ * @param {Note} n2 second note
  * @returns {Number}
  */
 function notesDistance(n1, n2) {
@@ -43,42 +42,48 @@ function notesDistance(n1, n2) {
  * @param {Number} timeInterval
  * @param {boolean} [resolve = false] whether to resolve to tonic
  */
-function playMelodically(notes, timeInterval, resolve = false) {
-    if (notes[0].isPlayable) {
-        notes.forEach((note, i) => {
-            setTimeout(() => note.play(), i * timeInterval)
-        })
-        if (resolve) {
-            setTimeout(
-                () => notes[0].interval(12).play(),
-                notes.length * timeInterval,
-            )
-        }
-        return true
-    }
-    return false
-}
+// function playMelodically(notes, timeInterval, resolve = false) {
+//     notes.forEach((note, i) => {
+//         setTimeout(() => note.play(), i * timeInterval)
+//     })
+//     if (resolve) {
+//         setTimeout(
+//             () => notes[0].interval(12).play(),
+//             notes.length * timeInterval,
+//         )
+//     }
+//     return true
+// }
 
 /**
  * Turns a pitch into an object with pitch class and octave.
  * @param {String} pitch Pitch as a string, e.g Ab3
  * @return {{octave: number, pitchClass: String}}
  */
-function pitchToObject(pitch) {
-    if (typeof pitch !== 'string') {
-        throw new InvalidInput(`Expected ${pitch} to be a string representing pitch`)
-    }
-    const pitchClass = firstToUpper(pitch.slice(0, pitch.length - 1))
-    const octave     = parseInt(pitch[pitch.length - 1])
+function noteToObject(note) {
+    validateRawNote(note)
 
-    PitchClassRule.exists(pitchClass)
-    PianoOctaveRule.validatePossible(octave)
+    const pitchClass = firstToUpper(note.slice(0, note.length - 1))
+    const octave     = parseInt(note[note.length - 1])
 
     return {pitchClass, octave}
 }
 
+function validateRawNote(note) {
+    if (typeof note !== 'string') {
+        throw new InvalidInput(`Expected ${note} to be a string representing Note`)
+    }
+    const pitchClass = firstToUpper(note.slice(0, note.length - 1))
+    const octave     = parseInt(note[note.length - 1])
+
+    PitchClassRule.exists(pitchClass)
+    PianoOctaveRule.validatePossible(octave)
+
+    return true
+}
+
 function notesInRange(base, range) {
-    let {pitchClass, octave} = pitchToObject(base)
+    let {pitchClass, octave} = noteToObject(base)
     const notes              = {}
     let tmpPitchClass
 
@@ -93,4 +98,4 @@ function notesInRange(base, range) {
     return notes
 }
 
-export {getMinDuration, playMelodically, notesDistance, notesInRange, pitchToObject}
+export { notesDistance, notesInRange, noteToObject, validateRawNote}

@@ -1,9 +1,9 @@
-import {NoteBuilder, PlayableNote} from '../../src'
+import { Note} from '../../src'
 import {InvalidInput}              from '../../src/Exceptions'
 import {NoteString}                from '../../src/instruments/NoteString'
 
 
-describe.only('String', () => {
+describe('NoteString', () => {
     let noteString
     beforeEach(() => {
         noteString = new NoteString('e3', 1)
@@ -15,7 +15,7 @@ describe.only('String', () => {
 
     describe('#play', () => {
         it('plays a note when the note is in range', () => {
-            expect(noteString.note('e3')).to.be.instanceOf(PlayableNote)
+            expect(noteString.note('e3')).to.be.instanceOf(Note)
         })
 
         it('throws InvalidInput when note is not in range', () => {

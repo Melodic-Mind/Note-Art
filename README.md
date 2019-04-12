@@ -8,6 +8,8 @@
 
 # Note-Art JS :guitar:
 
+# *Notice* - This library is under reconstruction, please come back in a few weeks to use the new way-more-awesome version :)
+
 ##### [Demo :musical_note:](https://note-art-demo.netlify.com/) | [Docs :blue_book:](https://note-art-docs.netlify.com/)
 <br>
 

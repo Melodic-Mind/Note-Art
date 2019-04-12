@@ -6,6 +6,7 @@ describe('Pitch Class Rule', () => {
         expect(PitchClassRule.exists('C')).to.be.true
         expect(PitchClassRule.exists('c')).to.be.true
     })
+
     it('should throw an error when a pitch class is not valid', () => {
         expect(() => {return PitchClassRule.exists('q')}).to.throw(InvalidInput)
     })

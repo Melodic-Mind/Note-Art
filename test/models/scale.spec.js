@@ -1,9 +1,9 @@
-import {Scale, Note, Piano, chords, Chord} from '../../src'
-import {DataNotFound, MissingInformation}  from '../../src/Exceptions'
+import {Scale, Note, Chord}         from '../../src'
+import {DataNotFound, InvalidInput} from '../../src/Exceptions'
 
 let c, C_Major
 beforeEach(() => {
-    c       = new Note({pitchClass: 'c', octave: 3, duration: '4n'})
+    c       = new Note('c', 3)
     C_Major = new Scale({tonic: c, name: 'Major'})
 })
 
@@ -26,35 +26,42 @@ describe('Scale', () => {
         })
 
         it('Throws exception when attempting to build scale without tonic', () => {
-            expect(() => new Scale({name: 'Major'})).to.throw(MissingInformation)
+            expect(() => new Scale({name: 'Major'})).to.throw(InvalidInput)
         })
 
         it('Throws exception when attempting to build scale without scale name or pattern', () => {
-            expect(() => new Scale({tonic: c})).to.throw(MissingInformation)
+            expect(() => new Scale({tonic: c})).to.throw(Error)
         })
 
         it('throws exception when the tonic is not a Note instance', () => {
+            expect(() => new Scale({tonic: 'Not A Note', name: 'Major'})).to.throw(InvalidInput)
+        })
+    })
 
+    describe('#normalizeIfDiatonic', () => {
+        it('should normalize a diatonic scale with 2 consecutive pitch classes', () => {
+            const diatonic = new Scale({tonic: new Note('g#', 4), name: 'Lydian'})
+            expect(diatonic.notes[0].classSet).to.be.equal('b')
         })
     })
 
     it('#properties', () => {
         const stub = [
             [
-                new Note({pitchClass: 'c', octave: 3, duration: '4n'}),
-                new Note({pitchClass: 'd', octave: 3, duration: '4n'}),
-                new Note({pitchClass: 'e', octave: 3, duration: '4n'}),
-                new Note({pitchClass: 'f', octave: 3, duration: '4n'}),
-                new Note({pitchClass: 'g', octave: 3, duration: '4n'}),
-                new Note({pitchClass: 'a', octave: 3, duration: '4n'}),
-                new Note({pitchClass: 'b', octave: 3, duration: '4n'}),
+                new Note('c', 3),
+                new Note('d', 3),
+                new Note('e', 3),
+                new Note('f', 3),
+                new Note('g', 3),
+                new Note('a', 3),
+                new Note('b', 3),
             ], 'Major', 'Ionian',
         ]
         expect(C_Major.notes).to.eql(stub[0])
         expect(C_Major.name).to.eql(stub[1])
         expect(C_Major.otherNames).to.eql(stub[2])
         expect(new Scale({
-            tonic: new Note({pitchClass: 'f', octave: 3, duration: '4n'}),
+            tonic: new Note('f', 3),
             name:  'Blues with Leading Tone',
         }).otherNames).to.eql('No other names')
     })
@@ -64,50 +71,42 @@ describe('Scale', () => {
     })
 
     it('#degree', () => {
-        expect(C_Major.degree(1)).to.eql(new Note({pitchClass: 'c', octave: 3, duration: '4n'}))
+        expect(C_Major.degree(1)).to.eql(new Note('c', 3))
     })
 
     describe('#chords', () => {
-        it('Testing on C major', () => {
+        it('should have these chords with a C Major scale', () => {
             const stub = [
                 new Chord({root: c, name: 'M'}),
-                new Chord({root: new Note({pitchClass: 'd', octave: 3, duration: '4n'}), name: 'm'}),
-                new Chord({root: new Note({pitchClass: 'e', octave: 3, duration: '4n'}), name: 'm'}),
-                new Chord({root: new Note({pitchClass: 'f', octave: 3, duration: '4n'}), name: 'M'}),
-                new Chord({root: new Note({pitchClass: 'g', octave: 3, duration: '4n'}), name: 'M'}),
-                new Chord({root: new Note({pitchClass: 'a', octave: 3, duration: '4n'}), name: 'm'}),
-                new Chord({root: new Note({pitchClass: 'b', octave: 3, duration: '4n'}), name: 'dim'}),
+                new Chord({root: new Note('d', 3), name: 'm'}),
+                new Chord({root: new Note('e', 3), name: 'm'}),
+                new Chord({root: new Note('f', 3), name: 'M'}),
+                new Chord({root: new Note('g', 3), name: 'M'}),
+                new Chord({root: new Note('a', 3), name: 'm'}),
+                new Chord({root: new Note('b', 3), name: 'dim'}),
             ]
             stub.forEach((chord, index) => assertChord(C_Major, index + 1, chord))
         })
+    })
 
-        it('Testing on E major', () => {
-            const stub    = [
-                new Chord({root: new Note({pitchClass: 'e', octave: 3, duration: '4n'}), name: 'M'}),
-                new Chord({root: new Note({pitchClass: 'f#', octave: 3, duration: '4n'}), name: 'm'}),
-                new Chord({root: new Note({pitchClass: 'g#', octave: 3, duration: '4n'}), name: 'm'}),
-                new Chord({root: new Note({pitchClass: 'a', octave: 3, duration: '4n'}), name: 'M'}),
-                new Chord({root: new Note({pitchClass: 'b', octave: 3, duration: '4n'}), name: 'M'}),
-                new Chord({root: new Note({pitchClass: 'c#', octave: 4, duration: '4n'}), name: 'm'}),
-                new Chord({root: new Note({pitchClass: 'd#', octave: 4, duration: '4n'}), name: 'dim'}),
-            ]
-            const D_Major = new Scale({tonic: new Note({pitchClass: 'e', octave: 3, duration: '4n'}), name: 'Major'})
-            stub.forEach((chord, index) => assertChord(D_Major, index + 1, chord))
+    describe('#seventhChords', () => {
+        it('should call chordFromNotes once even when called multiple times', () => {
+            const spy = sinon.spy(Scale, 'chordsFromNotes')
+            C_Major.seventhChords
+            C_Major.seventhChords
+            expect(spy).to.have.been.calledOnceWithExactly(C_Major.notes, true)
         })
+    })
 
-        it('Testing on Gb major', () => {
-            const stub     =
-                      [
-                          new Chord({root: new Note({pitchClass: 'bb', octave: 3, duration: '4n'}), name: 'M'}),
-                          new Chord({root: new Note({pitchClass: 'c', octave: 4, duration: '4n'}), name: 'm'}),
-                          new Chord({root: new Note({pitchClass: 'd', octave: 4, duration: '4n'}), name: 'm'}),
-                          new Chord({root: new Note({pitchClass: 'eb', octave: 4, duration: '4n'}), name: 'M'}),
-                          new Chord({root: new Note({pitchClass: 'f', octave: 4, duration: '4n'}), name: 'M'}),
-                          new Chord({root: new Note({pitchClass: 'g', octave: 4, duration: '4n'}), name: 'm'}),
-                          new Chord({root: new Note({pitchClass: 'a', octave: 4, duration: '4n'}), name: 'dim'}),
-                      ]
-            const Bb_Major = new Scale({tonic: new Note({pitchClass: 'bb', octave: 3, duration: '4n'}), name: 'Major'})
-            stub.forEach((chord, index) => assertChord(Bb_Major, index + 1, chord))
+    describe('#pitchClassNamesString', () => {
+        it('should return the pitch class names of the scale', () => {
+            expect(C_Major.pitchClassNamesString).to.equal('C, D, E, F, G, A, B')
+        })
+    })
+
+    describe('#pitchNamesString', () => {
+        it('should return the note names of the scale', () => {
+            expect(C_Major.pitchNamesString).to.equal('C3, D3, E3, F3, G3, A3, B3')
         })
     })
 })

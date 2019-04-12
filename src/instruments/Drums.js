@@ -1,16 +1,17 @@
-import {app} from '../../src/'
+import {Instrument} from './Instrument'
 
-// const audioManager = AudioManager.getAudioManager()
-
-export class Drums {
-    constructor() {
-        this.key = 'ms1'
-        app.get('audio-manager').setSound('https://sean-test-server.herokuapp.com/Metronome/1.wav', this.key)
-    }
-
-    play() {
-        app.get('audio-manager').playSound(this.key)
-    }
-}
+// export class Drums extends Instrument{
+//     constructor() {
+//         super()
+//     }
+//
+//     generatePath(note) {
+//         const server = 'http://localhost:8000/'
+//         const set    = Instrument.normalizeSet(note.pitchClass, note.classSet)
+//         const file   = `/FF_${set}${note.octave}`
+//
+//         return `${server}Piano${file}.mp3`
+//     }
+// }
 
 

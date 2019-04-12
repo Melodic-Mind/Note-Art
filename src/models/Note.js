@@ -1,7 +1,9 @@
-import {Pitch}           from './Pitch'
-import {PianoOctaveRule} from '../validation/PianoOctaveRule'
-import {DurationRule}    from '../validation/DurationRule'
-import {InvalidInput}    from '../Exceptions'
+import {PianoOctaveRule}              from '../validation/PianoOctaveRule'
+import {PitchClass}                   from './PitchClass'
+import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
+import {InvalidInput}                 from '../Exceptions'
+import {realNumberFromFreq}           from '../utilities/ScientificFuncs'
+import {noteToObject}                 from '../'
 
 /**
  * @class
@@ -9,27 +11,41 @@ import {InvalidInput}    from '../Exceptions'
  * @example
  * const n = new Note({note: 'c', octave: 3, duration: '4n', instrument: 'Piano'})
  */
-export class Note extends Pitch {
+export class Note extends PitchClass {
     /**
-     * @param {Object} attributes Object that contains some or all of the following keys:
-     * @param {String} attributes.pitchClass one of the pitch classes('c', 'd', etc...)
-     * @param {number} attributes.octave note octave
-     * @param {String} attributes.duration note duration
+     * new Note
+     * @param pitchClass
+     * @param octave
      */
-    constructor({pitchClass, octave, duration}) {
-        super(pitchClass, octave)
-        PianoOctaveRule.validateAudible(octave)
-        if (!DurationRule.validate(duration)) {
-            throw new InvalidInput(`${duration} is not a valid duration`)
-        }
-        this.attributes.duration = duration
+    constructor(pitchClass, octave) {
+        super(pitchClass)
+        PianoOctaveRule.validatePossible(octave)
+        this.attributes.octave = octave
+    }
+
+    static builder(noteString) {
+        const {pitchClass, octave} = noteToObject(noteString)
+        return new Note(pitchClass, octave)
     }
 
     /**
-     * Get the duration of a note
+     * Generates a new pitch from frequency.
+     * @param frequency
+     * @returns {Pitch}
+     */
+    static fromFrequency(frequency) {
+        const n          = realNumberFromFreq(frequency)
+        const pitchClass = mts.sharpClassNotes[n % 12]
+        const octave     = Math.floor(n / 12 - 1)
+
+        return new Note(pitchClass, octave)
+    }
+
+    /**
+     * Returns the octave of the pitch.
      * @type {String}
      */
-    get duration() { return this.attributes.duration }
+    get octave() { return this.attributes.octave }
 
     /**
      * Gets interval size (Number) and returns a new instance of a note
@@ -42,28 +58,12 @@ export class Note extends Pitch {
      * @param {number} interval Musical Interval
      */
     interval(interval) {
-        const newPitch = super.interval(interval)
-        return newPitch ?
-               new Note({...newPitch.attributes, duration: this.duration}) :
-               undefined
-    }
-
-    /**
-     * Returns a new Note with the new duration.
-     * @param duration
-     * @return {Note}
-     */
-    setDuration(duration) {
-        return new Note({...this.attributes, duration})
-    }
-
-    /**
-     * Returns a new Note with the new octave.
-     * @param {Number} octave
-     * @return {Note}
-     */
-    setOctave(octave) {
-        return new Note({...this.attributes, octave})
+        const pitchClass = super.interval(interval).pitchClass
+        let octDiff      = Math.floor((this.classIndex + interval) / 12)
+        if (interval < 0) {
+            octDiff    = this.classIndex + interval < 0 ? octDiff : 0
+        }
+        return new Note(pitchClass, this.octave + octDiff)
     }
 
     /**
@@ -75,8 +75,18 @@ export class Note extends Pitch {
     }
 
     /**
-     * Returns a string of the note.
+     * Returns a string of the pitch class and octave of the Note.
      * @returns {string}
      */
-    toString() { return `${super.toString()}` }
+    get raw() {
+        return `${super.toString()}${this.octave}`
+    }
+
+    /**
+     * Returns a string of the pitch class and octave of the Note.
+     * @returns {string}
+     */
+    toString() {
+        return `${super.toString()}${this.octave}`
+    }
 }

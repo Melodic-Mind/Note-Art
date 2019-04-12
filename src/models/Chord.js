@@ -1,5 +1,7 @@
-import {MissingInformation, DataNotFound}                         from '../Exceptions'
-import {findQuery, playMelodically, MusicTheoryStructures as mts} from '../'
+import {MissingInformation, DataNotFound, InvalidInput} from '../Exceptions'
+import {buildString, findQuery}                         from '../addons/GlobalFunctions'
+import {MusicTheoryStructures as mts}                   from '../resources/MusicTheoryStructures'
+import {Note}                                           from '../models/Note'
 
 /**
  * @classdesc Represents a musical Chord - a number of notes with a specific
@@ -15,25 +17,26 @@ export class Chord {
     /**
      * <b>Either Name or Pattern must be provided!</b>
      * @param {Object} attributes Object that contains some of the following keys:
-     * @param {Note|PlayableNote} [attributes.root] - chords root note
+     * @param {Note} [attributes.root] - chords root note
      * @param {String} [attributes.name] - the chords name(e.g 'M')
      * @param {Array} [attributes.pattern] - the pattern to build the chord by pitch intervals(e.g [3, 7]
      */
     constructor({root, name, pattern}) {
-        const attributes = {}
-        if (!root) {
-            throw new MissingInformation('root')
-        }
-        attributes.info = findQuery(name, pattern, mts.Chords)
-        if (!attributes.info['Chord']) {
-            attributes.info['Chord'] = ''
-        }
-        attributes.notes = []
+        this.info   = findQuery(name, pattern, mts.Chords)
+        this._notes = []
+        this.pushNotes(root)
+    }
 
-        this.attributes = attributes
-        this.notes.push(root)
+    /**
+     * @private
+     */
+    pushNotes(root) {
+        if (!(root instanceof Note)) {
+            throw new InvalidInput(`expected ${root} to be an instance of Note`)
+        }
+        this._notes.push(root)
         this.pitchIntervals.forEach(interval =>
-            this.notes.push(root.interval(interval)),
+            this._notes.push(root.interval(interval)),
         )
     }
 
@@ -42,7 +45,7 @@ export class Chord {
      * @type {Array}
      */
     get notes() {
-        return this.attributes.notes
+        return this._notes
     }
 
     /**
@@ -50,7 +53,7 @@ export class Chord {
      * @type {String}
      */
     get fullName() {
-        return this.attributes.info['Chord']
+        return this.info['Chord']
     }
 
     /**
@@ -58,7 +61,7 @@ export class Chord {
      * @type {String}
      */
     get name() {
-        return this.attributes.info['Name']
+        return this.info['Name']
     }
 
     /**
@@ -74,11 +77,7 @@ export class Chord {
      * @type {Array}
      */
     get pitchIntervals() {
-        return JSON.parse(this.attributes.info['Pattern'])
-    }
-
-    get duration() {
-        return this.notes[0].duration
+        return JSON.parse(this.info['Pattern'])
     }
 
     get type() {
@@ -89,49 +88,6 @@ export class Chord {
         } else {
             return undefined
         }
-    }
-
-    /**
-     * Play the chord.
-     * @type {boolean}
-     */
-    play() {
-        if (this.notes[0].isPlayable) {
-            this.notes.forEach(note => note.play())
-            return true
-        }
-        return false
-    }
-
-    /**
-     * Play chord notes melodically.
-     */
-    playMelody() {
-        playMelodically(this.notes, 400)
-    }
-
-    /**
-     * Generate the same chord with a new duration.
-     * @param duration
-     * @returns {Chord}
-     */
-    setDuration(duration) {
-        return new Chord({
-            root:    this.notes[0].setDuration(duration),
-            pattern: this.pitchIntervals,
-        })
-    }
-
-    /**
-     * Generate the same chord with a new octave.
-     * @param octave
-     * @returns {Chord}
-     */
-    setOctave(octave) {
-        return new Chord({
-            root:    this.notes[0].setOctave(octave),
-            pattern: this.pitchIntervals,
-        })
     }
 
     // /**
@@ -168,9 +124,7 @@ export class Chord {
      * @returns {string}
      */
     get pitchClasses() {
-        let s = ''
-        this.notes.forEach(note => s += note.toString() + ', ')
-        return s
+        return buildString(this.notes)
     }
 
     /**
@@ -180,6 +134,6 @@ export class Chord {
      */
     transpose(interval) {
         const root = this.notes[0].transpose(interval)
-        return root ? new Chord({root, pattern: this.pitchIntervals}) : undefined
+        return new Chord({root, pattern: this.pitchIntervals})
     }
 }

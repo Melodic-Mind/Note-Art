@@ -1,34 +1,30 @@
 import {app, AudioManager} from '../src/'
-import {expect}            from 'chai'
 import sinon               from 'sinon'
+import sinonChai           from 'sinon-chai'
+import chai                from 'chai'
+
+chai.use(sinonChai)
 
 class AudioManagerMock extends AudioManager {
-    generatePlayers() {
+    static getAudioMap() {
         return new Map()
     }
 
-    setNote(pn) {
-        const key = AudioManager.getKey(pn)
-        if (!this.players.has(key)) {
-            this.players.set(key, pn)
-        }
-    }
-
-    setSound(fliepath, key) {
-        if (!this.players.has(key)) {
-            this.players.set(key, fliepath)
-        }
-    }
-
-    playSound(key) {
-        return this.players.has(key)
+    /**
+     * Add a note to the map.
+     * @param {Note} note
+     */
+    static toMaster() {
+        return true
     }
 }
 
+
 app.set('audio-manager', () => {
-    return new AudioManagerMock()
+    return AudioManagerMock
 })
-global.expect = expect
+
+global.expect = chai.expect
 global.sinon  = sinon
 global.dd     = require('dumper.js').dd
 global.dump   = require('dumper.js').dump

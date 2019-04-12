@@ -1,254 +1,118 @@
-import {Measure, twoDigitFormat, getMinDuration, Drums} from '../'
-import Tone                                             from 'tone'
+import {Measure}      from './Measure'
+import {DurationRule} from '../validation/DurationRule'
 
 export class Piece {
-    constructor(bpm = 120, timeSignature = [4, 4]) {
-        const attributes                   = {}
-        attributes.transport               = Tone.Transport
-        attributes.transport.bpm.value     = bpm
-        attributes.transport.loop          = true
-        attributes.transport.timeSignature = timeSignature
-        attributes.current                 = null
-        attributes.measures                = []
-        attributes.noteSets                = []
-        attributes.duration                = 0
-
-        this.metronome    = new Drums()
-        this.isMetronome  = false
-        this.beat         = 0
-        this.noteSetIndex = -1
-        this.measureIndex = 0
-
-        this.attributes = attributes
+    constructor({bpm, timeSignature} = {}) {
+        this.timeSignature     = timeSignature || [4, 4]
+        this.bpm               = bpm || 120
+        this.attributes        = {duration: '4n', voices: [[new Measure()]]}
     }
 
-    /**
-     * get the duration
-     */
     get duration() {
-        return twoDigitFormat(this.attributes.duration)
+        return this.attributes.duration
     }
 
-    get transport() {
-        return this.attributes.transport
+    set duration(duration) {
+        DurationRule.validate(duration)
+        this.attributes.duration = duration
     }
 
-    set duration(d) {
-        this.attributes.duration = d
+    get voices() {
+        return this.attributes.voices
     }
 
-    get bpm() {
-        return this.transport.bpm.value
-    }
-
-    set bpm(bpm) {
-        this.transport.bpm.value = bpm
-    }
-
-    get timeSignature() {
-        return this.transport.timeSignature
-    }
-
-    set timeSignature(timeSignature) {
-        this.transport.timeSignature = timeSignature
-    }
-
-    get measures() {
-        return this.attributes.measures
-    }
-
-    set measures(measures) {
-        this.attributes.measures = measures
-    }
-
-    get noteSets() {
-        return this.attributes.noteSets
-    }
-
-    set noteSets(setsArr) {
-        this.attributes.noteSets = setsArr
-    }
-
-    get current() {
-        return this.attributes.current
-    }
-
-    set current(curr) {
-        this.attributes.current = curr
-    }
-
-    getBeat() {
-        return this.beat
-    }
-
-    getNoteSetIndex() {
-        return this.noteSetIndex
-    }
-
-    getMeasureIndex() {
-        return this.measureIndex
-    }
-
-    pushMeasure(measure) {
-        if (measure instanceof Measure) {
-            this.measures.push(measure)
-            this.duration += measure.duration
-            measure.noteSets.forEach(set => this.noteSets.push(set))
+    setMeasureDuration(measure, voice = 0) {
+        if (this.getMeasure(measure, voice)) {
+            this.getMeasure(measure, voice).duration = this.duration
         }
     }
 
-    pushMeasures(measures) {
-        measures.forEach(measure => this.pushMeasure(measure))
-    }
-
-    insertMeasure(measure, index) {
-        if (measure instanceof Measure) {
-            this.measures.splice(index, 0, measure)
-            measure.noteSets.forEach((set, i) => {
-                this.noteSets.splice(index + i, 0, set)
-            })
+    getVoice(voice = 0) {
+        if (this.attributes.voices[voice]) {
+            return this.attributes.voices[voice]
         }
+        return false
     }
 
-    noteSetsUpToMeasure(measureIndex) {
-        let length = 0
-        for (let i = 0; i < measureIndex; i++)
-            length += this.measures[i].noteSets.length
-        return length
+    addVoice() {
+        this.voices.push([new Measure()])
     }
 
-    insertNoteSet(noteSet, noteSetIndex, measureIndex = this.measures.length) {
-        if (this.measures.length >= measureIndex) {
-            if (this.measures.length === measureIndex) {
-                return this.pushNoteSet(noteSet)
-            }
+    deleteVoice(voice) {
+        if (this.voices.length > 1 && this.voices[voice]) {
+            return this.voices.splice(voice, 1)
         }
-        this.measures[measureIndex].insertSet(noteSet, noteSetIndex)
-        this.noteSets.splice(
-            noteSetIndex + this.noteSetsUpToMeasure(measureIndex),
-            0,
-            noteSet,
-        )
+        return false
     }
 
-    deleteMeasure(i) {
-        if (this.measures[i]) {
-            this.duration -= this.measures[i].duration
-            this.noteSets.splice(
-                this.noteSetsUpToMeasure(i),
-                this.measures[i].noteSets.length,
-            )
-            this.measures.splice(i, 1)
+    getMeasure(measure, voice = 0) {
+        return this.voices[voice][measure]
+    }
+
+    addMeasure(index, voice = 0) {
+        if (index === undefined) {
+            index = this.getVoice(voice).length
         }
+        this.getVoice(voice).splice(index, 0, new Measure())
     }
 
-    pop() {
-        this.measures.pop()
+    addNote(note, position, measureIndex, voice = 0) {
+        return this.addOperation('addNote', note, position, measureIndex, voice)
     }
 
-    changeSet(set, setIndex, measureIndex) {
-        this.measures[measureIndex].changeSet(set, setIndex)
+    addNotes(notes, position, measureIndex, voice = 0) {
+        return this.addOperation('addNotes', notes, position, measureIndex, voice)
     }
 
-    mutateSet(set, setIndex, measureIndex) {
-        this.measures[measureIndex].mutateSet(set, setIndex)
-    }
+    addOperation(method, data, position, measureIndex, voice) {
+        const measure = this.getMeasure(measureIndex, voice)
 
-    changeNote(note, noteIndex, setIndex, measureIndex) {
-        this.measures[measureIndex].changeNote(note, noteIndex, setIndex)
-    }
-
-    pushNoteSet(noteSet) {
-        const len = this.measures.length - 1
-        if (!(len + 1) || this.measures[len].isFull()) {
-            const measure = new Measure(16)
-            measure.insertSet(noteSet)
-            this.pushMeasure(measure)
-        } else {
-            this.measures[len].insertSet(noteSet)
-            this.noteSets.push(noteSet)
+        if (measure) {
+            measure.duration = this.duration
+            return measure[method](data, position)
         }
+        return false
     }
 
-    cloneMeasure(measureIndex) {
-        const clone = this.measures[measureIndex].clone()
-        this.measures.splice(measureIndex, 0, clone)
+    deleteNote(note, position, measure, voice = 0) {
+        return this.deleteOperation('deleteNote', note, position, measure, voice)
     }
 
-    deleteNoteSet(noteSetIndex, measureIndex) {
-        if (this.measures[measureIndex]) {
-            this.noteSets.splice(
-                noteSetIndex + this.noteSetsUpToMeasure(measureIndex),
-                1,
-            )
-            this.measures[measureIndex].deleteNoteSet(noteSetIndex)
+    deleteNotes(notes, position, measure, voice = 0) {
+        return this.deleteOperation('deleteNotes', notes, position, measure, voice)
+    }
+
+    deleteOperation(operation, data, position, measure, voice) {
+        if (this.getMeasure(measure, voice)) {
+            return this.getMeasure(measure, voice)[operation](data, position)
         }
+        return false
     }
 
-    deleteNote(noteIndex, noteSetIndex, measureIndex) {
-        if (this.measures[measureIndex]) {
-            if (this.measures[measureIndex]) {
-                this.noteSets[
-                noteSetIndex + this.noteSetsUpToMeasure(measureIndex)
-                    ].splice(noteIndex, 1)
-                this.measures[measureIndex].deleteNote(noteIndex, noteSetIndex)
-            }
+    clearMeasure(measure, voice = 0) {
+        if (this.getMeasure(measure, voice)) {
+            return this.getMeasure(measure, voice).clear()
         }
+        return false
     }
 
-    isPlaying() {
-        return this.transport.state
-    }
-
-    toString() {
-        let string = 'Piece: { '
-        this.measures.forEach(m => (string += m.toString() + ', '))
-        string += '} '
-        return string
-    }
-
-    transpose(interval) {
-        this.measures = this.measures.map(m => m.transpose(interval))
-    }
-
-    play(startTime = 0) {
-        if (this.transport.state === 'stopped') {
-            this.transport.loopEnd = this.measures.length + 'm'
-            this.beat              = 0
-            this.measures.forEach((measure, measureIndex) => {
-                let setTime = 0
-                measure.noteSets.forEach((set, setIndex) => {
-                    set.forEach(note =>
-                        this.transport.schedule(time => {
-                            note.play()
-                            this.noteSetIndex = setIndex
-                            this.measureIndex = measureIndex
-                        }, `${measureIndex}:0:${setTime}`),
-                    )
-                    setTime += getMinDuration(set)
-                })
-            })
-            this.transport.scheduleRepeat(time => {
-                if (
-                    this.transport.position[0] > this.measures.length - 1 &&
-                    !this.transport.loop
-                ) {
-                    this.transport.stop()
-                    this.transport.cancel()
-                }
-                this.beat += 1
-                if (this.isMetronome) {
-                    this.metronome.play()
-                }
-                if (this.beat > 4) {
-                    this.beat = 1
-                }
-            }, '4n')
-            this.transport.start()
-        } else {
-            this.transport.stop()
-            this.transport.cancel()
-            this.noteSetIndex = -1
+    deleteMeasure(measure, voice = 0) {
+        if (this.getMeasure(measure, voice)) {
+            return this.voices[voice].splice(measure, 1)
         }
+        return false
+    }
+
+    cloneMeasure(measure, voice = 0) {
+        if (this.getMeasure(measure, voice)) {
+            const clone = this.getMeasure(measure, voice).clone()
+            this.voices[voice].splice(measure, 0, clone)
+            return true
+        }
+        return false
+    }
+
+    transpose(interval, voice = 0) {
+        this.voices[voice] = this.voices[voice].map(m => m.transpose(interval))
     }
 }

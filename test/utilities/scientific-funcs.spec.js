@@ -1,11 +1,11 @@
 import * as funcs from '../../src/utilities/ScientificFuncs'
-import { Pitch } from '../../src';
+import { Note } from '../../src';
 
 describe('Scientific functions', () => {
     it('#freqFromPitch', () => {
-        const pitch = new Pitch('a', 4)
-        const pitch2 = new Pitch('e', 5)
-        expect(funcs.freqFromPitch(pitch)).to.eql(440)
+        const note = new Note('a', 4)
+        const pitch2 = new Note('e', 5)
+        expect(funcs.freqFromPitch(note)).to.eql(440)
         expect(Math.ceil(funcs.freqFromPitch(pitch2))).to.eql(660)
     })
 

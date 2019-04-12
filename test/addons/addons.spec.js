@@ -1,6 +1,5 @@
-import { expect } from 'chai'
 import { firstToUpper, twoDigitFormat, findQuery } from '../../src'
-import { MissingInformation } from '../../src/Exceptions'
+import { MissingInformation }                      from '../../src/Exceptions'
 
 describe('Addons', () => {
     it('#firstToUpper', () => {

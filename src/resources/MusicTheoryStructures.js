@@ -13,6 +13,10 @@ export class MusicTheoryStructures {
         return ['C', 'G', 'D', 'A', 'E', 'B', 'F#']
     }
 
+    static get pitchClassSets() {
+        return ['#', 'b']
+    }
+
     static get sharpClassNotes() {
         return ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     }
@@ -57,14 +61,28 @@ export class MusicTheoryStructures {
         }
     }
 
-    static get noteDurations() {
-        return {
-            '1':   16,
-            '2n':  8,
-            '4n':  4,
-            '8n':  2,
-            '16n': 1,
-        }
+    static noteDurations(backwards = false) {
+        return backwards ?
+               {
+                   64: '1',
+                   32: '2n',
+                   16: '4n',
+                   8:  '8n',
+                   4:  '16n',
+                   2:  '32n',
+                   1:  '64n',
+               }
+                         :
+               {
+                   '1':   64,
+                   '2n':  32,
+                   '4n':  16,
+                   '8n':  8,
+                   '16n': 4,
+                   '32n': 2,
+                   '64n': 1,
+               }
+
     }
 
     static get degrees() {
@@ -111,12 +129,14 @@ export class MusicTheoryStructures {
     static get PentatonicScales() {
         return scales.filter((scale) => {
             return scale['Length'] === '5' && scale['Name'] !== 'Theoretical'
-        })    }
+        })
+    }
 
     static get TheoreticalScales() {
         return scales.filter((scale) => {
             return scale['Name'] === 'Theoretical'
-        })    }
+        })
+    }
 
     static get scales() {
         return scales

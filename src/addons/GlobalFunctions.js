@@ -1,4 +1,4 @@
-import {DataNotFound, MissingInformation} from '../Exceptions'
+import {DataNotFound, InvalidInput, MissingInformation} from '../Exceptions'
 
 /**
  * Transforms the first letter of a string to upper case.
@@ -64,15 +64,30 @@ function findQueryByString(source, key, query) {
  */
 function findQueryByArray(source, key, query) {
     const result = source.find(
-        listing => JSON.stringify(JSON.parse(listing[key])) == JSON.stringify(query),
+        listing => JSON.stringify(JSON.parse(listing[key])) === JSON.stringify(query),
     )
     if (!result) {
         return {
-            Name:    '',
-            Pattern: JSON.stringify(query),
+            Chord:                'Unknown',
+            Name:                 'Unknown',
+            'Pattern(intervals)': 'Unknown',
+            Pattern:              JSON.stringify(query),
         }
     }
     return result
 }
 
-export {firstToUpper, twoDigitFormat, findQuery}
+function buildString(data) {
+    let s = ''
+    data.forEach(item => s += item.toString() + ', ')
+    return s.slice(0, s.length - 2)
+}
+
+function validateArray(arg) {
+    if (!Array.isArray(arg)) {
+        throw new InvalidInput(`expected ${arg} to be an array of notes`)
+    }
+    return true
+}
+
+export {firstToUpper, twoDigitFormat, findQuery, buildString, validateArray}

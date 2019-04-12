@@ -2,7 +2,8 @@
     "include": ["src/**/*.js"],
     "exclude": [
         "src/**/index.js",
-        "src/resources/"
+        "src/resources/",
+        "src/models/Driver.js"
     ],
     "extension": [".js"],
     "reporter": ["lcov", "text", "html"],

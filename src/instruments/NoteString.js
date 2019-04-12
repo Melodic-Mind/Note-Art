@@ -1,20 +1,17 @@
-import {app, firstToUpper, NoteBuilder, notesInRange} from '../'
+import {Instrument} from './Instrument'
 
-
-export class NoteString {
-    constructor(base, range, instrument) {
-        const entries = Object.entries(notesInRange(base, range))
-        this.notes    = new Map()
-        entries.forEach((entry) => {
-            this.notes.set(entry[0], new NoteBuilder({
-                pitchClass: entry[1]['pitchClass'],
-                octave:     entry[1]['octave'],
-                instrument,
-            }).build(true))
-        })
+export class NoteString extends Instrument {
+    constructor(base, range, stringNumber) {
+        super()
+        this.stringNumber = stringNumber
+        this.init(base, range)
     }
 
-    note(note) {
-        return this.notes.get(firstToUpper(note))
+    generatePath(note) {
+        const server = 'http://localhost:8000/'
+        const set    = Instrument.normalizeSet(note.pitchClass, note.classSet)
+        const file   = `${set}${note.octave}`
+
+        return `${server}Guitar/_${this.stringNumber}/${file}_long.mp3`
     }
 }
