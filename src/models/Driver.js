@@ -15,7 +15,7 @@ export class Driver {
         return this
     }
 
-    isPlaying() {
+    get state() {
         return this.transport.state
     }
 

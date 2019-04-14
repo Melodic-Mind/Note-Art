@@ -63,16 +63,6 @@ describe('Instrument', () => {
             stub.restore()
             spy.restore()
         })
-
-        it('should do nothing when paths already has a key', () => {
-            const stub = sinon.stub(ins, 'generatePath').returns(Math.random())
-            ins.init('e3', 2)
-            const spy = sinon.spy(ins.paths, 'set')
-            ins.setPath(new Note('E', 3))
-            expect(spy).to.not.have.been.called
-            stub.restore()
-            spy.restore()
-        })
     })
 
     describe('#getPlayer', () => {
@@ -140,7 +130,10 @@ describe('Instrument', () => {
                 start: () => {},
                 stop:  () => {},
             })
-            expect(ins.play('E3')).to.be.undefined
+            ins.play('E3')
+            expect(getPlayer).to.have.been.calledOnce
+            ins.play('F3', '4n')
+            expect(getPlayer).to.have.been.calledThrice
             hasNote.restore()
             getPlayer.restore()
         })
@@ -157,13 +150,29 @@ describe('Instrument', () => {
     })
 
     describe('#syncAndPlay', () => {
+        let ins
+        beforeEach(() => {
+            ins = new Instrument('E3', 2)
+        })
+
         it('should get the player', () => {
-            const ins  = new Instrument('E3', 2)
-            const stub = sinon.stub(ins, 'getPlayer').returns({
+            const hasNote = sinon.stub(ins, 'hasNote').returns(true)
+            const stub    = sinon.stub(ins, 'getPlayer').returns({
                 sync: () => { return {start: () => { return {stop: () => {}} }} },
             })
-            ins.syncAndPlay('f5')
-            expect(stub).to.have.been.calledWithExactly('F5')
+            ins.syncAndPlay('f3')
+            expect(stub).to.have.been.calledWithExactly('F3')
+            hasNote.restore()
+            stub.restore()
+        })
+
+        it('should do nothing when the note doesn\'nt exist', () => {
+            const stub    = sinon.stub(ins, 'getPlayer').returns({
+                sync: () => { return {start: () => { return {stop: () => {}} }} },
+            })
+            ins.syncAndPlay('g4')
+            expect(stub).to.not.have.been.called
+            stub.restore()
         })
     })
 })

@@ -14,12 +14,20 @@ export class Instrument {
         this.paths = app.get('audio-manager').getAudioMap()
     }
 
+    static get server() {
+        return 'http://localhost:8000/'
+    }
+
+    /**
+     * Should be called from any child class's constructor.
+     * @param base
+     * @param range
+     */
     init(base, range) {
         Object.entries(notesInRange(base, range)).forEach(([key, {pitchClass, octave}]) => {
             const note = new Note(pitchClass, octave)
-
             this.notes.set(key, note)
-            this.setPath(note)
+            this.setPath(key, note)
         })
     }
 
@@ -66,19 +74,17 @@ export class Instrument {
 
     /**
      * Add a note to the map.
+     * @param key
      * @param {Note} note
      */
-    setPath(note) {
-        const key = Instrument.getKey(note)
-        if (!this.paths.has(key)) {
-            this.paths.set(key, this.generatePath(note))
-            app.get('audio-manager').toMaster(this.paths.get(key))
-        }
+    setPath(key, note) {
+        this.paths.set(key, this.generatePath(note))
+        app.get('audio-manager').toMaster(this.paths.get(key))
     }
 
     /**
      * Get a note's Player.
-     * @param {Note} note
+     * @param {String} note
      * @returns {Tone.Player}
      */
     getPlayer(note) {
@@ -107,15 +113,20 @@ export class Instrument {
     /**
      * Play sound by player key.
      * @param note
-     * @param stopAt
+     * @param duration
      */
-    play(note) {
+    play(note, duration = false) {
         if (this.hasNote(note)) {
             this.getPlayer(Instrument.normalizeNoteStr(note)).start()
+            if (duration) {
+                this.getPlayer(Instrument.normalizeNoteStr(note)).stop(`+${duration}`)
+            }
         }
     }
 
     syncAndPlay(note, duration) {
-        this.getPlayer(Instrument.normalizeNoteStr(note)).sync().start().stop(duration)
+        if (this.hasNote(note)) {
+            this.getPlayer(Instrument.normalizeNoteStr(note)).sync().start().stop(duration)
+        }
     }
 }

@@ -40,12 +40,14 @@ function findQuery(name, pattern, source) {
 
 /**
  * Retrieves data from resource by name.
- * @param {String} name name of chord
  * @throws {DataNotFound}
  * @returns {Object}
+ * @param source
+ * @param key
+ * @param query
  */
 function findQueryByString(source, key, query) {
-    const result = source.find(listing => listing[key] == query)
+    const result = source.find(listing => listing[key] === query)
     if (!result) {
         throw new DataNotFound(query)
     }
@@ -77,15 +79,26 @@ function findQueryByArray(source, key, query) {
     return result
 }
 
+/**
+ * Builds a formatted string out of an array with items.
+ * @param {Array} data
+ * @return {string}
+ */
 function buildString(data) {
     let s = ''
     data.forEach(item => s += item.toString() + ', ')
     return s.slice(0, s.length - 2)
 }
 
+/**
+ * Validates an argument is an array, fails if not.
+ * @throws InvalidInput
+ * @param arg
+ * @return {boolean}
+ */
 function validateArray(arg) {
     if (!Array.isArray(arg)) {
-        throw new InvalidInput(`expected ${arg} to be an array of notes`)
+        throw new InvalidInput(`expected ${arg} to be an array`)
     }
     return true
 }

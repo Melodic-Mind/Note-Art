@@ -104,9 +104,9 @@ describe('Scale', () => {
         })
     })
 
-    describe('#pitchNamesString', () => {
+    describe('#notesString', () => {
         it('should return the note names of the scale', () => {
-            expect(C_Major.pitchNamesString).to.equal('C3, D3, E3, F3, G3, A3, B3')
+            expect(C_Major.notesString).to.equal('C3, D3, E3, F3, G3, A3, B3')
         })
     })
 })

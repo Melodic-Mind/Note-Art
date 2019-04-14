@@ -12,10 +12,9 @@ export class Piano extends Instrument {
 
 
     generatePath(note) {
-        const server = 'http://localhost:8000/'
         const set    = Instrument.normalizeSet(note.pitchClass, note.classSet)
-        const file   = `/FF_${set}${note.octave}`
+        const file   = `FF_${set}${note.octave}`
 
-        return `${server}Piano${file}.mp3`
+        return `${Instrument.server}Piano/${file}.mp3`
     }
 }

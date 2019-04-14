@@ -8,10 +8,13 @@ export class NoteString extends Instrument {
     }
 
     generatePath(note) {
-        const server = 'http://localhost:8000/'
-        const set    = Instrument.normalizeSet(note.pitchClass, note.classSet)
-        const file   = `${set}${note.octave}`
+        const set  = Instrument.normalizeSet(note.pitchClass, note.classSet)
+        const file = `${set}${note.octave}`
 
-        return `${server}Guitar/_${this.stringNumber}/${file}_long.mp3`
+        return `${Instrument.server}Guitar/${this.stringNumber}/${file}_long.mp3`
+    }
+
+    fret(fret) {
+        return Array.from(this.notes.keys())[fret]
     }
 }

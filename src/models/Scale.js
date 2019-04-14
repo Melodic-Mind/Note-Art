@@ -171,7 +171,7 @@ export class Scale {
      * Returns a string of the pitch class names and octaves of the scale.
      * @type{string}
      */
-    get pitchNamesString() {
+    get notesString() {
         return buildString(this.notes)
     }
 
