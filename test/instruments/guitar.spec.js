@@ -30,11 +30,11 @@ describe('Guitar', () => {
         })
     })
 
-    describe('#play', () => {
+    describe('#playMultiple', () => {
         it('should play all notes the fitting strings', () => {
             const s1 = sinon.stub(guitar.strings[0], 'play')
             const s2 = sinon.stub(guitar.strings[1], 'play')
-            guitar.play({0: 'e4', 1: 'b3'}, '4N')
+            guitar.playMultiple({0: 'e4', 1: 'b3'}, '4N')
             expect(s1).to.have.been.calledOnce
             expect(s2).to.have.been.calledOnce
             s1.restore()

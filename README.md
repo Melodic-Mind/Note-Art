@@ -111,7 +111,7 @@ Sean Dvir - [seandvir12@gmail.com](seandvir12@gmail.com) - [@seanitzel](https://
 Your welcome to mail me your ideas and recommendations!<br>
 
 ## Credits
-[Tone JS](https://tonejs.github.io/) - I used this awesome framework which wraps the web audio API for all the audio handling and for scheduling.
+[Tone JS](https://tonejs.github.io/) - I used this awesome framework which wraps the web audio API for all audio handling and scheduling.
 
 ## License
 Note-Art uses the MIT license, check out the license tab for more information.

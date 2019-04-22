@@ -1,8 +1,9 @@
 import {NoteString} from '../instruments/NoteString'
+import {Note, Instrument}       from '../'
 
 /**
- * @classdesc Piano instance - creates a piano that can play any note from any octave in any duration.
- * @class
+ * @classdesc Represents a guitar which can play notes, individually or strum them together
+ * using different input methods.
  */
 export class Guitar {
     constructor() {
@@ -17,18 +18,72 @@ export class Guitar {
         ]
     }
 
+    /**
+     * Plays a single note on a specific string for some duration.
+     * @param {string} string String to play.
+     * @param {string} note Note to play.
+     * @param {string} duration duration to play the note for.
+     */
     playString(string, note, duration) {
         this.strings[string].play(note, duration)
     }
 
-    play(stringsAndNotes, duration) {
+    /**
+     *
+     * @param {Object} stringsAndNotes Object which contains string and notes to play.
+     * @param duration Duration to play for.
+     * @example
+     * const stringsAndNotes = {1: 'E4', 2: 'C4'}
+     * guitarInstance.play(stringsAndNotes, '4n')   //notes are played.
+     */
+    playMultiple(stringsAndNotes, duration) {
         Object.entries(stringsAndNotes).forEach(([string, note]) => {
                 this.playString(string, note, duration)
             },
         )
     }
 
-    strum(pattern, duration, up = false) {
+    playNotes(notes, duration) {
+        notes.forEach(note => this.play(note, duration))
+    }
+
+    /**
+     * Syncs a note to the transport with a duration.
+     * @param {string} note
+     * @param {string} duration duration to play the note for.
+     */
+    play(note, duration = '') {
+        note = Instrument.notePipeline(note)
+        for (let i = 0; i < this.strings.length; ++i) {
+            if (this.strings[i].hasNote(note)) {
+                return this.strings[i].play(note, duration)
+            }
+        }
+    }
+
+    /**
+     * Syncs a note to the transport with a duration.
+     * @param {string} note
+     * @param {string} duration duration to play the note for.
+     */
+    syncAndPlay(note, duration) {
+        note = Instrument.notePipeline(note)
+        for (let i = 0; i < this.strings.length; ++i) {
+            if (this.strings[i].hasNote(note)) {
+                return this.strings[i].syncAndPlay(note, duration)
+            }
+        }
+    }
+
+    /**
+     * Strums the guitar's strings using guitar pattern(low to high).
+     * @param {string} pattern pattern to strum
+     * @param {string} duration duration to play the note for.
+     * @example
+     * guitarInstance.strum('x02210', '8n') //Plays Am chord.
+     * guitarInstance.strum('320033', '8n') //Plays G chord.
+     */
+    strum(pattern, duration) {
         Array.from(pattern).forEach((fret, index) => {
             if (fret !== 'x') {
                 index = 5 - index
@@ -37,5 +92,24 @@ export class Guitar {
                     duration)
             }
         })
+    }
+
+    /**
+     * Play a group of notes melodically.
+     * If resolve is true the melody will resolve to the tonic in higher octave.
+     * @param {Array} notes array of playable notes
+     * @param {Number} timeInterval
+     * @param {boolean} [resolve = false] whether to resolve to tonic
+     */
+    playMelodically(notes, timeInterval = 300, resolve = false) {
+        notes.forEach((note, i) => {
+            setTimeout(() => this.play(note), i * timeInterval)
+        })
+        if (resolve) {
+            setTimeout(
+                () => this.play(Note.builder(notes[0]).interval(12).raw),
+                notes.length * timeInterval,
+            )
+        }
     }
 }

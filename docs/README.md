@@ -1,7 +1,7 @@
 ---
 home: true
 actionText: Get Started →
-actionLink: /code/
+actionLink: /code/models/Note
 features:
 - title: Simple & Intuitive
   details: Create Notes, Chord, Scales and more easily.

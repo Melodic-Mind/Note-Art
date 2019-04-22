@@ -82,7 +82,7 @@ function findQueryByArray(source, key, query) {
 /**
  * Builds a formatted string out of an array with items.
  * @param {Array} data
- * @return {string}
+ * @returns {string}
  */
 function buildString(data) {
     let s = ''
@@ -94,7 +94,7 @@ function buildString(data) {
  * Validates an argument is an array, fails if not.
  * @throws InvalidInput
  * @param arg
- * @return {boolean}
+ * @returns {boolean}
  */
 function validateArray(arg) {
     if (!Array.isArray(arg)) {

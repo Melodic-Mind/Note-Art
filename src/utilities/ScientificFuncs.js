@@ -12,7 +12,7 @@ function freqFromPitch(pitch) {
 /**
  * Generate real number from frequency.
  * @param frequency
- * @return {number}
+ * @returns {number}
  */
 function realNumberFromFreq(frequency) {
     return Math.round(69 + 12 * Math.log2(frequency / 440))
@@ -21,7 +21,7 @@ function realNumberFromFreq(frequency) {
 /**
  * Generate frequency from real number.
  * @param realNumber
- * @return {Number}
+ * @returns {Number}
  */
 function freqFromRealNumber(realNumber) {
     return 440 * (Math.pow(2, (realNumber - 69) / 12))

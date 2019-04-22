@@ -184,7 +184,7 @@ describe('Piece', () => {
         it('should clear a measure from all data', () => {
             expect(piece.addNote('C3', 0, 0)).to.be.true
             expect(piece.clearMeasure(0)).to.be.true
-            expect(piece.getMeasure(0).notes[0].notes.size).to.equal(0)
+            expect(piece.getMeasure(0).data[0].notes.size).to.equal(0)
         })
 
         it('should return false when the measure doesnt exist', () => {
@@ -197,7 +197,7 @@ describe('Piece', () => {
             piece.addMeasure()
             const spy1 = sinon.spy(piece.getMeasure(0), 'transpose')
             const spy2 = sinon.spy(piece.getMeasure(1), 'transpose')
-            piece.transpose(5)
+            piece.transpose(5, 0)
             expect(spy1).to.have.been.calledOnce
             expect(spy2).to.have.been.calledOnce
             spy1.restore()

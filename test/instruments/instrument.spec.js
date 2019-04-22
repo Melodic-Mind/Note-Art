@@ -24,10 +24,6 @@ describe('Instrument', () => {
         })
     })
 
-    it('#getAudioMap', () => {
-        expect(Instrument.getAudioMap()).to.be.instanceOf(Map)
-    })
-
     it('#normalizeNoteStr', () => {
         expect(Instrument.normalizeNoteStr('c4')).to.equal('C4')
     })
@@ -39,7 +35,7 @@ describe('Instrument', () => {
         })
     })
 
-    describe('#setPath', () => {
+    describe('#setPlayer', () => {
         let ins
         beforeEach(() => {
             ins = new Instrument('e3', 2)
@@ -50,14 +46,14 @@ describe('Instrument', () => {
         })
 
         it('should set a path for each note exactly once', () => {
-            const stub = sinon.stub(ins, 'setPath').returns(true)
+            const stub = sinon.stub(ins, 'setPlayer').returns(true)
             ins.init('e3', 2)
             expect(stub).to.have.been.calledThrice
         })
 
-        it('should set paths to notes', () => {
+        it('should set players to notes', () => {
             const stub = sinon.stub(ins, 'generatePath').returns(Math.random())
-            const spy  = sinon.spy(ins, 'setPath')
+            const spy  = sinon.spy(ins, 'setPlayer')
             ins.init('e3', 2)
             expect(spy).to.have.been.calledThrice
             stub.restore()
@@ -68,7 +64,7 @@ describe('Instrument', () => {
     describe('#getPlayer', () => {
         it('should return undefined when called from base class', () => {
             const ins     = new Instrument('E3', 2)
-            const stub    = sinon.stub(ins.paths, 'get')
+            const stub    = sinon.stub(ins.players, 'get')
             const get_key = sinon.stub(Instrument, 'getKey')
             ins.getPlayer({pitchClass: 'C', octave: 3, classSet: '#'})
             expect(stub).to.have.been.calledOnce
@@ -107,10 +103,6 @@ describe('Instrument', () => {
 
         it('should return true when a note exists', () => {
             expect(ins.hasNote('E3')).to.be.true
-        })
-
-        it('should throw an InvalidInput error when note doesnt exist', () => {
-            expect(() => {ins.hasNote('NOT A NOTE')}).to.throw(InvalidInput)
         })
 
         it('should return false when an instrument doesnt have a note', () => {
@@ -167,7 +159,7 @@ describe('Instrument', () => {
         })
 
         it('should do nothing when the note doesn\'nt exist', () => {
-            const stub    = sinon.stub(ins, 'getPlayer').returns({
+            const stub = sinon.stub(ins, 'getPlayer').returns({
                 sync: () => { return {start: () => { return {stop: () => {}} }} },
             })
             ins.syncAndPlay('g4')

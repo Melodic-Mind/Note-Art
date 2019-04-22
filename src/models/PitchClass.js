@@ -1,21 +1,18 @@
-import {firstToUpper}                 from '../addons/GlobalFunctions'
-import {PitchClassRule}               from '../validation/PitchClassRule'
+import {firstToUpper} from '../addons/GlobalFunctions'
+import {PitchClassRule} from '../validation/PitchClassRule'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
-import {InvalidInput}                 from '../Exceptions'
+import {InvalidInput} from '../Exceptions'
 
 /**
  * @classdesc Represents a pitch class.
+ * @param pitchClass
  */
 export class PitchClass {
-    /**
-     * Creates a new pitch class instance.
-     * @param pitchClass
-     */
     constructor(pitchClass) {
         const attributes = {}
         PitchClassRule.exists(pitchClass)
         attributes.pitchClass = firstToUpper(pitchClass)
-        attributes.classSet   = mts.circleOfFourths.includes(attributes.pitchClass) ? 'b' : '#'
+        attributes.classSet = mts.circleOfFourths.includes(attributes.pitchClass) ? 'b' : '#'
         attributes.classIndex = mts.getPitchClassSet(attributes.classSet).indexOf(attributes.pitchClass)
 
         this.attributes = attributes
@@ -70,10 +67,10 @@ export class PitchClass {
      * @param pitchClass
      * @param operation
      * @param constant
-     * @return {string}
+     * @returns {string}
      * @private
      */
-    static alterPitchClass(pitchClass, operation, constant){
+    static alterPitchClass(pitchClass, operation, constant) {
         if (PitchClass[operation](pitchClass)) {
             return mts.pitchClasses[mts.pitchClasses.indexOf(pitchClass) + constant]
         }
@@ -88,6 +85,14 @@ export class PitchClass {
         return this.attributes.classIndex
     }
 
+    /**
+     * Retuns the pure pitch class at interval.
+     * @param interval
+     * @returns {PitchClass}
+     * @example
+     * const c = new PitchClass('c")
+     * console.log(c.interval(5)) // F
+     */
     interval(interval) {
         if (interval === parseInt(interval)) {
             if (interval >= 0) {

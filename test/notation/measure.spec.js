@@ -6,7 +6,7 @@ import {InvalidInput} from '../../src/Exceptions'
 describe('Measure', () => {
     describe('creating a new measure', () => {
         it('has these properties', () => {
-            expect(Object.keys(measure.attributes)).to.eql(['notes', 'maxDuration', 'duration'])
+            expect(measure.attributes).to.have.keys(['data', 'maxDuration', 'duration'])
         })
     })
 
@@ -56,7 +56,7 @@ describe('Measure', () => {
     describe('#addNote', () => {
         it('adds notes to the measure', () => {
             expect(measure.addNote('C3', 0)).to.be.true
-            expect(measure.notes[0]['notes'].has('C3')).to.be.true
+            expect(measure.data[0]['notes'].has('C3')).to.be.true
         })
 
         it('throws an error when note is not valid', () => {
@@ -82,7 +82,7 @@ describe('Measure', () => {
             measure.addNote('E4', 6)
             measure.duration = '8n'
             measure.addNote('E4', 5)
-            expect(measure.notes.length).to.be.equal(5)
+            expect(measure.data.length).to.be.equal(5)
         })
     })
 
@@ -90,7 +90,7 @@ describe('Measure', () => {
         it('adds notes to a measure', () => {
             const stub = ['c3', 'e3', 'g3']
             expect(measure.addNotes(stub, 0)).to.be.true
-            expect(measure.notes[0].notes.size).to.equal(3)
+            expect(measure.data[0].notes.size).to.equal(3)
         })
 
         it('should throw an error when input is not valid', () => {
@@ -102,9 +102,9 @@ describe('Measure', () => {
     describe('#deleteNote', () => {
         it('should remove a note that exists in the measure', () => {
             measure.addNote('c3', 0)
-            expect(measure.notes[0].notes.has('C3')).to.be.true
+            expect(measure.data[0].notes.has('C3')).to.be.true
             expect(measure.deleteNote('c3', 0)).to.be.true
-            expect(measure.notes[0].notes.has('C3')).to.be.false
+            expect(measure.data[0].notes.has('C3')).to.be.false
         })
 
         it('should return false for a note that does not exist in the measure', () => {
@@ -115,11 +115,11 @@ describe('Measure', () => {
     describe('#deleteNotes', () => {
         it('should remove notes that exist in the measure', () => {
             measure.addNotes(['c3', 'e3'], 0)
-            expect(measure.notes[0].notes.has('C3')).to.be.true
-            expect(measure.notes[0].notes.has('E3')).to.be.true
+            expect(measure.data[0].notes.has('C3')).to.be.true
+            expect(measure.data[0].notes.has('E3')).to.be.true
             expect(measure.deleteNotes(['C3', 'E3'], 0)).to.be.true
-            expect(measure.notes[0].notes.has('C3')).to.be.false
-            expect(measure.notes[0].notes.has('E3')).to.be.false
+            expect(measure.data[0].notes.has('C3')).to.be.false
+            expect(measure.data[0].notes.has('E3')).to.be.false
         })
 
         it('should throw an error when notes is not an array ', () => {
@@ -128,8 +128,8 @@ describe('Measure', () => {
 
         it('should return false when of the notes does not exist', () => {
             measure.addNotes(['c3', 'e3'], 0)
-            expect(measure.notes[0].notes.has('C3')).to.be.true
-            expect(measure.notes[0].notes.has('E3')).to.be.true
+            expect(measure.data[0].notes.has('C3')).to.be.true
+            expect(measure.data[0].notes.has('E3')).to.be.true
             expect(measure.deleteNotes(['C3', 'F3'], 0)).to.be.false
         })
     })
@@ -141,7 +141,7 @@ describe('Measure', () => {
             measure.addNotes(['e3', 'b3'], 2)
             measure.addNotes(['f#3', 'c#4'], 3)
             const stub = [['G3', 'D4'], ['A3', 'E4'], ['B3', 'F#4'], ['C#4', 'G#4']]
-            measure.transpose(7).notes.forEach((data, index) => {
+            measure.transpose(7).data.forEach((data, index) => {
                 stub[index].forEach((note) => {
                     expect(data.notes.has(note)).to.be.true
                 })
@@ -157,7 +157,7 @@ describe('Measure', () => {
     describe('#toString', () => {
         it('returns a string representing the measure', () => {
             measure.addNotes(['c3', 'g3'], 0)
-            expect(measure.toString()).to.equal('Measure: {Duration: 4n, Notes: [ C3, G3, ], }')
+            expect(measure.toString()).to.equal('Measure: {Duration: 4n, Data: [ C3, G3, ], }')
         })
     })
 
@@ -172,9 +172,9 @@ describe('Measure', () => {
     describe('#clear', () => {
         it('should clear all the data in the measure', () => {
             measure.addNote('c3', 0)
-            expect(measure.notes[0].notes.has('C3')).to.be.true
+            expect(measure.data[0].notes.has('C3')).to.be.true
             measure.clear()
-            expect(measure.notes[0].notes.has('C3')).to.be.false
+            expect(measure.data[0].notes.has('C3')).to.be.false
         })
     })
 })

@@ -1,4 +1,5 @@
 import {Drumset} from '../../src/'
+import {app}     from '../../src/'
 
 describe('Drums', () => {
     let drumset
@@ -6,14 +7,14 @@ describe('Drums', () => {
         drumset = new Drumset()
     })
     describe('Creating a drumset', () => {
-        it('should init and have sounds in the paths array', () => {
-            expect(drumset.paths.size).to.be.greaterThan(0)
+        it('should init and have sounds in the players array', () => {
+            expect(drumset.players.size).to.be.greaterThan(0)
         })
     })
 
     describe('#getPlayer', () => {
         it('returns the audio path of the file', () => {
-            expect(drumset.getPlayer('clap')).to.equal('http://localhost:8000/Drums/clap.mp3')
+            expect(drumset.getPlayer('clap')).to.equal(`${app.get('path')}drums/clap.mp3`)
         })
     })
     describe('#play', () => {
@@ -37,7 +38,7 @@ describe('Drums', () => {
 
     describe('#syncAndPlay', () => {
         it('syncs and plays when file exists', () => {
-            const stub    = sinon.stub(drumset, 'getPlayer').returns({
+            const stub = sinon.stub(drumset, 'getPlayer').returns({
                 sync: () => { return {start: () => { return {stop: () => {}} }} },
             })
             drumset.syncAndPlay('clap')

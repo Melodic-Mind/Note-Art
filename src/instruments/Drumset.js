@@ -6,7 +6,6 @@ const drumSounds = [
     'hihat-closed',
     'hihat-open',
     'kick',
-    'ride',
     'snare',
     'tom-high',
     'tom-low',
@@ -14,7 +13,8 @@ const drumSounds = [
 ]
 
 /**
- * A drumset which can play
+ * @extends Instrument
+ * @classdesc Can play drum sounds, has clap, hihat-closed, hihat-open, kick, snare, tom-high, tom-low, tom-mid.
  */
 export class Drumset extends Instrument {
     constructor() {
@@ -22,15 +22,17 @@ export class Drumset extends Instrument {
         this.init()
     }
 
+    /** @inheritDoc */
     init() {
         drumSounds.forEach(filename => {
-            this.paths.set(filename, this.generatePath(filename))
-            app.get('audio-manager').toMaster(this.paths.get(filename))
+            this.players.set(filename, this.generatePath(filename))
+            app.get('audio-manager').toMaster(this.players.get(filename))
         })
     }
 
+    /** @inheritDoc */
     generatePath(fileName) {
-        return `${Instrument.server}Drums/${fileName}.mp3`
+        return `${Instrument.server}drums/${fileName}.mp3`
     }
 
     /**
@@ -39,21 +41,25 @@ export class Drumset extends Instrument {
      * @param fileName
      */
     getPlayer(fileName) {
-        return this.paths.get(fileName)
+        return this.players.get(fileName)
     }
 
     /**
-     * Play sound by player key.
-     * @param fileName
+     * Plays audio by name.
+     * @param {string} fileName
      */
     play(fileName) {
-        if (this.paths.has(fileName)) {
+        if (this.players.has(fileName)) {
             this.getPlayer(fileName).start()
         }
     }
 
+    /**
+     * Syncs a sound to the transport and plays it.
+     * @param {string} fileName
+     */
     syncAndPlay(fileName) {
-        if (this.paths.has(fileName)) {
+        if (this.players.has(fileName)) {
             this.getPlayer(fileName).sync().start()
         }
     }

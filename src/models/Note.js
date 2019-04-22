@@ -1,28 +1,46 @@
 import {PianoOctaveRule}              from '../validation/PianoOctaveRule'
 import {PitchClass}                   from './PitchClass'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
-import {InvalidInput}                 from '../Exceptions'
 import {realNumberFromFreq}           from '../utilities/ScientificFuncs'
 import {noteToObject}                 from '../'
 
 /**
- * @class
  * @classdesc Represents an abstract musical note.
+ * @param {string} pitchClass
+ * @param {number} octave
  * @example
- * const n = new Note({note: 'c', octave: 3, duration: '4n', instrument: 'Piano'})
+ * // Creating a note instance
+ * let c = new Note('c', 3)
+ *
+ * // Getting it's properties
+ * console.log(c.pitchClass) // C
+ * console.log(c.octave) // 3
+ *
+ * // Getting a notes interval
+ * let interval = c.interval(4)
+ * console.log(interval.toString()) //E3
+ * console.log(interval.constructor.name) //should output Note.
+ *
+ * // Using the builder
+ * const f = Note.builder('f4')
+ * console.log(f) //F4
+ *
+ * // Generating note from frequency
+ * const a = Note.fromFrequency(440)
+ * console.log(a) //A4
  */
 export class Note extends PitchClass {
-    /**
-     * new Note
-     * @param pitchClass
-     * @param octave
-     */
     constructor(pitchClass, octave) {
         super(pitchClass)
         PianoOctaveRule.validatePossible(octave)
         this.attributes.octave = octave
     }
 
+    /**
+     * Builds a Note instance from string representing a note.
+     * @param {string} noteString
+     * @returns {Note}
+     */
     static builder(noteString) {
         const {pitchClass, octave} = noteToObject(noteString)
         return new Note(pitchClass, octave)
@@ -31,7 +49,7 @@ export class Note extends PitchClass {
     /**
      * Generates a new pitch from frequency.
      * @param frequency
-     * @returns {Pitch}
+     * @returns {Note}
      */
     static fromFrequency(frequency) {
         const n          = realNumberFromFreq(frequency)
@@ -42,7 +60,7 @@ export class Note extends PitchClass {
     }
 
     /**
-     * Returns the octave of the pitch.
+     * Returns the octave of the note.
      * @type {String}
      */
     get octave() { return this.attributes.octave }
@@ -61,7 +79,7 @@ export class Note extends PitchClass {
         const pitchClass = super.interval(interval).pitchClass
         let octDiff      = Math.floor((this.classIndex + interval) / 12)
         if (interval < 0) {
-            octDiff    = this.classIndex + interval < 0 ? octDiff : 0
+            octDiff = this.classIndex + interval < 0 ? octDiff : 0
         }
         return new Note(pitchClass, this.octave + octDiff)
     }

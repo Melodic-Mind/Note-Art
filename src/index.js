@@ -1,5 +1,5 @@
 import {Application}              from './Application'
-import {AudioManager}             from './models/AudioManager'
+import {AudioManager}             from './utilities/AudioManager'
 import Tone                       from 'tone'
 
 if (process.env.NODE_ENV && process.env.NODE_ENV !== 'test') {
@@ -11,12 +11,16 @@ app.set('audio-manager', () => {
     return AudioManager
 })
 
+app.set('path', () => {
+    return 'https://note-art-server.herokuapp.com/audio/'
+})
+
 export {app}
 export {PitchClass}               from './models/PitchClass'
 export {Note}                     from './models/Note'
 export {Chord}                    from './models/Chord'
 export {Scale}                    from './models/Scale'
-export {AudioManager}             from './models/AudioManager'
+export {AudioManager}             from './utilities/AudioManager'
 export *                          from './addons/GlobalFunctions'
 export *                          from './utilities/MusicalAddons'
 export {MusicTheoryStructures}    from './resources/MusicTheoryStructures'

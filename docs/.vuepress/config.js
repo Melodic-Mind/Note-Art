@@ -1,4 +1,41 @@
-const {sidebarTree} = require('../code/config')
+const sidebarTree = (title = 'About') => ({
+    '/code/': [
+        {
+            'title':       'models',
+            'collapsable': false,
+            'children':    [
+                'models/PitchClass',
+                'models/Note',
+                'models/Chord',
+                'models/Scale',
+            ],
+        },
+        {
+            'title':       'notation',
+            'collapsable': false,
+            'children':    ['notation/Measure', 'notation/Piece'],
+        },
+        {
+            'title':       'instruments',
+            'collapsable': false,
+            'children':    [
+                'instruments/Instrument',
+                'instruments/Piano',
+                'instruments/Guitar',
+                'instruments/Drumset',
+            ],
+        },
+        {
+            'title':       'utilities',
+            'collapsable': false,
+            'children':    [
+                'utilities/ScientificFuncs',
+                'utilities/MusicalAddons',
+            ],
+        },
+    ],
+})
+
 
 module.exports = {
     contentLoading: true,

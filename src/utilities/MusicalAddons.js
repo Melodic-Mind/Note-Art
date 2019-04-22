@@ -4,25 +4,6 @@ import {PitchClassRule}               from '../validation/PitchClassRule'
 import {PianoOctaveRule}              from '../validation/PianoOctaveRule'
 import {InvalidInput}                 from '../Exceptions'
 
-// /**
-//  * Returns the duration value of the note with the shortest duration out of an array of notes.
-//  * @param {Array} notes
-//  * @returns {Number}
-//  */
-// function getMinDuration(notes = []) {
-//     if (notes.length) {
-//         let min
-//         notes.forEach(note => {
-//             min =
-//                 min < mts.noteDurations[note.duration]
-//                 ? min
-//                 : mts.noteDurations[note.duration]
-//         })
-//         return min
-//     }
-//     return 0
-// }
-
 /**
  * Calculate the pure interval(not considering octave) between 2 notes(in semitones).
  * @param {Note} n1 first note
@@ -36,29 +17,9 @@ function notesDistance(n1, n2) {
 }
 
 /**
- * Play a group of notes melodically.
- * if resolve is true the melody will resolve to the tonic in higher octave.
- * @param {Array} notes array of playable notes
- * @param {Number} timeInterval
- * @param {boolean} [resolve = false] whether to resolve to tonic
- */
-// function playMelodically(notes, timeInterval, resolve = false) {
-//     notes.forEach((note, i) => {
-//         setTimeout(() => note.play(), i * timeInterval)
-//     })
-//     if (resolve) {
-//         setTimeout(
-//             () => notes[0].interval(12).play(),
-//             notes.length * timeInterval,
-//         )
-//     }
-//     return true
-// }
-
-/**
- * Turns a pitch into an object with pitch class and octave.
+ * Turns a note into an object with pitch class and octave.
  * @param {String} pitch Pitch as a string, e.g Ab3
- * @return {{octave: number, pitchClass: String}}
+ * @returns {{octave: number, pitchClass: String}}
  */
 function noteToObject(note) {
     validateRawNote(note)
@@ -69,6 +30,11 @@ function noteToObject(note) {
     return {pitchClass, octave}
 }
 
+/**
+ * Validate that a string is a valid representation of a raw note.
+ * @param note
+ * @returns {boolean}
+ */
 function validateRawNote(note) {
     if (typeof note !== 'string') {
         throw new InvalidInput(`Expected ${note} to be a string representing Note`)
@@ -82,14 +48,21 @@ function validateRawNote(note) {
     return true
 }
 
+/**
+ * Returns an object where the keys are raw notes and their value is an instance of that note.
+ * @param base
+ * @param range
+ */
 function notesInRange(base, range) {
     let {pitchClass, octave} = noteToObject(base)
     const notes              = {}
     let tmpPitchClass
 
     for (let i = 0; i <= range; ++i) {
-        tmpPitchClass                 = mts.flatClassNotes[(mts.flatClassNotes.indexOf(pitchClass) + i) % 12]
+        tmpPitchClass = mts.flatClassNotes[(mts.flatClassNotes.indexOf(pitchClass) + i) % 12]
+
         notes[tmpPitchClass + octave] = {pitchClass: tmpPitchClass, octave}
+
         if (tmpPitchClass === 'B') {
             octave++
         }
@@ -98,4 +71,4 @@ function notesInRange(base, range) {
     return notes
 }
 
-export { notesDistance, notesInRange, noteToObject, validateRawNote}
+export {notesDistance, notesInRange, noteToObject, validateRawNote}

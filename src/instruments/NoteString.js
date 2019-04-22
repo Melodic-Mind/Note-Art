@@ -11,7 +11,7 @@ export class NoteString extends Instrument {
         const set  = Instrument.normalizeSet(note.pitchClass, note.classSet)
         const file = `${set}${note.octave}`
 
-        return `${Instrument.server}Guitar/${this.stringNumber}/${file}_long.mp3`
+        return `${Instrument.server}guitar/${this.stringNumber}/${file}_long.mp3`
     }
 
     fret(fret) {

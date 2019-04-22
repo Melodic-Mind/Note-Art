@@ -16,13 +16,12 @@ Represents a pitch class.
     * [.pitchClass](#PitchClass+pitchClass) : <code>String</code>
     * [.classSet](#PitchClass+classSet) : <code>String</code>
     * [.classIndex](#PitchClass+classIndex) : <code>Number</code>
+    * [.interval(interval)](#PitchClass+interval) ⇒ [<code>PitchClass</code>](#PitchClass)
     * [.toString()](#PitchClass+toString) ⇒ <code>String</code>
 
 <a name="new_PitchClass_new"></a>
 
 ### new exports.PitchClass(pitchClass)
-Creates a new pitch class instance.
-
 
 | Param |
 | --- |
@@ -46,6 +45,22 @@ Get the set of the pitch class - sharp or flat.
 Get the index of the pitch class out of the 12 classes (C, Db, etc...).
 
 **Kind**: instance property of [<code>PitchClass</code>](#PitchClass)  
+<a name="PitchClass+interval"></a>
+
+### pitchClass.interval(interval) ⇒ [<code>PitchClass</code>](#PitchClass)
+Retuns the pure pitch class at interval.
+
+**Kind**: instance method of [<code>PitchClass</code>](#PitchClass)  
+
+| Param |
+| --- |
+| interval | 
+
+**Example**  
+```js
+const c = new PitchClass('c")
+console.log(c.interval(5)) // F
+```
 <a name="PitchClass+toString"></a>
 
 ### pitchClass.toString() ⇒ <code>String</code>

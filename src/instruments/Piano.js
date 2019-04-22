@@ -1,8 +1,8 @@
 import {Instrument} from '../instruments/Instrument'
 
 /**
- * @classdesc Piano instance - creates a piano that can play any note from any octave in any duration.
- * @class
+ * @classdesc Represents a Piano.
+ * @extends Instrument
  */
 export class Piano extends Instrument {
     constructor(base = 'A0', range = 87) {
@@ -10,11 +10,11 @@ export class Piano extends Instrument {
         this.init(base, range)
     }
 
-
+    /** @inheritDoc */
     generatePath(note) {
-        const set    = Instrument.normalizeSet(note.pitchClass, note.classSet)
-        const file   = `FF_${set}${note.octave}`
+        const set = Instrument.normalizeSet(note.pitchClass, note.classSet)
+        const file = `FF_${set}${note.octave}`
 
-        return `${Instrument.server}Piano/${file}.mp3`
+        return `${Instrument.server}piano/${file}.mp3`
     }
 }

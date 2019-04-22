@@ -12,33 +12,58 @@ Represents an abstract musical note.
 **Kind**: global class  
 
 * [Note](#Note)
-    * [new exports.Note(attributes)](#new_Note_new)
-    * [.duration](#Note+duration) : <code>String</code>
-    * [.interval(interval)](#Note+interval)
-    * [.setDuration(duration)](#Note+setDuration) ⇒ [<code>Note</code>](#Note)
-    * [.setOctave(octave)](#Note+setOctave) ⇒ [<code>Note</code>](#Note)
-    * [.transpose(interval)](#Note+transpose)
-    * [.toString()](#Note+toString) ⇒ <code>string</code>
+    * [new exports.Note(pitchClass, octave)](#new_Note_new)
+    * _instance_
+        * [.octave](#Note+octave) : <code>String</code>
+        * [.raw](#Note+raw) ⇒ <code>string</code>
+        * [.interval(interval)](#Note+interval)
+        * [.transpose(interval)](#Note+transpose)
+        * [.toString()](#Note+toString) ⇒ <code>string</code>
+    * _static_
+        * [.builder(noteString)](#Note.builder) ⇒ [<code>Note</code>](#Note)
+        * [.fromFrequency(frequency)](#Note.fromFrequency) ⇒ [<code>Note</code>](#Note)
 
 <a name="new_Note_new"></a>
 
-### new exports.Note(attributes)
+### new exports.Note(pitchClass, octave)
 
-| Param | Type | Description |
-| --- | --- | --- |
-| attributes | <code>Object</code> | Object that contains some or all of the following keys: |
-| attributes.pitchClass | <code>String</code> | one of the pitch classes('c', 'd', etc...) |
-| attributes.octave | <code>number</code> | note octave |
-| attributes.duration | <code>String</code> | note duration |
+| Param |
+| --- |
+| pitchClass | 
+| octave | 
 
 **Example**  
 ```js
-const n = new Note({note: 'c', octave: 3, duration: '4n', instrument: 'Piano'})
-```
-<a name="Note+duration"></a>
+// Creating a note instance
+let c = new Note('c', 3)
 
-### note.duration : <code>String</code>
-Get the duration of a note
+// Getting it's properties
+console.log(c.pitchClass) // C
+console.log(c.octave) // 3
+
+// Getting a notes interval
+let interval = c.interval(4)
+console.log(interval.toString()) //E3
+console.log(interval.constructor.name) //should output Note.
+
+// Using the builder
+const f = Note.builder('f4')
+console.log(f) //F4
+
+// Generating note from frequency
+const a = Note.fromFrequency(440)
+console.log(a) //A4
+```
+<a name="Note+octave"></a>
+
+### note.octave : <code>String</code>
+Returns the octave of the note.
+
+**Kind**: instance property of [<code>Note</code>](#Note)  
+<a name="Note+raw"></a>
+
+### note.raw ⇒ <code>string</code>
+Returns a string of the pitch class and octave of the Note.
 
 **Kind**: instance property of [<code>Note</code>](#Note)  
 <a name="Note+interval"></a>
@@ -60,28 +85,6 @@ let interval = c.interval(4) //calling the function with the number 4(which is a
 console.log(interval.toStrring()) //should output 'E3'.
 console.log(interval.constructor.name) //should output Note.
 ```
-<a name="Note+setDuration"></a>
-
-### note.setDuration(duration) ⇒ [<code>Note</code>](#Note)
-Returns a new Note with the new duration.
-
-**Kind**: instance method of [<code>Note</code>](#Note)  
-
-| Param |
-| --- |
-| duration | 
-
-<a name="Note+setOctave"></a>
-
-### note.setOctave(octave) ⇒ [<code>Note</code>](#Note)
-Returns a new Note with the new octave.
-
-**Kind**: instance method of [<code>Note</code>](#Note)  
-
-| Param | Type |
-| --- | --- |
-| octave | <code>Number</code> | 
-
 <a name="Note+transpose"></a>
 
 ### note.transpose(interval)
@@ -96,6 +99,28 @@ Alias for interval()
 <a name="Note+toString"></a>
 
 ### note.toString() ⇒ <code>string</code>
-Returns a string of the note.
+Returns a string of the pitch class and octave of the Note.
 
 **Kind**: instance method of [<code>Note</code>](#Note)  
+<a name="Note.builder"></a>
+
+### Note.builder(noteString) ⇒ [<code>Note</code>](#Note)
+Builds a Note instance from string representing a note.
+
+**Kind**: static method of [<code>Note</code>](#Note)  
+
+| Param | Type |
+| --- | --- |
+| noteString | <code>string</code> | 
+
+<a name="Note.fromFrequency"></a>
+
+### Note.fromFrequency(frequency) ⇒ [<code>Note</code>](#Note)
+Generates a new pitch from frequency.
+
+**Kind**: static method of [<code>Note</code>](#Note)  
+
+| Param |
+| --- |
+| frequency | 
+

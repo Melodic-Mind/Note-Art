@@ -19,20 +19,14 @@ pattern which can be played together to form a harmonic sound.
     * [.name](#Chord+name) : <code>String</code>
     * [.octave](#Chord+octave) : <code>Number</code>
     * [.pitchIntervals](#Chord+pitchIntervals) : <code>Array</code>
+    * [.type](#Chord+type) ⇒ <code>string</code> \| <code>undefined</code>
     * [.pitchClasses](#Chord+pitchClasses) ⇒ <code>string</code>
-    * [.play()](#Chord+play) : <code>boolean</code>
-    * [.playMelody()](#Chord+playMelody)
-    * [.setDuration(duration)](#Chord+setDuration) ⇒ [<code>Chord</code>](#Chord)
-    * [.setOctave(octave)](#Chord+setOctave) ⇒ [<code>Chord</code>](#Chord)
     * [.toString()](#Chord+toString) ⇒ <code>String</code>
     * [.transpose(interval)](#Chord+transpose) ⇒ [<code>Chord</code>](#Chord)
 
 <a name="new_Chord_new"></a>
 
 ### new exports.Chord(attributes)
-Creates a Chord instance.
-<b>Either Name or Pattern must be provided!</b>
-
 **Throws**:
 
 - <code>MissingInformation</code> When not provided with root and either name or pattern
@@ -42,7 +36,7 @@ Creates a Chord instance.
 | Param | Type | Description |
 | --- | --- | --- |
 | attributes | <code>Object</code> | Object that contains some of the following keys: |
-| [attributes.root] | <code>Note</code> \| <code>PlayableNote</code> | chords root note |
+| [attributes.root] | <code>Note</code> | chords root note |
 | [attributes.name] | <code>String</code> | the chords name(e.g 'M') |
 | [attributes.pattern] | <code>Array</code> | the pattern to build the chord by pitch intervals(e.g [3, 7] |
 
@@ -67,7 +61,7 @@ Name of the chord.
 <a name="Chord+name"></a>
 
 ### chord.name : <code>String</code>
-Marking of the chord.
+Chord type representation.
 
 **Kind**: instance property of [<code>Chord</code>](#Chord)  
 <a name="Chord+octave"></a>
@@ -82,50 +76,22 @@ Returns chord root octave.
 Array of the intervals from the root to each note in the chord(excluding the root)
 
 **Kind**: instance property of [<code>Chord</code>](#Chord)  
+<a name="Chord+type"></a>
+
+### chord.type ⇒ <code>string</code> \| <code>undefined</code>
+Whether chord is major, minor or neither.
+
+**Kind**: instance property of [<code>Chord</code>](#Chord)  
 <a name="Chord+pitchClasses"></a>
 
 ### chord.pitchClasses ⇒ <code>string</code>
 Returns a string of the chord notes pitch classes.
 
 **Kind**: instance property of [<code>Chord</code>](#Chord)  
-<a name="Chord+play"></a>
-
-### chord.play() : <code>boolean</code>
-Play the chord.
-
-**Kind**: instance method of [<code>Chord</code>](#Chord)  
-<a name="Chord+playMelody"></a>
-
-### chord.playMelody()
-Play chord notes melodically.
-
-**Kind**: instance method of [<code>Chord</code>](#Chord)  
-<a name="Chord+setDuration"></a>
-
-### chord.setDuration(duration) ⇒ [<code>Chord</code>](#Chord)
-Generate the same chord with a new duration.
-
-**Kind**: instance method of [<code>Chord</code>](#Chord)  
-
-| Param |
-| --- |
-| duration | 
-
-<a name="Chord+setOctave"></a>
-
-### chord.setOctave(octave) ⇒ [<code>Chord</code>](#Chord)
-Generate the same chord with a new octave.
-
-**Kind**: instance method of [<code>Chord</code>](#Chord)  
-
-| Param |
-| --- |
-| octave | 
-
 <a name="Chord+toString"></a>
 
 ### chord.toString() ⇒ <code>String</code>
-Get a string of the chord's name.
+Returns a string of the chord's name.
 
 **Kind**: instance method of [<code>Chord</code>](#Chord)  
 <a name="Chord+transpose"></a>
