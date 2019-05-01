@@ -3,7 +3,7 @@
     "exclude": [
         "src/**/index.js",
         "src/resources/",
-        "src/models/Driver.js"
+        "src/utilities/Driver.js"
     ],
     "extension": [".js"],
     "reporter": ["lcov", "text", "html"],

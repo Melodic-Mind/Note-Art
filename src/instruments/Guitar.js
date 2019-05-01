@@ -1,5 +1,7 @@
-import {NoteString} from '../instruments/NoteString'
-import {Note, Instrument}       from '../'
+import {NoteString}       from '../instruments/NoteString'
+import {Note, Instrument} from '../'
+import {InvalidInput}     from '../Exceptions'
+import {playing}          from '../mixins/Instruments'
 
 /**
  * @classdesc Represents a guitar which can play notes, individually or strum them together
@@ -43,8 +45,15 @@ export class Guitar {
         )
     }
 
-    playNotes(notes, duration) {
-        notes.forEach(note => this.play(note, duration))
+    //Private method to help
+    playHelper(method, note, duration) {
+        note = Instrument.notePipeline(note)
+        for (let i = 0; i < this.strings.length; ++i) {
+            if (this.strings[i].hasNote(note)) {
+                return this.strings[i][method](note, duration)
+            }
+        }
+        return false
     }
 
     /**
@@ -53,12 +62,7 @@ export class Guitar {
      * @param {string} duration duration to play the note for.
      */
     play(note, duration = '') {
-        note = Instrument.notePipeline(note)
-        for (let i = 0; i < this.strings.length; ++i) {
-            if (this.strings[i].hasNote(note)) {
-                return this.strings[i].play(note, duration)
-            }
-        }
+        return this.playHelper('play', note, duration)
     }
 
     /**
@@ -67,12 +71,7 @@ export class Guitar {
      * @param {string} duration duration to play the note for.
      */
     syncAndPlay(note, duration) {
-        note = Instrument.notePipeline(note)
-        for (let i = 0; i < this.strings.length; ++i) {
-            if (this.strings[i].hasNote(note)) {
-                return this.strings[i].syncAndPlay(note, duration)
-            }
-        }
+        return this.playHelper('syncAndPlay', note, duration)
     }
 
     /**
@@ -93,23 +92,6 @@ export class Guitar {
             }
         })
     }
-
-    /**
-     * Play a group of notes melodically.
-     * If resolve is true the melody will resolve to the tonic in higher octave.
-     * @param {Array} notes array of playable notes
-     * @param {Number} timeInterval
-     * @param {boolean} [resolve = false] whether to resolve to tonic
-     */
-    playMelodically(notes, timeInterval = 300, resolve = false) {
-        notes.forEach((note, i) => {
-            setTimeout(() => this.play(note), i * timeInterval)
-        })
-        if (resolve) {
-            setTimeout(
-                () => this.play(Note.builder(notes[0]).interval(12).raw),
-                notes.length * timeInterval,
-            )
-        }
-    }
 }
+
+Object.assign(Guitar.prototype, playing)

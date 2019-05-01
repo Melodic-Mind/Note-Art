@@ -1,9 +1,24 @@
-import {Piece} from '../../src/'
+import {Measure, Piece} from '../../src/'
 
 describe('Piece', () => {
     let piece
     beforeEach(() => {
         piece = new Piece()
+    })
+
+    describe('#reduceTimeSignature', () => {
+        it('should return the numerator when in quarter notes', () => {
+            expect(Piece.reduceTimeSignature([6, 4])).to.equal(6)
+        })
+
+        it('should return the correct value when in eigth notes', () => {
+            expect(Piece.reduceTimeSignature([6, 8])).to.equal(3)
+        })
+
+        it('should return 4 when the timeSignature is not valid', () => {
+            expect(Piece.reduceTimeSignature('INVALID')).to.equal(4)
+            expect(Piece.reduceTimeSignature([3, 3])).to.equal(4)
+        })
     })
 
     describe('creating a new piece', () => {
@@ -83,6 +98,12 @@ describe('Piece', () => {
             piece.addMeasure(0)
             expect(piece.getMeasure(1)).to.equal(measure)
         })
+
+        it('should insert an existing measure when one is sent', () => {
+            const measure = new Measure()
+            piece.addMeasure(0, 0, measure)
+            expect(piece.getMeasure(0, 0)).to.equal(measure)
+        })
     })
 
     describe('#deleteMeasure', () => {
@@ -116,34 +137,34 @@ describe('Piece', () => {
     describe('#addNote', () => {
         it('should add notes to the measure when it exists', () => {
             const spy = sinon.spy(piece.getMeasure(0), 'addNote')
-            expect(piece.addNote('C3', 0, 0)).to.be.true
+            expect(piece.addNote({note: 'C3'}, 0, 0)).to.be.true
             expect(spy).to.have.been.calledOnce
             spy.restore()
         })
 
         it('should return false when it doesnt add the note to the measure', () => {
-            expect(piece.addNote('c3', 2, 0)).to.be.false
+            expect(piece.addNote({note: 'c3'}, 2, 0)).to.be.false
         })
 
         it('should return false when the measure doesnt exist', () => {
-            expect(piece.addNote('c3', 0, 4)).to.be.false
+            expect(piece.addNote({note: 'c3'}, 0, 4)).to.be.false
         })
     })
 
     describe('#addNotes', () => {
         it('should throw an error when it doesn\'t get a note array props', () => {
             const spy = sinon.spy(piece.getMeasure(0), 'addNotes')
-            piece.addNotes(['C3', 'E3'], 0, 0)
+            piece.addNotes({notes: ['C3', 'E3']}, 0, 0)
             expect(spy).to.have.been.calledOnce
             spy.restore()
         })
 
         it('should return false when it doesnt add the note to the measure', () => {
-            expect(piece.addNotes(['c3'], 2, 0)).to.be.false
+            expect(piece.addNotes({notes: ['c3']}, 2, 0)).to.be.false
         })
 
         it('should return false when the measure doesnt exist', () => {
-            expect(piece.addNotes(['c3'], 0, 4)).to.be.false
+            expect(piece.addNotes({notes: ['c3']}, 0, 4)).to.be.false
         })
     })
 
@@ -151,7 +172,7 @@ describe('Piece', () => {
         it('deletes the note at the position from the measure', () => {
             piece.addMeasure()
             const stub = sinon.stub(piece.getMeasure(1), 'deleteNote').returns(true)
-            expect(piece.addNote('C3', 0, 1)).to.be.true
+            expect(piece.addNote({note: 'C3'}, 0, 1)).to.be.true
             expect(piece.deleteNote('C3', 0, 1)).to.be.true
             expect(stub).to.have.been.calledOnce
             stub.restore()
@@ -169,7 +190,7 @@ describe('Piece', () => {
     describe('#deleteNotes', () => {
         it('should delete notes from a measure that exists in the piece', () => {
             const spy = sinon.spy(piece.getMeasure(0), 'deleteNotes')
-            expect(piece.addNotes(['c3', 'g3'], 0, 0)).to.be.true
+            expect(piece.addNotes({notes: ['c3', 'g3']}, 0, 0)).to.be.true
             expect(piece.deleteNotes(['c3', 'g3'], 0, 0)).to.be.true
             expect(spy).to.have.been.calledOnce
             spy.restore()
@@ -182,7 +203,7 @@ describe('Piece', () => {
 
     describe('#clear', () => {
         it('should clear a measure from all data', () => {
-            expect(piece.addNote('C3', 0, 0)).to.be.true
+            expect(piece.addNote({note: 'C3'}, 0, 0)).to.be.true
             expect(piece.clearMeasure(0)).to.be.true
             expect(piece.getMeasure(0).data[0].notes.size).to.equal(0)
         })

@@ -27,10 +27,10 @@ Represents an abstract musical note.
 
 ### new exports.Note(pitchClass, octave)
 
-| Param |
-| --- |
-| pitchClass | 
-| octave | 
+| Param | Type |
+| --- | --- |
+| pitchClass | <code>string</code> | 
+| octave | <code>number</code> | 
 
 **Example**  
 ```js

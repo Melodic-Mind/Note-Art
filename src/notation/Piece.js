@@ -5,10 +5,20 @@ import {DurationRule} from '../validation/DurationRule'
  * @classdesc Represents a full musical piece consisting of a number of voices.
  */
 export class Piece {
-    constructor({bpm, timeSignature} = {}) {
-        this.timeSignature = timeSignature || [4, 4]
+    constructor({bpm, timeSignature} = {timeSignature: [4, 4]}) {
+        this.timeSignature = timeSignature
+        this.reducedTimeSignature = Piece.reduceTimeSignature(timeSignature)
         this.bpm           = bpm || 120
-        this.attributes    = {duration: '4n', voices: [[new Measure()]]}
+        this.attributes    = {duration: '4n', voices: [[new Measure(this.reducedTimeSignature * 16)]]}
+    }
+
+    static reduceTimeSignature(timeSignature = [4, 4]) {
+        if (timeSignature[1] === 4) {
+            return timeSignature[0]
+        } else if (timeSignature[1] === 8) {
+            return timeSignature[0] / 2
+        }
+        return 4
     }
 
     /**
@@ -89,38 +99,49 @@ export class Piece {
 
     /**
      * Add measure to a voice at an index.
+     *
      * @param {number} index Index to add the measure at.
      * @param {number} [voiceIndex=0] The index of the voice.
+     * @param {Measure} [measure=null] Measure to add.
      */
-    addMeasure(index, voiceIndex = 0) {
+    addMeasure(index, voiceIndex = 0, measure = null) {
         if (index === undefined) {
             index = this.getVoice(voiceIndex).length
         }
-        this.getVoice(voiceIndex).splice(index, 0, new Measure())
+        let newMeasure
+        if (measure && measure instanceof Measure) {
+            newMeasure = measure
+        } else {
+            newMeasure = new Measure(this.reducedTimeSignature * 16)
+        }
+
+        this.getVoice(voiceIndex).splice(index, 0, newMeasure)
     }
 
     /**
      * Add a note to a measure in one of the voices.
      * @param {string} note Raw note.
+     * @param {string} [duration=measure.duration]
      * @param {number} position Position in the measure to add the note to.
      * @param {number} measureIndex The index of the measure to add the note to.
      * @param {number} [voiceIndex=0] The index of the voice to add the note to.
      * @returns {boolean}
      */
-    addNote(note, position, measureIndex, voiceIndex = 0) {
-        return this.addOperation('addNote', note, position, measureIndex, voiceIndex)
+    addNote({note, duration}, position, measureIndex, voiceIndex = 0) {
+        return this.addOperation('addNote', {note, duration}, position, measureIndex, voiceIndex)
     }
 
     /**
      * Add notes to a measure in one of the voices.
      * @param {Array} notes An array of raw note.
+     * @param {string} [duration=measure.duration]
      * @param {number} position Position in the measure to add the notes to.
      * @param {number} measureIndex The index of the measure to add the notes to.
      * @param {number} [voiceIndex=0] The index of the voice to add the notes to.
      * @returns {boolean}
      */
-    addNotes(notes, position, measureIndex, voiceIndex = 0) {
-        return this.addOperation('addNotes', notes, position, measureIndex, voiceIndex)
+    addNotes({notes, duration}, position, measureIndex, voiceIndex = 0) {
+        return this.addOperation('addNotes', {notes, duration}, position, measureIndex, voiceIndex)
     }
 
     /**
@@ -131,7 +152,6 @@ export class Piece {
         const measure = this.getMeasure(measureIndex, voice)
 
         if (measure) {
-            measure.duration = this.duration
             return measure[method](data, position)
         }
         return false

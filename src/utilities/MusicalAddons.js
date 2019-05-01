@@ -39,6 +39,11 @@ function validateRawNote(note) {
     if (typeof note !== 'string') {
         throw new InvalidInput(`Expected ${note} to be a string representing Note`)
     }
+
+    if (['r', 'R'].includes(note)) {
+        return true
+    }
+
     const pitchClass = firstToUpper(note.slice(0, note.length - 1))
     const octave     = parseInt(note[note.length - 1])
 

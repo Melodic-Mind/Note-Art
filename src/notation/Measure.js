@@ -37,7 +37,9 @@ export class Measure {
      * @param {string} duration
      */
     set duration(duration) {
-        this.attributes.duration = duration
+        if (Object.keys(mts.noteDurations()).includes(duration)) {
+            this.attributes.duration = duration
+        }
     }
 
     /**
@@ -73,10 +75,12 @@ export class Measure {
     /**
      * Adds a note to the measure at some position.
      * @param {string} note raw note representation.
+     * @param {string} [duration=this.duration]
      * @param {number} position The position in the data to add the note to.
      * @returns {boolean}
      */
-    addNote(note, position) {
+    addNote({note, duration}, position) {
+        this.duration = duration
         validateRawNote(note)
         if (this.validateInsertion(position + 1)) {
             this.data[position]['notes'].add(firstToUpper(note))
@@ -112,14 +116,15 @@ export class Measure {
     }
 
     /**
-     * Adds notes to the noteset at the position.
+     * Adds notes to the note set at the position.
      * @param {Array} notes An array of raw notes.
+     * @param {string} [duration=this.duration]
      * @param {number} position The position in the data to add the notes to.
      * @returns {*}
      */
-    addNotes(notes, position) {
+    addNotes({notes, duration}, position) {
         validateArray(notes)
-        return notes.every(note => this.addNote(note, position))
+        return notes.every(note => this.addNote({note, duration}, position))
     }
 
     /**
@@ -151,10 +156,15 @@ export class Measure {
     transpose(interval) {
         const transposedMeasure = new Measure(this.maxDuration)
         this.data.forEach((data, position) => {
-            transposedMeasure.duration = data.duration
-            data.notes.forEach((note) => {
-                transposedMeasure.addNote(Note.builder(note).interval(interval).raw, position)
-            })
+            transposedMeasure.duration =
+                data.notes.forEach((currentNote) => {
+                    const note = currentNote === 'R' ?
+                                 'R' : Note.builder(currentNote).interval(interval).raw
+                    transposedMeasure.addNote({
+                        note,
+                        duration: data.duration,
+                    }, position)
+                })
         })
 
         return transposedMeasure

@@ -20,9 +20,9 @@ Represents a full musical piece consisting of a number of voices.
     * [.addVoice()](#Piece+addVoice)
     * [.deleteVoice(index)](#Piece+deleteVoice) ⇒ <code>boolean</code> \| <code>Array</code>
     * [.getMeasure(measureIndex, [voiceIndex])](#Piece+getMeasure)
-    * [.addMeasure(index, [voiceIndex])](#Piece+addMeasure)
-    * [.addNote(note, position, measureIndex, [voiceIndex])](#Piece+addNote) ⇒ <code>boolean</code>
-    * [.addNotes(notes, position, measureIndex, [voiceIndex])](#Piece+addNotes) ⇒ <code>boolean</code>
+    * [.addMeasure(index, [voiceIndex], [measure])](#Piece+addMeasure)
+    * [.addNote(note, [duration], position, measureIndex, [voiceIndex])](#Piece+addNote) ⇒ <code>boolean</code>
+    * [.addNotes(notes, [duration], position, measureIndex, [voiceIndex])](#Piece+addNotes) ⇒ <code>boolean</code>
     * [.deleteNote(note, position, measureIndex, [voiceIndex])](#Piece+deleteNote) ⇒ <code>boolean</code>
     * [.deleteNotes(notes, position, measureIndex, [voiceIndex])](#Piece+deleteNotes) ⇒ <code>boolean</code>
     * [.clearMeasure(measureIndex, [voiceIndex])](#Piece+clearMeasure) ⇒ <code>boolean</code>
@@ -107,7 +107,7 @@ Returns a measure from a voice
 
 <a name="Piece+addMeasure"></a>
 
-### piece.addMeasure(index, [voiceIndex])
+### piece.addMeasure(index, [voiceIndex], [measure])
 Add measure to a voice at an index.
 
 **Kind**: instance method of [<code>Piece</code>](#Piece)  
@@ -116,10 +116,11 @@ Add measure to a voice at an index.
 | --- | --- | --- | --- |
 | index | <code>number</code> |  | Index to add the measure at. |
 | [voiceIndex] | <code>number</code> | <code>0</code> | The index of the voice. |
+| [measure] | <code>Measure</code> | <code></code> | Measure to add. |
 
 <a name="Piece+addNote"></a>
 
-### piece.addNote(note, position, measureIndex, [voiceIndex]) ⇒ <code>boolean</code>
+### piece.addNote(note, [duration], position, measureIndex, [voiceIndex]) ⇒ <code>boolean</code>
 Add a note to a measure in one of the voices.
 
 **Kind**: instance method of [<code>Piece</code>](#Piece)  
@@ -127,13 +128,14 @@ Add a note to a measure in one of the voices.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | note | <code>string</code> |  | Raw note. |
+| [duration] | <code>string</code> | <code>&quot;measure.duration&quot;</code> |  |
 | position | <code>number</code> |  | Position in the measure to add the note to. |
 | measureIndex | <code>number</code> |  | The index of the measure to add the note to. |
 | [voiceIndex] | <code>number</code> | <code>0</code> | The index of the voice to add the note to. |
 
 <a name="Piece+addNotes"></a>
 
-### piece.addNotes(notes, position, measureIndex, [voiceIndex]) ⇒ <code>boolean</code>
+### piece.addNotes(notes, [duration], position, measureIndex, [voiceIndex]) ⇒ <code>boolean</code>
 Add notes to a measure in one of the voices.
 
 **Kind**: instance method of [<code>Piece</code>](#Piece)  
@@ -141,6 +143,7 @@ Add notes to a measure in one of the voices.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | notes | <code>Array</code> |  | An array of raw note. |
+| [duration] | <code>string</code> | <code>&quot;measure.duration&quot;</code> |  |
 | position | <code>number</code> |  | Position in the measure to add the notes to. |
 | measureIndex | <code>number</code> |  | The index of the measure to add the notes to. |
 | [voiceIndex] | <code>number</code> | <code>0</code> | The index of the voice to add the notes to. |

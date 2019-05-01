@@ -3,7 +3,8 @@ import {Note}                          from '../models/Note'
 import {firstToUpper}                  from '../addons/GlobalFunctions'
 import {notesInRange, validateRawNote} from '../utilities/MusicalAddons'
 import {MusicTheoryStructures as mts}  from '../resources/MusicTheoryStructures'
-
+import {InvalidInput}                  from '../Exceptions'
+import {playing}                       from '../mixins/Instruments'
 
 /**
  * @abstract
@@ -137,48 +138,24 @@ export class Instrument {
      * @param {string} note
      * @param {string} [duration=false]
      */
-    play(note, duration = false) {
+    play(note, duration = '100') {
         note = Instrument.notePipeline(note)
         if (this.hasNote(note)) {
-            this.getPlayer(note).start()
-            if (duration) {
-                this.getPlayer(note).stop(`+${duration}`)
-            }
+            this.getPlayer(note).start().stop(`+${duration}`)
         }
-    }
-
-    playNotes(notes, duration) {
-        notes.forEach(note => this.play(note, duration))
     }
 
     /**
      * Syncs a note to the transport with a duration.
      * @param {string} note
-     * @param {string} duration
+     * @param {string} [duration=false]
      */
-    syncAndPlay(note, duration) {
+    syncAndPlay(note, duration = '') {
         note = Instrument.notePipeline(note)
         if (this.hasNote(note)) {
             this.getPlayer(note).sync().start().stop(duration)
         }
     }
-
-    /**
-     * Play a group of notes melodically.
-     * If resolve is true the melody will resolve to the tonic in higher octave.
-     * @param {Array} notes array of playable notes
-     * @param {Number} timeInterval
-     * @param {boolean} [resolve = false] whether to resolve to tonic
-     */
-    playMelodically(notes, timeInterval = 300, resolve = false) {
-        notes.forEach((note, i) => {
-            setTimeout(() => this.play(note), i * timeInterval)
-        })
-        if (resolve) {
-            setTimeout(
-                () => this.play(Note.builder(notes[0]).interval(12).raw),
-                notes.length * timeInterval,
-            )
-        }
-    }
 }
+
+Object.assign(Instrument.prototype, playing)

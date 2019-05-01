@@ -96,4 +96,10 @@ describe('Chord', () => {
             expect(() => {chord.transpose('invalid interval')}).to.throw(InvalidInput)
         })
     })
+
+    describe('#raw', () => {
+        it('should return an array of the scales raw notes', () => {
+            expect(new Chord({root: c, pattern: [4, 7]}).raw).to.eql(['C3', 'E3', 'G3'])
+        })
+    })
 })

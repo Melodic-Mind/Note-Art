@@ -31,6 +31,14 @@ const sidebarTree = (title = 'About') => ({
             'children':    [
                 'utilities/ScientificFuncs',
                 'utilities/MusicalAddons',
+                'utilities/Driver',
+            ],
+        },
+        {
+            'title':       'mixins',
+            'collapsable': false,
+            'children':    [
+                'mixins/Instruments',
             ],
         },
     ],

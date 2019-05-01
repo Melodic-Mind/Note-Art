@@ -9,6 +9,8 @@
 ##### [Demo :musical_note:](https://note-art-demo.netlify.com/) | [Docs :blue_book:](https://note-art-docs.netlify.com/)
 <br>
 
+**This library is still under construction and is getting updated on a weekly basis.**
+
 > Music is a highly versatile art that originates in nature, and has been taken up by mankind as a way of expression and also as an art.
 > Now, it's going to be taken up by machines as well.
 <br>

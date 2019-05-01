@@ -1,4 +1,4 @@
-import {Note, getMinDuration, notesDistance, playMelodically, Piano, notesInRange, noteToObject} from '../../src'
+import {Note, validateRawNote, notesDistance, Piano, notesInRange, noteToObject} from '../../src'
 import {InvalidInput}                                                                                from '../../src/Exceptions'
 
 const piano = new Piano()
@@ -24,6 +24,22 @@ describe('Music addon functions', () => {
         it('throws an error when an argument is invalid', () => {
             expect(() => {return notesInRange(2, 3)}).to.throw(InvalidInput)
             expect(() => {return notesInRange(2, 'qwe')}).to.throw(InvalidInput)
+        })
+    })
+
+    describe('#validateRawNote', () => {
+        it('should return true when a note is valid', () => {
+            expect(validateRawNote('c3')).to.be.true
+            expect(validateRawNote('c#3')).to.be.true
+            expect(validateRawNote('db3')).to.be.true
+            expect(validateRawNote('r')).to.be.true
+            expect(validateRawNote('R')).to.be.true
+        })
+
+        it('should throw an error when a note is not valid', () => {
+            expect(() => {validateRawNote('c')}).to.throw(InvalidInput)
+            expect(() => {validateRawNote(new Note('c3'))}).to.throw(InvalidInput)
+            expect(() => {validateRawNote(123)}).to.throw(InvalidInput)
         })
     })
 })

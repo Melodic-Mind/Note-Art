@@ -19,10 +19,10 @@ Represents a single measure as part of a musical piece in musical notation.
     * [.maxDuration](#Measure+maxDuration) ⇒ <code>number</code>
     * [.clone()](#Measure+clone) ⇒ [<code>Measure</code>](#Measure)
     * [.durationLeft([position])](#Measure+durationLeft) ⇒ <code>number</code>
-    * [.addNote(note, position)](#Measure+addNote) ⇒ <code>boolean</code>
+    * [.addNote(note, [duration], position)](#Measure+addNote) ⇒ <code>boolean</code>
     * [.initNext(position)](#Measure+initNext)
     * [.validateInsertion(position)](#Measure+validateInsertion) ⇒ <code>boolean</code>
-    * [.addNotes(notes, position)](#Measure+addNotes) ⇒ <code>\*</code>
+    * [.addNotes(notes, [duration], position)](#Measure+addNotes) ⇒ <code>\*</code>
     * [.deleteNote(note, position)](#Measure+deleteNote) ⇒ <code>boolean</code>
     * [.deleteNotes(notes, position)](#Measure+deleteNotes) ⇒ <code>\*</code>
     * [.transpose(interval)](#Measure+transpose) ⇒ [<code>Measure</code>](#Measure)
@@ -87,15 +87,16 @@ Returns the duration left for notes in the measure.
 
 <a name="Measure+addNote"></a>
 
-### measure.addNote(note, position) ⇒ <code>boolean</code>
+### measure.addNote(note, [duration], position) ⇒ <code>boolean</code>
 Adds a note to the measure at some position.
 
 **Kind**: instance method of [<code>Measure</code>](#Measure)  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| note | <code>string</code> | raw note representation. |
-| position | <code>number</code> | The position in the data to add the note to. |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| note | <code>string</code> |  | raw note representation. |
+| [duration] | <code>string</code> | <code>&quot;this.duration&quot;</code> |  |
+| position | <code>number</code> |  | The position in the data to add the note to. |
 
 <a name="Measure+initNext"></a>
 
@@ -121,15 +122,16 @@ Checks whether a new data member can be added at a certain position in the measu
 
 <a name="Measure+addNotes"></a>
 
-### measure.addNotes(notes, position) ⇒ <code>\*</code>
-Adds notes to the noteset at the position.
+### measure.addNotes(notes, [duration], position) ⇒ <code>\*</code>
+Adds notes to the note set at the position.
 
 **Kind**: instance method of [<code>Measure</code>](#Measure)  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| notes | <code>Array</code> | An array of raw notes. |
-| position | <code>number</code> | The position in the data to add the notes to. |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| notes | <code>Array</code> |  | An array of raw notes. |
+| [duration] | <code>string</code> | <code>&quot;this.duration&quot;</code> |  |
+| position | <code>number</code> |  | The position in the data to add the notes to. |
 
 <a name="Measure+deleteNote"></a>
 

@@ -28,6 +28,16 @@ describe('Instrument', () => {
         expect(Instrument.normalizeNoteStr('c4')).to.equal('C4')
     })
 
+    describe('#notePipeline', () => {
+        it('should return formatted note when its valid', () => {
+            expect(Instrument.notePipeline('c3')).to.equal('C3')
+        })
+
+        it('should return a sharp note as flat', () => {
+            expect(Instrument.notePipeline('c#5')).to.equal('Db5')
+        })
+    })
+
     describe('#generatePath', () => {
         it('should throw an error when called from an instrument instance', () => {
             const ins = new Instrument('C3', 3)
@@ -119,13 +129,16 @@ describe('Instrument', () => {
         it('plays a note when it exists', () => {
             const hasNote   = sinon.stub(ins, 'hasNote').returns(true)
             const getPlayer = sinon.stub(ins, 'getPlayer').returns({
-                start: () => {},
-                stop:  () => {},
+                start: () => {
+                    return {
+                        stop: () => {return true},
+                    }
+                },
             })
             ins.play('E3')
             expect(getPlayer).to.have.been.calledOnce
             ins.play('F3', '4n')
-            expect(getPlayer).to.have.been.calledThrice
+            expect(getPlayer).to.have.been.calledTwice
             hasNote.restore()
             getPlayer.restore()
         })
