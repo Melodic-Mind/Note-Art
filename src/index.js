@@ -15,6 +15,16 @@ app.set('path', () => {
     return 'https://note-art-server.herokuapp.com/audio/'
 })
 
+app.set('ready', () => {
+    return false
+})
+
+Tone.Buffer.on('load', () => {
+    app.set('ready', () => {
+        return true
+    })
+})
+
 export {app}
 export {PitchClass}               from './models/PitchClass'
 export {Note}                     from './models/Note'

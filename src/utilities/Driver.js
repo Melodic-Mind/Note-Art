@@ -136,17 +136,14 @@ export class Driver {
         this.play(startTime)
     }
 
-    //TODO make it adjust itself to the length of the longest voice.
     /**
      * Starts the transport.
      * @param {number} [startTime=0] Time to start the piece.
      */
     play(startTime = 0) {
         if (this.transport.state === 'stopped') {
-            console.log('playing')
-            this.transport.start('+0.2', startTime)
+            this.transport.start('+0.1', startTime)
         } else {
-            console.log('stopped')
             this.transport.stop()
         }
     }

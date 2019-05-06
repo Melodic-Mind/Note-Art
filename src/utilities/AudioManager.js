@@ -1,4 +1,4 @@
-import Tone from 'tone'
+import Tone  from 'tone'
 
 /**
  * @classdesc A singleton class which handles all file requests,
