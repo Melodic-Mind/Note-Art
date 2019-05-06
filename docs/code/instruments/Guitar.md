@@ -18,7 +18,6 @@ using different input methods.
     * [.play(note, duration)](#Guitar+play)
     * [.syncAndPlay(note, duration)](#Guitar+syncAndPlay)
     * [.strum(pattern, duration)](#Guitar+strum)
-    * [.playMelodically(notes, timeInterval, [resolve])](#Guitar+playMelodically)
 
 <a name="Guitar+playString"></a>
 
@@ -89,17 +88,3 @@ Strums the guitar's strings using guitar pattern(low to high).
 guitarInstance.strum('x02210', '8n') //Plays Am chord.
 guitarInstance.strum('320033', '8n') //Plays G chord.
 ```
-<a name="Guitar+playMelodically"></a>
-
-### guitar.playMelodically(notes, timeInterval, [resolve])
-Play a group of notes melodically.
-If resolve is true the melody will resolve to the tonic in higher octave.
-
-**Kind**: instance method of [<code>Guitar</code>](#Guitar)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| notes | <code>Array</code> |  | array of playable notes |
-| timeInterval | <code>Number</code> | <code>300</code> |  |
-| [resolve] | <code>boolean</code> | <code>false</code> | whether to resolve to tonic |
-

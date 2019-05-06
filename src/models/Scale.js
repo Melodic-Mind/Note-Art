@@ -158,7 +158,7 @@ export class Scale {
      * Returns a string of all the pitch class names in the scale.
      * @type{string}
      */
-    get pitchClassNamesString() {
+    get pitchClassesString() {
         let str = ''
         this.notes.forEach(note => (str += note.pitchClass + ', '))
         return str.slice(0, str.length - 2)

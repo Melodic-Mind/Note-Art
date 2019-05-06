@@ -13,20 +13,20 @@ pattern which can be played together to form a harmonic sound.
 **Kind**: global class  
 
 * [Chord](#Chord)
-    * [new exports.Chord(attributes)](#new_Chord_new)
+    * [new Chord(attributes)](#new_Chord_new)
     * [.notes](#Chord+notes) : <code>Array</code>
     * [.fullName](#Chord+fullName) : <code>String</code>
     * [.name](#Chord+name) : <code>String</code>
     * [.octave](#Chord+octave) : <code>Number</code>
     * [.pitchIntervals](#Chord+pitchIntervals) : <code>Array</code>
     * [.type](#Chord+type) ⇒ <code>string</code> \| <code>undefined</code>
-    * [.pitchClasses](#Chord+pitchClasses) ⇒ <code>string</code>
+    * [.pitchClassesString](#Chord+pitchClassesString) ⇒ <code>string</code>
     * [.toString()](#Chord+toString) ⇒ <code>String</code>
     * [.transpose(interval)](#Chord+transpose) ⇒ [<code>Chord</code>](#Chord)
 
 <a name="new_Chord_new"></a>
 
-### new exports.Chord(attributes)
+### new Chord(attributes)
 **Throws**:
 
 - <code>MissingInformation</code> When not provided with root and either name or pattern
@@ -82,9 +82,9 @@ Array of the intervals from the root to each note in the chord(excluding the roo
 Whether chord is major, minor or neither.
 
 **Kind**: instance property of [<code>Chord</code>](#Chord)  
-<a name="Chord+pitchClasses"></a>
+<a name="Chord+pitchClassesString"></a>
 
-### chord.pitchClasses ⇒ <code>string</code>
+### chord.pitchClassesString ⇒ <code>string</code>
 Returns a string of the chord notes pitch classes.
 
 **Kind**: instance property of [<code>Chord</code>](#Chord)  

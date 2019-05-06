@@ -71,7 +71,7 @@ console.log(fourth) // E4
 
 //Chord
 
-const A_M = new Chord({note: A, name: 'Major'})
+const A_M = new Chord({root: A, name: 'Major'})
 
 console.log(A_M.pitchClasses) // A4, C5, E5
 
@@ -81,6 +81,15 @@ const C_Major = new Scale({tonic: new Note('c', 3), name: 'Major'})
 
 console.log(A_Major.notesString) // C3, D3, E3, F3, G3, A3, B3
 ```
+
+*When playing audio, make sure to resume the audio context on user interaction, and also wait for all the buffers to load:*
+```
+import {app} from 'note-art'
+
+app.get('audio-manager').resumeContext() // Resume context
+app.get('ready')    // True when all buffers have loaded
+```
+
 
 See the [docs](https://note-art-docs.netlify.com/) for more
 

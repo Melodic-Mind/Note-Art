@@ -100,7 +100,7 @@ describe('Scale', () => {
 
     describe('#pitchClassNamesString', () => {
         it('should return the pitch class names of the scale', () => {
-            expect(C_Major.pitchClassNamesString).to.equal('C, D, E, F, G, A, B')
+            expect(C_Major.pitchClassesString).to.equal('C, D, E, F, G, A, B')
         })
     })
 

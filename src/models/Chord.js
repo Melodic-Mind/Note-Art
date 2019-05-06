@@ -126,8 +126,8 @@ export class Chord {
      * Returns a string of the chord notes pitch classes.
      * @returns {string}
      */
-    get pitchClasses() {
-        return buildString(this.notes)
+    get pitchClassesString() {
+        return buildString(this.notes.map(note => note.pitchClass))
     }
 
     get raw() {

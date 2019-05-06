@@ -47,7 +47,7 @@ describe('Chord', () => {
             expect(c_Maj.name).to.eql('M')
             expect(c_Maj.pitchIntervals).to.eql([4, 7])
             expect(c_Maj.octave).to.equal(stub[0].octave)
-            expect(c_Maj.pitchClasses).to.equal('C3, E3, G3')
+            expect(c_Maj.pitchClassesString).to.equal('C, E, G')
         })
 
         it('when chord is not from chord database', () => {
@@ -62,7 +62,7 @@ describe('Chord', () => {
             expect(someChord.name).to.eql('Unknown')
             expect(someChord.pitchIntervals).to.eql([1, 2])
             expect(someChord.octave).to.equal(stub[0].octave)
-            expect(someChord.pitchClasses).to.equal('C3, Db3, D3')
+            expect(someChord.pitchClassesString).to.equal('C, Db, D')
         })
     })
     describe('#type', () => {

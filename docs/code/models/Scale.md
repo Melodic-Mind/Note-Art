@@ -14,7 +14,7 @@ Represents a musical scale - a series of notes following a specific pattern from
 **Kind**: global class  
 
 * [Scale](#Scale)
-    * [new exports.Scale(tonic, name, pattern)](#new_Scale_new)
+    * [new Scale(tonic, name, pattern)](#new_Scale_new)
     * _instance_
         * [.notes](#Scale+notes)
         * [.semitones](#Scale+semitones) : <code>Array</code>
@@ -22,7 +22,7 @@ Represents a musical scale - a series of notes following a specific pattern from
         * [.otherNames](#Scale+otherNames) ⇒ <code>\*</code> \| <code>string</code>
         * [.chords](#Scale+chords) : <code>Array</code>
         * [.seventhChords](#Scale+seventhChords) : <code>Array</code>
-        * [.pitchClassNamesString](#Scale+pitchClassNamesString)
+        * [.pitchClassesString](#Scale+pitchClassesString)
         * [.pitchClasses](#Scale+pitchClasses) : <code>Array</code>
         * [.notesString](#Scale+notesString)
         * [.toString()](#Scale+toString) ⇒ <code>String</code>
@@ -34,7 +34,7 @@ Represents a musical scale - a series of notes following a specific pattern from
 
 <a name="new_Scale_new"></a>
 
-### new exports.Scale(tonic, name, pattern)
+### new Scale(tonic, name, pattern)
 **Throws**:
 
 - <code>MissingInformation</code> When not provided with tonic and either name or pattern
@@ -91,9 +91,9 @@ Returns the chords of the scale in an array, calculated by taking each note,
 then skipping one note and taking the next, etc...to form the Chord.
 
 **Kind**: instance property of [<code>Scale</code>](#Scale)  
-<a name="Scale+pitchClassNamesString"></a>
+<a name="Scale+pitchClassesString"></a>
 
-### scale.pitchClassNamesString
+### scale.pitchClassesString
 Returns a string of all the pitch class names in the scale.
 
 **Kind**: instance property of [<code>Scale</code>](#Scale)  

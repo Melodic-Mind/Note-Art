@@ -12,7 +12,7 @@ Represents an abstract musical note.
 **Kind**: global class  
 
 * [Note](#Note)
-    * [new exports.Note(pitchClass, octave)](#new_Note_new)
+    * [new Note(pitchClass, octave)](#new_Note_new)
     * _instance_
         * [.octave](#Note+octave) : <code>String</code>
         * [.raw](#Note+raw) ⇒ <code>string</code>
@@ -25,7 +25,7 @@ Represents an abstract musical note.
 
 <a name="new_Note_new"></a>
 
-### new exports.Note(pitchClass, octave)
+### new Note(pitchClass, octave)
 
 | Param | Type |
 | --- | --- |

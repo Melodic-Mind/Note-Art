@@ -12,9 +12,9 @@ Represents a driver that can play a piece.
 **Kind**: global class  
 
 * [Driver](#Driver)
-    * [new exports.Driver(piece, Instruments)](#new_Driver_new)
+    * [new Driver(piece, Instruments)](#new_Driver_new)
     * [.state](#Driver+state) ⇒ <code>Tone.State</code>
-    * [.beat](#Driver+beat) ⇒ <code>Ticks</code>
+    * [.position](#Driver+position) ⇒ <code>Ticks</code>
     * [.addInstrument(instrument)](#Driver+addInstrument)
     * [.scheduleVoices()](#Driver+scheduleVoices)
     * [.scheduleMeasures(voiceIndex)](#Driver+scheduleMeasures)
@@ -24,7 +24,7 @@ Represents a driver that can play a piece.
 
 <a name="new_Driver_new"></a>
 
-### new exports.Driver(piece, Instruments)
+### new Driver(piece, Instruments)
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -37,9 +37,9 @@ Represents a driver that can play a piece.
 Returns the current state of the transport.
 
 **Kind**: instance property of [<code>Driver</code>](#Driver)  
-<a name="Driver+beat"></a>
+<a name="Driver+position"></a>
 
-### driver.beat ⇒ <code>Ticks</code>
+### driver.position ⇒ <code>Ticks</code>
 **Kind**: instance property of [<code>Driver</code>](#Driver)  
 <a name="Driver+addInstrument"></a>
 

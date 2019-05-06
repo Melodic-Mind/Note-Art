@@ -1,4 +1,5 @@
-import {app, AudioManager} from '../src/'
+import {AudioManager} from '../src/utilities/AudioManager'
+import {app} from '../src'
 import sinon               from 'sinon'
 import sinonChai           from 'sinon-chai'
 import chai                from 'chai'

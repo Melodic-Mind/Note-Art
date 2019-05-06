@@ -12,7 +12,7 @@ Represents a single measure as part of a musical piece in musical notation.
 **Kind**: global class  
 
 * [Measure](#Measure)
-    * [new exports.Measure([maxDuration])](#new_Measure_new)
+    * [new Measure([maxDuration])](#new_Measure_new)
     * [.data](#Measure+data) ⇒ <code>Array</code>
     * [.duration](#Measure+duration) ⇒ <code>string</code>
     * [.duration](#Measure+duration)
@@ -31,7 +31,7 @@ Represents a single measure as part of a musical piece in musical notation.
 
 <a name="new_Measure_new"></a>
 
-### new exports.Measure([maxDuration])
+### new Measure([maxDuration])
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |

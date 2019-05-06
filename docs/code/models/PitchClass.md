@@ -12,7 +12,7 @@ Represents a pitch class.
 **Kind**: global class  
 
 * [PitchClass](#PitchClass)
-    * [new exports.PitchClass(pitchClass)](#new_PitchClass_new)
+    * [new PitchClass(pitchClass)](#new_PitchClass_new)
     * [.pitchClass](#PitchClass+pitchClass) : <code>String</code>
     * [.classSet](#PitchClass+classSet) : <code>String</code>
     * [.classIndex](#PitchClass+classIndex) : <code>Number</code>
@@ -21,7 +21,7 @@ Represents a pitch class.
 
 <a name="new_PitchClass_new"></a>
 
-### new exports.PitchClass(pitchClass)
+### new PitchClass(pitchClass)
 
 | Param |
 | --- |
