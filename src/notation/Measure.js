@@ -1,6 +1,6 @@
-import {MusicTheoryStructures as mts}                 from '../resources/MusicTheoryStructures'
-import {firstToUpper, validateArray, validateRawNote} from '../'
-import {Note}                                         from '../models/Note'
+import {MusicTheoryStructures as mts}                        from '../resources/MusicTheoryStructures'
+import {firstToUpper, validateArray, validateRawNote, Chord} from '../'
+import {Note}                                                from '../models/Note'
 
 /**
  * @classdesc Represents a single measure as part of a musical piece in musical notation.
@@ -73,6 +73,31 @@ export class Measure {
     }
 
     /**
+     * Creates a slot for the next notes that will be added in the measure if there is space.
+     * @param {number} position Position to initialize the next notes to.
+     */
+    initNext(position) {
+        const durationLeft = this.durationLeft(this.data.length)
+        if (durationLeft > 0) {
+            this.data[position] = {notes: new Set(), duration: this.duration}
+        }
+    }
+
+    /**
+     * Checks whether a new data member can be added at a certain position in the measure.
+     * @param {number} position The position to check for.
+     * @param duration
+     * @returns {boolean}
+     */
+    validateInsertion(position, duration = this.duration) {
+        return !(
+            position > this.data.length
+            ||
+            mts.noteDurations()[duration] > this.durationLeft(position) + duration
+        )
+    }
+
+    /**
      * Adds a note to the measure at some position.
      * @param {string} note raw note representation.
      * @param {string} [duration=this.duration]
@@ -92,30 +117,6 @@ export class Measure {
     }
 
     /**
-     * Creates a slot for the next notes that will be added in the measure if there is space.
-     * @param {number} position Position to initialize the next notes to.
-     */
-    initNext(position) {
-        const durationLeft = this.durationLeft(this.data.length)
-        if (durationLeft > 0) {
-            this.data[position] = {notes: new Set(), duration: this.duration}
-        }
-    }
-
-    /**
-     * Checks whether a new data member can be added at a certain position in the measure.
-     * @param {number} position The position to check for.
-     * @returns {boolean}
-     */
-    validateInsertion(position) {
-        return !(
-            position > this.data.length
-            ||
-            mts.noteDurations()[this.duration] > this.durationLeft(position) + this.duration
-        )
-    }
-
-    /**
      * Adds notes to the note set at the position.
      * @param {Array} notes An array of raw notes.
      * @param {string} [duration=this.duration]
@@ -125,6 +126,30 @@ export class Measure {
     addNotes({notes, duration}, position) {
         validateArray(notes)
         return notes.every(note => this.addNote({note, duration}, position))
+    }
+
+    /**
+     * Adds notes to the measure plus a name that represents the chord and is saved in
+     * the data at the position as caption
+     * @param notes
+     * @param name
+     * @param duration
+     * @param position
+     * @return {boolean}
+     * @example
+     * measure.addChord({
+     *      notes: ['C3', 'E3', 'G3'],
+     *      name: 'C Major',
+     *      duration: '4n'
+     *      }, 0)      // Adds a C major chord at the start of the measure.
+     */
+    addChord({notes, name, duration}, position) {
+        if (this.validateInsertion(position + 1) && name) {
+            this.data[position].caption = name
+            return this.addNotes({notes, duration}, position)
+        }
+
+        return false
     }
 
     /**
@@ -146,6 +171,29 @@ export class Measure {
     deleteNotes(notes, position) {
         validateArray(notes)
         return notes.every(note => this.deleteNote(note, position))
+    }
+
+    /**
+     * Delete member from the measure's data - removes all the notes from it
+     * and initializes a new data member with the measure's duration.
+     * @param {number} position Position of the member to delete.
+     * @return {boolean}
+     */
+    deleteMember(position) {
+        if (this.data[position]) {
+            this.data.splice(position, 1)
+            // if the measure doesnt have a new member ready for adding new notes, create one
+            if (this.data[this.data.length - 1].notes.size !== 0) {
+                this.initNext(this.data.length)
+            }
+            return true
+        }
+
+        return false
+    }
+
+    hasSpace(duration) {
+        return mts.noteDurations()[duration] <= this.durationLeft()
     }
 
     /**

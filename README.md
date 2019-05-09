@@ -6,10 +6,12 @@
 &nbsp; [![Test Coverage](https://api.codeclimate.com/v1/badges/0206283c6843673ea6d6/test_coverage)](https://codeclimate.com/github/Seanitzel/Note-Art/test_coverage)
 &nbsp; [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 :fire:
-##### [Demo :musical_note:](https://note-art-demo.netlify.com/) | [Docs :blue_book:](https://note-art-docs.netlify.com/)
+##### [Demo :musical_note:](https://note-art-demo.netlify.com/) | [API :blue_book:](https://note-art-docs.netlify.com/)
 <br>
 
-**This library is still under construction and is getting updated on a weekly basis.**
+**Disclaimer: This library is still under construction and is getting updated on a weekly basis.
+<br>Everything you see in the api is working and a 100% tested. <br>
+Any questions/ requests/ tips are welcome!**
 
 > Music is a highly versatile art that originates in nature, and has been taken up by mankind as a way of expression and also as an art.
 > Now, it's going to be taken up by machines as well.
@@ -90,8 +92,16 @@ app.get('audio-manager').resumeContext() // Resume context
 app.get('ready')    // True when all buffers have loaded
 ```
 
+Set the path to your desired location which can be local or on a remote server.
+You are welcome to use my server, hosten on heroku and has piano, guitar and drum sounds.
+```
+app.set('path', () => {
+    return 'https://note-art-server.herokuapp.com//audio/' // the path to my server
+})
+```
 
-See the [docs](https://note-art-docs.netlify.com/) for more
+
+Check out the [API](https://note-art-docs.netlify.com/) for more.
 
 
 ## Contribute and Support :pray:
@@ -115,6 +125,7 @@ See the [docs](https://note-art-docs.netlify.com/) for more
 * Create scheduling and automation for playing music pieces with an arbitrary instrument. :heavy_check_mark: 
 * Add static and dynamic audio feature extraction.
 * Add more instruments.
+* Make the API more detailed and create documentation.
 
 ## Contact
 Sean Dvir - [seandvir12@gmail.com](seandvir12@gmail.com) - [@seanitzel](https://twitter.com/seanitzel) <br>

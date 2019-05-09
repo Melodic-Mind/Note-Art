@@ -54,10 +54,10 @@ Syncs a note to the transport with a duration.
 
 **Kind**: instance method of [<code>Guitar</code>](#Guitar)  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| note | <code>string</code> |  |
-| duration | <code>string</code> | duration to play the note for. |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| note | <code>string</code> |  |  |
+| duration | <code>string</code> | <code>&quot;100&quot;</code> | duration to play the note for. |
 
 <a name="Guitar+syncAndPlay"></a>
 

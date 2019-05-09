@@ -12,26 +12,28 @@ Represents a single measure as part of a musical piece in musical notation.
 **Kind**: global class  
 
 * [Measure](#Measure)
-    * [new Measure([maxDuration])](#new_Measure_new)
+    * [new exports.Measure([maxDuration])](#new_Measure_new)
     * [.data](#Measure+data) ⇒ <code>Array</code>
     * [.duration](#Measure+duration) ⇒ <code>string</code>
     * [.duration](#Measure+duration)
     * [.maxDuration](#Measure+maxDuration) ⇒ <code>number</code>
     * [.clone()](#Measure+clone) ⇒ [<code>Measure</code>](#Measure)
     * [.durationLeft([position])](#Measure+durationLeft) ⇒ <code>number</code>
-    * [.addNote(note, [duration], position)](#Measure+addNote) ⇒ <code>boolean</code>
     * [.initNext(position)](#Measure+initNext)
-    * [.validateInsertion(position)](#Measure+validateInsertion) ⇒ <code>boolean</code>
+    * [.validateInsertion(position, duration)](#Measure+validateInsertion) ⇒ <code>boolean</code>
+    * [.addNote(note, [duration], position)](#Measure+addNote) ⇒ <code>boolean</code>
     * [.addNotes(notes, [duration], position)](#Measure+addNotes) ⇒ <code>\*</code>
+    * [.addChord(notes, name, duration, position)](#Measure+addChord) ⇒ <code>boolean</code>
     * [.deleteNote(note, position)](#Measure+deleteNote) ⇒ <code>boolean</code>
     * [.deleteNotes(notes, position)](#Measure+deleteNotes) ⇒ <code>\*</code>
+    * [.deleteMember(position)](#Measure+deleteMember) ⇒ <code>boolean</code>
     * [.transpose(interval)](#Measure+transpose) ⇒ [<code>Measure</code>](#Measure)
     * [.clear()](#Measure+clear) ⇒ <code>boolean</code>
     * [.toString()](#Measure+toString) ⇒ <code>string</code>
 
 <a name="new_Measure_new"></a>
 
-### new Measure([maxDuration])
+### new exports.Measure([maxDuration])
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -85,19 +87,6 @@ Returns the duration left for notes in the measure.
 | --- | --- | --- |
 | [position] | <code>number</code> | <code>this.data.length</code> | 
 
-<a name="Measure+addNote"></a>
-
-### measure.addNote(note, [duration], position) ⇒ <code>boolean</code>
-Adds a note to the measure at some position.
-
-**Kind**: instance method of [<code>Measure</code>](#Measure)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| note | <code>string</code> |  | raw note representation. |
-| [duration] | <code>string</code> | <code>&quot;this.duration&quot;</code> |  |
-| position | <code>number</code> |  | The position in the data to add the note to. |
-
 <a name="Measure+initNext"></a>
 
 ### measure.initNext(position)
@@ -111,7 +100,7 @@ Creates a slot for the next notes that will be added in the measure if there is 
 
 <a name="Measure+validateInsertion"></a>
 
-### measure.validateInsertion(position) ⇒ <code>boolean</code>
+### measure.validateInsertion(position, duration) ⇒ <code>boolean</code>
 Checks whether a new data member can be added at a certain position in the measure.
 
 **Kind**: instance method of [<code>Measure</code>](#Measure)  
@@ -119,6 +108,20 @@ Checks whether a new data member can be added at a certain position in the measu
 | Param | Type | Description |
 | --- | --- | --- |
 | position | <code>number</code> | The position to check for. |
+| duration |  |  |
+
+<a name="Measure+addNote"></a>
+
+### measure.addNote(note, [duration], position) ⇒ <code>boolean</code>
+Adds a note to the measure at some position.
+
+**Kind**: instance method of [<code>Measure</code>](#Measure)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| note | <code>string</code> |  | raw note representation. |
+| [duration] | <code>string</code> | <code>&quot;this.duration&quot;</code> |  |
+| position | <code>number</code> |  | The position in the data to add the note to. |
 
 <a name="Measure+addNotes"></a>
 
@@ -133,6 +136,29 @@ Adds notes to the note set at the position.
 | [duration] | <code>string</code> | <code>&quot;this.duration&quot;</code> |  |
 | position | <code>number</code> |  | The position in the data to add the notes to. |
 
+<a name="Measure+addChord"></a>
+
+### measure.addChord(notes, name, duration, position) ⇒ <code>boolean</code>
+Adds notes to the measure plus a name that represents the chord and is saved in
+the data at the position as caption
+
+**Kind**: instance method of [<code>Measure</code>](#Measure)  
+
+| Param |
+| --- |
+| notes | 
+| name | 
+| duration | 
+| position | 
+
+**Example**  
+```js
+measure.addChord({
+     notes: ['C3', 'E3', 'G3'],
+     name: 'C Major',
+     duration: '4n'
+     }, 0)      // Adds a C major chord at the start of the measure.
+```
 <a name="Measure+deleteNote"></a>
 
 ### measure.deleteNote(note, position) ⇒ <code>boolean</code>
@@ -156,6 +182,18 @@ Deletes notes from the noteset at the position.
 | --- | --- | --- |
 | notes | <code>Array</code> | An array of raw notes. |
 | position | <code>number</code> | The position in the data to delete the notes at. |
+
+<a name="Measure+deleteMember"></a>
+
+### measure.deleteMember(position) ⇒ <code>boolean</code>
+Delete member from the measure's data - removes all the notes from it
+and initializes a new data member with the measure's duration.
+
+**Kind**: instance method of [<code>Measure</code>](#Measure)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| position | <code>number</code> | Position of the member to delete. |
 
 <a name="Measure+transpose"></a>
 

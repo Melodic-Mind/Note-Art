@@ -32,6 +32,7 @@ const sidebarTree = (title = 'About') => ({
                 'utilities/ScientificFuncs',
                 'utilities/MusicalAddons',
                 'utilities/Driver',
+                'utilities/AudioManager'
             ],
         },
         {

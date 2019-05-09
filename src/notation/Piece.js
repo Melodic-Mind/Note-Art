@@ -6,10 +6,10 @@ import {DurationRule} from '../validation/DurationRule'
  */
 export class Piece {
     constructor({bpm, timeSignature} = {timeSignature: [4, 4]}) {
-        this.timeSignature = timeSignature
+        this.timeSignature        = timeSignature
         this.reducedTimeSignature = Piece.reduceTimeSignature(timeSignature)
-        this.bpm           = bpm || 120
-        this.attributes    = {duration: '4n', voices: [[new Measure(this.reducedTimeSignature * 16)]]}
+        this.bpm                  = bpm || 120
+        this.attributes           = {duration: '4n', voices: [[new Measure(this.reducedTimeSignature * 16)]]}
     }
 
     static reduceTimeSignature(timeSignature = [4, 4]) {
@@ -144,6 +144,10 @@ export class Piece {
         return this.addOperation('addNotes', {notes, duration}, position, measureIndex, voiceIndex)
     }
 
+    addChord({notes, name, duration}, position, measureIndex, voiceIndex = 0) {
+        return this.addOperation('addChord', {notes, name, duration}, position, measureIndex, voiceIndex)
+    }
+
     /**
      * Private function to handle addition operations for code quality.
      * @private
@@ -189,6 +193,15 @@ export class Piece {
         if (this.getMeasure(measure, voice)) {
             return this.getMeasure(measure, voice)[operation](data, position)
         }
+
+        return false
+    }
+
+    deleteMember(position, measure, voice = 0) {
+        if (this.getMeasure(measure, voice)) {
+            return this.getMeasure(measure, voice).deleteMember(position)
+        }
+
         return false
     }
 

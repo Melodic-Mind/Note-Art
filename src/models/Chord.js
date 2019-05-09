@@ -89,7 +89,7 @@ export class Chord {
         } else if (this.pitchIntervals.includes(3)) {
             return 'minor'
         } else {
-            return undefined
+            return 'other'
         }
     }
 

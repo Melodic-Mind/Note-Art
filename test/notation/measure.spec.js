@@ -1,4 +1,4 @@
-import {Measure} from '../../src'
+import {Chord, Measure} from '../../src'
 
 import {InvalidInput} from '../../src/Exceptions'
 
@@ -34,7 +34,7 @@ describe('Measure', () => {
 
         it('when the measure has one note', () => {
             measure.addNote({note: 'E4'}, 0)
-            expect(measure.durationLeft()).to.equal(48)
+            expect(measure.durationLeft(1)).to.equal(48)
         })
 
         it('when measure has more than 2 notes in different positions', () => {
@@ -131,6 +131,55 @@ describe('Measure', () => {
             expect(measure.data[0].notes.has('C3')).to.be.true
             expect(measure.data[0].notes.has('E3')).to.be.true
             expect(measure.deleteNotes(['C3', 'F3'], 0)).to.be.false
+        })
+    })
+
+    describe('#addChord', () => {
+        it('should add all the notes in the chord to the note set and add the chord name to the caption of the member', () => {
+            expect(measure.addChord({notes: ['c3', 'e3', 'g3'], name: 'C M', duration: '4n'}, 0)).to.be.true
+            expect(measure.data[0].caption).to.equal('C M')
+        })
+
+        it('should return false when the measure is full or the name is not sent', () => {
+            expect(measure.addChord({notes: ['c3', 'e3'], duration: '8n'}, 0)).to.be.false
+        })
+    })
+
+    describe('#deleteMember', () => {
+        it('should delete a whole member from the measure\'s data', () => {
+            measure.addNote({note: 'c3'}, 0)
+            expect(measure.deleteMember(0)).to.be.true
+            expect(measure.data[0].notes.size).to.equal(0)
+        })
+
+        it('should init a new member when the previous member is not empty', () => {
+            const spy = sinon.spy(measure, 'initNext')
+            measure.addNote({note: 'c3'}, 0)
+            measure.addNote({note: 'c3'}, 1)
+            measure.addNote({note: 'c3'}, 2)
+            measure.addNote({note: 'c3'}, 3)
+            expect(measure.deleteMember(3)).to.be.true
+            expect(measure.data[3].notes.size).to.equal(0)
+            expect(spy).to.have.callCount(5)
+            spy.restore()
+        })
+
+        it('should return false when the position does not exist in the measure', () => {
+            expect(measure.deleteMember(5)).to.be.false
+        })
+    })
+
+    describe('#hasSpace', () => {
+        it('should return true when the measure has space for a new member with duration', () => {
+            expect(measure.hasSpace('4n')).to.be.true
+        })
+
+        it('should return false when the measure does not have space for a new member', () => {
+            measure.addNote({note: 'E4'}, 0)
+            measure.addNote({note: 'E4'}, 1)
+            measure.addNote({note: 'E4'}, 2)
+            measure.addNote({note: 'E4'}, 3)
+            expect(measure.hasSpace('4n')).to.be.false
         })
     })
 

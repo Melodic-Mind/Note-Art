@@ -61,7 +61,7 @@ export class Guitar {
      * @param {string} note
      * @param {string} duration duration to play the note for.
      */
-    play(note, duration = '') {
+    play(note, duration = '100') {
         return this.playHelper('play', note, duration)
     }
 

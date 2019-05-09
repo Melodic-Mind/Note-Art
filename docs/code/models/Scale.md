@@ -14,7 +14,7 @@ Represents a musical scale - a series of notes following a specific pattern from
 **Kind**: global class  
 
 * [Scale](#Scale)
-    * [new Scale(tonic, name, pattern)](#new_Scale_new)
+    * [new exports.Scale(tonic, name, pattern)](#new_Scale_new)
     * _instance_
         * [.notes](#Scale+notes)
         * [.semitones](#Scale+semitones) : <code>Array</code>
@@ -34,7 +34,7 @@ Represents a musical scale - a series of notes following a specific pattern from
 
 <a name="new_Scale_new"></a>
 
-### new Scale(tonic, name, pattern)
+### new exports.Scale(tonic, name, pattern)
 **Throws**:
 
 - <code>MissingInformation</code> When not provided with tonic and either name or pattern

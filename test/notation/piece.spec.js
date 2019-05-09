@@ -201,6 +201,46 @@ describe('Piece', () => {
         })
     })
 
+    describe('#addChord', () => {
+        it('should call the addChord funtion on the specified measure', () => {
+            piece.addMeasure(0)
+            const stub = sinon.stub(piece.getMeasure(0), 'addChord').returns(true)
+            expect(piece.addChord({}, 0, 0)).to.be.true
+            expect(stub).to.have.been.calledOnce
+            stub.restore()
+        })
+
+        it('should return false when the chord is not added', () => {
+            piece.addMeasure(0)
+            const stub = sinon.stub(piece.getMeasure(0), 'addChord').returns(false)
+            expect(piece.addChord({}, 0, 0)).to.be.false
+            expect(stub).to.have.been.calledOnce
+            stub.restore()
+        })
+    })
+
+    describe('#deleteMember', () => {
+        it('should call the deleteMember funtion on the specified measure', () => {
+            piece.addMeasure(0)
+            const stub = sinon.stub(piece.getMeasure(0), 'deleteMember').returns(true)
+            expect(piece.deleteMember(0, 0)).to.be.true
+            expect(stub).to.have.been.calledOnce
+            stub.restore()
+        })
+
+        it('should return false when the chord is not added inside the measure process', () => {
+            piece.addMeasure(0)
+            const stub = sinon.stub(piece.getMeasure(0), 'deleteMember').returns(false)
+            expect(piece.deleteMember(0, 0)).to.be.false
+            expect(stub).to.have.been.calledOnce
+            stub.restore()
+        })
+
+        it('should return false when the measure does not exist', () => {
+            expect(piece.deleteMember(0, 4)).to.be.false
+        })
+    })
+
     describe('#clear', () => {
         it('should clear a measure from all data', () => {
             expect(piece.addNote({note: 'C3'}, 0, 0)).to.be.true

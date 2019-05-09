@@ -12,7 +12,7 @@ Represents a driver that can play a piece.
 **Kind**: global class  
 
 * [Driver](#Driver)
-    * [new Driver(piece, Instruments)](#new_Driver_new)
+    * [new exports.Driver(piece, Instruments)](#new_Driver_new)
     * [.state](#Driver+state) ⇒ <code>Tone.State</code>
     * [.position](#Driver+position) ⇒ <code>Ticks</code>
     * [.addInstrument(instrument)](#Driver+addInstrument)
@@ -20,11 +20,11 @@ Represents a driver that can play a piece.
     * [.scheduleMeasures(voiceIndex)](#Driver+scheduleMeasures)
     * [.scheduleNotes(measureIndex, voiceIndex)](#Driver+scheduleNotes)
     * [.toggle([startTime])](#Driver+toggle)
-    * [.play([startTime])](#Driver+play)
+    * [.clear()](#Driver+clear)
 
 <a name="new_Driver_new"></a>
 
-### new Driver(piece, Instruments)
+### new exports.Driver(piece, Instruments)
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -92,14 +92,9 @@ Toggles the state of the transport.
 | --- | --- | --- | --- |
 | [startTime] | <code>number</code> | <code>0</code> | Time to start the piece. |
 
-<a name="Driver+play"></a>
+<a name="Driver+clear"></a>
 
-### driver.play([startTime])
-Starts the transport.
+### driver.clear()
+Clear the transport from everything that was scheduled.
 
 **Kind**: instance method of [<code>Driver</code>](#Driver)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [startTime] | <code>number</code> | <code>0</code> | Time to start the piece. |
-

@@ -1,6 +1,6 @@
 {
     "name": "note-art",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "description": "Music programming package",
     "main": "./dist/note-art.js",
     "homepage": "https://github.com/Seanitzel/Note-Art/tree/develop",
@@ -15,7 +15,7 @@
         "test": "mocha \"test/**/*.spec.js\"",
         "coverage": "cross-env NODE_ENV=test nyc npm run test -- --reporter landing --cache",
         "report": "nyc report --root coverage --format html",
-        "docs": "vuepress-jsdoc -d docs -e src/validation,src/resources,src/addons,src/utilities/AudioManager",
+        "docs": "vuepress-jsdoc -d docs -e src/validation,src/resources,src/addons",
         "docs:dev": "vuepress dev docs/",
         "docs:build": "vuepress build docs"
     },

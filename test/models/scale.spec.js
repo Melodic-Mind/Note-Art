@@ -112,7 +112,6 @@ describe('Scale', () => {
 
     describe('#raw', () => {
         it('should return an array of the scales raw notes', () => {
-            console.log(C_Major.raw)
             expect(C_Major.raw).to.eql(['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3'])
         })
     })

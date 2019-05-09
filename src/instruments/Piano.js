@@ -13,7 +13,7 @@ export class Piano extends Instrument {
     /** @inheritDoc */
     generatePath(note) {
         const set = Instrument.normalizeSet(note.pitchClass, note.classSet)
-        const file = `FF_${set}${note.octave}`
+        const file = `${set}${note.octave}`
 
         return `${Instrument.server}piano/${file}.mp3`
     }

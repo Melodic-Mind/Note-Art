@@ -11,7 +11,7 @@ export class Driver {
         this.piece       = piece
         this.instruments = instruments
         this.playing     = {voice: null, measure: null, noteSet: null}
-        this.metronome   = false
+        this.metronome   = {active: false, sound: 'clap', id: null}
     }
 
     /**
@@ -22,23 +22,23 @@ export class Driver {
         this.instruments.push(instrument)
     }
 
-    startMetronome(sound = 'clap') {
-        this.metronome   = true
-        this.metronomeID = this.transport.scheduleRepeat(time => {
-            this.drumSet.play(sound)
+    startMetronome() {
+        this.metronome.active   = true
+        this.metronome.id = this.transport.scheduleRepeat(time => {
+            this.drumSet.play(this.metronome.sound)
         }, '4n', '0')
     }
 
     stopMetronome() {
-        this.metronome = false
-        this.transport.clear(this.metronomeID)
+        this.metronome.active = false
+        this.transport.clear(this.metronome.id)
     }
 
-    toggleMetronome(sound = 'clap') {
-        if (this.metronome) {
+    toggleMetronome() {
+        if (this.metronome.active) {
             this.stopMetronome()
         } else {
-            this.startMetronome(sound)
+            this.startMetronome()
         }
     }
 
@@ -133,18 +133,20 @@ export class Driver {
      * @param {number} [startTime=0] Time to start the piece.
      */
     toggle(startTime = 0) {
-        this.play(startTime)
-    }
-
-    /**
-     * Starts the transport.
-     * @param {number} [startTime=0] Time to start the piece.
-     */
-    play(startTime = 0) {
         if (this.transport.state === 'stopped') {
+            if(this.metronome.active){
+                this.startMetronome()
+            }
             this.transport.start('+0.1', startTime)
         } else {
             this.transport.stop()
         }
+    }
+
+    /**
+     * Clear the transport from everything that was scheduled.
+     */
+    clear(){
+        this.transport.cancel()
     }
 }

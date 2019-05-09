@@ -73,7 +73,7 @@ describe('Chord', () => {
             expect(new Chord({root: c, name: 'm'}).type).to.equal('minor')
         })
         it('returns undefined when its neither', () => {
-            expect(new Chord({root: c, pattern: [2, 8, 10]}).type).to.be.undefined
+            expect(new Chord({root: c, pattern: [2, 8, 10]}).type).to.be.equal('other')
         })
     })
 

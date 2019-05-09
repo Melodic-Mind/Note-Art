@@ -13,7 +13,7 @@ pattern which can be played together to form a harmonic sound.
 **Kind**: global class  
 
 * [Chord](#Chord)
-    * [new Chord(attributes)](#new_Chord_new)
+    * [new exports.Chord(attributes)](#new_Chord_new)
     * [.notes](#Chord+notes) : <code>Array</code>
     * [.fullName](#Chord+fullName) : <code>String</code>
     * [.name](#Chord+name) : <code>String</code>
@@ -26,7 +26,7 @@ pattern which can be played together to form a harmonic sound.
 
 <a name="new_Chord_new"></a>
 
-### new Chord(attributes)
+### new exports.Chord(attributes)
 **Throws**:
 
 - <code>MissingInformation</code> When not provided with root and either name or pattern
