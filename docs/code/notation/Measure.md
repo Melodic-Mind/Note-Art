@@ -7,7 +7,7 @@ title: Measure
 <a name="Measure"></a>
 
 ## Measure
-Represents a single measure as part of a musical piece in musical notation.
+Represents a single measure as part of a musical score in musical notation.
 
 **Kind**: global class  
 

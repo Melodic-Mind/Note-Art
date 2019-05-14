@@ -45,7 +45,7 @@ Any questions/ requests/ tips are welcome!**
 
 ## Features
 1. Create Notes, Chords, Scales and more, and extract information from them.
-2. Create full musical pieces with multiple instruments.
+2. Create full musical scores with multiple instruments.
 3. Play music right away using built in Instruments (or easily create your own).
 
 ## Getting Started
@@ -122,7 +122,7 @@ Check out the [API](https://note-art-docs.netlify.com/) for more.
 
 * Create instrument models that can play notes.                :heavy_check_mark:
 * Implement Music notation. :heavy_check_mark: 
-* Create scheduling and automation for playing music pieces with an arbitrary instrument. :heavy_check_mark: 
+* Create scheduling and automation for playing music scores with an arbitrary instrument. :heavy_check_mark: 
 * Add static and dynamic audio feature extraction.
 * Add more instruments.
 * Make the API more detailed and create documentation.

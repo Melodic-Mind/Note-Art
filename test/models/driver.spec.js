@@ -1,10 +1,10 @@
-import {Driver, Piano, Piece} from '../../src'
+import {Driver, Piano, Score} from '../../src'
 import Tone                   from 'tone'
 
-let driver, piece, transportStub
+let driver, score, transportStub
 beforeEach(() => {
-    piece         = new Piece()
-    driver        = new Driver(piece, [new Piano()])
+    score         = new Score()
+    driver        = new Driver(score, [new Piano()])
     // transportStub = sinon.stub(Tone.Transport)
 })
 
@@ -15,7 +15,7 @@ afterEach(() => {
 describe('Driver', () => {
     describe('new driver', () => {
         it('has these attributes', () => {
-            // expect(Object.keys(driver)).to.eql(['piece', 'instruments'])
+            // expect(Object.keys(driver)).to.eql(['score', 'instruments'])
         })
     })
 

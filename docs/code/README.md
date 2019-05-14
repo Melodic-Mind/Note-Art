@@ -8,7 +8,7 @@ If anything is unclear or you have any questions dont hesitate to ask.
 
 ## Features
 1. Create Notes, Chords, Scales and more, and extract information from them.
-2. Create full musical pieces with multiple instruments.
+2. Create full musical scores with multiple instruments.
 3. Play music right away using built in Instruments (or easily create your own).
 
 ## Getting Started

@@ -13,7 +13,7 @@ const sidebarTree = (title = 'About') => ({
         {
             'title':       'notation',
             'collapsable': false,
-            'children':    ['notation/Measure', 'notation/Piece'],
+            'children':    ['notation/Measure', 'notation/Score'],
         },
         {
             'title':       'instruments',

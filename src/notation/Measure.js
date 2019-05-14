@@ -3,7 +3,7 @@ import {firstToUpper, validateArray, validateRawNote, Chord} from '../'
 import {Note}                                                from '../models/Note'
 
 /**
- * @classdesc Represents a single measure as part of a musical piece in musical notation.
+ * @classdesc Represents a single measure as part of a musical score in musical notation.
  * @param {Number} [maxDuration = 0] Max duration of the measure(decided by time signature)
  */
 export class Measure {

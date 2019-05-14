@@ -2,12 +2,12 @@ import {Measure}      from './Measure'
 import {DurationRule} from '../validation/DurationRule'
 
 /**
- * @classdesc Represents a full musical piece consisting of a number of voices.
+ * @classdesc Represents a full musical score consisting of a number of voices.
  */
-export class Piece {
+export class Score {
     constructor({bpm, timeSignature} = {timeSignature: [4, 4]}) {
         this.timeSignature        = timeSignature
-        this.reducedTimeSignature = Piece.reduceTimeSignature(timeSignature)
+        this.reducedTimeSignature = Score.reduceTimeSignature(timeSignature)
         this.bpm                  = bpm || 120
         this.attributes           = {duration: '4n', voices: [[new Measure(this.reducedTimeSignature * 16)]]}
     }
@@ -22,7 +22,7 @@ export class Piece {
     }
 
     /**
-     * Returns the duration the piece will use when adding a new member to a measure.
+     * Returns the duration the score will use when adding a new member to a measure.
      * @returns {string}
      */
     get duration() {
@@ -30,7 +30,7 @@ export class Piece {
     }
 
     /**
-     * Sets the duration for the piece's current measure next data input.
+     * Sets the duration for the score's current measure next data input.
      * @param {string} duration
      */
     set duration(duration) {
@@ -70,14 +70,14 @@ export class Piece {
     }
 
     /**
-     * Adds a new voice to the piece, initialized with one empty measure.
+     * Adds a new voice to the score, initialized with one empty measure.
      */
     addVoice() {
         this.voices.push([new Measure()])
     }
 
     /**
-     * Deletes a voice from the piece.
+     * Deletes a voice from the score.
      * @param {number} index The index of the voice to delete.
      * @returns {boolean|Array}
      */
@@ -247,7 +247,7 @@ export class Piece {
     }
 
     /**
-     * Transposes a voice in the piece.
+     * Transposes a voice in the score.
      * @param {number} interval The interval to transpose by.
      * @param {number} voice Index of the voice to transpose.
      */
