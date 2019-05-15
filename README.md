@@ -61,13 +61,13 @@ import {Note, Chord, Scale} from 'note-art'
 
 // Note
 
-const A = new Note(note: 'a', octave: 4)
+const A = new Note('a', 4)
 
 console.log(A)      // A4
 
 console.log(A.frequency) // outputs 440
 
-const fourth = A.interval(5) // fourth is the note E with octave 5
+const fourth = A.interval(5) // calculate 5 semitones up - fourth is the note E with octave 5
 
 console.log(fourth) // E4
 
