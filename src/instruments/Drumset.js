@@ -1,5 +1,5 @@
 import {Instrument} from './Instrument'
-import {app}        from '../'
+import {lib}        from '../'
 
 const drumSounds = [
     'clap',
@@ -22,17 +22,22 @@ export class Drumset extends Instrument {
         this.init()
     }
 
+    /**
+     * @inheritDoc
+     */
+    static name = 'Drumset'
+
     /** @inheritDoc */
     init() {
         drumSounds.forEach(filename => {
             this.players.set(filename, this.generatePath(filename))
-            app.get('audio-manager').toMaster(this.players.get(filename))
+            lib.get('audio-manager').toMaster(this.players.get(filename))
         })
     }
 
     /** @inheritDoc */
     generatePath(fileName) {
-        return `${Instrument.server}drums/${fileName}.mp3`
+        return `${Instrument.server}${Drumset.instrumentPath}/${fileName}.mp3`
     }
 
     /**

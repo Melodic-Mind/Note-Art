@@ -10,11 +10,17 @@ export class Piano extends Instrument {
         this.init(base, range)
     }
 
+    /**
+     * @inheritDoc
+     */
+    static name = 'Piano'
+
     /** @inheritDoc */
     generatePath(note) {
         const set = Instrument.normalizeSet(note.pitchClass, note.classSet)
         const file = `${set}${note.octave}`
 
-        return `${Instrument.server}piano/${file}.mp3`
+        // return `${Instrument.server}piano/${file}.mp3`
+        return `${Instrument.server}${Piano.instrumentPath}/${file}.mp3`
     }
 }

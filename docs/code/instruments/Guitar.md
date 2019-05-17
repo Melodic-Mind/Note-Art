@@ -9,6 +9,9 @@ title: Guitar
 ## Guitar
 Represents a guitar which can play notes, individually or strum them together
 using different input methods.
+This guitar uses all the audio files from the note-art server,
+if you wish to create a different guitar you can do so easily by using the template below
+with your number of strings, their ranges, etc.
 
 **Kind**: global class  
 

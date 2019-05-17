@@ -11,6 +11,7 @@ describe('Instrument', () => {
             expect(Instrument.normalizeSet('Db', 'b')).to.eql('Db')
         })
     })
+
     describe('#getKey', () => {
         it('should return the raw representation of a note when its not sharp', () => {
             expect(Instrument.getKey({pitchClass: 'C', octave: 3, classSet: '#'})).to.equal('C3')
@@ -68,6 +69,18 @@ describe('Instrument', () => {
             expect(spy).to.have.been.calledThrice
             stub.restore()
             spy.restore()
+        })
+    })
+
+    describe('#instrumentPath', () => {
+        it('should throw an error when not implemented', () => {
+            expect(() => {Instrument.instrumentPath}).to.throw(Error)
+        })
+    })
+
+    describe('#name', () => {
+        it('should throw an error when called from Instrument class', () => {
+            expect(() => {Instrument.name}).to.throw(Error)
         })
     })
 

@@ -1,4 +1,4 @@
-import {app}                           from '../'
+import {lib}                           from '../'
 import {Note}                          from '../models/Note'
 import {firstToUpper}                  from '../addons/GlobalFunctions'
 import {notesInRange, validateRawNote} from '../utilities/MusicalAddons'
@@ -13,8 +13,17 @@ import {playing}                       from '../mixins/Instruments'
 export class Instrument {
     constructor() {
         this.notes   = new Map()
-        this.players = app.get('audio-manager').getAudioMap()
+        this.players = lib.get('audio-manager').getAudioMap()
     }
+
+    /**
+     * Returns the instrument's name.
+     * @type {string}
+     */
+    static get name() {
+        throw new Error('Not implemented for this instrument yet')
+    }
+
 
     /**
      * The server to load the audio files for the instrument from,
@@ -22,7 +31,18 @@ export class Instrument {
      * @returns {string}
      */
     static get server() {
-        return app.get('path')
+        return lib.get('path')
+    }
+
+    /**
+     * Returns string to be used when loading audio files from a specific path.
+     * Can be easily over-riden for a specific intrument by using the lib to set the instruments name.
+     * @return {string}
+     * @example
+     * lib.set('Piano', () => {return 'MyUltimatePiano'}) // Piano will now load audio files from the server/MyUltimatePiano
+     */
+    static get instrumentPath() {
+        return lib.get(this.name)
     }
 
     /**
@@ -87,7 +107,7 @@ export class Instrument {
      */
     setPlayer(key, note) {
         this.players.set(key, this.generatePath(note))
-        app.get('audio-manager').toMaster(this.players.get(key))
+        lib.get('audio-manager').toMaster(this.players.get(key))
     }
 
     /**

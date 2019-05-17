@@ -25,19 +25,19 @@ export class Score {
 }
 
 // Instruments
-export class Instrument{
+export class Instrument {
 
 }
 
-export class Drumset extends Instrument{
+export class Drumset extends Instrument {
 
 }
 
-export class Piano extends Instrument{
+export class Piano extends Instrument {
 
 }
 
-export class NoteString extends Instrument{
+export class NoteString extends Instrument {
 
 }
 
@@ -61,3 +61,4 @@ export class ScientificFuncs {
 
 }
 
+export const lib : object

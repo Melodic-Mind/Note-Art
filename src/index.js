@@ -6,26 +6,38 @@ if (process.env.NODE_ENV && process.env.NODE_ENV !== 'test') {
     Tone.Players.prototype.set = new Tone.Players().add
 }
 
-const app = new Application()
-app.set('audio-manager', () => {
+const lib = new Application()
+lib.set('audio-manager', () => {
     return AudioManager
 })
 
-app.set('path', () => {
+lib.set('path', () => {
     return 'https://note-art-server.herokuapp.com/audio/'
 })
 
-app.set('ready', () => {
+lib.set('ready', () => {
     return false
 })
 
+lib.set('NoteString', () => {
+    return 'guitar'
+})
+
+lib.set('Piano', () => {
+    return 'piano'
+})
+
+lib.set('Drumset', () => {
+    return 'drums'
+})
+
 Tone.Buffer.on('load', () => {
-    app.set('ready', () => {
+    lib.set('ready', () => {
         return true
     })
 })
 
-export {app}
+export {lib}
 export {Chord}                    from './models/Chord'
 export {Drumset}                  from './instruments/Drumset'
 export {Driver}                   from './utilities/Driver'

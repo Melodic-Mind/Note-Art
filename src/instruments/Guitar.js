@@ -1,22 +1,23 @@
-import {NoteString}       from '../instruments/NoteString'
-import {Note, Instrument} from '../'
-import {InvalidInput}     from '../Exceptions'
-import {playing}          from '../mixins/Instruments'
+import {Instrument, NoteString} from '../'
+import {playing}                from '../mixins/Instruments'
 
 /**
  * @classdesc Represents a guitar which can play notes, individually or strum them together
  * using different input methods.
+ * This guitar uses all the audio files from the note-art server,
+ * if you wish to create a different guitar you can do so easily by using the template below
+ * with your number of strings, their ranges, etc.
  */
 export class Guitar {
     constructor() {
-        const range  = 12
+        //The ranges are set to the number of samples in the note art server.
         this.strings = [
-            new NoteString('E4', range, 1),
-            new NoteString('B3', range, 2),
-            new NoteString('G3', range, 3),
-            new NoteString('D3', range, 4),
-            new NoteString('A2', range, 5),
-            new NoteString('E2', range, 6),
+            new NoteString('E4', 19, 1),
+            new NoteString('B3', 16, 2),
+            new NoteString('G3', 15, 3),
+            new NoteString('D3', 16, 4),
+            new NoteString('A2', 16, 5),
+            new NoteString('E2', 16, 6),
         ]
     }
 

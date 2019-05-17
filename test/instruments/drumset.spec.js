@@ -1,5 +1,5 @@
 import {Drumset} from '../../src/'
-import {app}     from '../../src/'
+import {lib}     from '../../src/'
 
 describe('Drums', () => {
     let drumset
@@ -14,7 +14,7 @@ describe('Drums', () => {
 
     describe('#getPlayer', () => {
         it('returns the audio path of the file', () => {
-            expect(drumset.getPlayer('clap')).to.equal(`${app.get('path')}drums/clap.mp3`)
+            expect(drumset.getPlayer('clap')).to.equal(`${lib.get('path')}drums/clap.mp3`)
         })
     })
     describe('#play', () => {

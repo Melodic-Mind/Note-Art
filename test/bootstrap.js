@@ -1,5 +1,5 @@
 import {AudioManager} from '../src/utilities/AudioManager'
-import {app} from '../src'
+import {lib} from '../src'
 import sinon               from 'sinon'
 import sinonChai           from 'sinon-chai'
 import chai                from 'chai'
@@ -21,7 +21,7 @@ class AudioManagerMock extends AudioManager {
 }
 
 
-app.set('audio-manager', () => {
+lib.set('audio-manager', () => {
     return AudioManagerMock
 })
 

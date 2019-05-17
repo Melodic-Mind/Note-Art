@@ -13,12 +13,17 @@ Can play drum sounds, has clap, hihat-closed, hihat-open, kick, snare, tom-high,
 **Extends**: <code>Instrument</code>  
 
 * [Drumset](#Drumset) ⇐ <code>Instrument</code>
+    * [.name](#Drumset+name)
     * [.init()](#Drumset+init)
     * [.generatePath()](#Drumset+generatePath)
     * [.getPlayer(fileName)](#Drumset+getPlayer) ⇒ <code>Tone.Player</code>
     * [.play(fileName)](#Drumset+play)
     * [.syncAndPlay(fileName)](#Drumset+syncAndPlay)
 
+<a name="Drumset+name"></a>
+
+### drumset.name
+**Kind**: instance property of [<code>Drumset</code>](#Drumset)  
 <a name="Drumset+init"></a>
 
 ### drumset.init()

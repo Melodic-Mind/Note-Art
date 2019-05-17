@@ -49,16 +49,16 @@ console.log(A_Major.notesString) // C3, D3, E3, F3, G3, A3, B3
 
 *When playing audio, make sure to resume the audio context on user interaction, and also wait for all the buffers to load:*
 ```
-import {app} from 'note-art'
+import {lib} from 'note-art'
 
-app.get('audio-manager').resumeContext() // Resume context
-app.get('ready')    // True when all buffers have loaded
+lib.get('audio-manager').resumeContext() // Resume context
+lib.get('ready')    // True when all buffers have loaded
 ```
 
 Set the path to your desired location which can be local or on a remote server.
 You are welcome to use my server, hosten on heroku and has piano, guitar and drum sounds.
 ```
-app.set('path', () => {
+lib.set('path', () => {
     return 'https://note-art-server.herokuapp.com//audio/' // the path to my server
 })
 ```

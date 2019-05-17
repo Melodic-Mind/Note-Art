@@ -1,7 +1,5 @@
-import {Note, validateRawNote, notesDistance, Piano, notesInRange, noteToObject} from '../../src'
+import {Note, validateRawNote, notesDistance, notesInRange, noteToObject} from '../../src'
 import {InvalidInput}                                                                                from '../../src/Exceptions'
-
-const piano = new Piano()
 
 describe('Music addon functions', () => {
     it('#notesDistance', () => {

@@ -3,13 +3,13 @@ import Tone  from 'tone'
 /**
  * @classdesc A static class which interacts with the Web Audio API
  * using <a href="https://tonejs.github.io/">ToneJS</a>.<br>
- * <b>Should only be called through the 'app' model</b>.<br>
+ * <b>Should only be called through the 'lib' model</b>.<br>
  * and the only reasons to call it are when creating a new instrument
  * or using it to resume the audio context.<br><br>
- * <b>Calling the Audio Manager using the app</b>
+ * <b>Calling the Audio Manager using the lib</b>
  * ```
- * import {app} from 'note-art'
- * app.get('audio-manager').resumeContext()
+ * import {lib} from 'note-art'
+ * lib.get('audio-manager').resumeContext()
  * ```
  */
 export class AudioManager {

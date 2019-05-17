@@ -22,7 +22,9 @@ Represents an abstract instrument with notes.
         * *[.play(note, [duration])](#Instrument+play)*
         * *[.syncAndPlay(note, [duration])](#Instrument+syncAndPlay)*
     * _static_
+        * *[.name](#Instrument.name) : <code>string</code>*
         * *[.server](#Instrument.server) ⇒ <code>string</code>*
+        * *[.instrumentPath](#Instrument.instrumentPath) ⇒ <code>string</code>*
         * *[.getKey(note)](#Instrument.getKey)*
         * *[.normalizeNoteStr(noteStr)](#Instrument.normalizeNoteStr) ⇒ <code>String</code>*
 
@@ -126,6 +128,12 @@ Syncs a note to the transport with a duration.
 | note | <code>string</code> |  | 
 | [duration] | <code>string</code> | <code>false</code> | 
 
+<a name="Instrument.name"></a>
+
+### *Instrument.name : <code>string</code>*
+Returns the instrument's name.
+
+**Kind**: static property of [<code>Instrument</code>](#Instrument)  
 <a name="Instrument.server"></a>
 
 ### *Instrument.server ⇒ <code>string</code>*
@@ -133,6 +141,17 @@ The server to load the audio files for the instrument from,
 can be overridden.
 
 **Kind**: static property of [<code>Instrument</code>](#Instrument)  
+<a name="Instrument.instrumentPath"></a>
+
+### *Instrument.instrumentPath ⇒ <code>string</code>*
+Returns string to be used when loading audio files from a specific path.
+Can be easily over-riden for a specific intrument by using the lib to set the instruments name.
+
+**Kind**: static property of [<code>Instrument</code>](#Instrument)  
+**Example**  
+```js
+lib.set('Piano', () => {return 'MyUltimatePiano'}) // Piano will now load audio files from the server/MyUltimatePiano
+```
 <a name="Instrument.getKey"></a>
 
 ### *Instrument.getKey(note)*
