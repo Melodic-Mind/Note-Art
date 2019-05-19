@@ -62,7 +62,7 @@ export class Driver {
     // Initializes the Tone transport
     init() {
         this.transport               = Tone.Transport
-        this.bpm                     = this.score.bpm
+        this.bpm                     = 120
         this.transport.timeSignature = this.score.timeSignature
         this.transport.loop          = true
         this.drumSet                 = new Drumset()
