@@ -72,7 +72,7 @@ export class Driver {
     }
 
     set bpm(value) {
-        if (this.score.timeSignature[1] === 8) {
+        if (this.score && this.score.timeSignature[1] === 8) {
             this.transport.bpm.value = value / 2
         } else {
             this.transport.bpm.value = value
