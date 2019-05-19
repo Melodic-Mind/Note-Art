@@ -17,7 +17,9 @@ export class Driver {
      * @return {this}
      */
     setScore(score) {
-        this.score = score
+        this.score                   = score
+        this.bpm                     = score.bpm
+        this.transport.timeSignature = score.timeSignature
         return this
     }
 
@@ -63,7 +65,7 @@ export class Driver {
     init() {
         this.transport               = Tone.Transport
         this.bpm                     = 120
-        this.transport.timeSignature = this.score.timeSignature
+        this.transport.timeSignature = 4
         this.transport.loop          = true
         this.drumSet                 = new Drumset()
         return this
