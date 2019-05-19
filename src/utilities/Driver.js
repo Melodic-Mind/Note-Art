@@ -20,6 +20,7 @@ export class Driver {
         this.score                   = score
         this.bpm                     = score.bpm
         this.transport.timeSignature = score.timeSignature
+        this.clear()
         return this
     }
 
