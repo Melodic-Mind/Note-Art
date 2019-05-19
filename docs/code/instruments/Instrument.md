@@ -20,7 +20,6 @@ Represents an abstract instrument with notes.
         * *[.note(note)](#Instrument+note) ⇒ <code>Note</code>*
         * *[.hasNote(note)](#Instrument+hasNote) ⇒ <code>boolean</code>*
         * *[.play(note, [duration])](#Instrument+play)*
-        * *[.syncAndPlay(note, [duration])](#Instrument+syncAndPlay)*
     * _static_
         * *[.name](#Instrument.name) : <code>string</code>*
         * *[.server](#Instrument.server) ⇒ <code>string</code>*
@@ -108,18 +107,6 @@ Whether an instrument has a note.
 
 ### *instrument.play(note, [duration])*
 Play sound, optionally for a duration.
-
-**Kind**: instance method of [<code>Instrument</code>](#Instrument)  
-
-| Param | Type | Default |
-| --- | --- | --- |
-| note | <code>string</code> |  | 
-| [duration] | <code>string</code> | <code>false</code> | 
-
-<a name="Instrument+syncAndPlay"></a>
-
-### *instrument.syncAndPlay(note, [duration])*
-Syncs a note to the transport with a duration.
 
 **Kind**: instance method of [<code>Instrument</code>](#Instrument)  
 

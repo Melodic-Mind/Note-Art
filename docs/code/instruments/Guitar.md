@@ -19,7 +19,6 @@ with your number of strings, their ranges, etc.
     * [.playString(string, note, duration)](#Guitar+playString)
     * [.playMultiple(stringsAndNotes, duration)](#Guitar+playMultiple)
     * [.play(note, duration)](#Guitar+play)
-    * [.syncAndPlay(note, duration)](#Guitar+syncAndPlay)
     * [.strum(pattern, duration)](#Guitar+strum)
 
 <a name="Guitar+playString"></a>
@@ -61,18 +60,6 @@ Syncs a note to the transport with a duration.
 | --- | --- | --- | --- |
 | note | <code>string</code> |  |  |
 | duration | <code>string</code> | <code>&quot;100&quot;</code> | duration to play the note for. |
-
-<a name="Guitar+syncAndPlay"></a>
-
-### guitar.syncAndPlay(note, duration)
-Syncs a note to the transport with a duration.
-
-**Kind**: instance method of [<code>Guitar</code>](#Guitar)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| note | <code>string</code> |  |
-| duration | <code>string</code> | duration to play the note for. |
 
 <a name="Guitar+strum"></a>
 

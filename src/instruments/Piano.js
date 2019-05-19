@@ -23,4 +23,9 @@ export class Piano extends Instrument {
         // return `${Instrument.server}piano/${file}.mp3`
         return `${Instrument.server}${Piano.instrumentPath}/${file}.mp3`
     }
+
+
+    toString(){
+        return 'Piano'
+    }
 }

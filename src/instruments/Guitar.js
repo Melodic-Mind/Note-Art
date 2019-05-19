@@ -67,15 +67,6 @@ export class Guitar {
     }
 
     /**
-     * Syncs a note to the transport with a duration.
-     * @param {string} note
-     * @param {string} duration duration to play the note for.
-     */
-    syncAndPlay(note, duration) {
-        return this.playHelper('syncAndPlay', note, duration)
-    }
-
-    /**
      * Strums the guitar's strings using guitar pattern(low to high).
      * @param {string} pattern pattern to strum
      * @param {string} duration duration to play the note for.
@@ -92,6 +83,11 @@ export class Guitar {
                     duration)
             }
         })
+    }
+
+
+    toString(){
+        return 'Guitar'
     }
 }
 

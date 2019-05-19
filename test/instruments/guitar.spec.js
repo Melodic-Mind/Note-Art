@@ -29,19 +29,6 @@ describe('Guitar', () => {
         })
     })
 
-    describe('#syncAndPlay', () => {
-        it('should play a note when it is valid', () => {
-            const stub = sinon.stub(guitar.strings[0], 'syncAndPlay')
-            guitar.syncAndPlay('e4', '4n')
-            expect(stub).to.have.been.calledOnce
-            stub.restore()
-        })
-
-        it('should throw an error when the note is not valid', () => {
-            expect(() => {guitar.syncAndPlay('NOT A NOTE')}).to.throw(InvalidInput)
-        })
-    })
-
     describe('#playString', () => {
         it('should play a note on a string', () => {
             const stub = sinon.stub(guitar.strings[0], 'play')

@@ -164,18 +164,6 @@ export class Instrument {
             this.getPlayer(note).start().stop(`+${duration}`)
         }
     }
-
-    /**
-     * Syncs a note to the transport with a duration.
-     * @param {string} note
-     * @param {string} [duration=false]
-     */
-    syncAndPlay(note, duration = '') {
-        note = Instrument.notePipeline(note)
-        if (this.hasNote(note)) {
-            this.getPlayer(note).sync().start().stop(duration)
-        }
-    }
 }
 
 Object.assign(Instrument.prototype, playing)

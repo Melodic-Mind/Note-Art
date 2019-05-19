@@ -22,4 +22,9 @@ export class NoteString extends Instrument {
     fret(fret) {
         return Array.from(this.notes.keys())[fret]
     }
+
+
+    toString() {
+        return 'Note-String'
+    }
 }

@@ -35,22 +35,4 @@ describe('Drums', () => {
             spy.restore()
         })
     })
-
-    describe('#syncAndPlay', () => {
-        it('syncs and plays when file exists', () => {
-            const stub = sinon.stub(drumset, 'getPlayer').returns({
-                sync: () => { return {start: () => { return {stop: () => {}} }} },
-            })
-            drumset.syncAndPlay('clap')
-            expect(stub).to.have.been.calledWithExactly('clap')
-            stub.restore()
-        })
-
-        it('should do nothing when the audio doesnt exist', () => {
-            const spy = sinon.spy(drumset, 'getPlayer')
-            drumset.syncAndPlay('NULL')
-            expect(spy).to.not.have.been.called
-            spy.restore()
-        })
-    })
 })

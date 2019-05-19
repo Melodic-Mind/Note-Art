@@ -59,14 +59,8 @@ export class Drumset extends Instrument {
         }
     }
 
-    /**
-     * Syncs a sound to the transport and plays it.
-     * @param {string} fileName
-     */
-    syncAndPlay(fileName) {
-        if (this.players.has(fileName)) {
-            this.getPlayer(fileName).sync().start()
-        }
+    toString() {
+        return 'Drumset'
     }
 }
 

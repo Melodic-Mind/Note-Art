@@ -3,15 +3,32 @@ import {MusicTheoryStructures as mts, Drumset} from '../'
 
 /**
  * @classdesc Represents a driver that can play a score.
- * @param {Score} score A score containing voices.
- * @param {Array} Instruments An array of instrument instances which will be used to play the voices.
+ * Best practice is to create one driver that will be used to play everything inside the app/website.
  */
 export class Driver {
-    constructor(score, instruments = []) {
-        this.score       = score
+    constructor() {
+        this.playing   = {voice: null, measure: null, noteSet: null}
+        this.metronome = {active: false, sound: 'clap', id: null}
+    }
+
+    /**
+     * Set the score the driver will play.
+     * @param {Score} score A score containing voices.
+     * @return {this}
+     */
+    setScore(score) {
+        this.score = score
+        return this
+    }
+
+    /**
+     * Set the instruments the driver will play with.
+     * @param {Array} Instruments An array of instrument instances which will be used to play the voices.
+     * @return {this}
+     */
+    setInstruments(instruments) {
         this.instruments = instruments
-        this.playing     = {voice: null, measure: null, noteSet: null}
-        this.metronome   = {active: false, sound: 'clap', id: null}
+        return this
     }
 
     /**
@@ -23,8 +40,8 @@ export class Driver {
     }
 
     startMetronome() {
-        this.metronome.active   = true
-        this.metronome.id = this.transport.scheduleRepeat(time => {
+        this.metronome.active = true
+        this.metronome.id     = this.transport.scheduleRepeat(time => {
             this.drumSet.play(this.metronome.sound)
         }, '4n', '0')
     }
@@ -134,7 +151,7 @@ export class Driver {
      */
     toggle(startTime = 0) {
         if (this.transport.state === 'stopped') {
-            if(this.metronome.active){
+            if (this.metronome.active) {
                 this.startMetronome()
             }
             this.transport.start('+0.1', startTime)
@@ -146,7 +163,7 @@ export class Driver {
     /**
      * Clear the transport from everything that was scheduled.
      */
-    clear(){
+    clear() {
         this.transport.cancel()
     }
 }

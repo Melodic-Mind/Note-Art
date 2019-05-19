@@ -8,28 +8,21 @@ title: Driver
 
 ## Driver
 Represents a driver that can play a score.
+Best practice is to create one driver that will be used to play everything inside the app/website.
 
 **Kind**: global class  
 
 * [Driver](#Driver)
-    * [new exports.Driver(score, Instruments)](#new_Driver_new)
     * [.state](#Driver+state) ⇒ <code>Tone.State</code>
     * [.position](#Driver+position) ⇒ <code>Ticks</code>
+    * [.setScore(score)](#Driver+setScore) ⇒ <code>this</code>
+    * [.setInstruments(Instruments)](#Driver+setInstruments) ⇒ <code>this</code>
     * [.addInstrument(instrument)](#Driver+addInstrument)
     * [.scheduleVoices()](#Driver+scheduleVoices)
     * [.scheduleMeasures(voiceIndex)](#Driver+scheduleMeasures)
     * [.scheduleNotes(measureIndex, voiceIndex)](#Driver+scheduleNotes)
     * [.toggle([startTime])](#Driver+toggle)
     * [.clear()](#Driver+clear)
-
-<a name="new_Driver_new"></a>
-
-### new exports.Driver(score, Instruments)
-
-| Param | Type | Description |
-| --- | --- | --- |
-| score | <code>Score</code> | A score containing voices. |
-| Instruments | <code>Array</code> | An array of instrument instances which will be used to play the voices. |
 
 <a name="Driver+state"></a>
 
@@ -41,6 +34,28 @@ Returns the current state of the transport.
 
 ### driver.position ⇒ <code>Ticks</code>
 **Kind**: instance property of [<code>Driver</code>](#Driver)  
+<a name="Driver+setScore"></a>
+
+### driver.setScore(score) ⇒ <code>this</code>
+Set the score the driver will play.
+
+**Kind**: instance method of [<code>Driver</code>](#Driver)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| score | <code>Score</code> | A score containing voices. |
+
+<a name="Driver+setInstruments"></a>
+
+### driver.setInstruments(Instruments) ⇒ <code>this</code>
+Set the instruments the driver will play with.
+
+**Kind**: instance method of [<code>Driver</code>](#Driver)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Instruments | <code>Array</code> | An array of instrument instances which will be used to play the voices. |
+
 <a name="Driver+addInstrument"></a>
 
 ### driver.addInstrument(instrument)
