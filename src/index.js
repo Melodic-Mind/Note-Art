@@ -11,6 +11,10 @@ lib.set('audio-manager', () => {
     return AudioManager
 })
 
+lib.set('tone', () => {
+    return Tone
+})
+
 lib.set('path', () => {
     return 'https://note-art-server.herokuapp.com/audio/'
 })

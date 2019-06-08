@@ -9,11 +9,9 @@ export class MusicTheoryStructures {
 
     static circleOfFifths = ['C', 'G', 'D', 'A', 'E', 'B', 'F#']
 
-
     static pitchClassSets = ['#', 'b']
 
     static sharpClassNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-
 
     static flatClassNotes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
 
@@ -107,7 +105,6 @@ export class MusicTheoryStructures {
     static PentatonicScales = scales.filter((scale) => {
         return scale['Length'] === '5' && scale['Name'] !== 'Theoretical'
     })
-
 
     static TheoreticalScales = scales.filter((scale) => {
         return scale['Name'] === 'Theoretical'
