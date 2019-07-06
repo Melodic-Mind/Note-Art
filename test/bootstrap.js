@@ -1,8 +1,9 @@
+import 'amd-loader'
 import {AudioManager} from '../src/utilities/AudioManager'
-import {lib} from '../src'
-import sinon               from 'sinon'
-import sinonChai           from 'sinon-chai'
-import chai                from 'chai'
+import {lib}          from '../src'
+import sinon          from 'sinon'
+import sinonChai      from 'sinon-chai'
+import chai           from 'chai'
 
 chai.use(sinonChai)
 

@@ -1,6 +1,6 @@
 import {Application}              from './Application'
 import {AudioManager}             from './utilities/AudioManager'
-import Tone                       from 'tone'
+import Tone                       from 'Tone/core/Tone'
 
 if (process.env.NODE_ENV && process.env.NODE_ENV !== 'test') {
     Tone.Players.prototype.set = new Tone.Players().add

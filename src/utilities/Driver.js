@@ -1,4 +1,4 @@
-import Tone                                    from 'tone'
+import Transport                                    from 'Tone/core/Transport'
 import {MusicTheoryStructures as mts, Drumset} from '../'
 
 /**
@@ -64,7 +64,7 @@ export class Driver {
 
     // Initializes the Tone transport
     init() {
-        this.transport               = Tone.Transport
+        this.transport               = Transport
         this.bpm                     = 120
         this.transport.timeSignature = 4
         this.transport.loop          = true

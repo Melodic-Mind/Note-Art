@@ -1,6 +1,4 @@
-import {expect}       from 'chai'
-import {Note, Piano}  from '../../src'
-import {InvalidInput} from '../../src/Exceptions'
+import {Piano}  from '../../src'
 
 
 describe('Piano', () => {

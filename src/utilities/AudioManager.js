@@ -1,4 +1,5 @@
-import Tone  from 'tone'
+import Players from 'Tone/source/Players'
+import Tone    from 'Tone/core/Tone'
 
 /**
  * @classdesc A static class which interacts with the Web Audio API
@@ -17,7 +18,7 @@ export class AudioManager {
      * @returns {Tone.Players}
      */
     static getAudioMap() {
-        return new Tone.Players()
+        return new Players()
     }
 
     /**

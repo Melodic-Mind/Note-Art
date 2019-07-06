@@ -1,10 +1,9 @@
 import {Driver, Piano, Score} from '../../src'
-import Tone                   from 'tone'
 
 let driver, score, transportStub
 beforeEach(() => {
-    score         = new Score()
-    driver        = new Driver(score, [new Piano()])
+    score  = new Score()
+    driver = new Driver(score, [new Piano()])
     // transportStub = sinon.stub(Tone.Transport)
 })
 
