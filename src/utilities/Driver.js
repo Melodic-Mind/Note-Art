@@ -1,5 +1,5 @@
-import Transport                                    from 'Tone/core/Transport'
-import {MusicTheoryStructures as mts, Drumset} from '../'
+import Transport                               from 'Tone/core/Transport'
+import {Drumset, MusicTheoryStructures as mts} from '../'
 
 /**
  * @classdesc Represents a driver that can play a score.
@@ -14,12 +14,16 @@ export class Driver {
     /**
      * Set the score the driver will play.
      * @param {Score} score A score containing voices.
+     * @param {boolean} [updateTransport=true] Whether to update the transport's time signature and bpm values based on the
+     *     score.
      * @return {this}
      */
-    setScore(score) {
-        this.score                   = score
-        this.bpm                     = score.bpm
-        this.transport.timeSignature = score.timeSignature
+    setScore(score = null, updateTransport = true) {
+        if (score && updateTransport) {
+            this.bpm                     = score.bpm
+            this.transport.timeSignature = score.timeSignature
+        }
+        this.score = score
         this.clear()
         return this
     }
@@ -40,6 +44,7 @@ export class Driver {
      */
     addInstrument(instrument) {
         this.instruments.push(instrument)
+        return this
     }
 
     startMetronome() {
@@ -47,18 +52,22 @@ export class Driver {
         this.metronome.id     = this.transport.scheduleRepeat(time => {
             this.drumSet.play(this.metronome.sound)
         }, '4n', '0')
+
+        return this
     }
 
     stopMetronome() {
         this.metronome.active = false
         this.transport.clear(this.metronome.id)
+
+        return this
     }
 
     toggleMetronome() {
         if (this.metronome.active) {
-            this.stopMetronome()
+            return this.stopMetronome()
         } else {
-            this.startMetronome()
+            return this.startMetronome()
         }
     }
 
@@ -81,7 +90,7 @@ export class Driver {
     }
 
     get bpm() {
-        if (this.score.timeSignature[1] === 8) {
+        if (this.score && this.score.timeSignature[1] === 8) {
             return this.transport.bpm.value * 2
         }
         return this.transport.bpm.value
@@ -107,6 +116,8 @@ export class Driver {
         for (let i = 0; i < this.score.voices.length; ++i) {
             this.scheduleMeasures(i)
         }
+
+        return this
     }
 
     /**
@@ -154,13 +165,22 @@ export class Driver {
      */
     toggle(startTime = 0) {
         if (this.transport.state === 'stopped') {
-            if (this.metronome.active) {
-                this.startMetronome()
-            }
-            this.transport.start('+0.1', startTime)
+            this.start()
         } else {
             this.transport.stop()
         }
+    }
+
+    start(startTime = 0) {
+        if (this.metronome.active) {
+            this.startMetronome()
+        }
+        this.transport.start('+0.1', startTime)
+    }
+
+    stop() {
+        this.transport.stop()
+        return this
     }
 
     /**
@@ -168,5 +188,6 @@ export class Driver {
      */
     clear() {
         this.transport.cancel()
+        return this
     }
 }
