@@ -1,5 +1,5 @@
-import {Instrument, NoteString} from '../'
-import {playing}                from '../mixins/Instruments'
+import {Instrument, InstrumentString} from '../'
+import {playing}                      from '../mixins/Instruments'
 
 /**
  * @classdesc Represents a guitar which can play notes, individually or strum them together
@@ -12,12 +12,12 @@ export class Guitar {
     constructor() {
         //The ranges are set to the number of samples in the note art server.
         this.strings = [
-            new NoteString('E4', 19, 1),
-            new NoteString('B3', 16, 2),
-            new NoteString('G3', 15, 3),
-            new NoteString('D3', 16, 4),
-            new NoteString('A2', 16, 5),
-            new NoteString('E2', 16, 6),
+            new InstrumentString('E4', 19, 1),
+            new InstrumentString('B3', 16, 2),
+            new InstrumentString('G3', 15, 3),
+            new InstrumentString('D3', 16, 4),
+            new InstrumentString('A2', 16, 5),
+            new InstrumentString('E2', 16, 6),
         ]
     }
 
@@ -54,6 +54,7 @@ export class Guitar {
                 return this.strings[i][method](note, duration)
             }
         }
+
         return false
     }
 

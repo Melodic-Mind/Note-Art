@@ -48,9 +48,11 @@ function findQuery(name, pattern, source) {
  */
 function findQueryByString(source, key, query) {
     const result = source.find(listing => listing[key] === query)
+
     if (!result) {
         throw new DataNotFound(query)
     }
+
     return result
 }
 
@@ -68,6 +70,7 @@ function findQueryByArray(source, key, query) {
     const result = source.find(
         listing => JSON.stringify(JSON.parse(listing[key])) === JSON.stringify(query),
     )
+
     if (!result) {
         return {
             Chord:                'Unknown',
@@ -76,6 +79,7 @@ function findQueryByArray(source, key, query) {
             Pattern:              JSON.stringify(query),
         }
     }
+
     return result
 }
 

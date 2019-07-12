@@ -1,6 +1,6 @@
-import {MusicTheoryStructures as mts}                        from '../resources/MusicTheoryStructures'
-import {firstToUpper, validateArray, validateRawNote, Chord} from '../'
-import {Note}                                                from '../models/Note'
+import {MusicTheoryStructures as mts}                 from '../resources/MusicTheoryStructures'
+import {firstToUpper, validateArray, validateRawNote} from '../'
+import {Note}                                         from '../models/Note'
 
 /**
  * @classdesc Represents a single measure as part of a musical score in musical notation.
@@ -64,12 +64,21 @@ export class Measure {
      * @param {number} [position=this.data.length]
      * @returns {number}
      */
-    durationLeft(position = this.data.length) {
-        return this.maxDuration - this.data.slice(0, position)
-                                      .reduce((prev, curr) => {
-                                          return curr.notes.size ?
-                                                 prev + mts.noteDurations()[curr.duration] : prev + 0
-                                      }, 0)
+    durationLeft(position) {
+        return this.maxDuration - this.durationUpTo(position)
+    }
+
+    /**
+     * Get the duration in the measure up to position.
+     * @param position
+     * @return {*}
+     */
+    durationUpTo(position = this.data.length) {
+        return this.data.slice(0, position)
+                   .reduce((prev, curr) => {
+                       return curr.notes.size ?
+                              prev + mts.noteDurations()[curr.duration] : prev + 0
+                   }, 0)
     }
 
     /**
@@ -242,6 +251,7 @@ export class Measure {
             }
         })
         string += '}'
+
         return string
     }
 }

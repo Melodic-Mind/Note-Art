@@ -5,7 +5,7 @@ import {PianoOctaveRule}              from '../validation/PianoOctaveRule'
 import {InvalidInput}                 from '../Exceptions'
 
 /**
- * Calculate the pure interval(not considering octave) between 2 notes(in semitones).
+ * Calculate the pure interval(excluding octave) between 2 notes(in semitones).
  * @param {Note} n1 first note
  * @param {Note} n2 second note
  * @returns {Number}
@@ -18,7 +18,7 @@ function notesDistance(n1, n2) {
 
 /**
  * Turns a note into an object with pitch class and octave.
- * @param {String} pitch Pitch as a string, e.g Ab3
+ * @param {String} note String representing a note, e.g Ab3.
  * @returns {{octave: number, pitchClass: String}}
  */
 function noteToObject(note) {
@@ -30,15 +30,16 @@ function noteToObject(note) {
     return {pitchClass, octave}
 }
 
+
+//TODO Create a RawNote Class which will have all the functions related  to raw notes.
+
 /**
  * Validate that a string is a valid representation of a raw note.
- * @param note
+ * @param {String} note
  * @returns {boolean}
  */
 function validateRawNote(note) {
-    if (typeof note !== 'string') {
-        throw new InvalidInput(`Expected ${note} to be a string representing Note`)
-    }
+    validateString(note)
 
     if (['r', 'R'].includes(note)) {
         return true
@@ -51,6 +52,12 @@ function validateRawNote(note) {
     PianoOctaveRule.validatePossible(octave)
 
     return true
+}
+
+function validateString(str) {
+    if (typeof str !== 'string') {
+        throw new InvalidInput(`Expected ${str} to be a string representing Note`)
+    }
 }
 
 /**

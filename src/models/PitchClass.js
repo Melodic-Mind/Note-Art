@@ -74,6 +74,7 @@ export class PitchClass {
         if (PitchClass[operation](pitchClass)) {
             return mts.pitchClasses[mts.pitchClasses.indexOf(pitchClass) + constant]
         }
+
         return pitchClass
     }
 
@@ -86,7 +87,7 @@ export class PitchClass {
     }
 
     /**
-     * Retuns the pure pitch class at interval.
+     * Returns the pure pitch class at an interval.
      * @param interval
      * @returns {PitchClass}
      * @example

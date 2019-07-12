@@ -48,7 +48,7 @@ Get the index of the pitch class out of the 12 classes (C, Db, etc...).
 <a name="PitchClass+interval"></a>
 
 ### pitchClass.interval(interval) ⇒ [<code>PitchClass</code>](#PitchClass)
-Retuns the pure pitch class at interval.
+Returns the pure pitch class at an interval.
 
 **Kind**: instance method of [<code>PitchClass</code>](#PitchClass)  
 

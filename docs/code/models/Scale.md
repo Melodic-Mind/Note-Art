@@ -16,7 +16,6 @@ Represents a musical scale - a series of notes following a specific pattern from
 * [Scale](#Scale)
     * [new exports.Scale(tonic, name, pattern)](#new_Scale_new)
     * _instance_
-        * [.notes](#Scale+notes)
         * [.semitones](#Scale+semitones) : <code>Array</code>
         * [.name](#Scale+name) : <code>\*</code>
         * [.otherNames](#Scale+otherNames) ⇒ <code>\*</code> \| <code>string</code>
@@ -53,12 +52,6 @@ const c = new Note({note: 'c'})
 const C_Major_by_pattern = new Scale({tonic:c, pattern: [0, 2, 4, 5, 7, 9, 11]}) // new C major scale.
 const C_minor_by_name = new Scale({tonic:c, name: 'Minor'}) // new C major scale // new C minor scale.
 ```
-<a name="Scale+notes"></a>
-
-### scale.notes
-returns array that contains all the notes in the pattern.
-
-**Kind**: instance property of [<code>Scale</code>](#Scale)  
 <a name="Scale+semitones"></a>
 
 ### scale.semitones : <code>Array</code>

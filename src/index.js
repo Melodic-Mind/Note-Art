@@ -1,12 +1,12 @@
-import {Application}              from './Application'
-import {AudioManager}             from './utilities/AudioManager'
-import Tone                       from 'Tone/core/Tone'
+import {Library}                        from './Library'
+import {AudioManager}                   from './utilities/AudioManager'
+import Tone                             from 'Tone/core/Tone'
 
 if (process.env.NODE_ENV && process.env.NODE_ENV !== 'test') {
     Tone.Players.prototype.set = new Tone.Players().add
 }
 
-const lib = new Application()
+const lib = new Library()
 lib.set('audio-manager', () => {
     return AudioManager
 })
@@ -42,18 +42,18 @@ Tone.Buffer.on('load', () => {
 })
 
 export {lib}
-export {Chord}                    from './models/Chord'
-export {Drumset}                  from './instruments/Drumset'
-export {Driver}                   from './utilities/Driver'
-export {Guitar}                   from './instruments/Guitar'
-export {Instrument}               from './instruments/Instrument'
-export {Measure}                  from './notation/Measure'
-export {MusicTheoryStructures}    from './resources/MusicTheoryStructures'
-export {Note}                     from './models/Note'
-export {NoteString}               from './instruments/NoteString'
-export {Piano}                    from './instruments/Piano'
-export {Score}                    from './notation/Score'
-export {PitchClass}               from './models/PitchClass'
-export {Scale}                    from './models/Scale'
-export *                          from './addons/GlobalFunctions'
-export *                          from './utilities/MusicalAddons'
+export {Chord}                          from './models/Chord'
+export {Drumset}                        from './instruments/Drumset'
+export {Driver}                         from './utilities/Driver'
+export {Guitar}                         from './instruments/Guitar'
+export {Instrument}                     from './instruments/Instrument'
+export {Measure}                        from './notation/Measure'
+export {MusicTheoryStructures}          from './resources/MusicTheoryStructures'
+export {Note}                           from './models/Note'
+export {InstrumentString}               from './instruments/InstrumentString'
+export {Piano}                          from './instruments/Piano'
+export {Score}                          from './notation/Score'
+export {PitchClass}                     from './models/PitchClass'
+export {Scale}                          from './models/Scale'
+export *                                from './addons/GlobalFunctions'
+export *                                from './utilities/MusicalAddons'

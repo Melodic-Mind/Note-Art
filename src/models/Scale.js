@@ -35,9 +35,10 @@ export class Scale {
         if (!(tonic instanceof Note)) {
             throw new InvalidInput(`expected ${tonic} to be an instance of Note`)
         }
-        this._notes = []
+
+        this.notes = []
         this.semitones.forEach(interval =>
-            this._notes.push(tonic.interval(interval)),
+            this.notes.push(tonic.interval(interval)),
         )
     }
 
@@ -49,9 +50,9 @@ export class Scale {
     normalizeIfDiatonic(tonic) {
         if (Scale.validateDiatonicScale(this.pitchClasses) && this.notes.length === 7) {
             tonic.classSet     = tonic.classSet === 'b' ? '#' : 'b'
-            this._notes.length = 0
+            this.notes.length = 0
             this.semitones.forEach(interval =>
-                this._notes.push(tonic.interval(interval)),
+                this.notes.push(tonic.interval(interval)),
             )
         }
     }
@@ -67,6 +68,7 @@ export class Scale {
         pitchClasses.forEach(pc => {
             count[valid.indexOf(pc[0])]++
         })
+
         return count.some(c => c > 1)
     }
 
@@ -92,13 +94,6 @@ export class Scale {
             chords.push(new Chord({root, pattern}))
         })
         return chords
-    }
-
-    /**
-     * returns array that contains all the notes in the pattern.
-     */
-    get notes() {
-        return this._notes
     }
 
     get raw() {
@@ -139,6 +134,7 @@ export class Scale {
         if (!this._chords) {
             this._chords = Scale.chordsFromNotes(this.notes)
         }
+
         return this._chords
     }
 
@@ -151,6 +147,7 @@ export class Scale {
         if (!this._seventhChords) {
             this._seventhChords = Scale.chordsFromNotes(this.notes, true)
         }
+
         return this._seventhChords
     }
 

@@ -20,7 +20,6 @@ export class Piano extends Instrument {
         const set = Instrument.normalizeSet(note.pitchClass, note.classSet)
         const file = `${set}${note.octave}`
 
-        // return `${Instrument.server}piano/${file}.mp3`
         return `${Instrument.server}${Piano.instrumentPath}/${file}.mp3`
     }
 

@@ -3,7 +3,8 @@ import {Drumset, MusicTheoryStructures as mts} from '../'
 
 /**
  * @classdesc Represents a driver that can play a score.
- * Best practice is to create one driver that will be used to play everything inside the app/website.
+ * Uses Tone.Transport, which is a member of the class.
+ * Best practice is to create one driver that will be used to play everything.
  */
 export class Driver {
     constructor() {
@@ -14,8 +15,8 @@ export class Driver {
     /**
      * Set the score the driver will play.
      * @param {Score} score A score containing voices.
-     * @param {boolean} [updateTransport=true] Whether to update the transport's time signature and bpm values based on the
-     *     score.
+     * @param {boolean} [updateTransport=true] Whether to update the transport's time signature and bpm values based on
+     *     the score.
      * @return {this}
      */
     setScore(score = null, updateTransport = true) {
@@ -23,6 +24,7 @@ export class Driver {
             this.bpm                     = score.bpm
             this.transport.timeSignature = score.timeSignature
         }
+
         this.score = score
         this.clear()
         return this
@@ -47,6 +49,10 @@ export class Driver {
         return this
     }
 
+    /**
+     * Schedule metronome and start it.
+     * @return {this}
+     */
     startMetronome() {
         this.metronome.active = true
         this.metronome.id     = this.transport.scheduleRepeat(time => {
@@ -56,6 +62,10 @@ export class Driver {
         return this
     }
 
+    /**
+     * Stops the metronome and removes it from the transport.
+     * @return {this}
+     */
     stopMetronome() {
         this.metronome.active = false
         this.transport.clear(this.metronome.id)
@@ -63,6 +73,10 @@ export class Driver {
         return this
     }
 
+    /**
+     * Starts the metronome if it's stopped, otherwise stops it.
+     * @return {Driver}
+     */
     toggleMetronome() {
         if (this.metronome.active) {
             return this.stopMetronome()
@@ -81,6 +95,10 @@ export class Driver {
         return this
     }
 
+    /**
+     * Set the bpm value of the transport.
+     * @param {number} value
+     */
     set bpm(value) {
         if (this.score && this.score.timeSignature[1] === 8) {
             this.transport.bpm.value = value / 2
@@ -89,6 +107,10 @@ export class Driver {
         }
     }
 
+    /**
+     * Get the bpm value of the transport.
+     * @return {number}
+     */
     get bpm() {
         if (this.score && this.score.timeSignature[1] === 8) {
             return this.transport.bpm.value * 2
@@ -96,13 +118,18 @@ export class Driver {
         return this.transport.bpm.value
     }
 
+    /**
+     * Sets the point in time to start the loop of the transport.
+     * @param time
+     */
     set loopStart(time) {
         this.transport.loopStart = time
     }
 
     /**
-     * Returns the current state of the transport.
-     * @return {Tone.State}
+     * Returns the current state of the transport,
+     * either 'stopped', 'started' or 'paused'.
+     * @return {String}
      */
     get state() {
         return this.transport.state
@@ -110,6 +137,7 @@ export class Driver {
 
     /**
      * Schedules all the voices of the score to the transport.
+     * @return {this}
      */
     scheduleVoices() {
         this.transport.loopEnd = this.score.voices[0].length + 'm'
@@ -131,6 +159,7 @@ export class Driver {
     }
 
     /**
+     * Returns the position in the transport that is currently being played.
      * @return {Ticks}
      */
     get position() {
@@ -171,20 +200,34 @@ export class Driver {
         }
     }
 
+    /**
+     * Start the transport.
+     * @param startTime
+     * @return {this}
+
+     */
     start(startTime = 0) {
         if (this.metronome.active) {
             this.startMetronome()
         }
+
         this.transport.start('+0.1', startTime)
+        return this
     }
 
+    /**
+     * Stops the transport.
+     * @return {this}
+     */
     stop() {
         this.transport.stop()
+
         return this
     }
 
     /**
      * Clear the transport from everything that was scheduled.
+     * @return {this}
      */
     clear() {
         this.transport.cancel()
