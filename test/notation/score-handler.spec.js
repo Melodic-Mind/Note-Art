@@ -1,6 +1,4 @@
-import {Measure}      from '../../src/notation/Measure'
-import {Score}        from '../../src/notation/Score'
-import {ScoreHandler} from '../../src/notation/ScoreHandler'
+import {Measure, Score, ScoreHandler} from '../../src/'
 
 describe('Score Handler', () => {
     let score
@@ -17,7 +15,7 @@ describe('Score Handler', () => {
         score.addMeasure(0, 0, measure)
     })
     describe('#measureToObject', () => {
-        it('turns a measure into object literal', () => {
+        it('turns a measure with notes into object literal', () => {
             const stub = {
                 maxDuration: 64,
                 duration:    '4n',
@@ -43,10 +41,32 @@ describe('Score Handler', () => {
 
             expect(ScoreHandler.measureToObject(measure)).to.eql(stub)
         })
+
+        it('turns a measure with chords into object literal', () => {
+            const chordMeasure = new Measure()
+            chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4N'}, 0)
+            const stub = {
+                maxDuration: 64,
+                duration:    '4n',
+                data:        [
+                    {notes: ['C3', 'E3', 'G3'], duration: '4n', caption: 'C M'},
+                    {notes: [], duration: '4n'},
+                ],
+            }
+
+            expect(ScoreHandler.measureToObject(chordMeasure)).to.eql(stub)
+        })
     })
 
     describe('#objectToMeasure', () => {
-        it('creates a new measure from object', () => {
+        it('creates a new measure from object with notes', () => {
+            const obj = ScoreHandler.measureToObject(measure)
+            expect(ScoreHandler.objectToMeasure(obj)).to.eql(measure)
+        })
+
+        it.only('creates a new measure from object with chords', () => {
+            const chordMeasure = new Measure()
+            chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4N'}, 0)
             const obj = ScoreHandler.measureToObject(measure)
             expect(ScoreHandler.objectToMeasure(obj)).to.eql(measure)
         })
@@ -54,8 +74,8 @@ describe('Score Handler', () => {
 
     describe('#stringifyScore', () => {
         it('creates a object from a score', async () => {
-            const scoreString = await ScoreHandler.stringifyScore(score)
-            expect(await ScoreHandler.parseScore(scoreString)).to.eql(score)
+            const scoreString = await JSON.stringify(ScoreHandler.scoreToObject(score))
+            expect(ScoreHandler.objectToScore(await JSON.parse(scoreString))).to.eql(score)
         })
     })
 })

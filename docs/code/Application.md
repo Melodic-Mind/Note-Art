@@ -1,12 +1,12 @@
 ---
-title: Library
+title: Application
 ---
 
-# Library
+# Application
 
-<a name="Library"></a>
+<a name="Application"></a>
 
-## Library
+## Application
 A wrapper the library uses for setting and getting global state variables.
 
 **Kind**: global class  

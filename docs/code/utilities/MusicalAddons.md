@@ -8,9 +8,9 @@ title: MusicalAddons
 
 <dl>
 <dt><a href="#notesDistance">notesDistance(n1, n2)</a> ⇒ <code>Number</code></dt>
-<dd><p>Calculate the pure interval(excluding octave) between 2 notes(in semitones).</p>
+<dd><p>Calculate the pure interval(not considering octave) between 2 notes(in semitones).</p>
 </dd>
-<dt><a href="#noteToObject">noteToObject(note)</a> ⇒ <code>Object</code></dt>
+<dt><a href="#noteToObject">noteToObject(pitch)</a> ⇒ <code>Object</code></dt>
 <dd><p>Turns a note into an object with pitch class and octave.</p>
 </dd>
 <dt><a href="#validateRawNote">validateRawNote(note)</a> ⇒ <code>boolean</code></dt>
@@ -24,7 +24,7 @@ title: MusicalAddons
 <a name="notesDistance"></a>
 
 ## notesDistance(n1, n2) ⇒ <code>Number</code>
-Calculate the pure interval(excluding octave) between 2 notes(in semitones).
+Calculate the pure interval(not considering octave) between 2 notes(in semitones).
 
 **Kind**: global function  
 
@@ -35,14 +35,14 @@ Calculate the pure interval(excluding octave) between 2 notes(in semitones).
 
 <a name="noteToObject"></a>
 
-## noteToObject(note) ⇒ <code>Object</code>
+## noteToObject(pitch) ⇒ <code>Object</code>
 Turns a note into an object with pitch class and octave.
 
 **Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| note | <code>String</code> | String representing a note, e.g Ab3. |
+| pitch | <code>String</code> | Pitch as a string, e.g Ab3 |
 
 <a name="validateRawNote"></a>
 
@@ -51,9 +51,9 @@ Validate that a string is a valid representation of a raw note.
 
 **Kind**: global function  
 
-| Param | Type |
-| --- | --- |
-| note | <code>String</code> | 
+| Param |
+| --- |
+| note | 
 
 <a name="notesInRange"></a>
 

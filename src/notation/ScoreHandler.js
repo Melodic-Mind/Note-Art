@@ -30,8 +30,8 @@ export class ScoreHandler {
             duration: notesMember.duration,
         }
 
-        if (notesMember.name) {
-            notes.name = notesMember.name
+        if (notesMember.caption) {
+            notes.caption = notesMember.caption
         }
 
         return notes
@@ -46,7 +46,7 @@ export class ScoreHandler {
         const measure    = new Measure(measureObject.maxDuration)
         measure.duration = measureObject.duration
         measureObject.data.forEach((notesMember, position) => {
-            if (notesMember.name) {
+            if (notesMember.caption) {
                 measure.addChord({...notesMember}, position)
             } else {
                 measure.addNotes({...notesMember}, position)
@@ -91,23 +91,5 @@ export class ScoreHandler {
         })
 
         return score
-    }
-
-    /**
-     * Convert a score to string.
-     * @param {Score} score
-     * @return {string}
-     */
-    static async stringifyScore(score) {
-        return await JSON.stringify(this.scoreToObject(score))
-    }
-
-    /**
-     * Convert a stringified score back to a score.
-     * @param {string} stringifiedScore
-     * @return {Score}
-     */
-    static async parseScore(stringifiedScore) {
-        return this.objectToScore(await JSON.parse(stringifiedScore))
     }
 }

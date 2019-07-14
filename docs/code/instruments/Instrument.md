@@ -14,7 +14,7 @@ Represents an abstract instrument with notes.
 * *[Instrument](#Instrument)*
     * _instance_
         * *[.init(base, range)](#Instrument+init)*
-        * *[.generatePath(fileName)](#Instrument+generatePath) ⇒ <code>String</code>*
+        * *[.generatePath(fileName)](#Instrument+generatePath)*
         * *[.setPlayer(key, note)](#Instrument+setPlayer)*
         * *[.getPlayer(note)](#Instrument+getPlayer) ⇒ <code>Tone.Player</code>*
         * *[.note(note)](#Instrument+note) ⇒ <code>Note</code>*
@@ -25,7 +25,7 @@ Represents an abstract instrument with notes.
         * *[.server](#Instrument.server) ⇒ <code>string</code>*
         * *[.instrumentPath](#Instrument.instrumentPath) ⇒ <code>string</code>*
         * *[.getKey(note)](#Instrument.getKey)*
-        * *[.formatNote(note)](#Instrument.formatNote) ⇒ <code>String</code>*
+        * *[.normalizeNoteStr(noteStr)](#Instrument.normalizeNoteStr) ⇒ <code>String</code>*
 
 <a name="Instrument+init"></a>
 
@@ -42,14 +42,10 @@ Initializes all the notes and audio players for the instrument.
 
 <a name="Instrument+generatePath"></a>
 
-### *instrument.generatePath(fileName) ⇒ <code>String</code>*
-Generates the path to load a note from.
+### *instrument.generatePath(fileName)*
+Generates player for some audio.
 
 **Kind**: instance method of [<code>Instrument</code>](#Instrument)  
-**Throws**:
-
-- Error
-
 
 | Param | Type |
 | --- | --- |
@@ -141,8 +137,7 @@ Can be easily over-riden for a specific intrument by using the lib to set the in
 **Kind**: static property of [<code>Instrument</code>](#Instrument)  
 **Example**  
 ```js
-lib.set('Piano', () => {return 'MyUltimatePiano'}) // Piano will now load audio files from the
-    server/MyUltimatePiano
+lib.set('Piano', () => {return 'MyUltimatePiano'}) // Piano will now load audio files from the server/MyUltimatePiano
 ```
 <a name="Instrument.getKey"></a>
 
@@ -155,14 +150,14 @@ Calculates a specific note's key.
 | --- | --- |
 | note | <code>Note</code> | 
 
-<a name="Instrument.formatNote"></a>
+<a name="Instrument.normalizeNoteStr"></a>
 
-### *Instrument.formatNote(note) ⇒ <code>String</code>*
+### *Instrument.normalizeNoteStr(noteStr) ⇒ <code>String</code>*
 Turns a string representing a note to upper case.
 
 **Kind**: static method of [<code>Instrument</code>](#Instrument)  
 
 | Param |
 | --- |
-| note | 
+| noteStr | 
 

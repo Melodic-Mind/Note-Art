@@ -62,21 +62,12 @@ export class Measure {
      * @param {number} [position=this.data.length]
      * @returns {number}
      */
-    durationLeft(position) {
-        return this.maxDuration - this.durationUpTo(position)
-    }
-
-    /**
-     * Get the duration in the measure up to position.
-     * @param position
-     * @return {*}
-     */
-    durationUpTo(position = this.data.length) {
-        return this.data.slice(0, position)
-                   .reduce((prev, curr) => {
-                       return curr.notes.size ?
-                              prev + mts.noteDurations()[curr.duration] : prev + 0
-                   }, 0)
+    durationLeft(position = this.data.length) {
+        return this.maxDuration - this.data.slice(0, position)
+                                      .reduce((prev, curr) => {
+                                          return curr.notes.size ?
+                                                 prev + mts.noteDurations()[curr.duration] : prev + 0
+                                      }, 0)
     }
 
     /**
@@ -120,7 +111,6 @@ export class Measure {
             this.initNext(position + 1)
             return true
         }
-
         return false
     }
 
@@ -247,7 +237,6 @@ export class Measure {
             }
         })
         string += '}'
-
         return string
     }
 }

@@ -19,7 +19,6 @@ Represents a single measure as part of a musical score in musical notation.
     * [.maxDuration](#Measure+maxDuration) ⇒ <code>number</code>
     * [.clone()](#Measure+clone) ⇒ [<code>Measure</code>](#Measure)
     * [.durationLeft([position])](#Measure+durationLeft) ⇒ <code>number</code>
-    * [.durationUpTo(position)](#Measure+durationUpTo) ⇒ <code>\*</code>
     * [.initNext(position)](#Measure+initNext)
     * [.validateInsertion(position, duration)](#Measure+validateInsertion) ⇒ <code>boolean</code>
     * [.addNote(note, [duration], position)](#Measure+addNote) ⇒ <code>boolean</code>
@@ -87,17 +86,6 @@ Returns the duration left for notes in the measure.
 | Param | Type | Default |
 | --- | --- | --- |
 | [position] | <code>number</code> | <code>this.data.length</code> | 
-
-<a name="Measure+durationUpTo"></a>
-
-### measure.durationUpTo(position) ⇒ <code>\*</code>
-Get the duration in the measure up to position.
-
-**Kind**: instance method of [<code>Measure</code>](#Measure)  
-
-| Param |
-| --- |
-| position | 
 
 <a name="Measure+initNext"></a>
 

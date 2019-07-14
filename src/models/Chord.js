@@ -1,4 +1,4 @@
-import {DataNotFound, InvalidInput, MissingInformation} from '../Exceptions'
+import {MissingInformation, DataNotFound, InvalidInput} from '../Exceptions'
 import {buildString, findQuery}                         from '../addons/GlobalFunctions'
 import {MusicTheoryStructures as mts}                   from '../resources/MusicTheoryStructures'
 import {Note}                                           from '../models/Note'
@@ -19,8 +19,8 @@ import {Note}                                           from '../models/Note'
  */
 export class Chord {
     constructor({root, name, pattern}) {
-        this.info  = findQuery(name, pattern, mts.Chords)
-        this.notes = []
+        this.info   = findQuery(name, pattern, mts.Chords)
+        this._notes = []
         this.pushNotes(root)
     }
 
@@ -33,11 +33,18 @@ export class Chord {
         if (!(root instanceof Note)) {
             throw new InvalidInput(`expected ${root} to be an instance of Note`)
         }
-
-        this.notes.push(root)
+        this._notes.push(root)
         this.pitchIntervals.forEach(interval =>
-            this.notes.push(root.interval(interval)),
+            this._notes.push(root.interval(interval)),
         )
+    }
+
+    /**
+     * Array of the notes in the chord.
+     * @type {Array}
+     */
+    get notes() {
+        return this._notes
     }
 
     /**

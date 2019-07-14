@@ -8,83 +8,42 @@ title: Driver
 
 ## Driver
 Represents a driver that can play a score.
-Uses Tone.Transport, which is a member of the class.
-Best practice is to create one driver that will be used to play everything.
+Best practice is to create one driver that will be used to play everything inside the app/website.
 
 **Kind**: global class  
 
 * [Driver](#Driver)
-    * [.bpm](#Driver+bpm)
-    * [.bpm](#Driver+bpm) ⇒ <code>number</code>
-    * [.loopStart](#Driver+loopStart)
-    * [.state](#Driver+state) ⇒ <code>String</code>
+    * [.state](#Driver+state) ⇒ <code>Tone.State</code>
     * [.position](#Driver+position) ⇒ <code>Ticks</code>
-    * [.setScore(score, [updateTransport])](#Driver+setScore) ⇒ <code>this</code>
+    * [.setScore(score)](#Driver+setScore) ⇒ <code>this</code>
     * [.setInstruments(Instruments)](#Driver+setInstruments) ⇒ <code>this</code>
     * [.addInstrument(instrument)](#Driver+addInstrument)
-    * [.startMetronome()](#Driver+startMetronome) ⇒ <code>this</code>
-    * [.stopMetronome()](#Driver+stopMetronome) ⇒ <code>this</code>
-    * [.toggleMetronome()](#Driver+toggleMetronome) ⇒ [<code>Driver</code>](#Driver)
-    * [.scheduleVoices()](#Driver+scheduleVoices) ⇒ <code>this</code>
+    * [.scheduleVoices()](#Driver+scheduleVoices)
     * [.scheduleMeasures(voiceIndex)](#Driver+scheduleMeasures)
     * [.scheduleNotes(measureIndex, voiceIndex)](#Driver+scheduleNotes)
     * [.toggle([startTime])](#Driver+toggle)
-    * [.start(startTime)](#Driver+start) ⇒ <code>this</code>
-    * [.stop()](#Driver+stop) ⇒ <code>this</code>
-    * [.clear()](#Driver+clear) ⇒ <code>this</code>
-
-<a name="Driver+bpm"></a>
-
-### driver.bpm
-Set the bpm value of the transport.
-
-**Kind**: instance property of [<code>Driver</code>](#Driver)  
-
-| Param | Type |
-| --- | --- |
-| value | <code>number</code> | 
-
-<a name="Driver+bpm"></a>
-
-### driver.bpm ⇒ <code>number</code>
-Get the bpm value of the transport.
-
-**Kind**: instance property of [<code>Driver</code>](#Driver)  
-<a name="Driver+loopStart"></a>
-
-### driver.loopStart
-Sets the point in time to start the loop of the transport.
-
-**Kind**: instance property of [<code>Driver</code>](#Driver)  
-
-| Param |
-| --- |
-| time | 
+    * [.clear()](#Driver+clear)
 
 <a name="Driver+state"></a>
 
-### driver.state ⇒ <code>String</code>
-Returns the current state of the transport,
-either 'stopped', 'started' or 'paused'.
+### driver.state ⇒ <code>Tone.State</code>
+Returns the current state of the transport.
 
 **Kind**: instance property of [<code>Driver</code>](#Driver)  
 <a name="Driver+position"></a>
 
 ### driver.position ⇒ <code>Ticks</code>
-Returns the position in the transport that is currently being played.
-
 **Kind**: instance property of [<code>Driver</code>](#Driver)  
 <a name="Driver+setScore"></a>
 
-### driver.setScore(score, [updateTransport]) ⇒ <code>this</code>
+### driver.setScore(score) ⇒ <code>this</code>
 Set the score the driver will play.
 
 **Kind**: instance method of [<code>Driver</code>](#Driver)  
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| score | <code>Score</code> | <code></code> | A score containing voices. |
-| [updateTransport] | <code>boolean</code> | <code>true</code> | Whether to update the transport's time signature and bpm values based on     the score. |
+| Param | Type | Description |
+| --- | --- | --- |
+| score | <code>Score</code> | A score containing voices. |
 
 <a name="Driver+setInstruments"></a>
 
@@ -108,27 +67,9 @@ Adds an instrument to the score.
 | --- |
 | instrument | 
 
-<a name="Driver+startMetronome"></a>
-
-### driver.startMetronome() ⇒ <code>this</code>
-Schedule metronome and start it.
-
-**Kind**: instance method of [<code>Driver</code>](#Driver)  
-<a name="Driver+stopMetronome"></a>
-
-### driver.stopMetronome() ⇒ <code>this</code>
-Stops the metronome and removes it from the transport.
-
-**Kind**: instance method of [<code>Driver</code>](#Driver)  
-<a name="Driver+toggleMetronome"></a>
-
-### driver.toggleMetronome() ⇒ [<code>Driver</code>](#Driver)
-Starts the metronome if it's stopped, otherwise stops it.
-
-**Kind**: instance method of [<code>Driver</code>](#Driver)  
 <a name="Driver+scheduleVoices"></a>
 
-### driver.scheduleVoices() ⇒ <code>this</code>
+### driver.scheduleVoices()
 Schedules all the voices of the score to the transport.
 
 **Kind**: instance method of [<code>Driver</code>](#Driver)  
@@ -166,26 +107,9 @@ Toggles the state of the transport.
 | --- | --- | --- | --- |
 | [startTime] | <code>number</code> | <code>0</code> | Time to start the score. |
 
-<a name="Driver+start"></a>
-
-### driver.start(startTime) ⇒ <code>this</code>
-Start the transport.
-
-**Kind**: instance method of [<code>Driver</code>](#Driver)  
-
-| Param | Default |
-| --- | --- |
-| startTime | <code>0</code> | 
-
-<a name="Driver+stop"></a>
-
-### driver.stop() ⇒ <code>this</code>
-Stops the transport.
-
-**Kind**: instance method of [<code>Driver</code>](#Driver)  
 <a name="Driver+clear"></a>
 
-### driver.clear() ⇒ <code>this</code>
+### driver.clear()
 Clear the transport from everything that was scheduled.
 
 **Kind**: instance method of [<code>Driver</code>](#Driver)  

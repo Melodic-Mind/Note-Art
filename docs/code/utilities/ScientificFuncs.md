@@ -10,7 +10,7 @@ title: ScientificFuncs
 <dt><a href="#freqFromPitch">freqFromPitch()</a> ⇒ <code>Number</code></dt>
 <dd><p>Calculate the frequency of a note by its octave and index out of all notes(c, c#, etc...).</p>
 </dd>
-<dt><a href="#realNumberFromFrequency">realNumberFromFrequency(frequency)</a> ⇒ <code>number</code></dt>
+<dt><a href="#realNumberFromFreq">realNumberFromFreq(frequency)</a> ⇒ <code>number</code></dt>
 <dd><p>Generate real number from frequency.</p>
 </dd>
 <dt><a href="#freqFromRealNumber">freqFromRealNumber(realNumber)</a> ⇒ <code>Number</code></dt>
@@ -24,9 +24,9 @@ title: ScientificFuncs
 Calculate the frequency of a note by its octave and index out of all notes(c, c#, etc...).
 
 **Kind**: global function  
-<a name="realNumberFromFrequency"></a>
+<a name="realNumberFromFreq"></a>
 
-## realNumberFromFrequency(frequency) ⇒ <code>number</code>
+## realNumberFromFreq(frequency) ⇒ <code>number</code>
 Generate real number from frequency.
 
 **Kind**: global function  

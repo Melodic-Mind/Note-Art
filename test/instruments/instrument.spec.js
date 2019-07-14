@@ -25,8 +25,8 @@ describe('Instrument', () => {
         })
     })
 
-    it('#formatNote', () => {
-        expect(Instrument.formatNote('c4')).to.equal('C4')
+    it('#normalizeNoteStr', () => {
+        expect(Instrument.normalizeNoteStr('c4')).to.equal('C4')
     })
 
     describe('#notePipeline', () => {

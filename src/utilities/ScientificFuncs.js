@@ -14,7 +14,7 @@ function freqFromPitch(pitch) {
  * @param frequency
  * @returns {number}
  */
-function realNumberFromFrequency(frequency) {
+function realNumberFromFreq(frequency) {
     return Math.round(69 + 12 * Math.log2(frequency / 440))
 }
 
@@ -29,6 +29,6 @@ function freqFromRealNumber(realNumber) {
 
 export {
     freqFromPitch,
-    realNumberFromFrequency,
+    realNumberFromFreq,
     freqFromRealNumber,
 }

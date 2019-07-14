@@ -3,6 +3,7 @@ import {Note}                          from '../models/Note'
 import {firstToUpper}                  from '../addons/GlobalFunctions'
 import {notesInRange, validateRawNote} from '../utilities/MusicalAddons'
 import {MusicTheoryStructures as mts}  from '../resources/MusicTheoryStructures'
+import {InvalidInput}                  from '../Exceptions'
 import {playing}                       from '../mixins/Instruments'
 
 /**
@@ -38,8 +39,7 @@ export class Instrument {
      * Can be easily over-riden for a specific intrument by using the lib to set the instruments name.
      * @return {string}
      * @example
-     * lib.set('Piano', () => {return 'MyUltimatePiano'}) // Piano will now load audio files from the
-     *     server/MyUltimatePiano
+     * lib.set('Piano', () => {return 'MyUltimatePiano'}) // Piano will now load audio files from the server/MyUltimatePiano
      */
     static get instrumentPath() {
         return lib.get(this.name)
@@ -67,7 +67,11 @@ export class Instrument {
      * @returns {String}
      */
     static normalizeSet(pitchClass, classSet) {
-        const index = classSet === '#' ? mts.sharpClassNotes.indexOf(pitchClass) : mts.flatClassNotes.indexOf(pitchClass)
+        if (classSet === '#') {
+            const index = mts.sharpClassNotes.indexOf(pitchClass)
+            pitchClass  = mts.flatClassNotes[index]
+        }
+        const index = mts.flatClassNotes.indexOf(pitchClass)
         return mts.flatClassNotes[index]
     }
 
@@ -81,18 +85,16 @@ export class Instrument {
 
     /**
      * Turns a string representing a note to upper case.
-     * @param note
+     * @param noteStr
      * @returns {String}
      */
-    static formatNote(note) {
-        return firstToUpper(note)
+    static normalizeNoteStr(noteStr) {
+        return firstToUpper(noteStr)
     }
 
     /**
-     * Generates the path to load a note from.
+     * Generates player for some audio.
      * @param {String} fileName
-     * @throws Error
-     * @return {String}
      */
     generatePath(fileName) {
         throw new Error('Not implemented for this instrument yet')
@@ -128,7 +130,7 @@ export class Instrument {
      * console.log(C.interval(2))         // D3
      */
     note(note) {
-        return this.notes.get(Instrument.formatNote(note))
+        return this.notes.get(Instrument.normalizeNoteStr(note))
     }
 
     /**
@@ -142,18 +144,12 @@ export class Instrument {
 
     static notePipeline(note) {
         validateRawNote(note)
-        note = this.formatNote(note)
-        note = this.normalizeNote(note)
-        return note
-    }
-
-    static normalizeNote(note) {
+        note = Instrument.normalizeNoteStr(note)
         if (note.includes('#')) {
             const pitchClass = Instrument.normalizeSet(note.slice(0, 2), '#')
             const octave     = note[note.length - 1]
             note             = `${pitchClass}${octave}`
         }
-
         return note
     }
 
@@ -164,7 +160,6 @@ export class Instrument {
      */
     play(note, duration = '100') {
         note = Instrument.notePipeline(note)
-
         if (this.hasNote(note)) {
             this.getPlayer(note).start().stop(`+${duration}`)
         }

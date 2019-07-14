@@ -14,6 +14,7 @@ pattern which can be played together to form a harmonic sound.
 
 * [Chord](#Chord)
     * [new exports.Chord(attributes)](#new_Chord_new)
+    * [.notes](#Chord+notes) : <code>Array</code>
     * [.fullName](#Chord+fullName) : <code>String</code>
     * [.name](#Chord+name) : <code>String</code>
     * [.octave](#Chord+octave) : <code>Number</code>
@@ -45,6 +46,12 @@ const c = new Note({note: 'c'})
 const C_Maj_by_pattern = new Chord({root:c, pattern: [4, 7]}) // new C major chord.
 const C_min_by_name = new Chord({root:c, name: 'm'}) // new C minor chord.
 ```
+<a name="Chord+notes"></a>
+
+### chord.notes : <code>Array</code>
+Array of the notes in the chord.
+
+**Kind**: instance property of [<code>Chord</code>](#Chord)  
 <a name="Chord+fullName"></a>
 
 ### chord.fullName : <code>String</code>

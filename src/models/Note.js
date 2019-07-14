@@ -1,7 +1,7 @@
 import {PianoOctaveRule}              from '../validation/PianoOctaveRule'
 import {PitchClass}                   from './PitchClass'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
-import {realNumberFromFrequency}      from '../utilities/ScientificFuncs'
+import {realNumberFromFreq}           from '../utilities/ScientificFuncs'
 import {noteToObject}                 from '../'
 
 /**
@@ -52,7 +52,7 @@ export class Note extends PitchClass {
      * @returns {Note}
      */
     static fromFrequency(frequency) {
-        const n          = realNumberFromFrequency(frequency)
+        const n          = realNumberFromFreq(frequency)
         const pitchClass = mts.sharpClassNotes[n % 12]
         const octave     = Math.floor(n / 12 - 1)
 
@@ -77,12 +77,10 @@ export class Note extends PitchClass {
      */
     interval(interval) {
         const pitchClass = super.interval(interval).pitchClass
-
-        let octDiff = Math.floor((this.classIndex + interval) / 12)
+        let octDiff      = Math.floor((this.classIndex + interval) / 12)
         if (interval < 0) {
             octDiff = this.classIndex + interval < 0 ? octDiff : 0
         }
-
         return new Note(pitchClass, this.octave + octDiff)
     }
 

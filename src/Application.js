@@ -1,7 +1,7 @@
 /**
  * A wrapper the library uses for setting and getting global state variables.
  */
-export class Library {
+export class Application {
     constructor() {
         this.instances = {}
     }

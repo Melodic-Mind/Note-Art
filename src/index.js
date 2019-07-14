@@ -1,4 +1,4 @@
-import {Library}                        from './Library'
+import {Application}                    from './Application'
 import {AudioManager}                   from './utilities/AudioManager'
 import Tone                             from 'Tone/core/Tone'
 
@@ -6,7 +6,8 @@ if (process.env.NODE_ENV && process.env.NODE_ENV !== 'test') {
     Tone.Players.prototype.set = new Tone.Players().add
 }
 
-const lib = new Library()
+const lib = new Application()
+
 lib.set('audio-manager', () => {
     return AudioManager
 })
@@ -50,7 +51,7 @@ export {Instrument}                     from './instruments/Instrument'
 export {Measure}                        from './notation/Measure'
 export {MusicTheoryStructures}          from './resources/MusicTheoryStructures'
 export {Note}                           from './models/Note'
-export {InstrumentString}               from './instruments/InstrumentString'
+export {NoteString}                     from './instruments/NoteString'
 export {Piano}                          from './instruments/Piano'
 export {Score}                          from './notation/Score'
 export {PitchClass}                     from './models/PitchClass'

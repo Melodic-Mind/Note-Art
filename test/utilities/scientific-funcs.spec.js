@@ -9,8 +9,8 @@ describe('Scientific functions', () => {
         expect(Math.ceil(funcs.freqFromPitch(pitch2))).to.eql(660)
     })
 
-    it('#realNumberFromFrequency', () => {
-        expect(funcs.realNumberFromFrequency(440)).to.eql(69)
+    it('#realNumberFromFreq', () => {
+        expect(funcs.realNumberFromFreq(440)).to.eql(69)
     })
 
     it('#freqFromRealNumber', () => {
