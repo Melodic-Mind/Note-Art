@@ -1,6 +1,4 @@
-import {MusicTheoryStructures as mts}                 from '../resources/MusicTheoryStructures'
-import {firstToUpper, validateArray, validateRawNote} from '../'
-import {Note}                                         from '../models/Note'
+import {firstToUpper, MusicTheoryStructures as mts, transposeNote, validateArray, validateRawNote} from '../'
 
 /**
  * @classdesc Represents a single measure as part of a musical score in musical notation.
@@ -122,6 +120,7 @@ export class Measure {
             this.initNext(position + 1)
             return true
         }
+
         return false
     }
 
@@ -153,7 +152,7 @@ export class Measure {
      *      }, 0)      // Adds a C major chord at the start of the measure.
      */
     addChord({notes, name, duration}, position) {
-        if (this.validateInsertion(position + 1) && name) {
+        if (name && this.validateInsertion(position + 1)) {
             this.data[position].caption = name
             return this.addNotes({notes, duration}, position)
         }
@@ -213,15 +212,12 @@ export class Measure {
     transpose(interval) {
         const transposedMeasure = new Measure(this.maxDuration)
         this.data.forEach((data, position) => {
-            transposedMeasure.duration =
-                data.notes.forEach((currentNote) => {
-                    const note = currentNote === 'R' ?
-                                 'R' : Note.builder(currentNote).interval(interval).raw
-                    transposedMeasure.addNote({
-                        note,
-                        duration: data.duration,
-                    }, position)
-                })
+            data.notes.forEach((note) => {
+                transposedMeasure.addNote({
+                    note:     transposeNote(note, interval),
+                    duration: data.duration,
+                }, position)
+            })
         })
 
         return transposedMeasure

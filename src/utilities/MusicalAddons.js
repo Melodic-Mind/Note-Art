@@ -1,8 +1,8 @@
-import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
-import {firstToUpper}                 from '../addons/GlobalFunctions'
-import {PitchClassRule}               from '../validation/PitchClassRule'
-import {PianoOctaveRule}              from '../validation/PianoOctaveRule'
-import {InvalidInput}                 from '../Exceptions'
+import {firstToUpper}                       from '../addons/GlobalFunctions'
+import {PitchClassRule}                     from '../validation/PitchClassRule'
+import {PianoOctaveRule}                    from '../validation/PianoOctaveRule'
+import {InvalidInput}                       from '../Exceptions'
+import {MusicTheoryStructures as mts, Note} from '../'
 
 /**
  * Calculate the pure interval(excluding octave) between 2 notes(in semitones).
@@ -28,6 +28,18 @@ function noteToObject(note) {
     const octave     = parseInt(note[note.length - 1])
 
     return {pitchClass, octave}
+}
+
+function isRest(note) {
+    return note === 'R' || note === 'r'
+}
+
+function transposeNote(note, interval) {
+    if (!isRest(note)) {
+        return Note.builder(note).interval(interval).raw
+    }
+
+    return note
 }
 
 
@@ -83,4 +95,4 @@ function notesInRange(base, range) {
     return notes
 }
 
-export {notesDistance, notesInRange, noteToObject, validateRawNote}
+export {notesDistance, notesInRange, noteToObject, validateRawNote, isRest, transposeNote}

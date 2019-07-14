@@ -215,6 +215,7 @@ export class Score {
         if (this.getMeasure(measureIndex, voiceIndex)) {
             return this.getMeasure(measureIndex, voiceIndex).clear()
         }
+
         return false
     }
 
@@ -228,6 +229,7 @@ export class Score {
         if (this.getMeasure(measureIndex, voiceIndex)) {
             return this.voices[voiceIndex].splice(measureIndex, 1)
         }
+
         return false
     }
 
@@ -243,6 +245,7 @@ export class Score {
             this.voices[voiceIndex].splice(measureIndex, 0, clone)
             return true
         }
+
         return false
     }
 

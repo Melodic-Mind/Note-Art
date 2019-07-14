@@ -13,7 +13,11 @@ const sidebarTree = (title = 'About') => ({
         {
             'title':       'notation',
             'collapsable': false,
-            'children':    ['notation/Measure', 'notation/Score'],
+            'children':    [
+                'notation/Measure',
+                'notation/Score',
+                'notation/ScoreHandler',
+            ],
         },
         {
             'title':       'instruments',
@@ -32,7 +36,7 @@ const sidebarTree = (title = 'About') => ({
                 'utilities/ScientificFuncs',
                 'utilities/MusicalAddons',
                 'utilities/Driver',
-                'utilities/AudioManager'
+                'utilities/AudioManager',
             ],
         },
         {
