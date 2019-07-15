@@ -3,7 +3,7 @@ import {Measure, Score, ScoreHandler} from '../../src/'
 describe('Score Handler', () => {
     let score, measure, chordMeasure
     before(() => {
-        score   = new Score({bpm: 80, timeSignature: [2, 4]})
+        score   = new Score({bpm: 80, timeSignature: [2, 4], name: 'my score'})
         measure = new Measure()
 
         measure.addNotes({notes: ['c3', 'c4'], duration: '4n'}, 0)
@@ -76,7 +76,9 @@ describe('Score Handler', () => {
     describe('#objectFromScore', () => {
         it('creates a object from a score', () => {
             const scoreString = ScoreHandler.scoreToObject(score)
-            expect(ScoreHandler.objectToScore(scoreString)).to.eql(score)
+            const sameOldScore = ScoreHandler.objectToScore(scoreString)
+            expect(sameOldScore).to.eql(score)
+            expect(sameOldScore.name).to.equal('my score')
         })
     })
 })

@@ -67,9 +67,9 @@ export class ScoreHandler {
         )
 
         return {
+            name:          score.name,
             timeSignature: score.timeSignature,
             bpm:           score.bpm,
-            duration:      score.duration,
             voices,
         }
     }
@@ -80,8 +80,13 @@ export class ScoreHandler {
      * @return {Score}
      */
     static objectToScore(scoreObject) {
-        const score    = new Score({timeSignature: scoreObject.timeSignature, bpm: scoreObject.bpm})
-        score.duration = scoreObject.duration
+
+        const score    = new Score({
+            timeSignature: scoreObject.timeSignature,
+            bpm:           scoreObject.bpm,
+            name:          scoreObject.name,
+        })
+
         scoreObject.voices.forEach((voice, voiceIndex) => {
             voice.forEach((measureObject, measureIndex) => {
                 if (measureObject.data[0].notes.length) {
