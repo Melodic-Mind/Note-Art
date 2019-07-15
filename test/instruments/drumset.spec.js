@@ -35,4 +35,8 @@ describe('Drums', () => {
             spy.restore()
         })
     })
+
+    it('#toString', () => {
+        expect(drumset.toString()).to.equal('Drumset')
+    })
 })

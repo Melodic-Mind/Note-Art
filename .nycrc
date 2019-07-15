@@ -3,7 +3,8 @@
     "exclude": [
         "src/**/index.js",
         "src/resources/",
-        "src/utilities/Driver.js"
+        "src/utilities/Driver.js",
+        "src/utilities/AudioManager.js"
     ],
     "extension": [".js"],
     "reporter": ["lcov", "text", "html"],

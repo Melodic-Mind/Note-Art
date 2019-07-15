@@ -8,12 +8,12 @@ describe('Score', () => {
 
     describe('#getMeasureSize', () => {
         it('should return the numerator when in quarter notes', () => {
-            expect(Score.getMeasureSize([6, 4])).to.equal(6 * 16)
+            expect(Score.getMeasureSize([6, 4])).to.equal(96)
         })
 
         it('should return the correct value when in eighth notes', () => {
-            expect(Score.getMeasureSize([6, 8])).to.equal(3 * 8)
-            expect(Score.getMeasureSize([3, 8])).to.equal(3 * 8)
+            expect(Score.getMeasureSize([6, 8])).to.equal(48)
+            expect(Score.getMeasureSize([3, 8])).to.equal(24)
         })
 
         it('should return 4 when the timeSignature is not valid', () => {
@@ -21,7 +21,7 @@ describe('Score', () => {
         })
     })
 
-    describe('creating a new score', () => {
+    describe('attributes', () => {
         it('should have a time signature property that defaults to 4:4', () => {
             expect(score.timeSignature).to.be.eql([4, 4])
             expect(new Score({timeSignature: [3, 4]}).timeSignature).to.eql([3, 4])
@@ -39,8 +39,19 @@ describe('Score', () => {
             expect(score.timeSignature).to.eql([3, 4])
         })
 
+        it('setting bpm to something other than a number is not possible', () => {
+            score.bpm = 'NOT_NUMBER'
+            expect(score.bpm).to.eql(100)
+        })
+
         it('should initialize with one empty measure', () => {
             expect(new Score().voices[0].length).to.equal(1)
+        })
+
+        it('name attribute', () => {
+            expect(score.name).to.equal(null)
+            score.name = 'my score'
+            expect(score.name).to.equal('my score')
         })
     })
 

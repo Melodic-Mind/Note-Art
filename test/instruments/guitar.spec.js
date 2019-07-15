@@ -120,4 +120,8 @@ describe('Guitar', () => {
             stub.restore()
         })
     })
+
+    it('#toString', () => {
+        expect(guitar.toString()).to.equal('Guitar')
+    })
 })

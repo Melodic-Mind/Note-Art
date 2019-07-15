@@ -7,7 +7,11 @@ describe('Piano', () => {
         piano = new Piano()
     })
 
-    describe('#InstrumentPath', () => {
+    it('has the path set to piano', () => {
         expect(Piano.instrumentPath).to.equal('piano')
+    })
+
+    it('#toString', () => {
+        expect(piano.toString()).to.equal('Piano')
     })
 })

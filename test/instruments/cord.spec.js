@@ -1,12 +1,9 @@
-import {Note}         from '../../src'
-import {InvalidInput} from '../../src/Exceptions'
-import {NoteString}   from '../../src/instruments/NoteString'
+import {Note,Cord} from '../../src'
 
-
-describe('NoteString', () => {
+describe('Cord', () => {
     let noteString
     beforeEach(() => {
-        noteString = new NoteString('e3', 1)
+        noteString = new Cord('e3', 1)
     })
 
     it('generates a notes object based on the range it receives', () => {
@@ -27,7 +24,7 @@ describe('NoteString', () => {
     describe('#fret', () => {
         let noteString
         beforeEach(() => {
-            noteString = new NoteString('e3', 12)
+            noteString = new Cord('e3', 12)
         })
 
         it('should return the note at the given fret', () => {
@@ -38,5 +35,9 @@ describe('NoteString', () => {
         it('should return undefined when that fret does not exist for the string', () => {
             expect(noteString.fret(20)).to.be.undefined
         })
+    })
+
+    it('#toString', () => {
+        expect(noteString.toString()).to.equal('Cord')
     })
 })

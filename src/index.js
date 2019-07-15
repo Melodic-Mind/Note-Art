@@ -24,7 +24,7 @@ lib.set('ready', () => {
     return false
 })
 
-lib.set('NoteString', () => {
+lib.set('Cord', () => {
     return 'guitar'
 })
 
@@ -51,7 +51,7 @@ export {Instrument}                     from './instruments/Instrument'
 export {Measure}                        from './notation/Measure'
 export {MusicTheoryStructures}          from './resources/MusicTheoryStructures'
 export {Note}                           from './models/Note'
-export {NoteString}                     from './instruments/NoteString'
+export {Cord}                           from './instruments/Cord'
 export {Piano}                          from './instruments/Piano'
 export {Score}                          from './notation/Score'
 export {PitchClass}                     from './models/PitchClass'

@@ -1,6 +1,6 @@
 import {Instrument} from './Instrument'
 
-export class NoteString extends Instrument {
+export class Cord extends Instrument {
     constructor(base, range, stringNumber) {
         super()
         this.stringNumber = stringNumber
@@ -10,13 +10,13 @@ export class NoteString extends Instrument {
     /**
      * @inheritDoc
      */
-    static name = 'NoteString'
+    static name = 'Cord'
 
     generatePath(note) {
         const set  = Instrument.normalizeSet(note.pitchClass, note.classSet)
         const file = `${set}${note.octave}`
 
-        return `${Instrument.server}${NoteString.instrumentPath}/${this.stringNumber}/${file}.mp3`
+        return `${Instrument.server}${Cord.instrumentPath}/${this.stringNumber}/${file}.mp3`
     }
 
     fret(fret) {
@@ -25,6 +25,6 @@ export class NoteString extends Instrument {
 
 
     toString() {
-        return 'Note-String'
+        return 'Cord'
     }
 }
