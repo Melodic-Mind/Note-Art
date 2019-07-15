@@ -1,10 +1,9 @@
 import {Measure, Score, ScoreHandler} from '../../src/'
 
 describe('Score Handler', () => {
-    let score
-    let measure
+    let score, measure, chordMeasure
     before(() => {
-        score   = new Score()
+        score   = new Score({bpm: 80, timeSignature: [2, 4]})
         measure = new Measure()
 
         measure.addNotes({notes: ['c3', 'c4'], duration: '4n'}, 0)
@@ -12,7 +11,11 @@ describe('Score Handler', () => {
         measure.addNotes({notes: ['c3', 'c4'], duration: '4n'}, 2)
         measure.addNotes({notes: ['d3', 'd4'], duration: '4n'}, 3)
 
+        chordMeasure = new Measure()
+        chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4N'}, 0)
+
         score.addMeasure(0, 0, measure)
+        score.addMeasure(1, 0, chordMeasure)
     })
     describe('#measureToObject', () => {
         it('turns a measure with notes into object literal', () => {
@@ -43,13 +46,11 @@ describe('Score Handler', () => {
         })
 
         it('turns a measure with chords into object literal', () => {
-            const chordMeasure = new Measure()
-            chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4N'}, 0)
             const stub = {
                 maxDuration: 64,
                 duration:    '4n',
                 data:        [
-                    {notes: ['C3', 'E3', 'G3'], duration: '4n', caption: 'C M'},
+                    {notes: ['C3', 'E3', 'G3'], duration: '4n', name: 'C M'},
                     {notes: [], duration: '4n'},
                 ],
             }
@@ -64,18 +65,18 @@ describe('Score Handler', () => {
             expect(ScoreHandler.objectToMeasure(obj)).to.eql(measure)
         })
 
-        it.only('creates a new measure from object with chords', () => {
+        it('creates a new measure from object with chords', () => {
             const chordMeasure = new Measure()
             chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4N'}, 0)
-            const obj = ScoreHandler.measureToObject(measure)
-            expect(ScoreHandler.objectToMeasure(obj)).to.eql(measure)
+            const obj = ScoreHandler.measureToObject(chordMeasure)
+            expect(ScoreHandler.objectToMeasure(obj)).to.eql(chordMeasure)
         })
     })
 
-    describe('#stringifyScore', () => {
-        it('creates a object from a score', async () => {
-            const scoreString = await JSON.stringify(ScoreHandler.scoreToObject(score))
-            expect(ScoreHandler.objectToScore(await JSON.parse(scoreString))).to.eql(score)
+    describe('#objectFromScore', () => {
+        it('creates a object from a score', () => {
+            const scoreString = ScoreHandler.scoreToObject(score)
+            expect(ScoreHandler.objectToScore(scoreString)).to.eql(score)
         })
     })
 })

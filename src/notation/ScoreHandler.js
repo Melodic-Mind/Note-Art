@@ -30,8 +30,8 @@ export class ScoreHandler {
             duration: notesMember.duration,
         }
 
-        if (notesMember.caption) {
-            notes.caption = notesMember.caption
+        if (notesMember.name) {
+            notes.name = notesMember.name
         }
 
         return notes
@@ -46,7 +46,7 @@ export class ScoreHandler {
         const measure    = new Measure(measureObject.maxDuration)
         measure.duration = measureObject.duration
         measureObject.data.forEach((notesMember, position) => {
-            if (notesMember.caption) {
+            if (notesMember.name) {
                 measure.addChord({...notesMember}, position)
             } else {
                 measure.addNotes({...notesMember}, position)

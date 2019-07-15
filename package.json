@@ -1,6 +1,6 @@
 {
     "name": "note-art",
-    "version": "0.1.16",
+    "version": "0.1.17",
     "description": "Music programming package",
     "main": "./dist/note-art.js",
     "homepage": "https://github.com/Seanitzel/Note-Art/tree/master",

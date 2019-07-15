@@ -6,18 +6,18 @@ describe('Score', () => {
         score = new Score()
     })
 
-    describe('#reduceTimeSignature', () => {
+    describe('#getMeasureSize', () => {
         it('should return the numerator when in quarter notes', () => {
-            expect(Score.reduceTimeSignature([6, 4])).to.equal(6)
+            expect(Score.getMeasureSize([6, 4])).to.equal(6 * 16)
         })
 
-        it('should return the correct value when in eigth notes', () => {
-            expect(Score.reduceTimeSignature([6, 8])).to.equal(3)
+        it('should return the correct value when in eighth notes', () => {
+            expect(Score.getMeasureSize([6, 8])).to.equal(3 * 8)
+            expect(Score.getMeasureSize([3, 8])).to.equal(3 * 8)
         })
 
         it('should return 4 when the timeSignature is not valid', () => {
-            expect(Score.reduceTimeSignature('INVALID')).to.equal(4)
-            expect(Score.reduceTimeSignature([3, 3])).to.equal(4)
+            expect(() => {Score.getMeasureSize('INVALID')}).to.throw(Error)
         })
     })
 
@@ -27,9 +27,9 @@ describe('Score', () => {
             expect(new Score({timeSignature: [3, 4]}).timeSignature).to.eql([3, 4])
         })
 
-        it('should have a BPM property that defaults to 120', () => {
-            expect(score.bpm).to.be.equal(120)
-            expect(new Score({bpm: 100}).bpm).to.equal(100)
+        it('should have a BPM property that defaults to 100', () => {
+            expect(score.bpm).to.be.equal(100)
+            expect(new Score({bpm: 120}).bpm).to.equal(120)
         })
 
         it('has the option to set the bpm and timeSignature', () => {
@@ -241,7 +241,7 @@ describe('Score', () => {
         })
     })
 
-    describe('#clear', () => {
+    describe('#clearMeasure', () => {
         it('should clear a measure from all data', () => {
             expect(score.addNote({note: 'C3'}, 0, 0)).to.be.true
             expect(score.clearMeasure(0)).to.be.true

@@ -135,9 +135,9 @@ describe('Measure', () => {
     })
 
     describe('#addChord', () => {
-        it('should add all the notes in the chord to the note set and add the chord name to the caption of the member', () => {
+        it('should add all the notes in the chord to the note set and add the chord name to the name of the member', () => {
             expect(measure.addChord({notes: ['c3', 'e3', 'g3'], name: 'C M', duration: '4n'}, 0)).to.be.true
-            expect(measure.data[0].caption).to.equal('C M')
+            expect(measure.data[0].name).to.equal('C M')
         })
 
         it('should return false when the measure is full or the name is not sent', () => {

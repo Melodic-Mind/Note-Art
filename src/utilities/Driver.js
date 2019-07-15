@@ -14,8 +14,8 @@ export class Driver {
     /**
      * Set the score the driver will play.
      * @param {Score} score A score containing voices.
-     * @param {boolean} [updateTransport=true] Whether to update the transport's time signature and bpm values based on the
-     *     score.
+     * @param {boolean} [updateTransport=true] Whether to update the transport's time signature and bpm values based on
+     *     the score.
      * @return {this}
      */
     setScore(score = null, updateTransport = true) {
@@ -82,18 +82,19 @@ export class Driver {
     }
 
     set bpm(value) {
-        if (this.score && this.score.timeSignature[1] === 8) {
-            this.transport.bpm.value = value / 2
-        } else {
-            this.transport.bpm.value = value
+        this.transport.bpm.value = value
+        if (this.score) {
+            this.score.bpm = value
         }
     }
 
     get bpm() {
-        if (this.score && this.score.timeSignature[1] === 8) {
-            return this.transport.bpm.value * 2
-        }
         return this.transport.bpm.value
+    }
+
+    set timeSignature(timeSignature) {
+        this.score.setTimeSignature(timeSignature)
+        this.setScore(this.score)
     }
 
     set loopStart(time) {
@@ -147,7 +148,7 @@ export class Driver {
         this.score.voices[voiceIndex][measureIndex].data.forEach((data, dataIndex) => {
             data.notes.forEach((note) => {
                 if (note !== 'R') {
-                    this.transport.schedule(time => {
+                    this.transport.schedule(() => {
                         this.playing.voice   = voiceIndex
                         this.playing.measure = measureIndex
                         this.playing.noteSet = dataIndex

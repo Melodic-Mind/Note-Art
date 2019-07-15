@@ -1,24 +1,30 @@
-import {Measure}      from './Measure'
-import {DurationRule} from '../validation/DurationRule'
+import {Measure, MusicTheoryStructures as mts} from '../'
+import {DurationRule}                          from '../validation/DurationRule'
 
 /**
  * @classdesc Represents a full musical score consisting of a number of voices.
  */
 export class Score {
-    constructor({bpm, timeSignature} = {timeSignature: [4, 4]}) {
-        this.timeSignature        = timeSignature
-        this.reducedTimeSignature = Score.reduceTimeSignature(timeSignature)
-        this.bpm                  = bpm || 120
-        this.attributes           = {duration: '4n', voices: [[new Measure(this.reducedTimeSignature * 16)]]}
+    constructor({bpm = 100, timeSignature = [4, 4]} = {}) {
+        this.setTimeSignature(timeSignature)
+        this.bpm        = bpm
+        this.attributes = {duration: '4n', voices: [[new Measure(this.measureSize)]]}
     }
 
-    static reduceTimeSignature(timeSignature = [4, 4]) {
-        if (timeSignature[1] === 4) {
-            return timeSignature[0]
-        } else if (timeSignature[1] === 8) {
-            return timeSignature[0] / 2
+    static getMeasureSize(timeSignature) {
+        if (!Array.isArray(timeSignature)) {
+            throw new Error('time signature must be an array, e.g [4, 4]')
         }
-        return 4
+
+        const reducedTimeSig = (timeSignature[0] / timeSignature[1]) * 4
+        const bitLength      = mts.noteDurations()[`${timeSignature[1]}n`]
+
+        return reducedTimeSig * bitLength * timeSignature[1] / 4
+    }
+
+    setTimeSignature(timeSignature) {
+        this.measureSize   = Score.getMeasureSize(timeSignature)
+        this.timeSignature = timeSignature
     }
 
     /**
@@ -112,7 +118,7 @@ export class Score {
         if (measure && measure instanceof Measure) {
             newMeasure = measure
         } else {
-            newMeasure = new Measure(this.reducedTimeSignature * 16)
+            newMeasure = new Measure(this.measureSize)
         }
 
         this.getVoice(voiceIndex).splice(index, 0, newMeasure)

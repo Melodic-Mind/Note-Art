@@ -128,7 +128,7 @@ export class Measure {
 
     /**
      * Adds notes to the measure plus a name that represents the chord and is saved in
-     * the data at the position as caption
+     * the data at the position as name
      * @param notes
      * @param name
      * @param duration
@@ -143,7 +143,7 @@ export class Measure {
      */
     addChord({notes, name, duration}, position) {
         if (name && this.validateInsertion(position + 1)) {
-            this.data[position].caption = name
+            this.data[position].name = name
             return this.addNotes({notes, duration}, position)
         }
 
