@@ -15,7 +15,7 @@ Best practice is to create one driver that will be used to play everything insid
 * [Driver](#Driver)
     * [.state](#Driver+state) ⇒ <code>Tone.State</code>
     * [.position](#Driver+position) ⇒ <code>Ticks</code>
-    * [.setScore(score)](#Driver+setScore) ⇒ <code>this</code>
+    * [.setScore(score, [updateTransport])](#Driver+setScore) ⇒ <code>this</code>
     * [.setInstruments(Instruments)](#Driver+setInstruments) ⇒ <code>this</code>
     * [.addInstrument(instrument)](#Driver+addInstrument)
     * [.scheduleVoices()](#Driver+scheduleVoices)
@@ -36,14 +36,15 @@ Returns the current state of the transport.
 **Kind**: instance property of [<code>Driver</code>](#Driver)  
 <a name="Driver+setScore"></a>
 
-### driver.setScore(score) ⇒ <code>this</code>
+### driver.setScore(score, [updateTransport]) ⇒ <code>this</code>
 Set the score the driver will play.
 
 **Kind**: instance method of [<code>Driver</code>](#Driver)  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| score | <code>Score</code> | A score containing voices. |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| score | <code>Score</code> | <code></code> | A score containing voices. |
+| [updateTransport] | <code>boolean</code> | <code>true</code> | Whether to update the transport's time signature and bpm values based on     the score. |
 
 <a name="Driver+setInstruments"></a>
 

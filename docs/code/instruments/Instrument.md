@@ -113,7 +113,7 @@ Play sound, optionally for a duration.
 | Param | Type | Default |
 | --- | --- | --- |
 | note | <code>string</code> |  | 
-| [duration] | <code>string</code> | <code>false</code> | 
+| [duration] | <code>string</code> | <code>&quot;&#x27;10&#x27;&quot;</code> | 
 
 <a name="Instrument.name"></a>
 
@@ -137,7 +137,8 @@ Can be easily over-riden for a specific intrument by using the lib to set the in
 **Kind**: static property of [<code>Instrument</code>](#Instrument)  
 **Example**  
 ```js
-lib.set('Piano', () => {return 'MyUltimatePiano'}) // Piano will now load audio files from the server/MyUltimatePiano
+lib.set('Piano', () => {return 'MyUltimatePiano'}) // Piano will now load audio files from the
+    server/MyUltimatePiano
 ```
 <a name="Instrument.getKey"></a>
 

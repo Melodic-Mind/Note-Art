@@ -140,7 +140,7 @@ Adds notes to the note set at the position.
 
 ### measure.addChord(notes, name, duration, position) ⇒ <code>boolean</code>
 Adds notes to the measure plus a name that represents the chord and is saved in
-the data at the position as caption
+the data at the position as name
 
 **Kind**: instance method of [<code>Measure</code>](#Measure)  
 

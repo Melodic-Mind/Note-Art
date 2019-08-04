@@ -17,8 +17,6 @@ Static class that can convert scores to objects and strings and back.
     * [.objectToMeasure(measureObject)](#ScoreHandler.objectToMeasure) ⇒ <code>Measure</code>
     * [.scoreToObject(score)](#ScoreHandler.scoreToObject) ⇒ <code>Object</code>
     * [.objectToScore(scoreObject)](#ScoreHandler.objectToScore) ⇒ <code>Score</code>
-    * [.stringifyScore(score)](#ScoreHandler.stringifyScore) ⇒ <code>string</code>
-    * [.parseScore(stringifiedScore)](#ScoreHandler.parseScore) ⇒ <code>Score</code>
 
 <a name="ScoreHandler.measureToObject"></a>
 
@@ -74,26 +72,4 @@ Convert object literal representing a Score to an instance of Score.
 | Param | Type |
 | --- | --- |
 | scoreObject | <code>object</code> | 
-
-<a name="ScoreHandler.stringifyScore"></a>
-
-### ScoreHandler.stringifyScore(score) ⇒ <code>string</code>
-Convert a score to string.
-
-**Kind**: static method of [<code>ScoreHandler</code>](#ScoreHandler)  
-
-| Param | Type |
-| --- | --- |
-| score | <code>Score</code> | 
-
-<a name="ScoreHandler.parseScore"></a>
-
-### ScoreHandler.parseScore(stringifiedScore) ⇒ <code>Score</code>
-Convert a stringified score back to a score.
-
-**Kind**: static method of [<code>ScoreHandler</code>](#ScoreHandler)  
-
-| Param | Type |
-| --- | --- |
-| stringifiedScore | <code>string</code> | 
 

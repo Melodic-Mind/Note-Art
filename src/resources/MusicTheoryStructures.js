@@ -61,7 +61,7 @@ export class MusicTheoryStructures {
                }
                          :
                {
-                   '1':   64,
+                   '1n':  64,
                    '2n':  32,
                    '4n':  16,
                    '8n':  8,

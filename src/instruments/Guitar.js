@@ -1,5 +1,5 @@
 import {Instrument, Cord} from '../'
-import {playing}          from '../mixins/Instruments'
+import {playMelodically, playNotes}    from '../mixins/Instruments'
 
 /**
  * @classdesc Represents a guitar which can play notes, individually or strum them together
@@ -91,4 +91,4 @@ export class Guitar {
     }
 }
 
-Object.assign(Guitar.prototype, playing)
+Object.assign(Guitar.prototype, {playMelodically, playNotes})

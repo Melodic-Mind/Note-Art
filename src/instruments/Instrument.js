@@ -3,8 +3,9 @@ import {Note}                          from '../models/Note'
 import {firstToUpper}                  from '../addons/GlobalFunctions'
 import {notesInRange, validateRawNote} from '../utilities/MusicalAddons'
 import {MusicTheoryStructures as mts}  from '../resources/MusicTheoryStructures'
-import {InvalidInput}                  from '../Exceptions'
-import {playing}                       from '../mixins/Instruments'
+import {playMelodically, playNotes}    from '../mixins/Instruments'
+
+//TODO Check possibility of using Tone.Sampler instead of Tone.Player to save loading time
 
 /**
  * @abstract
@@ -39,7 +40,8 @@ export class Instrument {
      * Can be easily over-riden for a specific intrument by using the lib to set the instruments name.
      * @return {string}
      * @example
-     * lib.set('Piano', () => {return 'MyUltimatePiano'}) // Piano will now load audio files from the server/MyUltimatePiano
+     * lib.set('Piano', () => {return 'MyUltimatePiano'}) // Piano will now load audio files from the
+     *     server/MyUltimatePiano
      */
     static get instrumentPath() {
         return lib.get(this.name)
@@ -156,9 +158,9 @@ export class Instrument {
     /**
      * Play sound, optionally for a duration.
      * @param {string} note
-     * @param {string} [duration=false]
+     * @param {string} [duration='10']
      */
-    play(note, duration = '100') {
+    play(note, duration = '10') {
         note = Instrument.notePipeline(note)
         if (this.hasNote(note)) {
             this.getPlayer(note).start().stop(`+${duration}`)
@@ -166,4 +168,4 @@ export class Instrument {
     }
 }
 
-Object.assign(Instrument.prototype, playing)
+Object.assign(Instrument.prototype, {playMelodically, playNotes})
