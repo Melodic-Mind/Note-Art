@@ -1,6 +1,6 @@
 import {lib}                           from '../'
 import {Note}                          from '../models/Note'
-import {firstToUpper}                  from '../addons/GlobalFunctions'
+import {firstToUpper}                  from '../utilities/Utilities'
 import {notesInRange, validateRawNote} from '../utilities/MusicalAddons'
 import {MusicTheoryStructures as mts}  from '../resources/MusicTheoryStructures'
 import {playMelodically, playNotes}    from '../mixins/Instruments'

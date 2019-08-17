@@ -36,6 +36,16 @@ describe('PitchClass', () => {
                 expect(PitchClass.sharpToFlat('Db')).to.equal('Db')
             })
         })
+
+        describe('isPitchClass' , () =>{
+            it('returns true when object is an instance of pitch class', () => {
+                expect(PitchClass.isPitchClass(new PitchClass('C'))).to.be.true
+            })
+
+            it('returns false when object is not an instance of pitch class', () => {
+                expect(PitchClass.isPitchClass({note: 'C'})).to.be.false
+            })
+        })
     })
 
     it('should have these attributes', () => {

@@ -1,11 +1,11 @@
-import {Note, validateRawNote, notesDistance, notesInRange, noteToObject} from '../../src'
-import {InvalidInput}                                                                                from '../../src/Exceptions'
+import {Note, validateRawNote, calculateInterval, notesInRange, noteToObject} from '../../src'
+import {InvalidInput}                                                         from '../../src/Exceptions'
 
 describe('Music addon functions', () => {
-    it('#notesDistance', () => {
+    it('#calculateInterval', () => {
         const n1 = new Note( 'c', 5),
               n2 = new Note('g',  5)
-        expect(notesDistance(n1, n2)).to.eql(7)
+        expect(calculateInterval(n1, n2)).to.eql(7)
     })
 
     describe('#extractFromPitch', () => {

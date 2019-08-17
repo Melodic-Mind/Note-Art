@@ -1,10 +1,12 @@
-import {firstToUpper} from '../addons/GlobalFunctions'
+import {firstToUpper} from '../utilities/Utilities'
 import {PitchClassRule} from '../validation/PitchClassRule'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 import {InvalidInput} from '../Exceptions'
 
 /**
  * @classdesc Represents a pitch class.
+ * @example
+ * const c = new PitchClass('d')
  * @param pitchClass
  */
 export class PitchClass {
@@ -45,18 +47,38 @@ export class PitchClass {
         }
     }
 
+    /**
+     * Returns true if pitch class has a flat in it, else false.
+     * @param pitchClass
+     * @returns {boolean}
+     */
     static isFlat(pitchClass) {
         return pitchClass.includes('b')
     }
 
+    /**
+     * Returns true if pitch class has a sharp in it, else false.
+     * @param pitchClass
+     * @returns {boolean}
+     */
     static isSharp(pitchClass) {
         return pitchClass.includes('#')
     }
 
+    /**
+     * Transforms a pitch class represented with a flat to a sharp. e.g Gb -> F#
+     * @param {string} pitchClass
+     * @returns {string}
+     */
     static flatToSharp(pitchClass) {
         return this.alterPitchClass(pitchClass, 'isFlat', -1)
     }
 
+    /**
+     * Transforms a pitch class represented with a sharp to a flat. e.g F# -> Gb
+     * @param {string} pitchClass
+     * @returns {string}
+     */
     static sharpToFlat(pitchClass) {
         return this.alterPitchClass(pitchClass, 'isSharp', 1)
     }
@@ -74,7 +96,12 @@ export class PitchClass {
         if (PitchClass[operation](pitchClass)) {
             return mts.pitchClasses[mts.pitchClasses.indexOf(pitchClass) + constant]
         }
+
         return pitchClass
+    }
+
+    static isPitchClass(obj){
+        return obj instanceof PitchClass
     }
 
     /**
@@ -108,6 +135,14 @@ export class PitchClass {
      * @returns {String}
      */
     toString() {
+        return this.pitchClass
+    }
+
+    /**
+     * Returns the pitch class as a string.
+     * @returns {String}
+     */
+    get raw(){
         return this.pitchClass
     }
 }

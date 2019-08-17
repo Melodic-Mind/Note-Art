@@ -1,19 +1,33 @@
-import {firstToUpper}                       from '../addons/GlobalFunctions'
+import {firstToUpper}                       from './Utilities'
 import {PitchClassRule}                     from '../validation/PitchClassRule'
 import {PianoOctaveRule}                    from '../validation/PianoOctaveRule'
 import {InvalidInput}                       from '../Exceptions'
 import {MusicTheoryStructures as mts, Note} from '../'
 
 /**
- * Calculate the pure interval(not considering octave) between 2 notes(in semitones).
- * @param {Note} n1 first note
- * @param {Note} n2 second note
+ * Generates a group of notes that represent chord played on a piano in a certain octave.
+ * @param pitchClasses
+ * @param octave
+ * @returns {*}
+ */
+function toPianoChord({pitchClasses}, octave) {
+    PianoOctaveRule.validatePossible(octave)
+    return pitchClasses.map(pitchClass => {
+        const relativeOctave = pitchClass.classIndex < pitchClasses[0].classIndex ? octave + 1 : octave
+        return new Note(pitchClass, relativeOctave)
+    })
+}
+
+/**
+ * Calculate the pure interval between 2 pitch classes.
+ * @param {PitchClass} pitchClass1 first note
+ * @param {PitchClass} pitchClass2 second note
  * @returns {Number}
  */
-function notesDistance(n1, n2) {
-    const i1 = n1.classIndex,
-          i2 = n2.classIndex
-    return i1 - i2 < 0 ? Math.abs(i1 - i2) : 12 - (i1 - i2)
+function calculateInterval(pitchClass1, pitchClass2) {
+    const i1 = pitchClass1.classIndex,
+          i2 = pitchClass2.classIndex
+    return i1 - i2 <= 0 ? Math.abs(i1 - i2) : 12 - (i1 - i2)
 }
 
 /**
@@ -89,4 +103,4 @@ function notesInRange(base, range) {
     return notes
 }
 
-export {notesDistance, notesInRange, noteToObject, validateRawNote, isRest, transposeNote}
+export {calculateInterval, notesInRange, noteToObject, validateRawNote, isRest, transposeNote}

@@ -7,39 +7,21 @@ title: Scale
 <a name="Scale"></a>
 
 ## Scale
-Represents a musical scale - a series of notes following a specific pattern from a note(the tonic) which
-    forms chords and can be used to compose infinite melodies.
-<b>Either Name or Pattern must be provided!</b>
+Represents a musical scale - a series of pitch classes following a specific pattern from a root(the
+    tonic) which forms chords and can be used to compose melodies.
 
 **Kind**: global class  
 
 * [Scale](#Scale)
     * [new exports.Scale(tonic, name, pattern)](#new_Scale_new)
-    * _instance_
-        * [.notes](#Scale+notes)
-        * [.semitones](#Scale+semitones) : <code>Array</code>
-        * [.name](#Scale+name) : <code>\*</code>
-        * [.otherNames](#Scale+otherNames) ⇒ <code>\*</code> \| <code>string</code>
-        * [.chords](#Scale+chords) : <code>Array</code>
-        * [.seventhChords](#Scale+seventhChords) : <code>Array</code>
-        * [.pitchClassesString](#Scale+pitchClassesString)
-        * [.pitchClasses](#Scale+pitchClasses) : <code>Array</code>
-        * [.notesString](#Scale+notesString)
-        * [.toString()](#Scale+toString) ⇒ <code>String</code>
-        * [.degree(degree)](#Scale+degree)
-        * [.chord(degree)](#Scale+chord) ⇒ <code>\*</code>
-    * _static_
-        * [.validateDiatonicScale(pitchClasses)](#Scale.validateDiatonicScale) ⇒ <code>\*</code>
-        * [.chordsFromNotes(notes, seventh)](#Scale.chordsFromNotes) ⇒ <code>Array</code>
+    * [.chords](#Scale+chords) : <code>Array</code>
+    * [.seventhChords](#Scale+seventhChords) : <code>Array</code>
+    * [.degree(degree)](#Scale+degree) ⇒ <code>PitchClass</code>
+    * [.chord(degree, [size])](#Scale+chord) ⇒ <code>\*</code>
 
 <a name="new_Scale_new"></a>
 
 ### new exports.Scale(tonic, name, pattern)
-**Throws**:
-
-- <code>MissingInformation</code> When not provided with tonic and either name or pattern
-- <code>DataNotFound</code> When called with name and the name cant be found in the database.
-
 
 | Param | Type |
 | --- | --- |
@@ -49,80 +31,27 @@ Represents a musical scale - a series of notes following a specific pattern from
 
 **Example**  
 ```js
-const c = new Note({note: 'c'})
-const C_Major_by_pattern = new Scale({tonic:c, pattern: [0, 2, 4, 5, 7, 9, 11]}) // new C major scale.
-const C_minor_by_name = new Scale({tonic:c, name: 'Minor'}) // new C major scale // new C minor scale.
+const c = new PitchClass('c')
+const C_Major_by_pattern = new Scale(c, [0, 2, 4, 5, 7, 9, 11]) // new C major scale.
 ```
-<a name="Scale+notes"></a>
-
-### scale.notes
-returns array that contains all the notes in the pattern.
-
-**Kind**: instance property of [<code>Scale</code>](#Scale)  
-<a name="Scale+semitones"></a>
-
-### scale.semitones : <code>Array</code>
-Returns the pattern for the scale as an array using semi-tone notation.
-
-**Kind**: instance property of [<code>Scale</code>](#Scale)  
-<a name="Scale+name"></a>
-
-### scale.name : <code>\*</code>
-Returns the scale name.
-
-**Kind**: instance property of [<code>Scale</code>](#Scale)  
-<a name="Scale+otherNames"></a>
-
-### scale.otherNames ⇒ <code>\*</code> \| <code>string</code>
-Returns other name of the scale.
-
-**Kind**: instance property of [<code>Scale</code>](#Scale)  
 <a name="Scale+chords"></a>
 
 ### scale.chords : <code>Array</code>
-Returns the chords of the scale in an array, calculated by taking each note,
-then skipping one note and taking the next, etc...to form the Chord.
+Returns an array of chords(triads) where each member is the chord at the degree where 0 is the root chord.
 
 **Kind**: instance property of [<code>Scale</code>](#Scale)  
 <a name="Scale+seventhChords"></a>
 
 ### scale.seventhChords : <code>Array</code>
-Returns the chords of the scale in an array, calculated by taking each note,
-then skipping one note and taking the next, etc...to form the Chord.
+Returns an array of chords(seventh) where each member is the chord at the degree where 0 is the root chord.
 
 **Kind**: instance property of [<code>Scale</code>](#Scale)  
-<a name="Scale+pitchClassesString"></a>
-
-### scale.pitchClassesString
-Returns a string of all the pitch class names in the scale.
-
-**Kind**: instance property of [<code>Scale</code>](#Scale)  
-**Type{string}**:   
-<a name="Scale+pitchClasses"></a>
-
-### scale.pitchClasses : <code>Array</code>
-Returns an array of the pitch classes in the scale.
-
-**Kind**: instance property of [<code>Scale</code>](#Scale)  
-<a name="Scale+notesString"></a>
-
-### scale.notesString
-Returns a string of the pitch class names and octaves of the scale.
-
-**Kind**: instance property of [<code>Scale</code>](#Scale)  
-**Type{string}**:   
-<a name="Scale+toString"></a>
-
-### scale.toString() ⇒ <code>String</code>
-returns the name of the scale.
-
-**Kind**: instance method of [<code>Scale</code>](#Scale)  
 <a name="Scale+degree"></a>
 
-### scale.degree(degree)
+### scale.degree(degree) ⇒ <code>PitchClass</code>
 Returns the degree inside the Scale.
 for example - if the Scale is a C Major,
-than interval(1) wiil return D.
+than interval(1) will return D.
 
 **Kind**: instance method of [<code>Scale</code>](#Scale)  
 
@@ -132,38 +61,13 @@ than interval(1) wiil return D.
 
 <a name="Scale+chord"></a>
 
-### scale.chord(degree) ⇒ <code>\*</code>
-Returns the chord that fits the scale degree note.
+### scale.chord(degree, [size]) ⇒ <code>\*</code>
+Returns the chord at the degree with size.
 
 **Kind**: instance method of [<code>Scale</code>](#Scale)  
 
-| Param |
-| --- |
-| degree | 
-
-<a name="Scale.validateDiatonicScale"></a>
-
-### Scale.validateDiatonicScale(pitchClasses) ⇒ <code>\*</code>
-Checks whether the same pitch class appears twice in a diatonic scale.
-
-**Kind**: static method of [<code>Scale</code>](#Scale)  
-
-| Param |
-| --- |
-| pitchClasses | 
-
-<a name="Scale.chordsFromNotes"></a>
-
-### Scale.chordsFromNotes(notes, seventh) ⇒ <code>Array</code>
-Gets an array of notes and returns a array of chords generated by the root +
-the note 2 degrees up +
-the note 4 degrees up.
-if seventh is true it also adds the seventh.
-
-**Kind**: static method of [<code>Scale</code>](#Scale)  
-
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| notes | <code>Array</code> |  | array of notes |
-| seventh | <code>Boolean</code> | <code>false</code> | whether to create a 7th chord |
+| degree | <code>number</code> |  | Degree to get chord at. |
+| [size] | <code>number</code> | <code>3</code> | Number of pitch classes in the chord. |
 

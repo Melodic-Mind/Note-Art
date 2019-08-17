@@ -7,8 +7,11 @@ title: MusicalAddons
 ## Functions
 
 <dl>
-<dt><a href="#notesDistance">notesDistance(n1, n2)</a> ⇒ <code>Number</code></dt>
-<dd><p>Calculate the pure interval(not considering octave) between 2 notes(in semitones).</p>
+<dt><a href="#toPianoChord">toPianoChord(pitchClasses, octave)</a> ⇒ <code>*</code></dt>
+<dd><p>Generates a group of notes that represent chord played on a piano in a certain octave.</p>
+</dd>
+<dt><a href="#calculateInterval">calculateInterval(pitchClass1, pitchClass2)</a> ⇒ <code>Number</code></dt>
+<dd><p>Calculate the pure interval between 2 pitch classes.</p>
 </dd>
 <dt><a href="#noteToObject">noteToObject(pitch)</a> ⇒ <code>Object</code></dt>
 <dd><p>Turns a note into an object with pitch class and octave.</p>
@@ -21,17 +24,29 @@ title: MusicalAddons
 </dd>
 </dl>
 
-<a name="notesDistance"></a>
+<a name="toPianoChord"></a>
 
-## notesDistance(n1, n2) ⇒ <code>Number</code>
-Calculate the pure interval(not considering octave) between 2 notes(in semitones).
+## toPianoChord(pitchClasses, octave) ⇒ <code>\*</code>
+Generates a group of notes that represent chord played on a piano in a certain octave.
+
+**Kind**: global function  
+
+| Param |
+| --- |
+| pitchClasses | 
+| octave | 
+
+<a name="calculateInterval"></a>
+
+## calculateInterval(pitchClass1, pitchClass2) ⇒ <code>Number</code>
+Calculate the pure interval between 2 pitch classes.
 
 **Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| n1 | <code>Note</code> | first note |
-| n2 | <code>Note</code> | second note |
+| pitchClass1 | <code>PitchClass</code> | first note |
+| pitchClass2 | <code>PitchClass</code> | second note |
 
 <a name="noteToObject"></a>
 

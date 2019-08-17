@@ -1,5 +1,5 @@
-import {Instrument, Cord} from '../'
-import {playMelodically, playNotes}    from '../mixins/Instruments'
+import {Instrument, Cord}           from '../'
+import {playMelodically, playNotes} from '../mixins/Instruments'
 
 /**
  * @classdesc Represents a guitar which can play notes, individually or strum them together
@@ -75,18 +75,20 @@ export class Guitar {
      * guitarInstance.strum('320033', '8n') //Plays G chord.
      */
     strum(pattern, duration) {
-        Array.from(pattern).forEach((fret, index) => {
+        this.byPattern(Array.from(pattern), duration)
+    }
+
+    byPattern(pattern, duration){
+        pattern.forEach((fret, index) => {
             if (fret !== 'x') {
-                index = 5 - index
-                this.playString(index,
-                    this.strings[index].fret(fret),
-                    duration)
+                index      = 5 - index
+                const note = this.strings[index].fret(fret)
+                this.playString(index, note, duration)
             }
         })
     }
 
-
-    toString(){
+    toString() {
         return 'Guitar'
     }
 }

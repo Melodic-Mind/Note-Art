@@ -1,5 +1,3 @@
-const scales = require('./scales.json')
-
 /**
  * @classdesc Contains music theory structures and databases
  * e.g pitch classes, interval names, scales and more.
@@ -82,37 +80,4 @@ export class MusicTheoryStructures {
             'vi', 'vii', 'viii', 'ix', 'x', 'xi',
         ],
     }
-
-    static NamedScales = scales.filter((scale => scale['Name'] !== 'Theoretical'))
-
-    static HeptatonicScales = scales.filter((scale) => {
-        return scale['Length'] === '7' && scale['Name'] !== 'Theoretical'
-    })
-
-    static HexatonicScales = scales.filter((scale) => {
-        return scale['Length'] === '6' && scale['Name'] !== 'Theoretical'
-    })
-
-    static OctatonicScales = scales.filter((scale) => {
-        return scale['Length'] === '8' && scale['Name'] !== 'Theoretical'
-    })
-
-    static AboveOctaScales = scales.filter((scale) => {
-        return parseInt(scale['Length']) > 8 && scale['Name'] !== 'Theoretical'
-    })
-
-
-    static PentatonicScales = scales.filter((scale) => {
-        return scale['Length'] === '5' && scale['Name'] !== 'Theoretical'
-    })
-
-    static TheoreticalScales = scales.filter((scale) => {
-        return scale['Name'] === 'Theoretical'
-    })
-
-    static scales = scales
-
-    static ClassicScales = require('./classic-scales.json')
-
-    static Chords = require('./chords.json')
 }
