@@ -68,22 +68,18 @@ export class Guitar {
 
     /**
      * Strums the guitar's strings using guitar pattern(low to high).
-     * @param {string} pattern pattern to strum
+     * @param {Array} pattern pattern to strum
      * @param {string} duration duration to play the note for.
      * @example
-     * guitarInstance.strum('x02210', '8n') //Plays Am chord.
-     * guitarInstance.strum('320033', '8n') //Plays G chord.
+     * guitarInstance.strum(['x', 0, 2, 2, 1, 0], '8n') //Plays Am chord.
+     * guitarInstance.strum([3, 2, 0, 0, 3, 3], '8n') //Plays G chord.
      */
     strum(pattern, duration) {
-        this.byPattern(Array.from(pattern), duration)
-    }
-
-    byPattern(pattern, duration){
         pattern.forEach((fret, index) => {
             if (fret !== 'x') {
                 index      = 5 - index
                 const note = this.strings[index].fret(fret)
-                this.playString(index, note, duration)
+                this.playString(index.toString(), note, duration)
             }
         })
     }

@@ -1,7 +1,9 @@
+import Tone from 'Tone/core/Tone'
+
 /**
  * A wrapper the library uses for setting and getting global state variables.
  */
-export class Application {
+class Lib {
     constructor() {
         this.instances = {}
     }
@@ -18,3 +20,31 @@ export class Application {
         this.instances[instance] = {called: false, value: callback}
     }
 }
+
+const lib = new Lib()
+
+lib.set('tone', () => {
+    return Tone
+})
+
+lib.set('path', () => {
+    return 'https://note-art-server.herokuapp.com/audio/'
+})
+
+lib.set('ready', () => {
+    return false
+})
+
+lib.set('Cord', () => {
+    return 'guitar'
+})
+
+lib.set('Piano', () => {
+    return 'piano'
+})
+
+lib.set('Drumset', () => {
+    return 'drums'
+})
+
+export {lib}

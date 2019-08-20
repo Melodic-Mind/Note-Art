@@ -6,13 +6,14 @@ title: Scale
 
 <a name="Scale"></a>
 
-## Scale
+## Scale ⇐ <code>MusicalPattern</code>
 Represents a musical scale - a series of pitch classes following a specific pattern from a root(the
     tonic) which forms chords and can be used to compose melodies.
 
 **Kind**: global class  
+**Extends**: <code>MusicalPattern</code>  
 
-* [Scale](#Scale)
+* [Scale](#Scale) ⇐ <code>MusicalPattern</code>
     * [new exports.Scale(tonic, name, pattern)](#new_Scale_new)
     * [.chords](#Scale+chords) : <code>Array</code>
     * [.seventhChords](#Scale+seventhChords) : <code>Array</code>

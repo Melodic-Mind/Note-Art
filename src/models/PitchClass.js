@@ -1,7 +1,7 @@
-import {firstToUpper} from '../utilities/Utilities'
-import {PitchClassRule} from '../validation/PitchClassRule'
+import {firstToUpper}                 from '../utilities/GeneralFunctions'
+import {PitchClassRule}               from '../validation/PitchClassRule'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
-import {InvalidInput} from '../Exceptions'
+import {InvalidInput}                 from '../Exceptions'
 
 /**
  * @classdesc Represents a pitch class.
@@ -10,6 +10,10 @@ import {InvalidInput} from '../Exceptions'
  * @param pitchClass
  */
 export class PitchClass {
+    /**
+     *
+     * @param pitchClass
+     */
     constructor(pitchClass) {
         const attributes = {}
         PitchClassRule.exists(pitchClass)

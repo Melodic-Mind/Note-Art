@@ -78,7 +78,7 @@ describe('Guitar', () => {
             const stringStubs = []
             for (const s of guitar.strings)
                 stringStubs.push(sinon.stub(s, 'play'))
-            guitar.strum('000000')
+            guitar.strum(Array.from('000000'))
             stringStubs.forEach((stub) => {
                 expect(stub).to.have.been.calledOnce
             })
@@ -90,7 +90,7 @@ describe('Guitar', () => {
             const stringStubs = []
             for (const s of guitar.strings)
                 stringStubs.push(sinon.stub(s, 'play'))
-            guitar.strum('xxxxxx')
+            guitar.strum(Array.from('xxxxxx'))
             stringStubs.forEach((stub) => {
                 expect(stub).to.not.have.been.called
             })

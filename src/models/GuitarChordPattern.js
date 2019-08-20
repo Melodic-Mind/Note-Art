@@ -1,38 +1,57 @@
-import {PatternRule} from '../validation/PatternRule'
-import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
+import {PatternRule}                   from '../validation/PatternRule'
+import {MusicTheoryStructures as mts}  from '../resources/MusicTheoryStructures'
 import {calculateInterval, PitchClass} from '../'
-import {InvalidInput} from '../Exceptions'
+import {InvalidInput}                  from '../Exceptions'
 
-//system for creating chords out of patterns for every instrument.
-//The ctor will be initialized with a pattern that fits some specific chord and can then be transposed to any other
-// note or go higher or lower. this class getChords method returns an array of all the chords that can be built out of
-// the pattern with the pitch class as root.
+/**
+ * @classdesc This class is used to implement the CAGED chord system in code.
+ * basically, it converts a chord of a specific pattern to any other root of the same chord.
+ * @param {Array} pattern The chords pattern.
+ * @param {PitchClass} pitchClass The chord's root pitch class.
+ * @param {string} name The chords name.
+ */
 export class GuitarChordPattern {
     constructor(pattern, pitchClass, name) {
         PatternRule.isArray(pattern)
         this.attributes = {pattern, pitchClass, name}
     }
 
+    /**
+     * Returns the chord pattern.
+     * @returns {Array}
+     */
     get pattern() {
         return this.attributes.pattern
     }
 
+    /**
+     * Returns the chord's pitch class.
+     * @returns {PitchClass}
+     */
     get pitchClass() {
         return this.attributes.pitchClass
     }
 
+    /**
+     * Returns the chord name.
+     * @returns {string}
+     */
     get name() {
         return this.attributes.name
     }
 
+    /**
+     * Returns a string that represents the strumming pattern for a guitar chord with the new root.
+     * @param {PitchClass} root The root of the chord.
+     * @returns {{chord: string, name: string}}
+     */
     getChord(root) {
         if (!(root instanceof PitchClass)) {
             throw new InvalidInput(`expected ${root} to be an instance of PitchClass`)
         }
 
         const interval = calculateInterval(this.pitchClass, root)
-        let res = ''
-        this.pattern.forEach(pos => res += pos === 'x' ? 'x' : (pos + interval).toString())
-        return {chord: res, name: `${root} ${this.name}`}
+        const pattern  = this.pattern.map(pos => pos === 'x' ? 'x' : pos + interval)
+        return {pattern, name: `${root} ${this.name}`}
     }
 }

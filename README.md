@@ -31,7 +31,7 @@ Any questions/ requests/ tips are welcome!**
 * [License](#license)
 
 
-## About :notes:
+## About
 
 * This project aims to create the ultimate music library, including:
    * Music Theory
@@ -72,7 +72,13 @@ npm install note-art
 The music models are pure music theory concepts that are translated to code.
 * patterns are in semi-tones.
 ```
-import {Note, Chord, Scale} from 'note-art'
+import {PitchClass, Note, Chord, Scale} from 'note-art'
+
+// PitchClass
+
+const a = new PitchClass('a')
+
+console.log(a.interval(5))  // Returns a new pitch class instance with the pitch class set as 'D'
 
 // Note
 
@@ -88,15 +94,15 @@ console.log(fourth) // E4
 
 //Chord
 
-const A_M = new Chord({root: A, pattern: [4, 7]})
+const A_M = new Chord(a, [4, 7]})
 
-console.log(A_M.pitchClasses) // A4, C5, E5
+console.log(A_M.pitchClasses) // A, C, E(returns pitch class instances)
 
 //Scale
 
-const C_Major = new Scale({tonic: new Note('c', 3), pattern: [0, 2, 4, 5, 7, 9, 11]})
+const C_Major = new Scale(new PitchClass('c'), [0, 2, 4, 5, 7, 9, 11]})
 
-console.log(A_Major.notesString) // C3, D3, E3, F3, G3, A3, B3
+console.log(A_Major.pitchClasses) // C, D, E, F, G, A, B
 ```
 <br>
 
@@ -121,7 +127,7 @@ The notation api is more complex so check out the api, or the demo source code t
 ```
 import {lib} from 'note-art'
 
-lib.get('audio-manager').resumeContext() // Resume context
+lib.get('tone').context.resume() // Resume context
 lib.get('ready')    // True when all buffers have loaded
 ```
 

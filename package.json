@@ -16,7 +16,7 @@
         "test": "cross-env NODE_PATH=node_modules/tone/ mocha \"test/**/*.spec.js\"",
         "coverage": "cross-env NODE_ENV=test nyc npm run test -- --reporter landing --cache",
         "report": "nyc report --root coverage --format html",
-        "docs": "vuepress-jsdoc -d docs -e src/validation,src/resources",
+        "docs": "vuepress-jsdoc -d docs -e src/validation",
         "docs:dev": "vuepress dev docs/",
         "docs:build": "vuepress build docs",
         "predeploy": "npm version patch",

@@ -53,11 +53,11 @@ export class Driver {
 
 }
 
-export class MusicalAddons {
+export class MusicFunctions {
 
 }
 
-export class ScientificFuncs {
+export class ScientificFunctions {
 
 }
 

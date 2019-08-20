@@ -1,5 +1,8 @@
 import {Instrument} from './Instrument'
-
+/**
+ * @extends Instrument
+ * @classdesc A cord which represents a cord as part of a stringed instrument.
+ */
 export class Cord extends Instrument {
     constructor(base, range, stringNumber) {
         super()

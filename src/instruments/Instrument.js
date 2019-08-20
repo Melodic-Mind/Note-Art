@@ -1,9 +1,13 @@
-import {lib}                           from '../'
-import {Note}                          from '../models/Note'
-import {firstToUpper}                  from '../utilities/Utilities'
-import {notesInRange, validateRawNote} from '../utilities/MusicalAddons'
-import {MusicTheoryStructures as mts}  from '../resources/MusicTheoryStructures'
-import {playMelodically, playNotes}    from '../mixins/Instruments'
+import {
+    lib,
+    Note,
+    firstToUpper,
+    notesInRange,
+    validateRawNote,
+    MusicTheoryStructures as mts
+} from '../'
+import {playMelodically, playNotes} from '../mixins/Instruments'
+import Players from 'Tone/source/Players'
 
 //TODO Check possibility of using Tone.Sampler instead of Tone.Player to save loading time
 
@@ -13,8 +17,23 @@ import {playMelodically, playNotes}    from '../mixins/Instruments'
  */
 export class Instrument {
     constructor() {
-        this.notes   = new Map()
-        this.players = lib.get('audio-manager').getAudioMap()
+        this.notes = new Map()
+        this.players = Instrument.getTonePlayers()
+    }
+
+    /**
+     * @returns {Tone.Players}
+     */
+    static getTonePlayers(){
+        return new Players()
+    }
+
+    /**
+     * Connects audio node to master.
+     * @param context File context instance.
+     */
+    static toMaster(context){
+        context.toMaster()
     }
 
     /**
@@ -56,7 +75,7 @@ export class Instrument {
     init(base, range) {
         Object.entries(notesInRange(base, range)).forEach(([key, {pitchClass, octave}]) => {
             const note = new Note(pitchClass, octave)
-            this.notes.set(key, note)
+            this.notes.add(key, note)
             this.setPlayer(key, note)
         })
     }
@@ -71,7 +90,7 @@ export class Instrument {
     static normalizeSet(pitchClass, classSet) {
         if (classSet === '#') {
             const index = mts.sharpClassNotes.indexOf(pitchClass)
-            pitchClass  = mts.flatClassNotes[index]
+            pitchClass = mts.flatClassNotes[index]
         }
         const index = mts.flatClassNotes.indexOf(pitchClass)
         return mts.flatClassNotes[index]
@@ -108,8 +127,9 @@ export class Instrument {
      * @param {Note} note
      */
     setPlayer(key, note) {
-        this.players.set(key, this.generatePath(note))
-        lib.get('audio-manager').toMaster(this.players.get(key))
+        const context = this.generatePath(note)
+        this.players.set(key, context)
+        Instrument.toMaster(context)
     }
 
     /**
@@ -149,8 +169,8 @@ export class Instrument {
         note = Instrument.normalizeNoteStr(note)
         if (note.includes('#')) {
             const pitchClass = Instrument.normalizeSet(note.slice(0, 2), '#')
-            const octave     = note[note.length - 1]
-            note             = `${pitchClass}${octave}`
+            const octave = note[note.length - 1]
+            note = `${pitchClass}${octave}`
         }
         return note
     }

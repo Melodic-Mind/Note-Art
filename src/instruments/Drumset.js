@@ -30,8 +30,9 @@ export class Drumset extends Instrument {
     /** @inheritDoc */
     init() {
         drumSounds.forEach(filename => {
-            this.players.set(filename, this.generatePath(filename))
-            lib.get('audio-manager').toMaster(this.players.get(filename))
+            const context = this.generatePath(filename)
+            this.players.set(filename, context)
+            Instrument.toMaster(context)
         })
     }
 

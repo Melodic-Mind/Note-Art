@@ -1,8 +1,7 @@
-import {PianoOctaveRule}              from '../validation/PianoOctaveRule'
 import {PitchClass}                   from './PitchClass'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
-import {realNumberFromFreq}           from '../utilities/ScientificFuncs'
-import {noteToObject}                 from '../'
+import {realNumberFromFreq}           from '../utilities/ScientificFunctions'
+import {noteToObject, validateNumber} from '../'
 
 /**
  * @classdesc Represents an abstract musical note.
@@ -32,7 +31,7 @@ import {noteToObject}                 from '../'
 export class Note extends PitchClass {
     constructor(pitchClass, octave) {
         super(pitchClass)
-        PianoOctaveRule.validatePossible(octave)
+        validateNumber(octave)
         this.attributes.octave = octave
     }
 

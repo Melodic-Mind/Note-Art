@@ -1,8 +1,9 @@
-import {calculateInterval} from '../utilities/MusicalAddons'
+import {calculateInterval} from '../utilities/MusicFunctions'
 import {Chord}             from './Chord'
 import {MusicalPattern}    from './MusicalPattern'
 
 /**
+ * @extends MusicalPattern
  * @classdesc Represents a musical scale - a series of pitch classes following a specific pattern from a root(the
  *     tonic) which forms chords and can be used to compose melodies.
  * @param {String/Note} tonic

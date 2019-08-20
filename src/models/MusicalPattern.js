@@ -1,12 +1,12 @@
 import {PitchClassRule} from '../validation/PitchClassRule'
 import {PatternRule}    from '../validation/PatternRule'
-import {buildString}    from '../utilities/Utilities'
+import {buildString}    from '../utilities/GeneralFunctions'
 
 /**
  * @classdesc Represents an abstract musical pattern made out of pitch classes with a certain interval relationship.
- * @param {PitchClass} pitchClass
- * @param {Array} pattern
- * @param {Object} [info={}]
+ * @param {PitchClass} pitchClass The pitch class to create the pattern from.
+ * @param {Array} pattern The pattern to use.
+ * @param {Object} [info={}] Any additional information to save about the pattern.
  */
 export class MusicalPattern {
     constructor(pitchClass, pattern, info = {}) {
@@ -17,7 +17,6 @@ export class MusicalPattern {
         this.attributes.info = {...info, pattern}
     }
 
-
     setPitchClasses(pitchClass, pattern) {
         const notes = [pitchClass]
         pattern.forEach(interval => notes.push(pitchClass.interval(interval)))
@@ -25,22 +24,42 @@ export class MusicalPattern {
         this.attributes.pitchClasses = notes
     }
 
+    /**
+     * Returns an array of the pitch classes.
+     * @returns {Array}
+     */
     get pitchClasses() {
         return this.attributes.pitchClasses
     }
 
+    /**
+     * Returns the root pitch class.
+     * @returns {*}
+     */
     get root() {
         return this.pitchClasses[0]
     }
 
+    /**
+     * Returns the information object the pattern was created with.
+     * @returns {{}}
+     */
     get info() {
         return this.attributes.info
     }
 
+    /**
+     * Returns the pattern it self.
+     * @returns {Array}
+     */
     get pattern() {
         return this.info.pattern
     }
 
+    /**
+     * Returns an array of the raw pitch classes.
+     * @returns {Array}
+     */
     get raw() {
         return this.pitchClasses.map(pitchClass => pitchClass.raw)
     }

@@ -2,7 +2,7 @@ import {firstToUpper, MusicTheoryStructures as mts, transposeNote, validateArray
 
 /**
  * @classdesc Represents a single measure as part of a musical score in musical notation.
- * @param {Number} [maxDuration = 0] Max duration of the measure(decided by time signature)
+ * @param {Number} [maxDuration = 0] Max duration of the measure(determined by time signature)
  */
 export class Measure {
     constructor(maxDuration = 64) {
@@ -190,6 +190,11 @@ export class Measure {
         return false
     }
 
+    /**
+     * Returns true if the duration has space, else false.
+     * @param duration
+     * @returns {boolean}
+     */
     hasSpace(duration) {
         return mts.noteDurations()[duration] <= this.durationLeft()
     }

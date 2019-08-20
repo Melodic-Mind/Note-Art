@@ -49,7 +49,7 @@ describe('Score', () => {
         })
 
         it('name attribute', () => {
-            expect(score.name).to.equal(null)
+            expect(score.name).to.equal('my_score')
             score.name = 'my score'
             expect(score.name).to.equal('my score')
         })

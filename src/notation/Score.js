@@ -3,9 +3,12 @@ import {DurationRule}                          from '../validation/DurationRule'
 
 /**
  * @classdesc Represents a full musical score consisting of a number of voices.
+ * @param {number} [attributes.bpm=100] The bpm for the score.
+ * @param {Array} [attributes.timeSignature=[4,4]] Time signature for the score.
+ * @param {string} [attributes.name=my_score] Name for the score.
  */
 export class Score {
-    constructor({bpm = 100, timeSignature = [4, 4], name = null} = {}) {
+    constructor({bpm = 100, timeSignature = [4, 4], name = 'my_score'} = {}) {
         this.setTimeSignature(timeSignature)
         this.attributes = {name, bpm, duration: '4n', voices: [[new Measure(this.measureSize)]]}
     }
@@ -43,6 +46,10 @@ export class Score {
         this.attributes.duration = duration
     }
 
+    /**
+     * Returns the score name.
+     * @returns {string}
+     */
     get name() {
         return this.attributes.name
     }

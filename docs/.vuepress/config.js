@@ -2,17 +2,20 @@ const sidebarTree = (title = 'About') => ({
     '/code/': [
         {
             'title':       'models',
-            'collapsable': false,
+            'collapsable': true,
             'children':    [
                 'models/PitchClass',
                 'models/Note',
+                'models/MusicalPattern',
                 'models/Chord',
                 'models/Scale',
+                'models/GuitarChordPattern',
+                'models/Driver',
             ],
         },
         {
             'title':       'notation',
-            'collapsable': false,
+            'collapsable': true,
             'children':    [
                 'notation/Measure',
                 'notation/Score',
@@ -21,7 +24,7 @@ const sidebarTree = (title = 'About') => ({
         },
         {
             'title':       'instruments',
-            'collapsable': false,
+            'collapsable': true,
             'children':    [
                 'instruments/Instrument',
                 'instruments/Piano',
@@ -31,19 +34,25 @@ const sidebarTree = (title = 'About') => ({
         },
         {
             'title':       'utilities',
-            'collapsable': false,
+            'collapsable': true,
             'children':    [
-                'utilities/ScientificFuncs',
-                'utilities/MusicalAddons',
-                'utilities/Driver',
-                'utilities/AudioManager',
+                'utilities/ScientificFunctions',
+                'utilities/MusicFunctions',
+                'utilities/GeneralFunctions',
             ],
         },
         {
             'title':       'mixins',
-            'collapsable': false,
+            'collapsable': true,
             'children':    [
                 'mixins/Instruments',
+            ],
+        },
+        {
+            'title':       'resources',
+            'collapsable': true,
+            'children':    [
+                'resources/MusicTheoryStructures',
             ],
         },
     ],

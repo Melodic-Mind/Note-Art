@@ -1,42 +1,6 @@
-import {Application}                       from './Application'
-import {AudioManager}                      from './utilities/AudioManager'
-import Tone                                from 'Tone/core/Tone'
+import {lib}                               from './Application'
 
-if (process.env.NODE_ENV && process.env.NODE_ENV !== 'test') {
-    Tone.Players.prototype.set = new Tone.Players().add
-}
-
-const lib = new Application()
-
-lib.set('audio-manager', () => {
-    return AudioManager
-})
-
-lib.set('tone', () => {
-    return Tone
-})
-
-lib.set('path', () => {
-    return 'https://note-art-server.herokuapp.com/audio/'
-})
-
-lib.set('ready', () => {
-    return false
-})
-
-lib.set('Cord', () => {
-    return 'guitar'
-})
-
-lib.set('Piano', () => {
-    return 'piano'
-})
-
-lib.set('Drumset', () => {
-    return 'drums'
-})
-
-Tone.Buffer.on('load', () => {
+lib.get('tone').Buffer.on('load', () => {
     lib.set('ready', () => {
         return true
     })
@@ -44,18 +8,20 @@ Tone.Buffer.on('load', () => {
 
 export {lib}
 export {Chord}                             from './models/Chord'
+export {Cord}                              from './instruments/Cord'
 export {Drumset}                           from './instruments/Drumset'
-export {Driver}                            from './utilities/Driver'
+export {Driver}                            from './models/Driver'
 export {Guitar}                            from './instruments/Guitar'
+export {GuitarChordPattern}                from './models/GuitarChordPattern'
 export {Instrument}                        from './instruments/Instrument'
 export {Measure}                           from './notation/Measure'
 export {MusicTheoryStructures}             from './resources/MusicTheoryStructures'
 export {Note}                              from './models/Note'
-export {Cord}                              from './instruments/Cord'
 export {Piano}                             from './instruments/Piano'
 export {Score}                             from './notation/Score'
 export {PitchClass}                        from './models/PitchClass'
 export {Scale}                             from './models/Scale'
 export {ScoreHandler}                      from './notation/ScoreHandler'
-export *                                   from './utilities/Utilities'
-export *                                   from './utilities/MusicalAddons'
+export *                                   from './utilities/GeneralFunctions'
+export *                                   from './utilities/MusicFunctions'
+export *                                   from './validation/Validators'
