@@ -4,16 +4,13 @@ import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 import {InvalidInput}                 from '../Exceptions'
 
 /**
+ * @class PitchClass
  * @classdesc Represents a pitch class.
  * @example
  * const c = new PitchClass('d')
  * @param pitchClass
  */
 export class PitchClass {
-    /**
-     *
-     * @param pitchClass
-     */
     constructor(pitchClass) {
         const attributes = {}
         PitchClassRule.exists(pitchClass)

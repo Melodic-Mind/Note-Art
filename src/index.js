@@ -1,4 +1,4 @@
-import {lib}                               from './Application'
+import {lib}                               from './Lib'
 
 lib.get('tone').Buffer.on('load', () => {
     lib.set('ready', () => {

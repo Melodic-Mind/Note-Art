@@ -25,6 +25,11 @@ describe('Scale', () => {
         expect(C_Major.degree(1)).to.eql(new PitchClass('c'))
     })
 
+    it('#chord', () => {
+        const stub = new Chord(new PitchClass('c'), [4, 7])
+        expect(C_Major.chord(1)).to.eql(stub)
+    })
+
     describe('#chords', () => {
         it('should have these chords with a C Major scale', () => {
             const stub = [
