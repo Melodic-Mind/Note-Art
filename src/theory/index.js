@@ -1,0 +1,6 @@
+export PitchClass         from './PitchClass'
+export Note               from './Note'
+export MusicalPattern     from './MusicalPattern'
+export Chord              from './Chord'
+export Scale              from './Scale'
+export GuitarChordPattern from './GuitarChordPattern'

@@ -1,0 +1,5 @@
+export Instrument from './Instrument'
+export Cord from './Cord'
+export Guitar from './Guitar'
+export Piano from './Piano'
+export Drumset from './Drumset'

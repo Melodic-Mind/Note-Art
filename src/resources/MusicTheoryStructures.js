@@ -1,4 +1,5 @@
 /**
+ * @class MusicTheoryStructures
  * @classdesc Contains music theory structures and databases
  * e.g pitch classes, interval names, scales and more.
  */

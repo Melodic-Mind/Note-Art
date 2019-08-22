@@ -1,16 +1,17 @@
-import {Instrument, Cord}           from '../'
-import {playMelodically, playNotes} from '../mixins/Instruments'
+import {InstrumentMixin} from '../mixins'
+import Instrument        from './Instrument'
+import Cord              from './Cord'
 
 /**
+ * @class Guitar
  * @classdesc Represents a guitar which can play notes, individually or strum them together
  * using different input methods.
  * This guitar uses all the audio files from the note-art server,
  * if you wish to create a different guitar you can do so easily by using the template below
  * with your number of strings, their ranges, etc.
  */
-export class Guitar {
+export default class Guitar {
     constructor() {
-        //The ranges are set to the number of samples in the note art server.
         this.strings = [
             new Cord('E4', 19, 1),
             new Cord('B3', 16, 2),
@@ -89,4 +90,4 @@ export class Guitar {
     }
 }
 
-Object.assign(Guitar.prototype, {playMelodically, playNotes})
+Object.assign(Guitar.prototype, {...InstrumentMixin})

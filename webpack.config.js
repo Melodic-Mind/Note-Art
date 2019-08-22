@@ -1,9 +1,14 @@
 const path        = require('path')
 const libraryName = 'note-art'
-const outputFile  = libraryName + '.js'
+const outputFile  = '[name].js'
 
 module.exports = {
-    entry:       __dirname + '/src/index.js',
+    entry:       {
+        'note-art':  __dirname + '/src/index.js',
+        theory:      __dirname + '/src/theory/index.js',
+        notation:    __dirname + '/src/notation/index.js',
+        instruments: __dirname + '/src/instruments/index.js',
+    },
     output:      {
         filename:       outputFile,
         path:           path.resolve(__dirname, 'dist'),

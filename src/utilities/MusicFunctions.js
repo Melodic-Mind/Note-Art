@@ -1,14 +1,12 @@
+import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
+import {Note, PitchClass}             from '../theory'
+import {firstToUpper, reArrangeArray} from '../utilities'
 import {
-    MusicTheoryStructures as mts,
-    Note,
-    PitchClass,
-    firstToUpper,
     validateInstance,
     validateArray,
     validateNumber,
     validateRawNote,
-    reArrangeArray,
-} from '../'
+}                                     from '../validation'
 
 /**
  * Generates a group of notes that represent chord played on a piano in a certain octave.
@@ -17,7 +15,7 @@ import {
  * @param {number} octave Octave for the chord root.
  * @returns {Array}
  */
-export function toPianoChord({pitchClasses}, octave, inversion = 0){
+export function toPianoChord({pitchClasses}, octave, inversion = 0) {
     validateArray(pitchClasses)
     pitchClasses.forEach(pitchClass => validateInstance(pitchClass, PitchClass))
     validateNumber(octave)
@@ -92,12 +90,3 @@ export function notesInRange(base, range) {
 
     return notes
 }
-
-// export {
-//     calculateInterval,
-//     notesInRange,
-//     noteToObject,
-//     isRest,
-//     transposeNote,
-//     toPianoChord,
-// }

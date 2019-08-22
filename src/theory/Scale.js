@@ -1,8 +1,9 @@
-import {calculateInterval} from '../utilities/MusicFunctions'
-import {Chord}             from './Chord'
-import {MusicalPattern}    from './MusicalPattern'
+import {calculateInterval} from '../utilities'
+import Chord               from './Chord'
+import MusicalPattern      from './MusicalPattern'
 
 /**
+ * @class Scale
  * @extends MusicalPattern
  * @classdesc Represents a musical scale - a series of pitch classes following a specific pattern from a root(the
  *     tonic) which forms chords and can be used to compose melodies.
@@ -13,7 +14,7 @@ import {MusicalPattern}    from './MusicalPattern'
  * const c = new PitchClass('c')
  * const C_Major_by_pattern = new Scale(c, [0, 2, 4, 5, 7, 9, 11]) // new C major scale.
  */
-export class Scale extends MusicalPattern {
+export default class Scale extends MusicalPattern {
     /**
      * Returns an array of chords(triads) where each member is the chord at the degree where 0 is the root chord.
      * @type {Array}

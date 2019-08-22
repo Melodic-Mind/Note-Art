@@ -1,16 +1,15 @@
 const sidebarTree = (title = 'About') => ({
     '/code/': [
         {
-            'title':       'models',
+            'title':       'theory',
             'collapsable': true,
             'children':    [
-                'models/PitchClass',
-                'models/Note',
-                'models/MusicalPattern',
-                'models/Chord',
-                'models/Scale',
-                'models/GuitarChordPattern',
-                'models/Driver',
+                'theory/PitchClass',
+                'theory/Note',
+                'theory/MusicalPattern',
+                'theory/Chord',
+                'theory/Scale',
+                'theory/GuitarChordPattern',
             ],
         },
         {
@@ -28,8 +27,23 @@ const sidebarTree = (title = 'About') => ({
             'children':    [
                 'instruments/Instrument',
                 'instruments/Piano',
-                'instruments/Guitar',
                 'instruments/Drumset',
+                'instruments/Cord',
+                'instruments/Guitar',
+            ],
+        },
+        {
+            'title':       'resources',
+            'collapsable': true,
+            'children':    [
+                'resources/MusicTheoryStructures',
+            ],
+        },
+        {
+            'title':       'transport',
+            'collapsable': true,
+            'children':    [
+                'ScorePlayer',
             ],
         },
         {
@@ -39,20 +53,6 @@ const sidebarTree = (title = 'About') => ({
                 'utilities/ScientificFunctions',
                 'utilities/MusicFunctions',
                 'utilities/GeneralFunctions',
-            ],
-        },
-        {
-            'title':       'mixins',
-            'collapsable': true,
-            'children':    [
-                'mixins/Instruments',
-            ],
-        },
-        {
-            'title':       'resources',
-            'collapsable': true,
-            'children':    [
-                'resources/MusicTheoryStructures',
             ],
         },
     ],

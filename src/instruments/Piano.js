@@ -1,10 +1,11 @@
-import {Instrument} from '../instruments/Instrument'
+import Instrument from '../instruments/Instrument'
 
 /**
+ * @class Piano
  * @classdesc Represents a Piano.
  * @extends Instrument
  */
-export class Piano extends Instrument {
+export default class Piano extends Instrument {
     constructor(base = 'A0', range = 87) {
         super()
         this.init(base, range)

@@ -1,5 +1,4 @@
-import {Instrument} from './Instrument'
-import {lib}        from '../'
+import Instrument from './Instrument'
 
 const drumSounds = [
     'clap',
@@ -13,10 +12,11 @@ const drumSounds = [
 ]
 
 /**
+ * @class Drumset
  * @extends Instrument
  * @classdesc Can play drum sounds, has clap, hihat-closed, hihat-open, kick, snare, tom-high, tom-low, tom-mid.
  */
-export class Drumset extends Instrument {
+export default class Drumset extends Instrument {
     constructor() {
         super()
         this.init()

@@ -1,6 +1,6 @@
-import {InvalidInput} from "../Exceptions";
+import {InvalidInput} from '../Exceptions'
 
-export class PatternRule {
+export default class PatternRule {
     static isPattern(array) {
         PatternRule.isArray(array)
         const pattern = array.every(member => parseInt(member) == member)
@@ -11,8 +11,8 @@ export class PatternRule {
         return true
     }
 
-    static isArray(array){
-        if(!Array.isArray(array)){
+    static isArray(array) {
+        if (!Array.isArray(array)) {
             throw new InvalidInput('expected _ to be an array')
         }
     }

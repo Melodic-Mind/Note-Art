@@ -1,9 +1,11 @@
-import {Measure, Score} from '../'
+import Measure from './Measure'
+import Score   from './Score'
 
 /**
+ * @class ScoreHandler
  * Static class that can convert scores to objects and strings and back.
  */
-export class ScoreHandler {
+export default class ScoreHandler {
     /**
      * Convert a measure to object literal.
      * @param {Measure} measure
@@ -81,7 +83,7 @@ export class ScoreHandler {
      */
     static objectToScore(scoreObject) {
 
-        const score    = new Score({
+        const score = new Score({
             timeSignature: scoreObject.timeSignature,
             bpm:           scoreObject.bpm,
             name:          scoreObject.name,

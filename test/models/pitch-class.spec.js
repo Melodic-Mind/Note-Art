@@ -1,4 +1,4 @@
-import {PitchClass}   from '../../src/models/PitchClass'
+import {PitchClass}   from '../../src'
 import {InvalidInput} from '../../src/Exceptions'
 
 describe('PitchClass', () => {

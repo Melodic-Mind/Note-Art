@@ -1,5 +1,5 @@
 import * as funcs from '../../src/utilities/ScientificFunctions'
-import { Note } from '../../src';
+import { Note }   from '../../src';
 
 describe('Scientific functions', () => {
     it('#freqFromPitch', () => {

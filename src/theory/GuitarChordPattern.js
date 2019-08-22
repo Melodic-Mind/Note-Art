@@ -1,16 +1,16 @@
-import {PatternRule}                   from '../validation/PatternRule'
-import {MusicTheoryStructures as mts}  from '../resources/MusicTheoryStructures'
-import {calculateInterval, PitchClass} from '../'
-import {InvalidInput}                  from '../Exceptions'
+import PitchClass          from './PitchClass'
+import {calculateInterval} from '../utilities'
+import {validateInstance, PatternRule}  from '../validation'
 
 /**
+ * @class GuitarChordPattern
  * @classdesc This class is used to implement the CAGED chord system in code.
  * basically, it converts a chord of a specific pattern to any other root of the same chord.
  * @param {Array} pattern The chords pattern.
  * @param {PitchClass} pitchClass The chord's root pitch class.
  * @param {string} name The chords name.
  */
-export class GuitarChordPattern {
+export default class GuitarChordPattern {
     constructor(pattern, pitchClass, name) {
         PatternRule.isArray(pattern)
         this.attributes = {pattern, pitchClass, name}
@@ -46,10 +46,7 @@ export class GuitarChordPattern {
      * @returns {{chord: string, name: string}}
      */
     getChord(root) {
-        if (!(root instanceof PitchClass)) {
-            throw new InvalidInput(`expected ${root} to be an instance of PitchClass`)
-        }
-
+        validateInstance(root, PitchClass)
         const interval = calculateInterval(this.pitchClass, root)
         const pattern  = this.pattern.map(pos => pos === 'x' ? 'x' : pos + interval)
         return {pattern, name: `${root} ${this.name}`}

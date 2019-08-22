@@ -1,13 +1,15 @@
-import {Measure, MusicTheoryStructures as mts} from '../'
-import {DurationRule}                          from '../validation/DurationRule'
+import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
+import Measure                      from './Measure'
+import {DurationRule}                 from '../validation'
 
 /**
+ * @class Score
  * @classdesc Represents a full musical score consisting of a number of voices.
  * @param {number} [attributes.bpm=100] The bpm for the score.
  * @param {Array} [attributes.timeSignature=[4,4]] Time signature for the score.
  * @param {string} [attributes.name=my_score] Name for the score.
  */
-export class Score {
+export default class Score {
     constructor({bpm = 100, timeSignature = [4, 4], name = 'my_score'} = {}) {
         this.setTimeSignature(timeSignature)
         this.attributes = {name, bpm, duration: '4n', voices: [[new Measure(this.measureSize)]]}

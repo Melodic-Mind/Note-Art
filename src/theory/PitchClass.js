@@ -1,5 +1,5 @@
-import {firstToUpper}                 from '../utilities/GeneralFunctions'
-import {PitchClassRule}               from '../validation/PitchClassRule'
+import {firstToUpper}                 from '../utilities'
+import {PitchClassRule}               from '../validation'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 import {InvalidInput}                 from '../Exceptions'
 
@@ -8,14 +8,14 @@ import {InvalidInput}                 from '../Exceptions'
  * @classdesc Represents a pitch class.
  * @example
  * const c = new PitchClass('d')
- * @param pitchClass
+ * @param {string} pitchClass
  */
-export class PitchClass {
+export default class PitchClass {
     constructor(pitchClass) {
         const attributes = {}
         PitchClassRule.exists(pitchClass)
         attributes.pitchClass = firstToUpper(pitchClass)
-        attributes.classSet = mts.circleOfFourths.includes(attributes.pitchClass) ? 'b' : '#'
+        attributes.classSet   = mts.circleOfFourths.includes(attributes.pitchClass) ? 'b' : '#'
         attributes.classIndex = mts.getPitchClassSet(attributes.classSet).indexOf(attributes.pitchClass)
 
         this.attributes = attributes
@@ -101,7 +101,7 @@ export class PitchClass {
         return pitchClass
     }
 
-    static isPitchClass(obj){
+    static isPitchClass(obj) {
         return obj instanceof PitchClass
     }
 
@@ -143,7 +143,7 @@ export class PitchClass {
      * Returns the pitch class as a string.
      * @returns {String}
      */
-    get raw(){
+    get raw() {
         return this.pitchClass
     }
 }

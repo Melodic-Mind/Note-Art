@@ -1,10 +1,13 @@
-import {firstToUpper, MusicTheoryStructures as mts, transposeNote, validateArray, validateRawNote} from '../'
+import {firstToUpper, transposeNote}    from '../utilities'
+import {MusicTheoryStructures as mts}   from '../resources/MusicTheoryStructures'
+import {validateArray, validateRawNote} from '../validation'
 
 /**
+ * @class Measure
  * @classdesc Represents a single measure as part of a musical score in musical notation.
  * @param {Number} [maxDuration = 0] Max duration of the measure(determined by time signature)
  */
-export class Measure {
+export default class Measure {
     constructor(maxDuration = 64) {
         this.attributes = {
             maxDuration,

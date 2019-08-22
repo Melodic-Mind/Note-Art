@@ -1,4 +1,4 @@
-import {Guitar}       from '../../src/instruments/Guitar'
+import {Guitar}       from '../../src'
 import {InvalidInput} from '../../src/Exceptions'
 
 describe('Guitar', () => {

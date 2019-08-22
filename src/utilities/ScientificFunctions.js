@@ -26,9 +26,3 @@ export function realNumberFromFreq(frequency) {
 export function freqFromRealNumber(realNumber) {
     return 440 * (Math.pow(2, (realNumber - 69) / 12))
 }
-
-// export {
-//     freqFromPitch,
-//     realNumberFromFreq,
-//     freqFromRealNumber,
-// }

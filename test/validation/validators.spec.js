@@ -1,5 +1,5 @@
 import {PitchClass, validateInstance} from "../../src";
-import {InvalidInput} from "../../src/Exceptions";
+import {InvalidInput}                 from "../../src/Exceptions";
 
 
 describe('#validateInstance', () => {

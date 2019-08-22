@@ -1,4 +1,4 @@
-import {Piano}  from '../../src'
+import {Piano} from '../../src'
 
 
 describe('Piano', () => {

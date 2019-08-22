@@ -1,14 +1,14 @@
-import {PitchClassRule} from '../validation/PitchClassRule'
-import {PatternRule}    from '../validation/PatternRule'
-import {buildString}    from '../utilities/GeneralFunctions'
+import {PitchClassRule, PatternRule} from '../validation'
+import {buildString}    from '../utilities'
 
 /**
+ * @class MusicalPattern
  * @classdesc Represents an abstract musical pattern made out of pitch classes with a certain interval relationship.
  * @param {PitchClass} pitchClass The pitch class to create the pattern from.
  * @param {Array} pattern The pattern to use.
  * @param {Object} [info={}] Any additional information to save about the pattern.
  */
-export class MusicalPattern {
+export default class MusicalPattern {
     constructor(pitchClass, pattern, info = {}) {
         PitchClassRule.isPitchClass(pitchClass)
         PatternRule.isPattern(pattern)

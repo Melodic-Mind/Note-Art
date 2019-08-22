@@ -1,9 +1,10 @@
-import {PitchClass}                   from './PitchClass'
-import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
-import {realNumberFromFreq}           from '../utilities/ScientificFunctions'
-import {noteToObject, validateNumber} from '../'
+import PitchClass                         from './PitchClass'
+import {MusicTheoryStructures as mts}     from '../resources/MusicTheoryStructures'
+import {realNumberFromFreq, noteToObject} from '../utilities'
+import {validateNumber}                   from '../validation'
 
 /**
+ * @class Note
  * @classdesc Represents an abstract musical note.
  * @param {string} pitchClass
  * @param {number} octave
@@ -28,7 +29,7 @@ import {noteToObject, validateNumber} from '../'
  * const a = Note.fromFrequency(440)
  * console.log(a) //A4
  */
-export class Note extends PitchClass {
+export default class Note extends PitchClass {
     constructor(pitchClass, octave) {
         super(pitchClass)
         validateNumber(octave)

@@ -14,7 +14,7 @@ pattern which can be played together to form a harmonic sound.
 **Extends**: <code>MusicalPattern</code>  
 <a name="new_Chord_new"></a>
 
-### new exports.Chord(root, pattern)
+### new Chord(root, pattern)
 
 | Param | Type | Description |
 | --- | --- | --- |

@@ -1,6 +1,5 @@
-import {MusicalPattern} from '../../src/models/MusicalPattern'
-import {PitchClass}     from '../../src/models/PitchClass'
-import {InvalidInput}   from '../../src/Exceptions'
+import {PitchClass, MusicalPattern} from '../../src'
+import {InvalidInput}               from '../../src/Exceptions'
 
 describe('Musical Pattern', () => {
     describe('#constructor', () => {
@@ -46,14 +45,14 @@ describe('Musical Pattern', () => {
         })
 
         it('throws error when interval is not valid', () => {
-            const mp   = new MusicalPattern(new PitchClass('C'), [1, 2])
+            const mp = new MusicalPattern(new PitchClass('C'), [1, 2])
             expect(() => mp.transpose('3').pitchClasses).to.throw(InvalidInput)
         })
     })
 
     describe('#toString', () => {
         it('should return a string of the pitch classes of the pattern', () => {
-            expect(new MusicalPattern(new PitchClass('c'), [1,2]).toString()).to.eql('C, Db, D')
+            expect(new MusicalPattern(new PitchClass('c'), [1, 2]).toString()).to.eql('C, Db, D')
         })
     })
 })

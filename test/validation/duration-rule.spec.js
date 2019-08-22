@@ -1,4 +1,4 @@
-import {DurationRule} from '../../src/validation/DurationRule'
+import {DurationRule} from '../../src'
 
 describe('Duration Rule', () => {
     describe('#validate', () => {

@@ -1,5 +1,3 @@
-import {validateArray} from '../'
-
 /**
  * Transforms the first letter of a string to upper case.
  * @param {String} str String to transform
@@ -52,6 +50,3 @@ export function reArrangeArray([...array], index) {
 
     return [...array, ...tmp]
 }
-
-
-// export {firstToUpper, twoDigitFormat, buildString}

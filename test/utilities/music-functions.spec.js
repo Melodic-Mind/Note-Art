@@ -7,7 +7,7 @@ import {
     toPianoChord,
     Chord,
     PitchClass
-} from '../../src'
+}                     from '../../src'
 import {InvalidInput} from '../../src/Exceptions'
 
 describe('Music addon functions', () => {

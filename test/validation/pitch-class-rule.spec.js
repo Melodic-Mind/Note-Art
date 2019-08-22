@@ -1,4 +1,4 @@
-import {PitchClassRule} from '../../src/validation/PitchClassRule'
+import {PitchClassRule} from '../../src'
 import {InvalidInput}   from '../../src/Exceptions'
 
 describe('Pitch Class Rule', () => {

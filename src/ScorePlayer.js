@@ -1,11 +1,13 @@
-import Transport                               from 'Tone/core/Transport'
-import {Drumset, MusicTheoryStructures as mts} from '../'
+import Transport                      from 'Tone/core/Transport'
+import {Drumset}                      from './instruments'
+import {MusicTheoryStructures as mts} from './resources/MusicTheoryStructures'
 
 /**
+ * @class Transport
  * @classdesc Represents a driver that can play a score.
  * Best practice is to create one driver that will be used to play everything inside the app/website.
  */
-export class Driver {
+export default class ScorePlayer {
     constructor() {
         this.playing   = {voice: null, measure: null, noteSet: null}
         this.metronome = {active: false, sound: 'clap', id: null}

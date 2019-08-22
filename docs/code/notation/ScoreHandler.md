@@ -4,70 +4,76 @@ title: ScoreHandler
 
 # ScoreHandler
 
-<a name="ScoreHandler"></a>
+## Functions
 
-## ScoreHandler
-Static class that can convert scores to objects and strings and back.
+<dl>
+<dt><a href="#measureToObject">measureToObject(measure)</a> ⇒ <code>Object</code></dt>
+<dd><p>Convert a measure to object literal.</p>
+</dd>
+<dt><a href="#notesToObject">notesToObject(notesMember)</a> ⇒ <code>Object</code></dt>
+<dd><p>Convert a measure&#39;s notes member to object literal.</p>
+</dd>
+<dt><a href="#objectToMeasure">objectToMeasure(measureObject)</a> ⇒ <code>Measure</code></dt>
+<dd><p>Convert object literal representing a measure to an instance of Measure.</p>
+</dd>
+<dt><a href="#scoreToObject">scoreToObject(score)</a> ⇒ <code>Object</code></dt>
+<dd><p>Convert a measure to object literal.</p>
+</dd>
+<dt><a href="#objectToScore">objectToScore(scoreObject)</a> ⇒ <code>Score</code></dt>
+<dd><p>Convert object literal representing a Score to an instance of Score.</p>
+</dd>
+</dl>
 
-**Kind**: global class  
+<a name="measureToObject"></a>
 
-* [ScoreHandler](#ScoreHandler)
-    * [.measureToObject(measure)](#ScoreHandler.measureToObject) ⇒ <code>Object</code>
-    * [.notesToObject(notesMember)](#ScoreHandler.notesToObject) ⇒ <code>Object</code>
-    * [.objectToMeasure(measureObject)](#ScoreHandler.objectToMeasure) ⇒ <code>Measure</code>
-    * [.scoreToObject(score)](#ScoreHandler.scoreToObject) ⇒ <code>Object</code>
-    * [.objectToScore(scoreObject)](#ScoreHandler.objectToScore) ⇒ <code>Score</code>
-
-<a name="ScoreHandler.measureToObject"></a>
-
-### ScoreHandler.measureToObject(measure) ⇒ <code>Object</code>
+## measureToObject(measure) ⇒ <code>Object</code>
 Convert a measure to object literal.
 
-**Kind**: static method of [<code>ScoreHandler</code>](#ScoreHandler)  
+**Kind**: global function  
 
 | Param | Type |
 | --- | --- |
 | measure | <code>Measure</code> | 
 
-<a name="ScoreHandler.notesToObject"></a>
+<a name="notesToObject"></a>
 
-### ScoreHandler.notesToObject(notesMember) ⇒ <code>Object</code>
+## notesToObject(notesMember) ⇒ <code>Object</code>
 Convert a measure's notes member to object literal.
 
-**Kind**: static method of [<code>ScoreHandler</code>](#ScoreHandler)  
+**Kind**: global function  
 
 | Param |
 | --- |
 | notesMember | 
 
-<a name="ScoreHandler.objectToMeasure"></a>
+<a name="objectToMeasure"></a>
 
-### ScoreHandler.objectToMeasure(measureObject) ⇒ <code>Measure</code>
+## objectToMeasure(measureObject) ⇒ <code>Measure</code>
 Convert object literal representing a measure to an instance of Measure.
 
-**Kind**: static method of [<code>ScoreHandler</code>](#ScoreHandler)  
+**Kind**: global function  
 
 | Param | Type |
 | --- | --- |
 | measureObject | <code>object</code> | 
 
-<a name="ScoreHandler.scoreToObject"></a>
+<a name="scoreToObject"></a>
 
-### ScoreHandler.scoreToObject(score) ⇒ <code>Object</code>
+## scoreToObject(score) ⇒ <code>Object</code>
 Convert a measure to object literal.
 
-**Kind**: static method of [<code>ScoreHandler</code>](#ScoreHandler)  
+**Kind**: global function  
 
 | Param | Type |
 | --- | --- |
 | score | <code>Score</code> | 
 
-<a name="ScoreHandler.objectToScore"></a>
+<a name="objectToScore"></a>
 
-### ScoreHandler.objectToScore(scoreObject) ⇒ <code>Score</code>
+## objectToScore(scoreObject) ⇒ <code>Score</code>
 Convert object literal representing a Score to an instance of Score.
 
-**Kind**: static method of [<code>ScoreHandler</code>](#ScoreHandler)  
+**Kind**: global function  
 
 | Param | Type |
 | --- | --- |
