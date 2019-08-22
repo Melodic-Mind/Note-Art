@@ -1,6 +1,6 @@
 import Transport                      from 'Tone/core/Transport'
-import {Drumset}                      from './instruments'
-import {MusicTheoryStructures as mts} from './resources/MusicTheoryStructures'
+import {Drumset}                      from '../instruments'
+import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 
 /**
  * @class Transport

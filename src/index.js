@@ -12,5 +12,5 @@ export *                       from './instruments'
 export *                       from './notation'
 export *                       from './validation'
 export {MusicTheoryStructures} from './resources/MusicTheoryStructures'
-export ScorePlayer             from './ScorePlayer'
+export ScorePlayer             from './transport/ScorePlayer'
 export {lib}
