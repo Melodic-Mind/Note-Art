@@ -43,7 +43,7 @@ const sidebarTree = (title = 'About') => ({
             'title':       'transport',
             'collapsable': true,
             'children':    [
-                'ScorePlayer',
+                'transport/ScorePlayer',
             ],
         },
         {

@@ -1,9 +1,10 @@
 import Transport                      from 'Tone/core/Transport'
+import Tone                           from 'Tone/core/Tone'
 import {Drumset}                      from '../instruments'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 
 /**
- * @class Transport
+ * @class ScorePlayer
  * @classdesc Represents a driver that can play a score.
  * Best practice is to create one driver that will be used to play everything inside the app/website.
  */
@@ -174,13 +175,23 @@ export default class ScorePlayer {
         }
     }
 
+    /**
+     * Start playing.
+     * @param startTime
+     */
     start(startTime = 0) {
-        if (this.metronome.active) {
+      if(Tone.context.state!=='running'){
+        Tone.context.resume()
+      }
+      if (this.metronome.active) {
             this.startMetronome()
         }
         this.transport.start('+0.1', startTime)
     }
 
+    /**
+     * Stop playing.
+     */
     stop() {
         this.transport.stop()
         return this

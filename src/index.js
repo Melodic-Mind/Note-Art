@@ -1,9 +1,9 @@
-import {lib}                   from './Lib'
+import {lib} from './Lib'
 
 lib.get('tone').Buffer.on('load', () => {
-    lib.set('ready', () => {
-        return true
-    })
+  lib.set('ready', () => {
+    return true
+  })
 })
 
 export *                       from './utilities'

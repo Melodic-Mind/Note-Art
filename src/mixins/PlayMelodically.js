@@ -10,13 +10,13 @@ import {Note} from '../theory'
  * @param {boolean} [resolve = false] whether to resolve to tonic
  */
 export default function playMelodically(notes, timeInterval = 300, resolve = false) {
-    notes.forEach((note, i) => {
-        setTimeout(() => this.play(note), i * timeInterval)
-    })
-    if (resolve) {
-        setTimeout(
-            () => this.play(Note.builder(notes[0]).interval(12).raw),
-            notes.length * timeInterval,
-        )
-    }
+  notes.forEach((note, i) => {
+    setTimeout(() => this.play(note), i * timeInterval)
+  })
+  if (resolve) {
+    setTimeout(
+        () => this.play(Note.builder(notes[0]).interval(12).raw),
+        notes.length * timeInterval,
+    )
+  }
 }

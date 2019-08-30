@@ -7,7 +7,7 @@ title: ScorePlayer
 ## Classes
 
 <dl>
-<dt><a href="#Transport">Transport</a></dt>
+<dt><a href="#ScorePlayer">ScorePlayer</a></dt>
 <dd><p>Represents a driver that can play a score.
 Best practice is to create one driver that will be used to play everything inside the app/website.</p>
 </dd>
@@ -47,14 +47,20 @@ Best practice is to create one driver that will be used to play everything insid
 <dt><a href="#toggle">toggle([startTime])</a></dt>
 <dd><p>Toggles the state of the transport.</p>
 </dd>
+<dt><a href="#start">start(startTime)</a></dt>
+<dd><p>Start playing.</p>
+</dd>
+<dt><a href="#stop">stop()</a></dt>
+<dd><p>Stop playing.</p>
+</dd>
 <dt><a href="#clear">clear()</a></dt>
 <dd><p>Clear the transport from everything that was scheduled.</p>
 </dd>
 </dl>
 
-<a name="Transport"></a>
+<a name="ScorePlayer"></a>
 
-## Transport
+## ScorePlayer
 Represents a driver that can play a score.
 Best practice is to create one driver that will be used to play everything inside the app/website.
 
@@ -143,6 +149,23 @@ Toggles the state of the transport.
 | --- | --- | --- | --- |
 | [startTime] | <code>number</code> | <code>0</code> | Time to start the score. |
 
+<a name="start"></a>
+
+## start(startTime)
+Start playing.
+
+**Kind**: global function  
+
+| Param | Default |
+| --- | --- |
+| startTime | <code>0</code> | 
+
+<a name="stop"></a>
+
+## stop()
+Stop playing.
+
+**Kind**: global function  
 <a name="clear"></a>
 
 ## clear()

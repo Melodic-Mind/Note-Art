@@ -9,27 +9,27 @@ import {PitchClassRule} from '../validation'
  * @returns {boolean}
  */
 export function validateArray(arg) {
-    if (!Array.isArray(arg)) {
-        throw new InvalidInput(`expected ${arg} to be an array`)
-    }
+  if (!Array.isArray(arg)) {
+    throw new InvalidInput(`expected ${arg} to be an array`)
+  }
 
-    return true
+  return true
 }
 
 export function validateInstance(instance, classToCheckFor) {
-    if (!(instance instanceof classToCheckFor)) {
-        throw new InvalidInput(`expected ${instance} to be an instance of ${classToCheckFor.name}`)
-    }
+  if (!(instance instanceof classToCheckFor)) {
+    throw new InvalidInput(`expected ${instance} to be an instance of ${classToCheckFor.name}`)
+  }
 
-    return true
+  return true
 }
 
 export function validateNumber(val) {
-    if (typeof val !== 'number') {
-        throw new InvalidInput(`expected ${val} to be a number`)
-    }
+  if (typeof val !== 'number') {
+    throw new InvalidInput(`expected ${val} to be a number`)
+  }
 
-    return true
+  return true
 }
 
 /**
@@ -38,19 +38,19 @@ export function validateNumber(val) {
  * @returns {boolean}
  */
 export function validateRawNote(note) {
-    if (typeof note !== 'string') {
-        throw new InvalidInput(`Expected ${note} to be a string representing Note`)
-    }
+  if (typeof note !== 'string') {
+    throw new InvalidInput(`Expected ${note} to be a string representing Note`)
+  }
 
-    if (['r', 'R'].includes(note)) {
-        return true
-    }
-
-    const pitchClass = firstToUpper(note.slice(0, note.length - 1))
-    const octave     = parseInt(note[note.length - 1])
-
-    PitchClassRule.exists(pitchClass)
-    validateNumber(octave)
-
+  if (['r', 'R'].includes(note)) {
     return true
+  }
+
+  const pitchClass = firstToUpper(note.slice(0, note.length - 1))
+  const octave     = parseInt(note[note.length - 1])
+
+  PitchClassRule.exists(pitchClass)
+  validateNumber(octave)
+
+  return true
 }

@@ -6,27 +6,27 @@ import Instrument from '../instruments/Instrument'
  * @extends Instrument
  */
 export default class Piano extends Instrument {
-    constructor(base = 'A0', range = 87) {
-        super()
-        this.init(base, range)
-    }
+  constructor(base = 'A0', range = 87) {
+    super()
+    this.init(base, range)
+  }
 
-    /**
-     * @inheritDoc
-     */
-    static name = 'Piano'
+  /**
+   * @inheritDoc
+   */
+  static name = 'Piano'
 
-    /** @inheritDoc */
-    generatePath(note) {
-        const set = Instrument.normalizeSet(note.pitchClass, note.classSet)
-        const file = `${set}${note.octave}`
+  /** @inheritDoc */
+  generatePath(note) {
+    const set  = Instrument.normalizeSet(note.pitchClass, note.classSet)
+    const file = `${set}${note.octave}`
 
-        // return `${Instrument.server}piano/${file}.mp3`
-        return `${Instrument.server}${Piano.instrumentPath}/${file}.mp3`
-    }
+    // return `${Instrument.server}piano/${file}.mp3`
+    return `${Instrument.server}${Piano.instrumentPath}/${file}.mp3`
+  }
 
 
-    toString(){
-        return 'Piano'
-    }
+  toString() {
+    return 'Piano'
+  }
 }
