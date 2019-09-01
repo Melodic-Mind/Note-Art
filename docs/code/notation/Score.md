@@ -24,6 +24,15 @@ title: Score
 <dt><a href="#name">name</a> ⇒ <code>string</code></dt>
 <dd><p>Returns the score name.</p>
 </dd>
+<dt><a href="#name">name</a></dt>
+<dd><p>Set the score&#39;s name.</p>
+</dd>
+<dt><a href="#bpm">bpm</a> ⇒ <code>number</code></dt>
+<dd><p>Get the score&#39;s BPM value.</p>
+</dd>
+<dt><a href="#bpm">bpm</a></dt>
+<dd><p>Set the score&#39;s BPM value.</p>
+</dd>
 <dt><a href="#voices">voices</a> ⇒ <code>Array</code></dt>
 <dd><p>Returns an array of voices where each voice represents an instrument.</p>
 </dd>
@@ -32,16 +41,22 @@ title: Score
 ## Functions
 
 <dl>
+<dt><a href="#getMeasureSize">getMeasureSize(timeSignature)</a> ⇒ <code>number</code></dt>
+<dd><p>Returns the maximum size a measure has, calculated using the time signature.</p>
+</dd>
+<dt><a href="#setTimeSignature">setTimeSignature(timeSignature)</a></dt>
+<dd><p>Set the score&#39;s time signature.</p>
+</dd>
 <dt><a href="#setMeasureDuration">setMeasureDuration(measureIndex, [voiceIndex])</a></dt>
 <dd><p>Sets the duration for a measure.</p>
 </dd>
 <dt><a href="#getVoice">getVoice([index])</a> ⇒ <code>false</code> | <code>Array</code></dt>
-<dd><p>Returns the voice at the index if it exists, otherwise returns false.</p>
+<dd><p>Returns the voice at the index, starts from voice 0.</p>
 </dd>
 <dt><a href="#addVoice">addVoice()</a></dt>
 <dd><p>Adds a new voice to the score, initialized with one empty measure.</p>
 </dd>
-<dt><a href="#deleteVoice">deleteVoice(index)</a> ⇒ <code>boolean</code> | <code>Array</code></dt>
+<dt><a href="#deleteVoice">deleteVoice(index)</a> ⇒ <code>Array</code></dt>
 <dd><p>Deletes a voice from the score.</p>
 </dd>
 <dt><a href="#getMeasure">getMeasure(measureIndex, [voiceIndex])</a></dt>
@@ -55,6 +70,9 @@ title: Score
 </dd>
 <dt><a href="#addNotes">addNotes(notes, [duration], position, measureIndex, [voiceIndex])</a> ⇒ <code>boolean</code></dt>
 <dd><p>Add notes to a measure in one of the voices.</p>
+</dd>
+<dt><a href="#addChord">addChord(notes, name, [duration], position, measureIndex, [voiceIndex])</a> ⇒ <code>boolean</code></dt>
+<dd><p>Add notes to a measure in one of the voices with a name for representing a chord.</p>
 </dd>
 <dt><a href="#deleteNote">deleteNote(note, position, measureIndex, [voiceIndex])</a> ⇒ <code>boolean</code></dt>
 <dd><p>Delete a note from a measure in one of the voices.</p>
@@ -115,12 +133,66 @@ Sets the duration for the score's current measure next data input.
 Returns the score name.
 
 **Kind**: global variable  
+<a name="name"></a>
+
+## name
+Set the score's name.
+
+**Kind**: global variable  
+
+| Param | Type |
+| --- | --- |
+| name | <code>string</code> | 
+
+<a name="bpm"></a>
+
+## bpm ⇒ <code>number</code>
+Get the score's BPM value.
+
+**Kind**: global variable  
+<a name="bpm"></a>
+
+## bpm
+Set the score's BPM value.
+
+**Kind**: global variable  
+
+| Param |
+| --- |
+| bpm | 
+
 <a name="voices"></a>
 
 ## voices ⇒ <code>Array</code>
 Returns an array of voices where each voice represents an instrument.
 
 **Kind**: global variable  
+<a name="getMeasureSize"></a>
+
+## getMeasureSize(timeSignature) ⇒ <code>number</code>
+Returns the maximum size a measure has, calculated using the time signature.
+
+**Kind**: global function  
+**Throws**:
+
+- Error
+
+
+| Param | Type |
+| --- | --- |
+| timeSignature | <code>Array</code> | 
+
+<a name="setTimeSignature"></a>
+
+## setTimeSignature(timeSignature)
+Set the score's time signature.
+
+**Kind**: global function  
+
+| Param |
+| --- |
+| timeSignature | 
+
 <a name="setMeasureDuration"></a>
 
 ## setMeasureDuration(measureIndex, [voiceIndex])
@@ -136,13 +208,17 @@ Sets the duration for a measure.
 <a name="getVoice"></a>
 
 ## getVoice([index]) ⇒ <code>false</code> \| <code>Array</code>
-Returns the voice at the index if it exists, otherwise returns false.
+Returns the voice at the index, starts from voice 0.
 
 **Kind**: global function  
+**Throws**:
+
+- Error
+
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [index] | <code>number</code> | <code>0</code> | The voice index. |
+| [index] | <code>number</code> | <code>1</code> | The voice index. |
 
 <a name="addVoice"></a>
 
@@ -152,10 +228,14 @@ Adds a new voice to the score, initialized with one empty measure.
 **Kind**: global function  
 <a name="deleteVoice"></a>
 
-## deleteVoice(index) ⇒ <code>boolean</code> \| <code>Array</code>
+## deleteVoice(index) ⇒ <code>Array</code>
 Deletes a voice from the score.
 
 **Kind**: global function  
+**Throws**:
+
+- Error
+
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -210,8 +290,24 @@ Add notes to a measure in one of the voices.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| notes | <code>Array</code> |  | An array of raw note. |
-| [duration] | <code>string</code> | <code>&quot;measure.duration&quot;</code> |  |
+| notes | <code>obj.Array</code> |  | An array of raw note. |
+| [duration] | <code>obj.string</code> | <code>measure.duration</code> |  |
+| position | <code>number</code> |  | Position in the measure to add the notes to. |
+| measureIndex | <code>number</code> |  | The index of the measure to add the notes to. |
+| [voiceIndex] | <code>number</code> | <code>0</code> | The index of the voice to add the notes to. |
+
+<a name="addChord"></a>
+
+## addChord(notes, name, [duration], position, measureIndex, [voiceIndex]) ⇒ <code>boolean</code>
+Add notes to a measure in one of the voices with a name for representing a chord.
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| notes | <code>obj.Array</code> |  | An array of raw note. |
+| name | <code>obj.name</code> |  | Name of the chord. |
+| [duration] | <code>obj.string</code> | <code>measure.duration</code> |  |
 | position | <code>number</code> |  | Position in the measure to add the notes to. |
 | measureIndex | <code>number</code> |  | The index of the measure to add the notes to. |
 | [voiceIndex] | <code>number</code> | <code>0</code> | The index of the voice to add the notes to. |

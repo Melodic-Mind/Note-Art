@@ -30,6 +30,9 @@ with your number of strings, their ranges, etc.</p>
 <dt><a href="#strum">strum(pattern, duration)</a></dt>
 <dd><p>Strums the guitar&#39;s strings using guitar pattern(low to high).</p>
 </dd>
+<dt><a href="#toString">toString()</a> ⇒ <code>string</code></dt>
+<dd><p>Returns the name of the instrument.</p>
+</dd>
 </dl>
 
 <a name="Guitar"></a>
@@ -99,3 +102,9 @@ Strums the guitar's strings using guitar pattern(low to high).
 guitarInstance.strum(['x', 0, 2, 2, 1, 0], '8n') //Plays Am chord.
 guitarInstance.strum([3, 2, 0, 0, 3, 3], '8n') //Plays G chord.
 ```
+<a name="toString"></a>
+
+## toString() ⇒ <code>string</code>
+Returns the name of the instrument.
+
+**Kind**: global function  

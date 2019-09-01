@@ -17,6 +17,8 @@ title: Piano
 <dl>
 <dt><a href="#generatePath">generatePath()</a></dt>
 <dd></dd>
+<dt><a href="#toString">toString()</a></dt>
+<dd></dd>
 </dl>
 
 <a name="Piano"></a>
@@ -29,4 +31,8 @@ Represents a Piano.
 <a name="generatePath"></a>
 
 ## generatePath()
+**Kind**: global function  
+<a name="toString"></a>
+
+## toString()
 **Kind**: global function  

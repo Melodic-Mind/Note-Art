@@ -12,6 +12,7 @@ import Players                        from 'Tone/source/Players'
  * @class Instrument
  * @abstract
  * @classdesc Represents an abstract instrument with notes.
+ * ￿Should be used for creating new instruments.
  */
 export default class Instrument {
   constructor() {
@@ -112,7 +113,7 @@ export default class Instrument {
   }
 
   /**
-   * Generates player for some audio.
+   * Generates Tone player for some audio.
    * @param {String} fileName
    */
   generatePath(fileName) {
@@ -183,6 +184,14 @@ export default class Instrument {
     if (this.hasNote(note)) {
       this.getPlayer(note).start().stop(`+${duration}`)
     }
+  }
+
+  /**
+   * Returns the name of the instrument.
+   * @returns {string}
+   */
+  toString() {
+    return ''
   }
 }
 

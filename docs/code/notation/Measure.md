@@ -41,7 +41,8 @@ where each unit is 1/64 bit.</p>
 <dd><p>Returns the duration left for notes in the measure.</p>
 </dd>
 <dt><a href="#initNext">initNext(position)</a></dt>
-<dd><p>Creates a slot for the next notes that will be added in the measure if there is space.</p>
+<dd><p>Creates a slot for the next notes that will be added in the measure if there is space.
+Should not be called as it&#39;s called automatically when needed.</p>
 </dd>
 <dt><a href="#validateInsertion">validateInsertion(position, duration)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Checks whether a new data member can be added at a certain position in the measure.</p>
@@ -66,7 +67,7 @@ the data at the position as name</p>
 <dd><p>Delete member from the measure&#39;s data - removes all the notes from it
 and initializes a new data member with the measure&#39;s duration.</p>
 </dd>
-<dt><a href="#hasSpace">hasSpace(duration)</a> ⇒ <code>boolean</code></dt>
+<dt><a href="#isFull">isFull(duration)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Returns true if the duration has space, else false.</p>
 </dd>
 <dt><a href="#transpose">transpose(interval)</a> ⇒ <code><a href="#Measure">Measure</a></code></dt>
@@ -74,9 +75,6 @@ and initializes a new data member with the measure&#39;s duration.</p>
 </dd>
 <dt><a href="#clear">clear()</a> ⇒ <code>boolean</code></dt>
 <dd><p>Removes all the data from the measure.</p>
-</dd>
-<dt><a href="#toString">toString()</a> ⇒ <code>string</code></dt>
-<dd><p>Returns a simple representation of the measure as a string.</p>
 </dd>
 </dl>
 
@@ -125,6 +123,7 @@ Returns the maximum sum of durations for the measure as a number,
 where each unit is 1/64 bit.
 
 **Kind**: global variable  
+**Read only**: true  
 <a name="clone"></a>
 
 ## clone() ⇒ [<code>Measure</code>](#Measure)
@@ -146,6 +145,7 @@ Returns the duration left for notes in the measure.
 
 ## initNext(position)
 Creates a slot for the next notes that will be added in the measure if there is space.
+Should not be called as it's called automatically when needed.
 
 **Kind**: global function  
 
@@ -250,9 +250,9 @@ and initializes a new data member with the measure's duration.
 | --- | --- | --- |
 | position | <code>number</code> | Position of the member to delete. |
 
-<a name="hasSpace"></a>
+<a name="isFull"></a>
 
-## hasSpace(duration) ⇒ <code>boolean</code>
+## isFull(duration) ⇒ <code>boolean</code>
 Returns true if the duration has space, else false.
 
 **Kind**: global function  
@@ -276,11 +276,5 @@ Returns a new measure where all the notes are transposed by the interval.
 
 ## clear() ⇒ <code>boolean</code>
 Removes all the data from the measure.
-
-**Kind**: global function  
-<a name="toString"></a>
-
-## toString() ⇒ <code>string</code>
-Returns a simple representation of the measure as a string.
 
 **Kind**: global function  

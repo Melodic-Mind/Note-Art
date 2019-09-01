@@ -3,7 +3,7 @@
     "exclude": [
         "src/**/index.js",
         "src/resources/",
-        "src/ScorePlayer.js",
+        "src/transport/ScorePlayer.js",
         "src/Lib.js"
     ],
     "extension": [".js"],

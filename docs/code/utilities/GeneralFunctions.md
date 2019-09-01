@@ -18,11 +18,11 @@ title: GeneralFunctions
 <dt><a href="#firstToUpper">firstToUpper(str)</a> ⇒ <code>String</code></dt>
 <dd><p>Transforms the first letter of a string to upper case.</p>
 </dd>
-<dt><a href="#buildString">buildString(data)</a> ⇒ <code>string</code></dt>
-<dd><p>Builds a formatted string out of an array with items.</p>
-</dd>
 <dt><a href="#switchMembers">switchMembers(arr, i1, i2)</a> ⇒ <code>Array</code></dt>
 <dd><p>Gets an array and 2 indexes and returns a new array with those members indexes switched.</p>
+</dd>
+<dt><a href="#rearrangeArray">rearrangeArray(array, index)</a> ⇒ <code>Array</code></dt>
+<dd><p>Returns a new array which starts from index, adds the rest of the members to it&#39;s end.</p>
 </dd>
 </dl>
 
@@ -48,17 +48,6 @@ Transforms the first letter of a string to upper case.
 | --- | --- | --- |
 | str | <code>String</code> | String to transform |
 
-<a name="buildString"></a>
-
-## buildString(data) ⇒ <code>string</code>
-Builds a formatted string out of an array with items.
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| data | <code>Array</code> | 
-
 <a name="switchMembers"></a>
 
 ## switchMembers(arr, i1, i2) ⇒ <code>Array</code>
@@ -71,4 +60,16 @@ Gets an array and 2 indexes and returns a new array with those members indexes s
 | arr | <code>Array</code> | 
 | i1 | <code>number</code> | 
 | i2 | <code>number</code> | 
+
+<a name="rearrangeArray"></a>
+
+## rearrangeArray(array, index) ⇒ <code>Array</code>
+Returns a new array which starts from index, adds the rest of the members to it's end.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| array | <code>Array</code> | Array to rearrange. |
+| index | <code>index</code> | to arrange from. |
 

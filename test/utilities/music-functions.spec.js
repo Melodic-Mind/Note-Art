@@ -1,16 +1,33 @@
 import {
   Note,
-  validateRawNote,
   calculateInterval,
   notesInRange,
   noteToObject,
   toPianoChordNotes,
   Chord,
   PitchClass,
+  pitchClassesToNotes,
 }                     from '../../src'
 import {InvalidInput} from '../../src/Exceptions'
 
 describe('Music addon functions', () => {
+  describe('#pitchClassesToNotes', () => {
+    it('should throw an Invalid Input error when pitch classes is not an array containing only pitch classes', () => {
+      expect(() => pitchClassesToNotes('OMG')).to.throw(InvalidInput)
+      expect(() => pitchClassesToNotes(['blob'])).to.throw(InvalidInput)
+    })
+
+    it('should throw an Invalid Input error when octave is not a number', () => {
+      expect(() => pitchClassesToNotes([new PitchClass('c'), 'NOT NUMBER'])).to.throw(InvalidInput)
+    })
+
+    it('should return an array of notes when input is valid', () => {
+      const pitchClasses = [new PitchClass('c'), new PitchClass('e')]
+      const stub = [new Note('c', 3), new Note('e', 3)]
+      expect(pitchClassesToNotes(pitchClasses, 3)).to.eql(stub)
+    })
+  })
+
   describe('#toPianoChordNotes', () => {
     let g, gChord
     beforeEach(() => {
@@ -63,28 +80,6 @@ describe('Music addon functions', () => {
       }).to.throw(InvalidInput)
       expect(() => {
         return notesInRange(2, 'qwe')
-      }).to.throw(InvalidInput)
-    })
-  })
-
-  describe('#validateRawNote', () => {
-    it('should return true when a note is valid', () => {
-      expect(validateRawNote('c3')).to.be.true
-      expect(validateRawNote('c#3')).to.be.true
-      expect(validateRawNote('db3')).to.be.true
-      expect(validateRawNote('r')).to.be.true
-      expect(validateRawNote('R')).to.be.true
-    })
-
-    it('should throw an error when a note is not valid', () => {
-      expect(() => {
-        validateRawNote('c')
-      }).to.throw(InvalidInput)
-      expect(() => {
-        validateRawNote(new Note('c3'))
-      }).to.throw(InvalidInput)
-      expect(() => {
-        validateRawNote(123)
       }).to.throw(InvalidInput)
     })
   })

@@ -15,6 +15,12 @@ export default class Score {
     this.attributes = {name, bpm, duration: '4n', voices: [[new Measure(this.measureSize)]]}
   }
 
+  /**
+   * Returns the maximum size a measure has, calculated using the time signature.
+   * @param {Array} timeSignature
+   * @throws Error
+   * @returns {number}
+   */
   static getMeasureSize(timeSignature) {
     if (!Array.isArray(timeSignature)) {
       throw new Error('time signature must be an array, e.g [4, 4]')
@@ -26,6 +32,10 @@ export default class Score {
     return reducedTimeSig * bitLength * timeSignature[1] / 4
   }
 
+  /**
+   * Set the score's time signature.
+   * @param timeSignature
+   */
   setTimeSignature(timeSignature) {
     this.measureSize   = Score.getMeasureSize(timeSignature)
     this.timeSignature = timeSignature
@@ -56,14 +66,26 @@ export default class Score {
     return this.attributes.name
   }
 
+  /**
+   * Set the score's name.
+   * @param {string} name
+   */
   set name(name) {
     this.attributes.name = name
   }
 
+  /**
+   * Get the score's BPM value.
+   * @returns {number}
+   */
   get bpm() {
     return this.attributes.bpm
   }
 
+  /**
+   * Set the score's BPM value.
+   * @param bpm
+   */
   set bpm(bpm) {
     if (typeof bpm === 'number') {
       this.attributes.bpm = bpm

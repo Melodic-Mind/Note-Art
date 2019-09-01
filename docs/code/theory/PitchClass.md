@@ -144,6 +144,10 @@ Transforms a pitch class represented with a sharp to a flat. e.g F# -> Gb
 Retuns the pure pitch class at interval.
 
 **Kind**: global function  
+**Throws**:
+
+- InvalidInput
+
 
 | Param |
 | --- |

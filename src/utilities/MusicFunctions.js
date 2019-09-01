@@ -1,16 +1,14 @@
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 import {Note, PitchClass}             from '../theory'
-import {firstToUpper, reArrangeArray} from '../utilities'
+import {firstToUpper, rearrangeArray} from '../utilities'
 import {
-  validateInstance,
-  validateArray,
   validateNumber,
   validateRawNote,
+  validatePitchClasses,
 }                                     from '../validation'
 
 export function pitchClassesToNotes(pitchClasses, octave) {
-  validateArray(pitchClasses)
-  pitchClasses.forEach(pitchClass => validateInstance(pitchClass, PitchClass))
+  validatePitchClasses(pitchClasses)
   validateNumber(octave)
 
   return pitchClasses.map(pitchClass => new Note(pitchClass.pitchClass, octave))
@@ -23,13 +21,12 @@ export function pitchClassesToNotes(pitchClasses, octave) {
  * @param {number} octave Octave for the chord root.
  * @returns {Array}
  */
-  export function toPianoChordNotes(pitchClasses, octave, inversion = 0) {
-  validateArray(pitchClasses)
-  pitchClasses.forEach(pitchClass => validateInstance(pitchClass, PitchClass))
+export function toPianoChordNotes(pitchClasses, octave, inversion = 0) {
+  validatePitchClasses(pitchClasses)
   validateNumber(octave)
 
   if (inversion) {
-    pitchClasses = reArrangeArray(pitchClasses, inversion)
+    pitchClasses = rearrangeArray(pitchClasses, inversion)
   }
 
   return pitchClasses.map(pitchClass => {
@@ -64,10 +61,21 @@ export function noteToObject(note) {
   return {pitchClass, octave}
 }
 
+/**
+ * Returns true if a note is a rest, else false.
+ * @param {string} note Raw note.
+ * @returns {boolean}
+ */
 export function isRest(note) {
   return note === 'R' || note === 'r'
 }
 
+/**
+ * Transpose a raw note by interval.
+ * @param {string} note Raw note.
+ * @param {number} interval Interval to transpose by.
+ * @returns {string|*}
+ */
 export function transposeRawNote(note, interval) {
   validateRawNote(note)
 

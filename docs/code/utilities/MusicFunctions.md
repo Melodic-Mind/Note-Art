@@ -7,7 +7,7 @@ title: MusicFunctions
 ## Functions
 
 <dl>
-<dt><a href="#toPianoChord">toPianoChord({pitchClasses}, octave)</a> ⇒ <code>Array</code></dt>
+<dt><a href="#toPianoChordNotes">toPianoChordNotes({pitchClasses}, octave)</a> ⇒ <code>Array</code></dt>
 <dd><p>Generates a group of notes that represent chord played on a piano in a certain octave.</p>
 </dd>
 <dt><a href="#calculateInterval">calculateInterval(pitchClass1, pitchClass2)</a> ⇒ <code>Number</code></dt>
@@ -16,14 +16,20 @@ title: MusicFunctions
 <dt><a href="#noteToObject">noteToObject(pitch)</a> ⇒ <code>Object</code></dt>
 <dd><p>Turns a note into an object with pitch class and octave.</p>
 </dd>
+<dt><a href="#isRest">isRest(note)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns true if a note is a rest, else false.</p>
+</dd>
+<dt><a href="#transposeRawNote">transposeRawNote(note, interval)</a> ⇒ <code>string</code> | <code>*</code></dt>
+<dd><p>Transpose a raw note by interval.</p>
+</dd>
 <dt><a href="#notesInRange">notesInRange(base, range)</a></dt>
 <dd><p>Returns an object where the keys are raw notes and their value is an instance of that note.</p>
 </dd>
 </dl>
 
-<a name="toPianoChord"></a>
+<a name="toPianoChordNotes"></a>
 
-## toPianoChord({pitchClasses}, octave) ⇒ <code>Array</code>
+## toPianoChordNotes({pitchClasses}, octave) ⇒ <code>Array</code>
 Generates a group of notes that represent chord played on a piano in a certain octave.
 
 **Kind**: global function  
@@ -55,6 +61,29 @@ Turns a note into an object with pitch class and octave.
 | Param | Type | Description |
 | --- | --- | --- |
 | pitch | <code>String</code> | Pitch as a string, e.g Ab3 |
+
+<a name="isRest"></a>
+
+## isRest(note) ⇒ <code>boolean</code>
+Returns true if a note is a rest, else false.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| note | <code>string</code> | Raw note. |
+
+<a name="transposeRawNote"></a>
+
+## transposeRawNote(note, interval) ⇒ <code>string</code> \| <code>\*</code>
+Transpose a raw note by interval.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| note | <code>string</code> | Raw note. |
+| interval | <code>number</code> | Interval to transpose by. |
 
 <a name="notesInRange"></a>
 

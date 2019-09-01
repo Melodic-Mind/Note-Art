@@ -47,6 +47,7 @@ export default class Measure {
    * Returns the maximum sum of durations for the measure as a number,
    * where each unit is 1/64 bit.
    * @returns {number}
+   * @readonly
    */
   get maxDuration() {
     return this.attributes.maxDuration

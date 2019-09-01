@@ -85,6 +85,10 @@ export default class Guitar {
     })
   }
 
+  /**
+   * Returns the name of the instrument.
+   * @returns {string}
+   */
   toString() {
     return 'Guitar'
   }

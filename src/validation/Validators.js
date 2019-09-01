@@ -1,6 +1,7 @@
 import {InvalidInput}   from '../Exceptions'
 import {firstToUpper}   from '../utilities'
 import {PitchClassRule} from '../validation'
+import {PitchClass}     from '../theory'
 
 /**
  * Validates an argument is an array, fails if not.
@@ -53,4 +54,9 @@ export function validateRawNote(note) {
   validateNumber(octave)
 
   return true
+}
+
+export function validatePitchClasses(pitchClasses) {
+  validateArray(pitchClasses)
+  pitchClasses.forEach(pitchClass => validateInstance(pitchClass, PitchClass))
 }

@@ -20,6 +20,9 @@ export default class Cord extends Instrument {
    */
   static name = 'Cord'
 
+  /**
+   * @inheritDoc
+   */
   generatePath(note) {
     const set  = Instrument.normalizeSet(note.pitchClass, note.classSet)
     const file = `${set}${note.octave}`
@@ -27,11 +30,19 @@ export default class Cord extends Instrument {
     return `${Instrument.server}${Cord.instrumentPath}/${this.stringNumber}/${file}.mp3`
   }
 
+  /**
+   *
+   * @param fret
+   * @returns {K}
+   */
   fret(fret) {
     return Array.from(this.notes.keys())[fret]
   }
 
 
+  /**
+   * @inheritDoc
+   */
   toString() {
     return 'Cord'
   }

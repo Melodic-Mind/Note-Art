@@ -25,6 +25,8 @@ title: Drumset
 <dt><a href="#play">play(fileName)</a></dt>
 <dd><p>Plays audio by name.</p>
 </dd>
+<dt><a href="#toString">toString()</a></dt>
+<dd></dd>
 </dl>
 
 <a name="Drumset"></a>
@@ -64,3 +66,7 @@ Plays audio by name.
 | --- | --- |
 | fileName | <code>string</code> | 
 
+<a name="toString"></a>
+
+## toString()
+**Kind**: global function  

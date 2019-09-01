@@ -16,6 +16,18 @@ Best practice is to create one driver that will be used to play everything insid
 ## Members
 
 <dl>
+<dt><a href="#bpm">bpm</a></dt>
+<dd><p>Set the bpm value.</p>
+</dd>
+<dt><a href="#bpm">bpm</a> ⇒ <code>*</code></dt>
+<dd><p>Get the current bpm value.</p>
+</dd>
+<dt><a href="#timeSignature">timeSignature</a></dt>
+<dd><p>Set the time signature.</p>
+</dd>
+<dt><a href="#loopStart">loopStart</a></dt>
+<dd><p>Set the loop start time.</p>
+</dd>
 <dt><a href="#state">state</a> ⇒ <code>Tone.State</code></dt>
 <dd><p>Returns the current state of the transport.</p>
 </dd>
@@ -34,6 +46,15 @@ Best practice is to create one driver that will be used to play everything insid
 </dd>
 <dt><a href="#addInstrument">addInstrument(instrument)</a></dt>
 <dd><p>Adds an instrument to the score.</p>
+</dd>
+<dt><a href="#startMetronome">startMetronome()</a> ⇒ <code><a href="#ScorePlayer">ScorePlayer</a></code></dt>
+<dd><p>Schedules the metronome to the transport.</p>
+</dd>
+<dt><a href="#stopMetronome">stopMetronome()</a> ⇒ <code><a href="#ScorePlayer">ScorePlayer</a></code></dt>
+<dd><p>Removes the metronome from the transport.</p>
+</dd>
+<dt><a href="#toggleMetronome">toggleMetronome()</a> ⇒ <code><a href="#ScorePlayer">ScorePlayer</a></code></dt>
+<dd><p>Toggles the metronome.</p>
 </dd>
 <dt><a href="#scheduleVoices">scheduleVoices()</a></dt>
 <dd><p>Schedules all the voices of the score to the transport.</p>
@@ -65,6 +86,45 @@ Represents a driver that can play a score.
 Best practice is to create one driver that will be used to play everything inside the app/website.
 
 **Kind**: global class  
+<a name="bpm"></a>
+
+## bpm
+Set the bpm value.
+
+**Kind**: global variable  
+
+| Param |
+| --- |
+| value | 
+
+<a name="bpm"></a>
+
+## bpm ⇒ <code>\*</code>
+Get the current bpm value.
+
+**Kind**: global variable  
+<a name="timeSignature"></a>
+
+## timeSignature
+Set the time signature.
+
+**Kind**: global variable  
+
+| Param | Type |
+| --- | --- |
+| timeSignature | <code>Array</code> | 
+
+<a name="loopStart"></a>
+
+## loopStart
+Set the loop start time.
+
+**Kind**: global variable  
+
+| Param |
+| --- |
+| time | 
+
 <a name="state"></a>
 
 ## state ⇒ <code>Tone.State</code>
@@ -109,6 +169,24 @@ Adds an instrument to the score.
 | --- |
 | instrument | 
 
+<a name="startMetronome"></a>
+
+## startMetronome() ⇒ [<code>ScorePlayer</code>](#ScorePlayer)
+Schedules the metronome to the transport.
+
+**Kind**: global function  
+<a name="stopMetronome"></a>
+
+## stopMetronome() ⇒ [<code>ScorePlayer</code>](#ScorePlayer)
+Removes the metronome from the transport.
+
+**Kind**: global function  
+<a name="toggleMetronome"></a>
+
+## toggleMetronome() ⇒ [<code>ScorePlayer</code>](#ScorePlayer)
+Toggles the metronome.
+
+**Kind**: global function  
 <a name="scheduleVoices"></a>
 
 ## scheduleVoices()

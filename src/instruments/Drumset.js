@@ -29,12 +29,7 @@ export default class Drumset extends Instrument {
 
   /** @inheritDoc */
   init() {
-    drumSounds.forEach(filename => {
-      const path = this.generatePath(filename)
-      this.players.set(filename, path, (player) => {
-        Instrument.toMaster(player)
-      })
-    })
+    drumSounds.forEach(filename => this.setPlayer(filename, filename))
   }
 
   /** @inheritDoc */
@@ -61,6 +56,9 @@ export default class Drumset extends Instrument {
     }
   }
 
+  /**
+   * @inheritDoc
+   */
   toString() {
     return 'Drumset'
   }

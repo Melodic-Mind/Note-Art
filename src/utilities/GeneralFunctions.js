@@ -9,10 +9,12 @@ export function firstToUpper(str) {
 
 /**
  * Returns a number formatted to show only 2 digits after the decimal point.
- * @param {Number} num
+ * @param {number} num
  * @returns {Number}
  */
-export const twoDigitFormat = num => Number(Number.parseFloat(num).toFixed(2))
+export function twoDigitFormat(num) {
+  return Number(Number.parseFloat(num).toFixed(2))
+}
 
 /**
  * Gets an array and 2 indexes and returns a new array with those members indexes switched.
@@ -28,7 +30,13 @@ export function switchMembers([...arr], i1, i2) {
   return arr
 }
 
-export function reArrangeArray([...array], index) {
+/**
+ * Returns a new array which starts from index, adds the rest of the members to it's end.
+ * @param {Array} array Array to rearrange.
+ * @param {index} index to arrange from.
+ * @returns {Array}
+ */
+export function rearrangeArray(array, index) {
   const tmp = []
   let i     = 0
 

@@ -47,7 +47,7 @@ Initializes all the notes and audio players for the instrument.</p>
 <dd><p>Turns a string representing a note to upper case.</p>
 </dd>
 <dt><a href="#generatePath">generatePath(fileName)</a></dt>
-<dd><p>Generates player for some audio.</p>
+<dd><p>Generates Tone player for some audio.</p>
 </dd>
 <dt><a href="#setPlayer">setPlayer(key, note)</a></dt>
 <dd><p>Add a player for a note.</p>
@@ -67,6 +67,9 @@ Initializes all the notes and audio players for the instrument.</p>
 </dd>
 <dt><a href="#play">play(note, [duration])</a></dt>
 <dd><p>Play sound, optionally for a duration.</p>
+</dd>
+<dt><a href="#toString">toString()</a> ⇒ <code>string</code></dt>
+<dd><p>Returns the name of the instrument.</p>
 </dd>
 </dl>
 
@@ -154,7 +157,7 @@ Turns a string representing a note to upper case.
 <a name="generatePath"></a>
 
 ## generatePath(fileName)
-Generates player for some audio.
+Generates Tone player for some audio.
 
 **Kind**: global function  
 
@@ -226,3 +229,9 @@ Play sound, optionally for a duration.
 | note | <code>string</code> |  | 
 | [duration] | <code>string</code> | <code>&quot;&#x27;10&#x27;&quot;</code> | 
 
+<a name="toString"></a>
+
+## toString() ⇒ <code>string</code>
+Returns the name of the instrument.
+
+**Kind**: global function  
