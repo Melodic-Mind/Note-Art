@@ -7,6 +7,12 @@ import {
   validatePitchClasses,
 }                                     from '../validation'
 
+/**
+ * Returns an array of notes with a specific octave.
+ * @param {Array} {pitchClasses} Array of pitch classes.
+ * @param {number} octave Octave to assign to notes..
+ * @returns {Array}
+ */
 export function pitchClassesToNotes(pitchClasses, octave) {
   validatePitchClasses(pitchClasses)
   validateNumber(octave)
@@ -15,10 +21,11 @@ export function pitchClassesToNotes(pitchClasses, octave) {
 }
 
 /**
- * Generates a group of notes that represent chord played on a piano in a certain octave.
- * @param {Array} {pitchClasses} An object with a pitch classes key that holds an array of pitch classes, or simple an
- *     instance of chord
+ * Returns an array of notes that represent chord played on a piano in a certain octave.
+ * @param {Array} {pitchClasses} Array of pitch classes.
  * @param {number} octave Octave for the chord root.
+ * @param {number} inversion Whhether to invert the chord. 0 - root position, 1 - 1st inversion, 2 - 2nd inversion,
+ *     etc...
  * @returns {Array}
  */
 export function toPianoChordNotes(pitchClasses, octave, inversion = 0) {
