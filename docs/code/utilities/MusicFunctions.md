@@ -7,8 +7,11 @@ title: MusicFunctions
 ## Functions
 
 <dl>
-<dt><a href="#toPianoChordNotes">toPianoChordNotes({pitchClasses}, octave)</a> ⇒ <code>Array</code></dt>
-<dd><p>Generates a group of notes that represent chord played on a piano in a certain octave.</p>
+<dt><a href="#pitchClassesToNotes">pitchClassesToNotes({pitchClasses}, octave)</a> ⇒ <code>Array</code></dt>
+<dd><p>Returns an array of notes with a specific octave.</p>
+</dd>
+<dt><a href="#toPianoChordNotes">toPianoChordNotes({pitchClasses}, octave, inversion)</a> ⇒ <code>Array</code></dt>
+<dd><p>Returns an array of notes that represent chord played on a piano in a certain octave.</p>
 </dd>
 <dt><a href="#calculateInterval">calculateInterval(pitchClass1, pitchClass2)</a> ⇒ <code>Number</code></dt>
 <dd><p>Calculate the pure interval between 2 pitch classes.</p>
@@ -27,17 +30,30 @@ title: MusicFunctions
 </dd>
 </dl>
 
-<a name="toPianoChordNotes"></a>
+<a name="pitchClassesToNotes"></a>
 
-## toPianoChordNotes({pitchClasses}, octave) ⇒ <code>Array</code>
-Generates a group of notes that represent chord played on a piano in a certain octave.
+## pitchClassesToNotes({pitchClasses}, octave) ⇒ <code>Array</code>
+Returns an array of notes with a specific octave.
 
 **Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| {pitchClasses} | <code>Array</code> | An object with a pitch classes key that holds an array of pitch classes, or simple an     instance of chord |
+| {pitchClasses} | <code>Array</code> | Array of pitch classes. |
+| octave | <code>number</code> | Octave to assign to notes.. |
+
+<a name="toPianoChordNotes"></a>
+
+## toPianoChordNotes({pitchClasses}, octave, inversion) ⇒ <code>Array</code>
+Returns an array of notes that represent chord played on a piano in a certain octave.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| {pitchClasses} | <code>Array</code> | Array of pitch classes. |
 | octave | <code>number</code> | Octave for the chord root. |
+| inversion | <code>number</code> | Whhether to invert the chord. 0 - root position, 1 - 1st inversion, 2 - 2nd inversion,     etc... |
 
 <a name="calculateInterval"></a>
 

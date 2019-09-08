@@ -8,7 +8,8 @@ title: Instrument
 
 <dl>
 <dt><a href="#Instrument">Instrument</a></dt>
-<dd><p>Represents an abstract instrument with notes.</p>
+<dd><p>Represents an abstract instrument with notes.
+￿Should be used for creating new instruments.</p>
 </dd>
 </dl>
 
@@ -77,6 +78,7 @@ Initializes all the notes and audio players for the instrument.</p>
 
 ## *Instrument*
 Represents an abstract instrument with notes.
+￿Should be used for creating new instruments.
 
 **Kind**: global abstract class  
 <a name="name"></a>
