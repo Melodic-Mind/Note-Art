@@ -2,9 +2,9 @@ import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 import {Note, PitchClass}             from '../theory'
 import {firstToUpper, rearrangeArray} from '../utilities'
 import {
-    validateNumber,
-    validateRawNote,
-    validatePitchClasses,
+  validateNumber,
+  validateRawNote,
+  validatePitchClasses,
 }                                     from '../validation'
 
 /**
@@ -14,10 +14,10 @@ import {
  * @returns {Array}
  */
 export function pitchClassesToNotes(pitchClasses, octave) {
-    validatePitchClasses(pitchClasses)
-    validateNumber(octave)
+  validatePitchClasses(pitchClasses)
+  validateNumber(octave)
 
-    return pitchClasses.map(pitchClass => new Note(pitchClass.pitchClass, octave))
+  return pitchClasses.map(pitchClass => new Note(pitchClass.pitchClass, octave))
 }
 
 /**
@@ -29,21 +29,21 @@ export function pitchClassesToNotes(pitchClasses, octave) {
  * @returns {Array}
  */
 export function pitchClassesToPianoChordNotes(pitchClasses, octave, inversion = 0) {
-    validatePitchClasses(pitchClasses)
-    validateNumber(octave)
+  validatePitchClasses(pitchClasses)
+  validateNumber(octave)
 
-    if (inversion) {
-        pitchClasses = rearrangeArray(pitchClasses, inversion)
+  if (inversion) {
+    pitchClasses = rearrangeArray(pitchClasses, inversion)
+  }
+
+  let currentOctave = octave
+
+  return pitchClasses.map((pitchClass, i) => {
+    if ((i - 1) >= 0 && pitchClass.classIndex < pitchClasses[i - 1].classIndex) {
+      currentOctave++
     }
-
-    let currentOctave = octave
-
-    return pitchClasses.map((pitchClass, i) => {
-        if(pitchClass.classIndex < pitchClasses[0].classIndex){
-            currentOctave++
-        }
-        return new Note(pitchClass.pitchClass, currentOctave)
-    })
+    return new Note(pitchClass.pitchClass, currentOctave)
+  })
 }
 
 /**
@@ -53,9 +53,9 @@ export function pitchClassesToPianoChordNotes(pitchClasses, octave, inversion = 
  * @returns {Number}
  */
 export function calculateInterval(pitchClass1, pitchClass2) {
-    const i1 = pitchClass1.classIndex,
-          i2 = pitchClass2.classIndex
-    return i1 - i2 <= 0 ? Math.abs(i1 - i2) : 12 - (i1 - i2)
+  const i1 = pitchClass1.classIndex,
+        i2 = pitchClass2.classIndex
+  return i1 - i2 <= 0 ? Math.abs(i1 - i2) : 12 - (i1 - i2)
 }
 
 /**
@@ -64,12 +64,12 @@ export function calculateInterval(pitchClass1, pitchClass2) {
  * @returns {{octave: number, pitchClass: String}}
  */
 export function noteToObject(note) {
-    validateRawNote(note)
+  validateRawNote(note)
 
-    const pitchClass = firstToUpper(note.slice(0, note.length - 1))
-    const octave     = parseInt(note[note.length - 1])
+  const pitchClass = firstToUpper(note.slice(0, note.length - 1))
+  const octave     = parseInt(note[note.length - 1])
 
-    return {pitchClass, octave}
+  return {pitchClass, octave}
 }
 
 /**
@@ -78,7 +78,7 @@ export function noteToObject(note) {
  * @returns {boolean}
  */
 export function isRest(note) {
-    return note === 'R' || note === 'r'
+  return note === 'R' || note === 'r'
 }
 
 /**
@@ -88,13 +88,13 @@ export function isRest(note) {
  * @returns {string|*}
  */
 export function transposeRawNote(note, interval) {
-    validateRawNote(note)
+  validateRawNote(note)
 
-    if (!isRest(note)) {
-        return Note.builder(note).interval(interval).raw
-    }
+  if (!isRest(note)) {
+    return Note.builder(note).interval(interval).raw
+  }
 
-    return note
+  return note
 }
 
 /**
@@ -103,19 +103,19 @@ export function transposeRawNote(note, interval) {
  * @param range
  */
 export function notesInRange(base, range) {
-    let {pitchClass, octave} = noteToObject(base)
-    const notes              = {}
-    let tmpPitchClass
+  let {pitchClass, octave} = noteToObject(base)
+  const notes              = {}
+  let tmpPitchClass
 
-    for (let i = 0; i <= range; ++i) {
-        tmpPitchClass = mts.flatClassNotes[(mts.flatClassNotes.indexOf(pitchClass) + i) % 12]
+  for (let i = 0; i <= range; ++i) {
+    tmpPitchClass = mts.flatClassNotes[(mts.flatClassNotes.indexOf(pitchClass) + i) % 12]
 
-        notes[tmpPitchClass + octave] = {pitchClass: tmpPitchClass, octave}
+    notes[tmpPitchClass + octave] = {pitchClass: tmpPitchClass, octave}
 
-        if (tmpPitchClass === 'B') {
-            octave++
-        }
+    if (tmpPitchClass === 'B') {
+      octave++
     }
+  }
 
-    return notes
+  return notes
 }

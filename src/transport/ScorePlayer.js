@@ -218,7 +218,7 @@ export default class ScorePlayer {
     if (this.metronome.active) {
       this.startMetronome()
     }
-    this.transport.start('+0.2', startTime)
+    this.transport.start('+0.3', startTime)
   }
 
   /**

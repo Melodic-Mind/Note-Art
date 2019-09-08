@@ -35,7 +35,7 @@ describe('Music addon functions', () => {
             gChord = new Chord(g, [4, 7])
         })
 
-        describe.only('returns the correct notes for a chord', () => {
+        describe('returns the correct notes for a chord', () => {
             it('normal chord', () => {
                 const stub = [Note.builder('g3'), Note.builder('B3'), Note.builder('d4')]
                 expect(pitchClassesToPianoChordNotes(gChord.pitchClasses, 3)).to.eql(stub)
