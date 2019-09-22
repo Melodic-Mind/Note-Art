@@ -4,8 +4,9 @@ import {firstToUpper, rearrangeArray} from '../utilities'
 import {
   validateNumber,
   validateRawNote,
-  validatePitchClasses,
+  validatePitchClasses, PitchClassRule,
 }                                     from '../validation'
+import {InvalidInput}                 from '../Exceptions'
 
 /**
  * Returns an array of notes with a specific octave.
@@ -77,8 +78,27 @@ export function noteToObject(note) {
  * @param {string} note Raw note.
  * @returns {boolean}
  */
-export function isRest(note) {
+export function isRest(str) {
   return note === 'R' || note === 'r'
+}
+
+export function isRawNote(str) {
+  if (typeof str !== 'string') {
+    return false
+  }
+
+  if (['r', 'R'].includes(str)) {
+    return true
+  }
+
+  const pitchClass = firstToUpper(str.slice(0, str.length - 1))
+  const octave     = parseInt(str[str.length - 1])
+
+  if (!PitchClassRule.exists(pitchClass) || typeof octave !== 'number') {
+    return false
+  }
+
+  return true
 }
 
 /**
@@ -118,4 +138,22 @@ export function notesInRange(base, range) {
   }
 
   return notes
+}
+
+export function getNoteDuration(note, bpm) {
+  //@TODo
+}
+
+export function normalizeHeptatonicScale(pitchClasses){
+  const rawPitchClasses = []
+  const letters = mts.pitchClassLetters
+
+  pitchClasses.forEach((pc, i) => {
+    const l = pc.pitchClass[i]
+    if(pitchClasses[i+1] && l === pitchClasses[i+1].pitchClass[0]){
+      const letterIndex = letters.indexOf(l)
+      const nextLetter = letters[(letterIndex+1)%7]
+      rawPitchClasses.push()
+    }
+  })
 }

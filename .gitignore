@@ -3,7 +3,7 @@
 # Edit at https://www.gitignore.io/?templates=node,linux,visualstudiocode
 
 .idea/
-
+dist/
 .vscode/
 
 ### Linux ###

@@ -1,43 +1,47 @@
 import {Note, Cord} from '../../src'
 
 describe('Cord', () => {
-  let noteString
+  let cord
   beforeEach(() => {
-    noteString = new Cord('e3', 1)
+    cord = new Cord('e3', 1, 1)
   })
 
   it('generates a notes object based on the range it receives', () => {
-    expect(noteString.notes.has('E3')).to.be.true
-    expect(noteString.notes.has('F3')).to.be.true
+    expect(cord.notes.has('E3')).to.be.true
+    expect(cord.notes.has('F3')).to.be.true
   })
 
   describe('#play', () => {
     it('plays a note when the note is in range', () => {
-      expect(noteString.note('e3')).to.be.instanceOf(Note)
+      expect(cord.note('e3')).to.be.instanceOf(Note)
     })
 
     it('throws InvalidInput when note is not in range', () => {
-      expect(noteString.note('e4')).to.be.undefined
+      expect(cord.note('e4')).to.be.undefined
     })
   })
 
   describe('#fret', () => {
-    let noteString
+    let cord
     beforeEach(() => {
-      noteString = new Cord('e3', 12)
+      cord = new Cord('e3', 12)
     })
 
     it('should return the note at the given fret', () => {
-      expect(noteString.fret(0)).to.equal('E3')
-      expect(noteString.fret('7')).to.equal('B3')
+      expect(cord.fret(0)).to.equal('E3')
+      expect(cord.fret('7')).to.equal('B3')
     })
 
     it('should return undefined when that fret does not exist for the string', () => {
-      expect(noteString.fret(20)).to.be.undefined
+      expect(cord.fret(20)).to.be.undefined
     })
   })
 
+  it('generates correct path for cord', () => {
+    expect(cord.generatePath(Note.builder('C3'))).to.equal('https://note-art-server.herokuapp.com/audio/guitar/1/C3.mp3')
+  })
+
   it('#toString', () => {
-    expect(noteString.toString()).to.equal('Cord')
+    expect(cord.toString()).to.equal('cord')
   })
 })

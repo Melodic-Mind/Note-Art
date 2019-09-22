@@ -28,7 +28,7 @@ describe('Music addon functions', () => {
         })
     })
 
-    describe('#toPianoChordNotes', () => {
+    describe('#pitchClassesToPianoChordNotes', () => {
         let g, gChord
         beforeEach(() => {
             g      = new PitchClass('g')
@@ -39,6 +39,12 @@ describe('Music addon functions', () => {
             it('normal chord', () => {
                 const stub = [Note.builder('g3'), Note.builder('B3'), Note.builder('d4')]
                 expect(pitchClassesToPianoChordNotes(gChord.pitchClasses, 3)).to.eql(stub)
+            })
+
+            it.only('another normal chord', () => {
+                const pitchClasses = [new PitchClass('g#'), new PitchClass('b'), new PitchClass('d')]
+                const stub = [Note.builder('g#3'), Note.builder('B3'), Note.builder('d4')]
+                expect(pitchClassesToPianoChordNotes(pitchClasses, 3)).to.eql(stub)
             })
 
             it('big Chord', () => {
@@ -85,7 +91,7 @@ describe('Music addon functions', () => {
     })
 
     describe('#notesInRange', () => {
-        it('returns an array of notes formatted as strings', () => {
+        it('returns an array of notes formatted as cords', () => {
             expect(Object.keys(notesInRange('a3', 3))).to.eql(['A3', 'Bb3', 'B3', 'C4'])
         })
 

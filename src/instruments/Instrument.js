@@ -1,10 +1,12 @@
-import {lib}                          from '../Lib'
-import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
-import {Note}                         from '../theory'
-import {notesInRange, firstToUpper}   from '../utilities'
-import {validateRawNote}              from '../validation'
-import {InstrumentMixin}              from '../mixins'
-import Players                        from 'Tone/source/Players'
+import {lib}                                         from '../Lib'
+import {MusicTheoryStructures as mts}                from '../resources/MusicTheoryStructures'
+import Note                                          from '../theory/Note'
+import {notesInRange, firstToUpper, getNoteDuration} from '../utilities'
+import {validateRawNote}                             from '../validation'
+import {InstrumentMixin}                             from '../mixins'
+import Players                                       from 'Tone/source/Players'
+import Tone                                          from 'Tone/core/Tone'
+import AmplitudeEnvelope                             from 'Tone/component/AmplitudeEnvelope'
 
 //TODO Check possibility of using Tone.Sampler instead of Tone.Player to save loading time
 
@@ -16,8 +18,9 @@ import Players                        from 'Tone/source/Players'
  */
 export default class Instrument {
   constructor() {
-    this.notes   = new Map()
-    this.players = Instrument.getTonePlayers()
+    this.notes       = new Map()
+    this.players     = Instrument.getTonePlayers()
+    this.loadedFiles = []
   }
 
   /**
@@ -28,21 +31,12 @@ export default class Instrument {
   }
 
   /**
-   * Connects audio node to master.
-   * @param context File context instance.
-   */
-  static toMaster(context) {
-    context.toMaster()
-  }
-
-  /**
    * Returns the instrument's name.
    * @type {string}
    */
   static get name() {
     throw new Error('Not implemented for this instrument yet')
   }
-
 
   /**
    * The server to load the audio files for the instrument from,
@@ -55,7 +49,7 @@ export default class Instrument {
 
   /**
    * Returns string to be used when loading audio files from a specific path.
-   * Can be easily over-riden for a specific intrument by using the lib to set the instruments name.
+   * Can be easily over-ridden for a specific intrument by using the lib to set the instruments name.
    * @return {string}
    * @example
    * lib.set('Piano', () => {return 'MyUltimatePiano'}) // Piano will now load audio files from the
@@ -70,13 +64,14 @@ export default class Instrument {
    * Initializes all the notes and audio players for the instrument.
    * @param base
    * @param range
+   * @returns {this}
    */
   init(base, range) {
     Object.entries(notesInRange(base, range)).forEach(([key, {pitchClass, octave}]) => {
       const note = new Note(pitchClass, octave)
       this.notes.set(key, note)
-      this.setPlayer(key, note)
     })
+    return this
   }
 
   /**
@@ -91,6 +86,7 @@ export default class Instrument {
       const index = mts.sharpClassNotes.indexOf(pitchClass)
       pitchClass  = mts.flatClassNotes[index]
     }
+
     const index = mts.flatClassNotes.indexOf(pitchClass)
     return mts.flatClassNotes[index]
   }
@@ -114,7 +110,7 @@ export default class Instrument {
 
   /**
    * Generates Tone player for some audio.
-   * @param {String} fileName
+   * @param {*} fileName
    */
   generatePath(fileName) {
     throw new Error('Not implemented for this instrument yet')
@@ -125,19 +121,29 @@ export default class Instrument {
    * @param key
    * @param {Note} note
    */
-  setPlayer(key, note) {
-    const context = this.generatePath(note)
-    this.players.add(key, context)
-    Instrument.toMaster(this.players.get(key))
+  setPlayer(key, source) {
+    if (typeof source === 'string') {
+      this.players.add(key, source, () => {
+        this.loadedFiles.push(key)
+      }).toMaster()
+    } else {
+      this.players.add(key, source)
+      const player   = this.players.get(key)
+      player.fadeIn = .1
+      player.fadeOut = .5
+      player.toMaster()
+
+      this.loadedFiles.push(key)
+    }
   }
 
   /**
    * Get a note's player.
-   * @param {String} note
+   * @param {String} key
    * @returns {Tone.Player}
    */
-  getPlayer(note) {
-    return this.players.get(Instrument.getKey(this.notes.get(note)))
+  getPlayer(key) {
+    return this.players.get(key)
   }
 
   /**
@@ -163,27 +169,64 @@ export default class Instrument {
     return this.notes.has(note)
   }
 
-  static notePipeline(note) {
-    validateRawNote(note)
-    note = Instrument.normalizeNoteStr(note)
-    if (note.includes('#')) {
-      const pitchClass = Instrument.normalizeSet(note.slice(0, 2), '#')
-      const octave     = note[note.length - 1]
-      note             = `${pitchClass}${octave}`
+  /**
+   * Returns the key for a raw note.
+   * @param {string} rawNote
+   * @returns {String}
+   */
+  static notePipeline(rawNote) {
+    validateRawNote(rawNote)
+    rawNote = Instrument.normalizeNoteStr(rawNote)
+    if (rawNote.includes('#')) {
+      const pitchClass = Instrument.normalizeSet(rawNote.slice(0, 2), '#')
+      const octave     = rawNote[rawNote.length - 1]
+      rawNote          = `${pitchClass}${octave}`
     }
-    return note
+    return rawNote
   }
 
   /**
    * Play sound, optionally for a duration.
    * @param {string} note
-   * @param {string} [duration='10']
+   * @param {string} [duration='3']
    */
-  play(note, duration = '10') {
-    note = Instrument.notePipeline(note)
-    if (this.hasNote(note)) {
-      this.getPlayer(note).start().stop(`+${duration}`)
+  play(rawNote, duration = '3', time = 0) {
+    const key = Instrument.notePipeline(rawNote)
+    if (!this.loadedFiles.includes(key)) {
+      throw new Error('File was not loaded!')
+      return false
     }
+    const player = this.players.get(key)
+    player.start(time + 0.10).stop(`+${duration}`)
+
+    return true
+  }
+
+  /**
+   * Load audio file for the instrument.
+   * @param {string} rawNote The note to load the file for.
+   * @param {string|AudioBuffer} [source=null] Optional: If the url is not in a path that follows the conventions
+   *     created, the api expects you can simply pass the a AudioBuffer or url for each file after generating them on
+   *     your own.
+   * @returns {boolean}
+   */
+  loadFile(rawNote, source = '') {
+    const key = Instrument.notePipeline(rawNote)
+    if (!this.loadedFiles.includes(key)) {
+      const note = this.notes.get(key)
+      if (!note) {
+        throw new Error('This note does not exist in the instrument')
+      }
+      source = source || this.generatePath(note)
+      this.setPlayer(key, source)
+      return true
+    }
+    return false
+  }
+
+  getBuffer(rawNote) {
+    const key = Instrument.notePipeline(rawNote)
+    return this.players.get(key).buffer
   }
 
   /**

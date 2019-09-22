@@ -30,6 +30,8 @@ export class MusicTheoryStructures {
    */
   static flatClassNotes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
 
+  static pitchClassLetters = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+
   static getPitchClassSet(set) {
     if (set === '#') {
       return MusicTheoryStructures.sharpClassNotes

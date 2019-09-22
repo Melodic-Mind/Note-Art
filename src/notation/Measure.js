@@ -1,6 +1,6 @@
-import {firstToUpper, transposeRawNote}                 from '../utilities'
-import {MusicTheoryStructures as mts}                   from '../resources/MusicTheoryStructures'
-import {validateArray, validateNumber, validateRawNote} from '../validation'
+import {firstToUpper, transposeRawNote, isRawNote} from '../utilities'
+import {MusicTheoryStructures as mts}              from '../resources/MusicTheoryStructures'
+import {validateArray}                             from '../validation'
 
 /**
  * @class Measure
@@ -102,17 +102,19 @@ export default class Measure {
 
   /**
    * Adds a note to the measure at some position.
-   * @param {string} note raw note representation.
-   * @param {string} [duration=this.duration]
+   * @param {string} data.note raw note representation.
+   * @param {string} [data.duration=this.duration]
    * @param {number} position The position in the data to add the note to.
    * @returns {boolean}
    */
   addNote({note, duration}, position) {
     this.duration = duration
-    validateRawNote(note)
+    if(isRawNote(note)){
+      note = firstToUpper(note)
+    }
     if (this.validateInsertion(position + 1)) {
-      this.data[position]['notes'].add(firstToUpper(note))
-      this.data[position]['duration'] = this.duration
+      this.data[position].notes.add(note)
+      this.data[position].duration = this.duration
       this.initNext(position + 1)
       return true
     }

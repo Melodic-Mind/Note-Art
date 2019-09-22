@@ -116,23 +116,27 @@ export default class Score {
 
   /**
    * Returns the voice at the index, starts from voice 0.
-   * @throws Error
+   * If the voice doesn't exist it returns false.
    * @param {number} [index=1] The voice index.
-   * @returns {false|Array}
+   * @returns {boolean|[*]}
    */
   getVoice(index = 0) {
     if (this.attributes.voices[index]) {
       return this.attributes.voices[index]
     }
 
-    throw new Error('This score does not have a ${index} voice')
+    return false
   }
 
   /**
-   * Adds a new voice to the score, initialized with one empty measure.
+   * Adds a voice to the score.
+   *
+   * @param {number} position Position to add the voice in the score to.
+   * @param {Array} [voice=false] An array of measures, defaults to an array with one empty measure.
    */
-  addVoice() {
-    this.voices.push([new Measure()])
+  addVoice(position, voice = false) {
+    voice = voice || [new Measure()]
+    this.voices.splice(position, 0, voice)
   }
 
   /**
@@ -181,8 +185,8 @@ export default class Score {
 
   /**
    * Add a note to a measure in one of the voices.
-   * @param {string} note Raw note.
-   * @param {string} [duration=measure.duration]
+   * @param {string} data.note Raw note.
+   * @param {string} [data.duration=measure.duration]
    * @param {number} position Position in the measure to add the note to.
    * @param {number} measureIndex The index of the measure to add the note to.
    * @param {number} [voiceIndex=0] The index of the voice to add the note to.

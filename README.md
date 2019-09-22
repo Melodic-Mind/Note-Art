@@ -137,7 +137,7 @@ Set the path to your desired location which can be local or on a remote server.
 You are welcome to use my server, hosted on heroku and has piano, guitar and drum sounds.
 ```
 lib.set('path', () => {
-    return 'https://note-art-server.herokuapp.com//audio/' // the path to my server
+    return 'https://note-art-server.herokuapp.com/audio/' // the path to my server
 })
 ```
 

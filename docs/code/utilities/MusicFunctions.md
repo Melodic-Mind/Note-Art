@@ -10,8 +10,8 @@ title: MusicFunctions
 <dt><a href="#pitchClassesToNotes">pitchClassesToNotes({pitchClasses}, octave)</a> ⇒ <code>Array</code></dt>
 <dd><p>Returns an array of notes with a specific octave.</p>
 </dd>
-<dt><a href="#toPianoChordNotes">toPianoChordNotes({pitchClasses}, octave, inversion)</a> ⇒ <code>Array</code></dt>
-<dd><p>Returns an array of notes that represent chord played on a piano in a certain octave.</p>
+<dt><a href="#pitchClassesToPianoChordNotes">pitchClassesToPianoChordNotes({pitchClasses}, octave, inversion)</a> ⇒ <code>Array</code></dt>
+<dd><p>Returns an array of notes that represent a chord played on a piano in a certain octave.</p>
 </dd>
 <dt><a href="#calculateInterval">calculateInterval(pitchClass1, pitchClass2)</a> ⇒ <code>Number</code></dt>
 <dd><p>Calculate the pure interval between 2 pitch classes.</p>
@@ -42,10 +42,10 @@ Returns an array of notes with a specific octave.
 | {pitchClasses} | <code>Array</code> | Array of pitch classes. |
 | octave | <code>number</code> | Octave to assign to notes.. |
 
-<a name="toPianoChordNotes"></a>
+<a name="pitchClassesToPianoChordNotes"></a>
 
-## toPianoChordNotes({pitchClasses}, octave, inversion) ⇒ <code>Array</code>
-Returns an array of notes that represent chord played on a piano in a certain octave.
+## pitchClassesToPianoChordNotes({pitchClasses}, octave, inversion) ⇒ <code>Array</code>
+Returns an array of notes that represent a chord played on a piano in a certain octave.
 
 **Kind**: global function  
 

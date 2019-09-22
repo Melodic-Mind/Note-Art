@@ -2,6 +2,7 @@ import {InvalidInput}   from '../Exceptions'
 import {firstToUpper}   from '../utilities'
 import {PitchClassRule} from '../validation'
 import {PitchClass}     from '../theory'
+import {isRawNote}      from '../utilities'
 
 /**
  * Validates an argument is an array, fails if not.
@@ -35,23 +36,13 @@ export function validateNumber(val) {
 
 /**
  * Validate that a string is a valid representation of a raw note.
- * @param note
+ * @param str
  * @returns {boolean}
  */
-export function validateRawNote(note) {
-  if (typeof note !== 'string') {
-    throw new InvalidInput(`Expected ${note} to be a string representing Note`)
+export function validateRawNote(str) {
+  if (!isRawNote(str)) {
+    throw new InvalidInput(`Expected ${note} to be a string representing a note`)
   }
-
-  if (['r', 'R'].includes(note)) {
-    return true
-  }
-
-  const pitchClass = firstToUpper(note.slice(0, note.length - 1))
-  const octave     = parseInt(note[note.length - 1])
-
-  PitchClassRule.exists(pitchClass)
-  validateNumber(octave)
 
   return true
 }

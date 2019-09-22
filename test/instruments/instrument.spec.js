@@ -41,7 +41,7 @@ describe('Instrument', () => {
 
   describe('#generatePath', () => {
     it('should throw an error when called from an instrument instance', () => {
-      const ins = new Instrument('C3', 3)
+      const ins = new Instrument()
       expect(() => { ins.generatePath('some instrument', 'C3')}).to.throw(Error)
     })
   })
@@ -49,26 +49,11 @@ describe('Instrument', () => {
   describe('#setPlayer', () => {
     let ins
     beforeEach(() => {
-      ins = new Instrument('e3', 2)
+      ins = new Instrument()
     })
 
     it('should throw an error when generatePath is not over ridden', () => {
       expect(() => {ins.init()}).to.throw(Error)
-    })
-
-    it('should set a path for each note exactly once', () => {
-      const stub = sinon.stub(ins, 'setPlayer').returns(true)
-      ins.init('e3', 2)
-      expect(stub).to.have.been.calledThrice
-    })
-
-    it('should set players to notes', () => {
-      const stub = sinon.stub(ins, 'generatePath').returns(Math.random())
-      const spy  = sinon.spy(ins, 'setPlayer')
-      ins.init('e3', 2)
-      expect(spy).to.have.been.calledThrice
-      stub.restore()
-      spy.restore()
     })
   })
 
@@ -84,14 +69,37 @@ describe('Instrument', () => {
     })
   })
 
+  describe('#loadFile', () => {
+    let ins
+    beforeEach(() => {
+      ins = new Instrument().init('C3', 2)
+    })
+
+    it('should return false when a file is already loaded', () => {
+      ins.loadedFiles = ['C3']
+      expect(ins.loadFile('c3')).to.be.false
+    })
+
+    it('should throw an error when a note does not exist in the instrument', () => {
+      expect(() => ins.loadFile('e5')).to.throw(Error)
+    })
+
+    it('should load a file when it exists in the instrument and is not loaded', () => {
+      const setPlayerStub    = sinon.stub(ins, 'setPlayer')
+      const generatePathStub = sinon.stub(ins, 'generatePath')
+      expect(ins.loadFile('c3')).to.be.true
+      setPlayerStub.restore()
+      generatePathStub.restore()
+    })
+  })
+
   describe('#getPlayer', () => {
     it('should return undefined when called from base class', () => {
-      const ins     = new Instrument('E3', 2)
+      const ins     = new Instrument()
       const stub    = sinon.stub(ins.players, 'get')
       const get_key = sinon.stub(Instrument, 'getKey')
-      ins.getPlayer({pitchClass: 'C', octave: 3, classSet: '#'})
+      ins.getPlayer('C3')
       expect(stub).to.have.been.calledOnce
-      expect(get_key).to.have.been.calledOnce
       stub.restore()
       get_key.restore()
     })
@@ -99,7 +107,7 @@ describe('Instrument', () => {
 
   describe('#note', () => {
     it('should return undefined when note doesnt exist', () => {
-      const ins = new Instrument('E3', 2)
+      const ins = new Instrument()
       expect(ins.note('e3')).to.be.undefined
     })
 
@@ -136,12 +144,13 @@ describe('Instrument', () => {
   describe('#play', () => {
     let ins
     beforeEach(() => {
-      ins = new Instrument('E3', 2)
+      ins             = new Instrument().init('c3', 10)
+      ins.loadedFiles = ['E3', 'F3']
     })
 
-    it('plays a note when it exists', () => {
+    it('should play a note when it exists', () => {
       const hasNote   = sinon.stub(ins, 'hasNote').returns(true)
-      const getPlayer = sinon.stub(ins, 'getPlayer').returns({
+      const getPlayer = sinon.stub(ins.players, 'get').returns({
         start: () => {
           return {
             stop: () => {return true},
@@ -156,14 +165,16 @@ describe('Instrument', () => {
       getPlayer.restore()
     })
 
-    it('doesnt play a note when its not in the instrument', () => {
-      const stub = sinon.stub(ins, 'generatePath').returns(Math.random())
-      ins.init('E3', 2)
-      const spy = sinon.spy(ins, 'getPlayer')
-      ins.play('f5')
-      expect(spy).to.not.have.been.called
+    it('should load a file when it does not exist', () => {
+      const stub = sinon.stub(ins, 'loadFile')
+      expect(ins.play('d3')).to.be.false
       stub.restore()
-      spy.restore()
+    })
+  })
+
+  describe('#toString', () => {
+    it('should return null for abstract instrument', () => {
+      expect(new Instrument().toString()).to.equal('')
     })
   })
 })

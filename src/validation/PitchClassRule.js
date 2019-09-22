@@ -18,7 +18,7 @@ export default class PitchClassRule {
       return true
     }
 
-    throw new InvalidInput(`${pitchCls} is not a valid pitch class`)
+    return false
   }
 
   static validNotes() {

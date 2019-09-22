@@ -1,6 +1,7 @@
 import {InstrumentMixin} from '../mixins'
 import Instrument        from './Instrument'
 import Cord              from './Cord'
+import Tone              from 'Tone/core/Tone'
 
 /**
  * @class Guitar
@@ -8,11 +9,11 @@ import Cord              from './Cord'
  * using different input methods.
  * This guitar uses all the audio files from the note-art server,
  * if you wish to create a different guitar you can do so easily by using the template below
- * with your number of strings, their ranges, etc.
+ * with your number of cords, their ranges, etc.
  */
 export default class Guitar {
   constructor() {
-    this.strings = [
+    this._cords = [
       new Cord('E4', 19, 1),
       new Cord('B3', 16, 2),
       new Cord('G3', 15, 3),
@@ -22,40 +23,65 @@ export default class Guitar {
     ]
   }
 
+  get cords() {
+    return this._cords
+  }
+
   /**
    * Plays a single note on a specific string for some duration.
-   * @param {string} string String to play.
+   * @param {string} cord Cord to play.
    * @param {string} note Note to play.
    * @param {string} duration duration to play the note for.
    */
-  playString(string, note, duration) {
-    this.strings[string].play(note, duration)
+  playCord(cord, note, duration) {
+    this.cords[cord].play(note, duration)
   }
 
   /**
    *
-   * @param {Object} stringsAndNotes Object which contains string and notes to play.
+   * @param {Object} cordsAndNotes Object which contains string and notes to play.
    * @param duration Duration to play for.
    * @example
-   * const stringsAndNotes = {1: 'E4', 2: 'C4'}
-   * guitarInstance.play(stringsAndNotes, '4n')   //notes are played.
+   * const cordsAndNotes = {1: 'E4', 2: 'C4'}
+   * guitarInstance.play(cordsAndNotes, '4n')   //notes are played.
    */
-  playMultiple(stringsAndNotes, duration) {
-    Object.entries(stringsAndNotes).forEach(([string, note]) => {
-          this.playString(string, note, duration)
+  playMultiple(cordsAndNotes, duration) {
+    Object.entries(cordsAndNotes).forEach(([string, note]) => {
+          this.playCord(string, note, duration)
         },
     )
   }
 
-  //Private method to help
-  playHelper(method, note, duration) {
-    note = Instrument.notePipeline(note)
-    for (let i = 0; i < this.strings.length; ++i) {
-      if (this.strings[i].hasNote(note)) {
-        return this.strings[i][method](note, duration)
+  /**
+   * Play Helper, should not be called!
+   * @param {function} method Method to invoke.
+   * @param {string} rawNote
+   * @param {string} duration
+   * @private
+   * @returns {*}
+   */
+  playHelper(method, rawNote, duration) {
+    rawNote = Instrument.notePipeline(rawNote)
+    for (let i = 0; i < this.cords.length; ++i) {
+      if (this.cords[i].hasNote(rawNote)) {
+        return this.cords[i][method](rawNote, duration)
       }
     }
     return false
+  }
+
+  /**
+   * Load a note for any string that contains that note.
+   * @param cord
+   * @param rawNote
+   * @param url
+   */
+  loadFile(cord, rawNote, url = null) {
+    for (let i = 0; i < this.cords.length; ++i) {
+      if (this.cords[i].hasNote(rawNote)) {
+        this.cords[i].loadFile(rawNote, url)
+      }
+    }
   }
 
   /**
@@ -63,12 +89,19 @@ export default class Guitar {
    * @param {string} note
    * @param {string} duration duration to play the note for.
    */
-  play(note, duration = '100') {
+  play(note, duration = '100', connectGain) {
+    if(connectGain){
+
+    }
     return this.playHelper('play', note, duration)
   }
 
+  getGain(){
+    return Tone.context.createGain()
+  }
+
   /**
-   * Strums the guitar's strings using guitar pattern(low to high).
+   * Strums the guitar's cords using guitar pattern(low to high).
    * @param {Array} pattern pattern to strum
    * @param {string} duration duration to play the note for.
    * @example
@@ -79,8 +112,8 @@ export default class Guitar {
     pattern.forEach((fret, index) => {
       if (fret !== 'x') {
         index      = 5 - index
-        const note = this.strings[index].fret(fret)
-        this.playString(index.toString(), note, duration)
+        const note = this.cords[index].fret(fret)
+        this.playCord(index.toString(), note, duration)
       }
     })
   }
@@ -90,7 +123,7 @@ export default class Guitar {
    * @returns {string}
    */
   toString() {
-    return 'Guitar'
+    return 'guitar'
   }
 }
 

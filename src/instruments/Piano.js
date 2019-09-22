@@ -11,10 +11,9 @@ export default class Piano extends Instrument {
     this.init(base, range)
   }
 
-  /**
-   * @inheritDoc
-   */
-  static name = 'Piano'
+  static get name() {
+    return 'Piano'
+  }
 
   /** @inheritDoc */
   generatePath(note) {
@@ -29,6 +28,6 @@ export default class Piano extends Instrument {
    * @inheritDoc
    */
   toString() {
-    return 'Piano'
+    return 'piano'
   }
 }

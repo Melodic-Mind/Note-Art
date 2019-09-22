@@ -3,22 +3,22 @@ import Instrument from './Instrument'
 /**
  * @class Cord
  * @extends Instrument
+ *
  * @classdesc A cord which represents a cord as part of a stringed instrument.
  * @param base
  * @param range
- * @param stringNumber
+ * @param cordNumber
  */
 export default class Cord extends Instrument {
-  constructor(base, range, stringNumber) {
+  constructor(base, range, cordNumber) {
     super()
-    this.stringNumber = stringNumber
+    this.cordNumber = cordNumber
     this.init(base, range)
   }
 
-  /**
-   * @inheritDoc
-   */
-  static name = 'Cord'
+    static get name() {
+    return 'Cord'
+  }
 
   /**
    * @inheritDoc
@@ -27,7 +27,7 @@ export default class Cord extends Instrument {
     const set  = Instrument.normalizeSet(note.pitchClass, note.classSet)
     const file = `${set}${note.octave}`
 
-    return `${Instrument.server}${Cord.instrumentPath}/${this.stringNumber}/${file}.mp3`
+    return `${Instrument.server}${Cord.instrumentPath}/${this.cordNumber}/${file}.mp3`
   }
 
   /**
@@ -44,6 +44,6 @@ export default class Cord extends Instrument {
    * @inheritDoc
    */
   toString() {
-    return 'Cord'
+    return 'cord'
   }
 }

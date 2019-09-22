@@ -1,17 +1,50 @@
 import Transport                      from 'Tone/core/Transport'
 import Tone                           from 'Tone/core/Tone'
-import {Drumset}                      from '../instruments'
+import Draw                           from 'Tone/core/Draw'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 
 /**
- * @class ScorePlayer
+ * @class ScorePlayerjjj
  * @classdesc Represents a driver that can play a score.
  * Best practice is to create one driver that will be used to play everything inside the app/website.
  */
 export default class ScorePlayer {
   constructor() {
-    this.playing   = {voice: null, measure: null, noteSet: null}
-    this.metronome = {active: false, sound: 'clap', id: null}
+    this.resetPosition()
+  }
+
+  /**
+   * Initializes the ScorePlayer. Should NOT be called.
+   * @private
+   * @returns {ScorePlayer}
+   */
+  init() {
+    this.transport               = Transport
+    this.bpm                     = 120
+    this.transport.timeSignature = 4
+    this.transport.loop          = true
+    this._sustain                = true
+    return this
+  }
+
+  resetPosition() {
+    this.position = {voices: null, beat: null, position: null}
+  }
+
+  get beat() {
+    return this.position.beat
+  }
+
+  get currentTime() {
+    return this.position.currentTime
+  }
+
+  get sustain() {
+    return this._sustain
+  }
+
+  set sustain(val) {
+    this._sustain = val
   }
 
   /**
@@ -50,14 +83,19 @@ export default class ScorePlayer {
     return this
   }
 
+  addMetronome(instrument, sound) {
+    this.metronome = {instrument, active: false, sound, id: null}
+    return this
+  }
+
   /**
    * Schedules the metronome to the transport.
    * @returns {ScorePlayer}
    */
   startMetronome() {
-    this.metronome.active = true
-    this.metronome.id     = this.transport.scheduleRepeat(time => {
-      this.drumSet.play(this.metronome.sound)
+    this.metronome.isActive = true
+    this.metronome.id       = this.transport.scheduleRepeat(time => {
+      this.metronome.instrument.play(this.metronome.sound)
     }, '4n', '0')
 
     return this
@@ -68,7 +106,7 @@ export default class ScorePlayer {
    * @returns {ScorePlayer}
    */
   stopMetronome() {
-    this.metronome.active = false
+    this.metronome.isActive = false
     this.transport.clear(this.metronome.id)
 
     return this
@@ -79,25 +117,11 @@ export default class ScorePlayer {
    * @returns {ScorePlayer}
    */
   toggleMetronome() {
-    if (this.metronome.active) {
+    if (this.metronome.isActive) {
       return this.stopMetronome()
     } else {
       return this.startMetronome()
     }
-  }
-
-  /**
-   * Initializes the ScorePlayer. Should NOT be called.
-   * @private
-   * @returns {ScorePlayer}
-   */
-  init() {
-    this.transport               = Transport
-    this.bpm                     = 120
-    this.transport.timeSignature = 4
-    this.transport.loop          = true
-    this.drumSet                 = new Drumset()
-    return this
   }
 
   /**
@@ -111,27 +135,27 @@ export default class ScorePlayer {
     }
   }
 
-    /**
-     * Get the current bpm value.
-     * @returns {*}
-     */
+  /**
+   * Get the current bpm value.
+   * @returns {*}
+   */
   get bpm() {
     return this.transport.bpm.value
   }
 
-    /**
-     * Set the time signature.
-     * @param {Array} timeSignature
-     */
+  /**
+   * Set the time signature.
+   * @param {Array} timeSignature
+   */
   set timeSignature(timeSignature) {
     this.score.setTimeSignature(timeSignature)
     this.setScore(this.score)
   }
 
-    /**
-     * Set the loop start time.
-     * @param time
-     */
+  /**
+   * Set the loop start time.
+   * @param time
+   */
   set loopStart(time) {
     this.transport.loopStart = time
   }
@@ -149,10 +173,13 @@ export default class ScorePlayer {
    */
   scheduleVoices() {
     this.transport.loopEnd = this.score.voices[0].length + 'm'
+    const voicesPositions  = []
     for (let i = 0; i < this.score.voices.length; ++i) {
+      voicesPositions.push({measure: null, noteSet: null})
       this.scheduleMeasures(i)
     }
 
+    this.position.voices = voicesPositions
     return this
   }
 
@@ -167,13 +194,6 @@ export default class ScorePlayer {
   }
 
   /**
-   * @return {Ticks}
-   */
-  get position() {
-    return this.transport.position
-  }
-
-  /**
    * Schedules the notes of a measure to the transport.
    * @param {number} measureIndex
    * @param {number} voiceIndex
@@ -182,15 +202,22 @@ export default class ScorePlayer {
     let setTime = 0
     this.score.voices[voiceIndex][measureIndex].data.forEach((data, dataIndex) => {
       data.notes.forEach((note) => {
-        if (note !== 'R') {
-          this.transport.schedule(() => {
-            this.playing.voice   = voiceIndex
-            this.playing.measure = measureIndex
-            this.playing.noteSet = dataIndex
-            this.instruments[voiceIndex].play(note, '1n')
-          }, `${measureIndex}:0:${setTime}`)
-        }
+        this.transport.schedule((time) => {
+
+          Draw.schedule(() => {
+            if (this.position.voices[0].measure !== measureIndex) {
+              this.position.voices[voiceIndex].measure = measureIndex
+            }
+            this.position.voices[voiceIndex].noteSet = dataIndex
+          }, time)
+
+          if (note !== 'R') {
+            const duration = this.sustain ? '10' : data.duration
+            this.instruments[voiceIndex].play(note, duration, time)
+          }
+        }, `${measureIndex}:0:${setTime}`)
       })
+      // this.prevNotes = data.notes
       setTime += mts.noteDurations()[data.duration] / 4
     })
   }
@@ -199,26 +226,34 @@ export default class ScorePlayer {
    * Toggles the state of the transport.
    * @param {number} [startTime=0] Time to start the score.
    */
-  toggle(startTime = 0) {
+  toggle(startTime = 0, delay = '0.3') {
     if (this.transport.state === 'stopped') {
-      this.start()
+      this.start(startTime, delay)
     } else {
-      this.transport.stop()
+      this.stop()
     }
   }
 
   /**
    * Start playing.
-   * @param startTime
+   * @param startTime Time to start the transport from
+   * @param {string} delay Time to delay the start of the transport for, gives more time to scheduling.
    */
-  start(startTime = 0) {
+  start(startTime = 0, delay = '0.3') {
     if (Tone.context.state !== 'running') {
       Tone.context.resume()
     }
-    if (this.metronome.active) {
+    if (this.metronome.isActive) {
       this.startMetronome()
     }
-    this.transport.start('+0.3', startTime)
+    this.transport.scheduleRepeat(time => {
+      this.position.currentTime = this.transport.getSecondsAtTime()
+      this.position.beat++
+      if (this.position.beat === (this.score.measureSize / 16) + 1) {
+        this.position.beat = 1
+      }
+    }, '4n', '0')
+    this.transport.start(`+${delay}`, startTime)
   }
 
   /**
@@ -226,6 +261,7 @@ export default class ScorePlayer {
    */
   stop() {
     this.transport.stop()
+    this.resetPosition()
     return this
   }
 

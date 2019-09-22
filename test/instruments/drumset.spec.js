@@ -8,15 +8,28 @@ describe('Drums', () => {
   })
   describe('Creating a drumset', () => {
     it('should init and have sounds in the players array', () => {
-      expect(drumset.players.size).to.be.greaterThan(0)
+      expect(drumset.players.size).to.equal(0)
+    })
+  })
+
+  describe('#loadFile', () => {
+    it('should load a file', () => {
+      expect(drumset.loadFile('clap')).to.be.true
+    })
+
+    it('should return false when a file is already loaded', () => {
+      drumset.loadedFiles = ['clap']
+      expect(drumset.loadFile('clap')).to.be.false
     })
   })
 
   describe('#getPlayer', () => {
     it('returns the audio path of the file', () => {
+      drumset.loadFile('clap')
       expect(drumset.getPlayer('clap')).to.equal(`${lib.get('path')}drums/clap.mp3`)
     })
   })
+
   describe('#play', () => {
     it('should play a note when it exists', () => {
       const stub = sinon.stub(drumset, 'getPlayer').returns({
@@ -37,6 +50,6 @@ describe('Drums', () => {
   })
 
   it('#toString', () => {
-    expect(drumset.toString()).to.equal('Drumset')
+    expect(drumset.toString()).to.equal('drumset')
   })
 })

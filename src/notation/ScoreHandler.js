@@ -3,7 +3,7 @@ import Score   from './Score'
 
 /**
  * @class ScoreHandler
- * Static class that can convert scores to objects and strings and back.
+ * Static class that can convert scores to objects and cords and back.
  */
 export default class ScoreHandler {
   /**

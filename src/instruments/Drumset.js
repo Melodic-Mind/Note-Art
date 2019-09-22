@@ -1,35 +1,18 @@
 import Instrument from './Instrument'
 
-const drumSounds = [
-  'clap',
-  'hihat-closed',
-  'hihat-open',
-  'kick',
-  'snare',
-  'tom-high',
-  'tom-low',
-  'tom-mid',
-]
-
 /**
  * @class Drumset
  * @extends Instrument
- * @classdesc Can play drum sounds, has clap, hihat-closed, hihat-open, kick, snare, tom-high, tom-low, tom-mid.
+ * @classdesc Drumset for playing files which aren't represented as notes.
  */
 export default class Drumset extends Instrument {
   constructor() {
     super()
-    this.init()
+    this.notes = null
   }
 
-  /**
-   * @inheritDoc
-   */
-  static name = 'Drumset'
-
-  /** @inheritDoc */
-  init() {
-    drumSounds.forEach(filename => this.setPlayer(filename, filename))
+  static get name() {
+    return 'Drumset'
   }
 
   /** @inheritDoc */
@@ -47,6 +30,23 @@ export default class Drumset extends Instrument {
   }
 
   /**
+   * Load audio file specifically for the drumset, which means it doesn't have to be a note.
+   * @param {string} rawNote The note to load the file for.
+   * @param {string|AudioBuffer} [source=null] Optional: If the url is not in a path that follows the conventions
+   *     created, the api expects you can simply pass the a AudioBuffer or url for each file after generating them on
+   *     your own.
+   * @returns {boolean}
+   */
+  loadFile(fileName, source = null) {
+    if (!this.loadedFiles.includes(fileName)) {
+      source = source || this.generatePath(fileName)
+      this.setPlayer(fileName, source)
+      return true
+    }
+    return false
+  }
+
+  /**
    * Plays audio by name.
    * @param {string} fileName
    */
@@ -56,11 +56,15 @@ export default class Drumset extends Instrument {
     }
   }
 
+  getBuffer(filename) {
+    return this.players.get(filename).buffer
+  }
+
   /**
    * @inheritDoc
    */
   toString() {
-    return 'Drumset'
+    return 'drumset'
   }
 }
 

@@ -18,8 +18,7 @@ module.exports = {
   },
   resolve:     {
     modules: [
-      path.resolve(__dirname, 'src'), 'node_modules/tone',
-      path.resolve(__dirname, 'src'), 'node_modules',
+      path.resolve(__dirname, 'src'), 'node_modules/tone', 'node_modules',
     ],
   },
   performance: {
