@@ -54,13 +54,14 @@
         "jsdom": "^14.0.0",
         "jsdom-global": "^3.0.2",
         "mocha": "^5.2.0",
-        "nyc": "^14.0.0",
+        "nyc": "^14.1.1",
         "sinon": "^7.3.0",
         "sinon-chai": "^3.3.0",
-        "tone": "^13.8.25",
         "vuepress": "^1.0.3",
         "webpack": "^4.29.6",
         "webpack-cli": "^3.3.0"
     },
-    "dependencies": {}
+    "dependencies": {
+        "tone": "^13.8.25"
+    }
 }

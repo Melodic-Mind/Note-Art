@@ -41,7 +41,7 @@ describe('Music addon functions', () => {
                 expect(pitchClassesToPianoChordNotes(gChord.pitchClasses, 3)).to.eql(stub)
             })
 
-            it.only('another normal chord', () => {
+            it('another normal chord', () => {
                 const pitchClasses = [new PitchClass('g#'), new PitchClass('b'), new PitchClass('d')]
                 const stub = [Note.builder('g#3'), Note.builder('B3'), Note.builder('d4')]
                 expect(pitchClassesToPianoChordNotes(pitchClasses, 3)).to.eql(stub)

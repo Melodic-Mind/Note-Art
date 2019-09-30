@@ -1,12 +1,11 @@
-import {lib}                                         from '../Lib'
-import {MusicTheoryStructures as mts}                from '../resources/MusicTheoryStructures'
-import Note                                          from '../theory/Note'
-import {notesInRange, firstToUpper, getNoteDuration} from '../utilities'
-import {validateRawNote}                             from '../validation'
-import {InstrumentMixin}                             from '../mixins'
-import Players                                       from 'Tone/source/Players'
-import Tone                                          from 'Tone/core/Tone'
-import AmplitudeEnvelope                             from 'Tone/component/AmplitudeEnvelope'
+import {lib}                          from '../Lib'
+import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
+import Note                           from '../theory/Note'
+import {notesInRange, firstToUpper}   from '../utilities'
+import {validateRawNote}              from '../validation'
+import {InstrumentMixin}              from '../mixins'
+// import Players                        from 'tone/Tone/source/Players'
+import Tone                           from 'tone'
 
 //TODO Check possibility of using Tone.Sampler instead of Tone.Player to save loading time
 
@@ -27,7 +26,7 @@ export default class Instrument {
    * @returns {Tone.Players}
    */
   static getTonePlayers() {
-    return new Players()
+    return new Tone.Players()
   }
 
   /**
@@ -129,7 +128,7 @@ export default class Instrument {
     } else {
       this.players.add(key, source)
       const player   = this.players.get(key)
-      player.fadeIn = .1
+      player.fadeIn  = .1
       player.fadeOut = .5
       player.toMaster()
 

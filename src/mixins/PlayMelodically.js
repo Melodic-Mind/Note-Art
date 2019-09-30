@@ -1,6 +1,6 @@
 import {Note} from '../theory'
 import {lib}  from '../Lib'
-import Tone   from 'Tone/core/Tone'
+import Tone   from 'tone'
 
 /**
  * @mixin playMelodically

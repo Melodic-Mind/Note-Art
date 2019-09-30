@@ -1,4 +1,4 @@
-import Tone from 'Tone/core/Tone'
+import Tone from 'tone'
 
 /**
  * A wrapper the library uses for setting and getting global state variables.

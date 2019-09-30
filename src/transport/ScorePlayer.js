@@ -1,6 +1,7 @@
-import Transport                      from 'Tone/core/Transport'
-import Tone                           from 'Tone/core/Tone'
-import Draw                           from 'Tone/core/Draw'
+// import Transport                      from 'tone/Tone/core/Transport'
+// import Tone                           from 'tone/Tone/core/Tone'
+// import Draw                           from 'tone/Tone/core/Draw'
+import Tone                           from 'tone'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 
 /**
@@ -19,7 +20,7 @@ export default class ScorePlayer {
    * @returns {ScorePlayer}
    */
   init() {
-    this.transport               = Transport
+    this.transport               = Tone.Transport
     this.bpm                     = 120
     this.transport.timeSignature = 4
     this.transport.loop          = true
@@ -204,7 +205,7 @@ export default class ScorePlayer {
       data.notes.forEach((note) => {
         this.transport.schedule((time) => {
 
-          Draw.schedule(() => {
+          Tone.Draw.schedule(() => {
             if (this.position.voices[0].measure !== measureIndex) {
               this.position.voices[voiceIndex].measure = measureIndex
             }

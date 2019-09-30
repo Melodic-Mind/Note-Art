@@ -1,7 +1,7 @@
 import {InstrumentMixin} from '../mixins'
 import Instrument        from './Instrument'
 import Cord              from './Cord'
-import Tone              from 'Tone/core/Tone'
+import Tone              from 'tone'
 
 /**
  * @class Guitar

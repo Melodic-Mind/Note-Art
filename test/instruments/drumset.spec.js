@@ -14,7 +14,9 @@ describe('Drums', () => {
 
   describe('#loadFile', () => {
     it('should load a file', () => {
+      const stub = sinon.stub(drumset, 'setPlayer')
       expect(drumset.loadFile('clap')).to.be.true
+      stub.restore()
     })
 
     it('should return false when a file is already loaded', () => {
@@ -25,8 +27,10 @@ describe('Drums', () => {
 
   describe('#getPlayer', () => {
     it('returns the audio path of the file', () => {
+      const stub = sinon.stub(drumset, 'setPlayer')
       drumset.loadFile('clap')
       expect(drumset.getPlayer('clap')).to.equal(`${lib.get('path')}drums/clap.mp3`)
+      stub.restore()
     })
   })
 
