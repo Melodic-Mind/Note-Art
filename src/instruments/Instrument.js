@@ -193,8 +193,8 @@ export default class Instrument {
     const key = Instrument.notePipeline(rawNote)
     if (!this.loadedFiles.includes(key)) {
       throw new Error('File was not loaded!')
-      return false
     }
+
     const player = this.players.get(key)
     player.start(time + 0.10).stop(`+${duration}`)
 
@@ -221,11 +221,6 @@ export default class Instrument {
       return true
     }
     return false
-  }
-
-  getBuffer(rawNote) {
-    const key = Instrument.notePipeline(rawNote)
-    return this.players.get(key).buffer
   }
 
   /**

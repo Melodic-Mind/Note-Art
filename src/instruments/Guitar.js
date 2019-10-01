@@ -1,7 +1,6 @@
 import {InstrumentMixin} from '../mixins'
 import Instrument        from './Instrument'
 import Cord              from './Cord'
-import Tone              from 'tone'
 
 /**
  * @class Guitar
@@ -72,11 +71,11 @@ export default class Guitar {
 
   /**
    * Load a note for any string that contains that note.
-   * @param cord
-   * @param rawNote
-   * @param url
+   * @param {number} cord Cord to load the file for.
+   * @param {string} rawNote The note
+   * @param {string|AudioBuffer} source The source for the file as a string or a AudioBuffer.
    */
-  loadFile(cord, rawNote, url = null) {
+  loadFile(cord, rawNote, source = null) {
     for (let i = 0; i < this.cords.length; ++i) {
       if (this.cords[i].hasNote(rawNote)) {
         this.cords[i].loadFile(rawNote, url)
@@ -91,10 +90,6 @@ export default class Guitar {
    */
   play(note, duration = '100') {
     return this.playHelper('play', note, duration)
-  }
-
-  getGain(){
-    return Tone.context.createGain()
   }
 
   /**

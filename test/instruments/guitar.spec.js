@@ -111,6 +111,15 @@ describe('Guitar', () => {
     })
   })
 
+  describe('#loadFile', () => {
+    it('should load the note for all cords with that note', () => {
+      const stub = sinon.stub(guitar.cords[0], 'loadFile')
+      guitar.loadFile(0, 'C3')
+      expect(stub).to.have.been.calledOnce
+      stub.restore()
+    })
+  })
+
   it('#toString', () => {
     expect(guitar.toString()).to.equal('guitar')
   })
