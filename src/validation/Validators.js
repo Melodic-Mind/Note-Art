@@ -41,7 +41,7 @@ export function validateNumber(val) {
  */
 export function validateRawNote(str) {
   if (!isRawNote(str)) {
-    throw new InvalidInput(`Expected ${note} to be a string representing a note`)
+    throw new InvalidInput(`Expected ${str} to be a string representing a note`)
   }
 
   return true

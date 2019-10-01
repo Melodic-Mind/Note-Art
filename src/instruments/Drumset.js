@@ -51,7 +51,7 @@ export default class Drumset extends Instrument {
    * @param {string} fileName
    */
   play(fileName) {
-    if (this.players.has(fileName)) {
+    if (this.loadedFiles.includes(fileName)) {
       this.getPlayer(fileName).start()
     }
   }

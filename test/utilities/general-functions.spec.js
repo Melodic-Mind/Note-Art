@@ -1,5 +1,7 @@
-import {firstToUpper, twoDigitFormat, PitchClass, validateInstance, switchMembers, rearrangeArray} from '../../src'
-import {InvalidInput}                                                                              from '../../src/Exceptions'
+import {
+  firstToUpper, twoDigitFormat, PitchClass, validateInstance, switchMembers, rearrangeArray, reduceString,
+}                     from '../../src'
+import {InvalidInput} from '../../src/Exceptions'
 
 describe('general-functions', () => {
   it('#firstToUpper', () => {
@@ -21,6 +23,12 @@ describe('general-functions', () => {
     it('should re-arrange an array', () => {
       expect(rearrangeArray([1, 2, 3, 4], 1)).to.eql([2, 3, 4, 1])
       expect(rearrangeArray([1, 2, 3, 4, 5, 6], 3)).to.eql([4, 5, 6, 1, 2, 3])
+    })
+  })
+
+  describe('#reduceString', () => {
+    it('reduces a string', () => {
+      expect(reduceString('A###', '##', 'x')).to.equal('Ax#')
     })
   })
 })

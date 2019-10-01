@@ -59,8 +59,10 @@ describe('Measure', () => {
       expect(measure.data[0]['notes'].has('C3')).to.be.true
     })
 
-    it('throws an error when note is not valid', () => {
-      expect(() => {measure.addNote({note: 'NOT A NOTE'}, 0)}).to.throw(InvalidInput)
+    it('should just add the string when its not a raw note', () => {
+      expect(measure.addNote({note: 'NOT A NOTE'}, 0)).to.be.true
+            expect(measure.data[0]['notes'].has('NOT A NOTE')).to.be.true
+
     })
 
     it('doesnt add a note to invalid position', () => {
@@ -91,11 +93,6 @@ describe('Measure', () => {
       const stub = ['c3', 'e3', 'g3']
       expect(measure.addNotes({notes: stub}, 0)).to.be.true
       expect(measure.data[0].notes.size).to.equal(3)
-    })
-
-    it('should throw an error when input is not valid', () => {
-      expect(() => {measure.addNotes({notes: ['NOT NOTE']}, 0)}).to.throw(InvalidInput)
-      expect(() => {measure.addNotes({notes: 'NOT NOTE'}, 0)}).to.throw(InvalidInput)
     })
   })
 

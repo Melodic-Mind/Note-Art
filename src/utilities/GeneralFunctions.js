@@ -33,10 +33,10 @@ export function switchMembers([...arr], i1, i2) {
 /**
  * Returns a new array which starts from index, adds the rest of the members to it's end.
  * @param {Array} array Array to rearrange.
- * @param {index} index to arrange from.
+ * @param {number} index to arrange from.
  * @returns {Array}
  */
-export function rearrangeArray(array, index) {
+export function rearrangeArray([...array], index) {
   const tmp = []
   let i     = 0
 
@@ -46,4 +46,16 @@ export function rearrangeArray(array, index) {
   }
 
   return [...array, ...tmp]
+}
+
+export function reduceString(str, toReduce, reduceTo){
+  while (str.includes(toReduce)){
+    for(let i=0;i<str.length;++i){
+      if(str.substr(i, toReduce.length) === toReduce){
+        str = `${str.slice(0, i)}${reduceTo}${str.slice(i+toReduce.length)}`
+      }
+    }
+  }
+
+  return str
 }

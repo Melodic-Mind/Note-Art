@@ -8,6 +8,6 @@ describe('Pitch Class Rule', () => {
   })
 
   it('should throw an error when a pitch class is not valid', () => {
-    expect(() => {return PitchClassRule.exists('q')}).to.throw(InvalidInput)
+    expect(PitchClassRule.exists('q')).to.be.false
   })
 })

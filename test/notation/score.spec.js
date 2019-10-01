@@ -74,7 +74,7 @@ describe('Score', () => {
     })
 
     it('should return false when a voice doesnt exist', () => {
-      expect(() => score.getVoice(3)).to.throw(Error)
+      expect(score.getVoice(3)).to.be.false
     })
   })
 

@@ -1,12 +1,12 @@
-import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
-import {Note, PitchClass}             from '../theory'
-import {firstToUpper, rearrangeArray} from '../utilities'
+import {MusicTheoryStructures as mts}               from '../resources/MusicTheoryStructures'
+import {Note, PitchClass}                           from '../theory'
+import {firstToUpper, rearrangeArray, reduceString} from '../utilities'
 import {
   validateNumber,
   validateRawNote,
   validatePitchClasses, PitchClassRule,
-}                                     from '../validation'
-import {InvalidInput}                 from '../Exceptions'
+}                                                   from '../validation'
+import {InvalidInput}                               from '../Exceptions'
 
 /**
  * Returns an array of notes with a specific octave.
@@ -79,7 +79,7 @@ export function noteToObject(note) {
  * @returns {boolean}
  */
 export function isRest(str) {
-  return note === 'R' || note === 'r'
+  return str === 'R' || str === 'r'
 }
 
 export function isRawNote(str) {
@@ -144,16 +144,31 @@ export function getNoteDuration(note, bpm) {
   //@TODo
 }
 
-export function normalizeHeptatonicScale(pitchClasses){
-  const rawPitchClasses = []
-  const letters = mts.pitchClassLetters
+export function enharmonicPitchClass(pc1, pc2) {
+  const interval = calculateInterval(pc1, pc2)
+  const type     = interval >= 7 ? '#' : 'b'
+  let times    = interval >= 7 ? 12 - interval : interval
+  let str        = ''
 
-  pitchClasses.forEach((pc, i) => {
-    const l = pc.pitchClass[i]
-    if(pitchClasses[i+1] && l === pitchClasses[i+1].pitchClass[0]){
-      const letterIndex = letters.indexOf(l)
-      const nextLetter = letters[(letterIndex+1)%7]
-      rawPitchClasses.push()
+  for (let i = 0; i < times; ++i) {
+    str = str.concat(type)
+  }
+
+  if(type==='#'){
+    str = reduceString(str, '##', 'x')
+  }
+
+  return `${pc2.pitchClass}${str}`
+}
+
+export function spellScale(scale) {
+  const letters = rearrangeArray(mts.pitchClassLetters, mts.pitchClassLetters.indexOf(scale.root.pitchClass[0]))
+  const res     = [scale.root.pitchClass];
+  [...scale.pitchClasses].slice(1).forEach((pc, i) => {
+    if (scale.pitchClasses[i + 1]) {
+      res.push(enharmonicPitchClass(pc, new PitchClass(letters[i+1])))
     }
   })
+
+  return res
 }

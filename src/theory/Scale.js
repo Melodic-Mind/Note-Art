@@ -1,6 +1,6 @@
-import {calculateInterval} from '../utilities'
-import Chord               from './Chord'
-import MusicalPattern      from './MusicalPattern'
+import {calculateInterval, spellScale} from '../utilities'
+import Chord                           from './Chord'
+import MusicalPattern                  from './MusicalPattern'
 
 /**
  * @class Scale
@@ -40,6 +40,13 @@ export default class Scale extends MusicalPattern {
    */
   degree(degree) {
     return this.pitchClasses[degree - 1]
+  }
+
+  get scalePitchClasses() {
+    if (this.pattern.length === 6) {
+      return spellScale(this)
+    }
+    return this.pitchClasses.map(pc => pc.raw)
   }
 
   /**

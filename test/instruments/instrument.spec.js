@@ -165,10 +165,8 @@ describe('Instrument', () => {
       getPlayer.restore()
     })
 
-    it('should load a file when it does not exist', () => {
-      const stub = sinon.stub(ins, 'loadFile')
-      expect(ins.play('d3')).to.be.false
-      stub.restore()
+    it('should throw error when attempting to play a file that was not loaded', () => {
+      expect(() => ins.play('d3')).to.throw(Error)
     })
   })
 

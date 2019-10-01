@@ -117,8 +117,8 @@ export default class Instrument {
 
   /**
    * Add a player for a note.
-   * @param key
-   * @param {Note} note
+   * @param {string} key Key to map the buffer to.
+   * @param {string|AudioBuffer} source The source for the player, can be url or AudioBuffer.
    */
   setPlayer(key, source) {
     if (typeof source === 'string') {

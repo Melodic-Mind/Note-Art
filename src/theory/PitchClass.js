@@ -13,7 +13,10 @@ import {InvalidInput}                 from '../Exceptions'
 export default class PitchClass {
   constructor(pitchClass) {
     const attributes = {}
-    PitchClassRule.exists(pitchClass)
+    if(!PitchClassRule.exists(pitchClass)){
+      throw new InvalidInput(`${pitchClass} should be a pitch class.`)
+    }
+
     attributes.pitchClass = firstToUpper(pitchClass)
     attributes.classSet   = mts.circleOfFourths.includes(attributes.pitchClass) ? 'b' : '#'
     attributes.classIndex = mts.getPitchClassSet(attributes.classSet).indexOf(attributes.pitchClass)
