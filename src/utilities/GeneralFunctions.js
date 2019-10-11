@@ -48,14 +48,59 @@ export function rearrangeArray([...array], index) {
   return [...array, ...tmp]
 }
 
-export function reduceString(str, toReduce, reduceTo){
-  while (str.includes(toReduce)){
-    for(let i=0;i<str.length;++i){
-      if(str.substr(i, toReduce.length) === toReduce){
-        str = `${str.slice(0, i)}${reduceTo}${str.slice(i+toReduce.length)}`
+/**
+ * Map a string substring to a different string.
+ * @param {string} str String to reduce.
+ * @param {string} toMap Substring to reduce.
+ * @param {string} mapTo String to reduce to.
+ * @returns {string}
+ */
+export function mapString(str, toMap, mapTo) {
+  while (str.includes(toMap)) {
+    for (let i = 0; i < str.length; ++i) {
+      if (str.substr(i, toMap.length) === toMap) {
+        str = `${str.slice(0, i)}${mapTo}${str.slice(i + toMap.length)}`
+        break
       }
     }
   }
 
   return str
+}
+
+
+/** Function that count occurrences of a substring in a string.
+ * @param {String} string               The string
+ * @param {String} subString            The sub string to search for
+ * @returns {number}
+ *
+ * @author Vitim.us https://gist.github.com/victornpb/7736865
+ * @see Unit Test https://jsfiddle.net/Victornpb/5axuh96u/
+ * @see http://stackoverflow.com/questions/4009756/how-to-count-string-occurrence-in-string/7924240#7924240
+ */
+export function occurrencesInString(string, subString) {
+  string += ''
+  subString += ''
+  if (subString.length <= 0) {
+    return (string.length + 1)
+  }
+
+  var n    = 0,
+      pos  = 0,
+      step = subString.length
+
+  while (true) {
+    pos = string.indexOf(subString, pos)
+    if (pos >= 0) {
+      ++n
+      pos += step
+    } else {
+      break
+    }
+  }
+  return n
+}
+
+export function checkString(str, char) {
+
 }

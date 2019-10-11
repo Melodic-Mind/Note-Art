@@ -1,5 +1,5 @@
 import {
-  firstToUpper, twoDigitFormat, PitchClass, validateInstance, switchMembers, rearrangeArray, reduceString,
+  firstToUpper, twoDigitFormat, PitchClass, validateInstance, switchMembers, rearrangeArray, mapString,
 }                     from '../../src'
 import {InvalidInput} from '../../src/Exceptions'
 
@@ -26,9 +26,9 @@ describe('general-functions', () => {
     })
   })
 
-  describe('#reduceString', () => {
+  describe('#mapString', () => {
     it('reduces a string', () => {
-      expect(reduceString('A###', '##', 'x')).to.equal('Ax#')
+      expect(mapString('A###', '##', 'x')).to.equal('Ax#')
     })
   })
 })

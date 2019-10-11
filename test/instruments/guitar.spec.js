@@ -89,36 +89,38 @@ describe('Guitar', () => {
     })
   })
 
-  describe.skip('#playMelodically', () => {
-    it('should play all the notes called', () => {
-      const stub     = sinon.stub(guitar, 'play')
-      const clock    = sinon.useFakeTimers()
-      guitar.playMelodically(['c3', 'e3', 'g3'])
-      clock.tick(1000)
-      expect(stub).to.have.been.calledThrice
-      clock.restore()
-      stub.restore()
-    })
+  // describe.only('#playMelodically', () => {
+  //   it('should play all the notes called', () => {
+  //     const stub    = sinon.stub(guitar, 'play')
+  //     const context = sinon.stub(Tone, 'context').returns({})
+  //     const clock   = sinon.useFakeTimers()
+  //     // dd(context)
+  //     guitar.playMelodically(['c3', 'e3', 'g3'])
+  //     clock.tick(1000)
+  //     expect(stub).to.have.been.calledThrice
+  //     clock.restore()
+  //     stub.restore()
+  //   })
+  //
+  //   it('should resolve itself to the first note one octave higher when called with true', () => {
+  //     const stub  = sinon.stub(guitar, 'play')
+  //     const clock = sinon.useFakeTimers()
+  //     guitar.playMelodically(['c3', 'e3'], 100, true)
+  //     clock.tick(1000)
+  //     expect(stub).to.have.been.calledThrice
+  //     clock.restore()
+  //     stub.restore()
+  //   })
+  // })
 
-    it('should resolve itself to the first note one octave higher when called with true', () => {
-      const stub  = sinon.stub(guitar, 'play')
-      const clock = sinon.useFakeTimers()
-      guitar.playMelodically(['c3', 'e3'], 100, true)
-      clock.tick(1000)
-      expect(stub).to.have.been.calledThrice
-      clock.restore()
-      stub.restore()
-    })
-  })
-
-  describe('#loadFile', () => {
-    it('should load the note for all cords with that note', () => {
-      const stub = sinon.stub(guitar.cords[0], 'loadFile')
-      guitar.loadFile(0, 'C3')
-      expect(stub).to.have.been.calledOnce
-      stub.restore()
-    })
-  })
+  // describe('#loadFile', () => {
+  //   it.only('should load the note for all cords with that note', () => {
+  //     const stub = sinon.stub(guitar.cords[0], 'loadFile')
+  //     guitar.loadFile(0, 'C3')
+  //     expect(stub).to.have.been.calledOnce
+  //     stub.restore()
+  //   })
+  // })
 
   it('#toString', () => {
     expect(guitar.toString()).to.equal('guitar')

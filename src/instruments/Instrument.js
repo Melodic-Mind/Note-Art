@@ -128,7 +128,7 @@ export default class Instrument {
     } else {
       this.players.add(key, source)
       const player   = this.players.get(key)
-      player.fadeIn  = .1
+      player.fadeIn  = .2
       player.fadeOut = .5
       player.toMaster()
 

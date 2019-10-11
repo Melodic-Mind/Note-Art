@@ -31,7 +31,7 @@ npm install note-art
 
 ### Usage
 
-##### Music Models
+#### Music Models
 The music models are pure music theory concepts that are translated to code.
 * patterns are in semi-tones.
 ```
@@ -41,7 +41,7 @@ import {PitchClass, Note, Chord, Scale} from 'note-art'
 
 const a = new PitchClass('a')
 
-console.log(a.interval(5))  // Returns a new pitch class instance with the pitch class set as 'D'
+console.log(a.interval(5))  // Returns a new pitch class instance with 'D' as the pitch.
 
 // Note
 
@@ -69,17 +69,23 @@ console.log(A_Major.pitchClasses) // C, D, E, F, G, A, B
 ```
 <br>
 
-##### Instruments
+#### Instruments
 The instruments are literal instruments that have a range of notes they can play.
+In order to save bandwidth usage, you have to load each note specifically to play it.
+
+For example, if you want to initially load only 2 octaves you can use the [notesInRange](https://note-art-docs.netlify.com/code/utilities/MusicFunctions.html#notesInRange)
+function to get the notes and load them, and later dynamically load more notes if needed.
 ```
 import {Piano} from 'note-art'
 
 const piano = new Piano() // defaults to A0, 87 to create 88 keys.
-piano.play('c3') // C3 note is played!
+piano.load('c3', 'path/to/file').then(() => { // Load the file.
+    piano.play('c3') // C3 note is played!
+})
 ```
 <br>
 
-##### Notation
+#### Notation
 The notation api is more complex so check out the api, or the demo source code to see an example of using it.
 
 <br>
@@ -100,6 +106,32 @@ Set the path to your desired location which can be local or on a remote server.
 You are welcome to use my server, hosted on heroku and has piano, guitar and drum sounds.
 ```
 lib.set('path', () => {
-    return 'https://note-art-server.herokuapp.com//audio/' // the path to my server
+    return 'https://note-art-server.herokuapp.com/audio/' // the path to my server
+        // Now every call to loadFile for any instrument will default to that server/instrument_name/note_name.mp3
+        // e.g 'https://note-art-server.herokuapp.com/audio/piano/C3.mp3'
 })
 ```
+
+## Contribute and Support :pray:
+* Make a [pull request :avocado:](https://github.com/Seanitzel/Note-Art).
+  * Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+        1. Fork the Project
+        2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+        3. Commit your Changes (`git commit -m 'Add some AmazingFeature`)
+        4. Push to the Branch (`git push origin feature/AmazingFeature`)
+        5. Open a Pull Request
+        
+* Support me on [patreon](https://www.patreon.com/Seanitzel).
+* Download my app on the google play store - [Scale Heaven](https://play.google.com/store/apps/details?id=com.scales.scaleheaven) - **which can generate and play any scale in the history of mankind** on google play (and press the banner once in a while ;)).
+
+## Contact
+Sean Dvir - [seandvir12@gmail.com](seandvir12@gmail.com) - [@seanitzel](https://twitter.com/seanitzel) <br>
+
+Your welcome to mail me your ideas and recommendations!<br>
+
+## Credits
+[Tone JS](https://tonejs.github.io/) - I used this awesome framework which wraps the web audio API for all audio handling and scheduling.
+
+## License
+Note-Art uses the MIT license, check out the license tab for more information.

@@ -1,5 +1,4 @@
 import {Note} from '../theory'
-import {lib}  from '../Lib'
 import Tone   from 'tone'
 
 /**

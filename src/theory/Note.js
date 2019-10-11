@@ -1,7 +1,7 @@
-import PitchClass                         from './PitchClass'
-import {MusicTheoryStructures as mts}     from '../resources/MusicTheoryStructures'
-import {realNumberFromFreq, noteToObject} from '../utilities'
-import {validateNumber}                   from '../validation'
+import PitchClass                     from './PitchClass'
+import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
+import {freqToMidi, noteToObject}     from '../utilities'
+import {validateNumber}               from '../validation'
 
 /**
  * @class Note
@@ -52,7 +52,7 @@ export default class Note extends PitchClass {
    * @returns {Note}
    */
   static fromFrequency(frequency) {
-    const n          = realNumberFromFreq(frequency)
+    const n          = freqToMidi(frequency)
     const pitchClass = mts.sharpClassNotes[n % 12]
     const octave     = Math.floor(n / 12 - 1)
 

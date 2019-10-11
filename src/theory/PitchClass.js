@@ -2,6 +2,7 @@ import {firstToUpper}                 from '../utilities'
 import {PitchClassRule}               from '../validation'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 import {InvalidInput}                 from '../Exceptions'
+import ModelHelper                    from '../utilities/ModelHelper'
 
 /**
  * @class PitchClass
@@ -13,7 +14,7 @@ import {InvalidInput}                 from '../Exceptions'
 export default class PitchClass {
   constructor(pitchClass) {
     const attributes = {}
-    if(!PitchClassRule.exists(pitchClass)){
+    if (!PitchClassRule.exists(pitchClass)) {
       throw new InvalidInput(`${pitchClass} should be a pitch class.`)
     }
 

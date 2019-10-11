@@ -1,12 +1,13 @@
-const semitone = Math.pow(2, 1 / 12)
+import {SEMITONE, NUMBER_OF_PITCH_CLASSES, PITCH_STANDARD} from '../Constants'
+import {MusicTheoryStructures as mts}                      from '../resources/MusicTheoryStructures'
 
 /**
  * Calculate the frequency of a note by its octave and index out of all notes(c, c#, etc...).
  * @returns {Number}
  */
 export function freqFromPitch(pitch) {
-  const oct = pitch.octave - 4 //calculate octave difference
-  return Math.pow(semitone, pitch.classIndex - 9 + oct * 12) * 440
+  const oct = pitch.octave - PITCH_STANDARD.octave //calculate octave difference
+  return Math.pow(SEMITONE, pitch.classIndex - mts.flatClassNotes.indexOf(PITCH_STANDARD.pitchClass) + oct * NUMBER_OF_PITCH_CLASSES) * PITCH_STANDARD.frequency
 }
 
 /**
@@ -14,8 +15,8 @@ export function freqFromPitch(pitch) {
  * @param frequency
  * @returns {number}
  */
-export function realNumberFromFreq(frequency) {
-  return Math.round(69 + 12 * Math.log2(frequency / 440))
+export function freqToMidi(frequency) {
+  return Math.round(PITCH_STANDARD.midi + NUMBER_OF_PITCH_CLASSES * Math.log2(frequency / PITCH_STANDARD.frequency))
 }
 
 /**
@@ -23,6 +24,6 @@ export function realNumberFromFreq(frequency) {
  * @param realNumber
  * @returns {Number}
  */
-export function freqFromRealNumber(realNumber) {
-  return 440 * (Math.pow(2, (realNumber - 69) / 12))
+export function midiToFreq(realNumber) {
+  return PITCH_STANDARD.frequency * (Math.pow(2, (realNumber - PITCH_STANDARD.midi) / NUMBER_OF_PITCH_CLASSES))
 }

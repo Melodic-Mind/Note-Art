@@ -78,7 +78,7 @@ export default class Guitar {
   loadFile(cord, rawNote, source = null) {
     for (let i = 0; i < this.cords.length; ++i) {
       if (this.cords[i].hasNote(rawNote)) {
-        this.cords[i].loadFile(rawNote, url)
+        this.cords[i].loadFile(rawNote, source)
       }
     }
   }

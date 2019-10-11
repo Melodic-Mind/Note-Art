@@ -1,4 +1,6 @@
-import MusicalPattern from './MusicalPattern'
+import MusicalPattern   from './MusicalPattern'
+import {rearrangeArray} from '../utilities/GeneralFunctions'
+import {InvalidInput}   from '../Exceptions'
 
 /**
  * @class Chord
@@ -12,4 +14,10 @@ import MusicalPattern from './MusicalPattern'
  * const C_Maj = new Chord(c, [4, 7]) // new C major chord.
  */
 export default class Chord extends MusicalPattern {
+  inversion(type) {
+    if (type > 0 && type <= this.pitchClasses.length) {
+      return rearrangeArray(this.pitchClasses, type)
+    }
+    throw new InvalidInput('inversion cant be bigger then the number of pitch classes in the chord')
+  }
 }

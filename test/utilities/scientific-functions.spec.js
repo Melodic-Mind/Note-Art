@@ -9,12 +9,12 @@ describe('Scientific functions', () => {
     expect(Math.ceil(funcs.freqFromPitch(pitch2))).to.eql(660)
   })
 
-  it('#realNumberFromFreq', () => {
-    expect(funcs.realNumberFromFreq(440)).to.eql(69)
+  it('#freqToMidi', () => {
+    expect(funcs.freqToMidi(440)).to.eql(69)
   })
 
-  it('#freqFromRealNumber', () => {
-    expect(funcs.freqFromRealNumber(69)).to.eql(440)
-    expect(funcs.freqFromRealNumber(57)).to.eql(220)
+  it('#midiToFreq', () => {
+    expect(funcs.midiToFreq(69)).to.eql(440)
+    expect(funcs.midiToFreq(57)).to.eql(220)
   })
 })

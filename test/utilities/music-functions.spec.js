@@ -3,81 +3,14 @@ import {
   calculateInterval,
   notesInRange,
   noteToObject,
-  pitchClassesToPianoChordNotes,
   Chord,
   PitchClass,
-  pitchClassesToNotes,
   spellScale,
-  enharmonicPitchClass,
   Scale,
 }                     from '../../src'
 import {InvalidInput} from '../../src/Exceptions'
 
 describe('Music addon functions', () => {
-  describe('#pitchClassesToNotes', () => {
-    it('should throw an Invalid Input error when pitch classes is not an array containing only pitch classes', () => {
-      expect(() => pitchClassesToNotes('OMG')).to.throw(InvalidInput)
-      expect(() => pitchClassesToNotes(['blob'])).to.throw(InvalidInput)
-    })
-
-    it('should throw an Invalid Input error when octave is not a number', () => {
-      expect(() => pitchClassesToNotes([new PitchClass('c'), 'NOT NUMBER'])).to.throw(InvalidInput)
-    })
-
-    it('should return an array of notes when input is valid', () => {
-      const pitchClasses = [new PitchClass('c'), new PitchClass('e')]
-      const stub         = [new Note('c', 3), new Note('e', 3)]
-      expect(pitchClassesToNotes(pitchClasses, 3)).to.eql(stub)
-    })
-  })
-
-  describe('#pitchClassesToPianoChordNotes', () => {
-    let g, gChord
-    beforeEach(() => {
-      g      = new PitchClass('g')
-      gChord = new Chord(g, [4, 7])
-    })
-
-    describe('returns the correct notes for a chord', () => {
-      it('normal chord', () => {
-        const stub = [Note.builder('g3'), Note.builder('B3'), Note.builder('d4')]
-        expect(pitchClassesToPianoChordNotes(gChord.pitchClasses, 3)).to.eql(stub)
-      })
-
-      it('another normal chord', () => {
-        const pitchClasses = [new PitchClass('g#'), new PitchClass('b'), new PitchClass('d')]
-        const stub         = [Note.builder('g#3'), Note.builder('B3'), Note.builder('d4')]
-        expect(pitchClassesToPianoChordNotes(pitchClasses, 3)).to.eql(stub)
-      })
-
-      it('big Chord', () => {
-        const bigChord = new Chord(g, [4, 7, 13, 17])
-        const stub2    = [
-          Note.builder('g3'),
-          Note.builder('B3'),
-          Note.builder('d4'),
-          Note.builder('g#4'),
-          Note.builder('c5'),
-        ]
-
-        expect(pitchClassesToPianoChordNotes(bigChord.pitchClasses, 3)).to.eql(stub2)
-      })
-    })
-
-    it('should throw an error when the octave is not a valid piano octave', () => {
-      expect(() => pitchClassesToPianoChordNotes(gChord.pitchClasses, 'NOT OCTAVE')).to.throw(InvalidInput)
-    })
-
-    it('throws an error when pitchClasses is not an array of pitch classes', () => {
-      expect(() => pitchClassesToPianoChordNotes('omg', 2)).to.throw(InvalidInput)
-    })
-
-    it('should invert chords when called with inversion value', () => {
-      const stub = [Note.builder('B3'), Note.builder('d4'), Note.builder('g4')]
-      expect(pitchClassesToPianoChordNotes(gChord.pitchClasses, 3, 1)).to.eql(stub)
-    })
-  })
-
   describe('#calculateInterval', () => {
     it('calculates the correct interval between two pitch classes', () => {
       const n1 = new Note('c', 5),
@@ -108,13 +41,8 @@ describe('Music addon functions', () => {
     })
   })
 
-  describe('enharmonicPitchClass', () => {
-    it('returns a pitch class properly spelled', () => {
-      const pc1 = new PitchClass('a#'),
-            pc2 = new PitchClass('g')
-      enharmonicPitchClass(pc1, pc2)
-    })
 
+  describe('#spellScale', () => {
     describe('spells a scale correctly', () => {
       it('Locrian - [1, 3, 5, 6, 8, 10])', () => {
         const pc    = new PitchClass('g')

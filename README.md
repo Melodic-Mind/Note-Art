@@ -68,7 +68,7 @@ npm install note-art
 
 ### Usage
 
-##### Music Models
+#### Music Models
 The music models are pure music theory concepts that are translated to code.
 * patterns are in semi-tones.
 ```
@@ -78,7 +78,7 @@ import {PitchClass, Note, Chord, Scale} from 'note-art'
 
 const a = new PitchClass('a')
 
-console.log(a.interval(5))  // Returns a new pitch class instance with the pitch class set as 'D'
+console.log(a.interval(5))  // Returns a new pitch class instance with 'D' as the pitch.
 
 // Note
 
@@ -106,17 +106,23 @@ console.log(A_Major.pitchClasses) // C, D, E, F, G, A, B
 ```
 <br>
 
-##### Instruments
+#### Instruments
 The instruments are literal instruments that have a range of notes they can play.
+In order to save bandwidth usage, you have to load each note specifically to play it.
+
+For example, if you want to initially load only 2 octaves you can use the [notesInRange](https://note-art-docs.netlify.com/code/utilities/MusicFunctions.html#notesInRange)
+function to get the notes and load them, and later dynamically load more notes if needed.
 ```
 import {Piano} from 'note-art'
 
 const piano = new Piano() // defaults to A0, 87 to create 88 keys.
-piano.play('c3') // C3 note is played!
+piano.load('c3', 'path/to/file').then(() => { // Load the file.
+    piano.play('c3') // C3 note is played!
+})
 ```
 <br>
 
-##### Notation
+#### Notation
 The notation api is more complex so check out the api, or the demo source code to see an example of using it.
 
 <br>
@@ -138,6 +144,8 @@ You are welcome to use my server, hosted on heroku and has piano, guitar and dru
 ```
 lib.set('path', () => {
     return 'https://note-art-server.herokuapp.com/audio/' // the path to my server
+        // Now every call to loadFile for any instrument will default to that server/instrument_name/note_name.mp3
+        // e.g 'https://note-art-server.herokuapp.com/audio/piano/C3.mp3'
 })
 ```
 

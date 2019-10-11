@@ -1,51 +1,8 @@
-import {MusicTheoryStructures as mts}               from '../resources/MusicTheoryStructures'
-import {Note, PitchClass}                           from '../theory'
-import {firstToUpper, rearrangeArray, reduceString} from '../utilities'
-import {
-  validateNumber,
-  validateRawNote,
-  validatePitchClasses, PitchClassRule,
-}                                                   from '../validation'
-import {InvalidInput}                               from '../Exceptions'
-
-/**
- * Returns an array of notes with a specific octave.
- * @param {Array} {pitchClasses} Array of pitch classes.
- * @param {number} octave Octave to assign to notes..
- * @returns {Array}
- */
-export function pitchClassesToNotes(pitchClasses, octave) {
-  validatePitchClasses(pitchClasses)
-  validateNumber(octave)
-
-  return pitchClasses.map(pitchClass => new Note(pitchClass.pitchClass, octave))
-}
-
-/**
- * Returns an array of notes that represent a chord played on a piano in a certain octave.
- * @param {Array} {pitchClasses} Array of pitch classes.
- * @param {number} octave Octave for the chord root.
- * @param {number} inversion Whhether to invert the chord. 0 - root position, 1 - 1st inversion, 2 - 2nd inversion,
- *     etc...
- * @returns {Array}
- */
-export function pitchClassesToPianoChordNotes(pitchClasses, octave, inversion = 0) {
-  validatePitchClasses(pitchClasses)
-  validateNumber(octave)
-
-  if (inversion) {
-    pitchClasses = rearrangeArray(pitchClasses, inversion)
-  }
-
-  let currentOctave = octave
-
-  return pitchClasses.map((pitchClass, i) => {
-    if ((i - 1) >= 0 && pitchClass.classIndex < pitchClasses[i - 1].classIndex) {
-      currentOctave++
-    }
-    return new Note(pitchClass.pitchClass, currentOctave)
-  })
-}
+import {MusicTheoryStructures as mts}     from '../resources/MusicTheoryStructures'
+import {Note, PitchClass}                 from '../theory'
+import {firstToUpper, rearrangeArray}     from '../utilities'
+import {validateRawNote, PitchClassRule} from '../validation'
+import ModelHelper                        from './ModelHelper'
 
 /**
  * Calculate the pure interval between 2 pitch classes.
@@ -61,7 +18,7 @@ export function calculateInterval(pitchClass1, pitchClass2) {
 
 /**
  * Turns a note into an object with pitch class and octave.
- * @param {String} pitch Pitch as a string, e.g Ab3
+ * @param {string} pitch Pitch as a string, e.g Ab3
  * @returns {{octave: number, pitchClass: String}}
  */
 export function noteToObject(note) {
@@ -79,7 +36,7 @@ export function noteToObject(note) {
  * @returns {boolean}
  */
 export function isRest(str) {
-  return str === 'R' || str === 'r'
+  return ['r', 'R'].includes(str)
 }
 
 export function isRawNote(str) {
@@ -87,7 +44,7 @@ export function isRawNote(str) {
     return false
   }
 
-  if (['r', 'R'].includes(str)) {
+  if (isRest(str)) {
     return true
   }
 
@@ -119,11 +76,11 @@ export function transposeRawNote(note, interval) {
 
 /**
  * Returns an object where the keys are raw notes and their value is an instance of that note.
- * @param base
- * @param range
+ * @param {string} baseNote
+ * @param {number} range
  */
-export function notesInRange(base, range) {
-  let {pitchClass, octave} = noteToObject(base)
+export function notesInRange(baseNote, range) {
+  let {pitchClass, octave} = noteToObject(baseNote)
   const notes              = {}
   let tmpPitchClass
 
@@ -144,29 +101,12 @@ export function getNoteDuration(note, bpm) {
   //@TODo
 }
 
-export function enharmonicPitchClass(pc1, pc2) {
-  const interval = calculateInterval(pc1, pc2)
-  const type     = interval >= 7 ? '#' : 'b'
-  let times    = interval >= 7 ? 12 - interval : interval
-  let str        = ''
-
-  for (let i = 0; i < times; ++i) {
-    str = str.concat(type)
-  }
-
-  if(type==='#'){
-    str = reduceString(str, '##', 'x')
-  }
-
-  return `${pc2.pitchClass}${str}`
-}
-
 export function spellScale(scale) {
   const letters = rearrangeArray(mts.pitchClassLetters, mts.pitchClassLetters.indexOf(scale.root.pitchClass[0]))
   const res     = [scale.root.pitchClass];
   [...scale.pitchClasses].slice(1).forEach((pc, i) => {
     if (scale.pitchClasses[i + 1]) {
-      res.push(enharmonicPitchClass(pc, new PitchClass(letters[i+1])))
+      res.push(ModelHelper.enharmonicPitchClass(pc, new PitchClass(letters[i + 1])))
     }
   })
 

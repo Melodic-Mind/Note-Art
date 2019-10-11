@@ -204,21 +204,20 @@ export default class ScorePlayer {
     this.score.voices[voiceIndex][measureIndex].data.forEach((data, dataIndex) => {
       data.notes.forEach((note) => {
         this.transport.schedule((time) => {
-
           Tone.Draw.schedule(() => {
-            if (this.position.voices[0].measure !== measureIndex) {
-              this.position.voices[voiceIndex].measure = measureIndex
+            if (this.position.voices && this.position.voices[voiceIndex]) {
+              if (this.position.voices[voiceIndex].measure !== measureIndex) {
+                this.position.voices[voiceIndex].measure = measureIndex
+              }
+              this.position.voices[voiceIndex].noteSet = dataIndex
             }
-            this.position.voices[voiceIndex].noteSet = dataIndex
           }, time)
-
           if (note !== 'R') {
             const duration = this.sustain ? '10' : data.duration
             this.instruments[voiceIndex].play(note, duration, time)
           }
         }, `${measureIndex}:0:${setTime}`)
       })
-      // this.prevNotes = data.notes
       setTime += mts.noteDurations()[data.duration] / 4
     })
   }
