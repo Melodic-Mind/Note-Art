@@ -85,7 +85,7 @@ export function occurrencesInString(string, subString) {
     return (string.length + 1)
   }
 
-  var n    = 0,
+  let n    = 0,
       pos  = 0,
       step = subString.length
 
@@ -99,8 +99,4 @@ export function occurrencesInString(string, subString) {
     }
   }
   return n
-}
-
-export function checkString(str, char) {
-
 }

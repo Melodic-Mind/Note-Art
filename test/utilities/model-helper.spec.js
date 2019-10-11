@@ -95,70 +95,70 @@ describe('ModelHelper', () => {
 
   describe('#reducePitchClsss', () => {
     it('just a letter', () => {
-      expect(ModelHelper.reducePitchClass(new PitchClass('C'))).to.equal('C')
+      expect(ModelHelper.transformPitchClass(new PitchClass('C'))).to.equal('C')
     })
 
     it('with one sharp', () => {
-      expect(ModelHelper.reducePitchClass(new PitchClass('C#'))).to.equal('C#')
+      expect(ModelHelper.transformPitchClass(new PitchClass('C#'))).to.equal('C#')
     })
 
     describe('multiple sharps', () => {
       it('Cx to D', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('Cx'))).to.equal('D')
+        expect(ModelHelper.transformPitchClass(new PitchClass('Cx'))).to.equal('D')
       })
 
       it('Bx to C#', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('bx'))).to.equal('C#')
+        expect(ModelHelper.transformPitchClass(new PitchClass('bx'))).to.equal('C#')
       })
 
       it('Fxx to A', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('fxx'))).to.equal('A')
+        expect(ModelHelper.transformPitchClass(new PitchClass('fxx'))).to.equal('A')
       })
 
       it('gxxx# to D', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('gxxx#'))).to.equal('D')
+        expect(ModelHelper.transformPitchClass(new PitchClass('gxxx#'))).to.equal('D')
       })
 
       it('Dxxxxxx to D', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('dxxxxxx'))).to.equal('D')
+        expect(ModelHelper.transformPitchClass(new PitchClass('dxxxxxx'))).to.equal('D')
       })
     })
 
     describe('flats', () => {
       it('Cb to B', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('Cb'))).to.equal('B')
+        expect(ModelHelper.transformPitchClass(new PitchClass('Cb'))).to.equal('B')
       })
 
       it('Cbbb to A', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('Cbbb'))).to.equal('A')
+        expect(ModelHelper.transformPitchClass(new PitchClass('Cbbb'))).to.equal('A')
       })
 
       it('Gb to Gb', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('Gb'))).to.equal('Gb')
+        expect(ModelHelper.transformPitchClass(new PitchClass('Gb'))).to.equal('Gb')
       })
 
       it('Gbb to F', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('Gbb'))).to.equal('F')
+        expect(ModelHelper.transformPitchClass(new PitchClass('Gbb'))).to.equal('F')
       })
 
       it('Ebbbb to C', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('Ebbbb'))).to.equal('C')
+        expect(ModelHelper.transformPitchClass(new PitchClass('Ebbbb'))).to.equal('C')
       })
 
       it('Ebbbbb to B', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('Ebbbbb'))).to.equal('B')
+        expect(ModelHelper.transformPitchClass(new PitchClass('Ebbbbb'))).to.equal('B')
       })
 
       it('Fbbb to D', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('Fbbb'))).to.equal('D')
+        expect(ModelHelper.transformPitchClass(new PitchClass('Fbbb'))).to.equal('D')
       })
 
       it('Bbbbbbbbbbbbb to B', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('Bbbbbbbbbbbbb'))).to.equal('B')
+        expect(ModelHelper.transformPitchClass(new PitchClass('Bbbbbbbbbbbbb'))).to.equal('B')
       })
 
       it('Dbbbb to Bb', () => {
-        expect(ModelHelper.reducePitchClass(new PitchClass('Dbbbb'))).to.equal('Bb')
+        expect(ModelHelper.transformPitchClass(new PitchClass('Dbbbb'))).to.equal('Bb')
       })
     })
   })

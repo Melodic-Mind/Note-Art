@@ -73,7 +73,7 @@ export default class ModelHelper {
    * Transform a pitch class to it's basic form.
    * @param {PitchClass} pc
    */
-  static reducePitchClass(pc) {
+  static transformPitchClass(pc) {
     const [pitchLetter, accidental] = pc.pitchClass
 
     if (!accidental) {

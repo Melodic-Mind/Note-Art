@@ -20,7 +20,6 @@ export default class PitchClass {
 
     attributes.pitchClass = firstToUpper(pitchClass)
     attributes.classSet   = mts.circleOfFourths.includes(attributes.pitchClass) ? 'b' : '#'
-    attributes.classIndex = mts.getPitchClassSet(attributes.classSet).indexOf(attributes.pitchClass)
 
     this.attributes = attributes
   }
@@ -114,7 +113,7 @@ export default class PitchClass {
    * @type {Number}
    */
   get classIndex() {
-    return this.attributes.classIndex
+    return mts.getPitchClassSet(this.classSet).indexOf(this.pitchClass)
   }
 
   /**
