@@ -1,8 +1,8 @@
-import {MusicTheoryStructures as mts}     from '../resources/MusicTheoryStructures'
-import {Note, PitchClass}                 from '../theory'
-import {firstToUpper, rearrangeArray}     from '../utilities'
-import {validateRawNote, PitchClassRule} from '../validation'
-import ModelHelper                        from './ModelHelper'
+import {MusicTheoryStructures as mts}                 from '../resources/MusicTheoryStructures'
+import {Note, PitchClass}                             from '../theory'
+import {firstToUpper, fitArrayToSize, rearrangeArray} from '../utilities'
+import {validateRawNote, PitchClassRule}              from '../validation'
+import ModelHelper                                    from './ModelHelper'
 
 /**
  * Calculate the pure interval between 2 pitch classes.
@@ -68,7 +68,7 @@ export function transposeRawNote(note, interval) {
   validateRawNote(note)
 
   if (!isRest(note)) {
-    return Note.builder(note).interval(interval).raw
+    return Note.builder(note).interval(interval).toString()
   }
 
   return note
@@ -102,12 +102,10 @@ export function getNoteDuration(note, bpm) {
 }
 
 export function spellScale(scale) {
-  const letters = rearrangeArray(mts.pitchClassLetters, mts.pitchClassLetters.indexOf(scale.root.pitchClass[0]))
+  const letters = fitArrayToSize(rearrangeArray(mts.pitchClassLetters, mts.pitchClassLetters.indexOf(scale.root.pitchClass[0])), scale.pattern.length + 1)
   const res     = [scale.root.pitchClass];
   [...scale.pitchClasses].slice(1).forEach((pc, i) => {
-    if (scale.pitchClasses[i + 1]) {
-      res.push(ModelHelper.enharmonicPitchClass(pc, new PitchClass(letters[i + 1])))
-    }
+    res.push(ModelHelper.enharmonicPitchClass(pc, new PitchClass(letters[i + 1])))
   })
 
   return res

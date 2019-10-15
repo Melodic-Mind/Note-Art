@@ -42,11 +42,11 @@ export default class Scale extends MusicalPattern {
     return this.pitchClasses[degree - 1]
   }
 
-  get scalePitchClasses() {
+  get raw() {
     if (this.pattern.length === 6) {
       return spellScale(this)
     }
-    return this.pitchClasses.map(pc => pc.raw)
+    return super.raw
   }
 
   /**

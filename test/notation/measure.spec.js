@@ -61,7 +61,7 @@ describe('Measure', () => {
 
     it('should just add the string when its not a raw note', () => {
       expect(measure.addNote({note: 'NOT A NOTE'}, 0)).to.be.true
-            expect(measure.data[0]['notes'].has('NOT A NOTE')).to.be.true
+      expect(measure.data[0]['notes'].has('NOT A NOTE')).to.be.true
 
     })
 

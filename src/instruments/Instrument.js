@@ -82,12 +82,10 @@ export default class Instrument {
    */
   static normalizeSet(pitchClass, classSet) {
     if (classSet === '#') {
-      const index = mts.sharpClassNotes.indexOf(pitchClass)
-      pitchClass  = mts.flatClassNotes[index]
+      pitchClass  = mts.flatClassNotes[mts.sharpClassNotes.indexOf(pitchClass)]
     }
 
-    const index = mts.flatClassNotes.indexOf(pitchClass)
-    return mts.flatClassNotes[index]
+    return mts.flatClassNotes[mts.flatClassNotes.indexOf(pitchClass)]
   }
 
   /**
@@ -96,15 +94,6 @@ export default class Instrument {
    */
   static getKey({pitchClass, octave, classSet}) {
     return `${Instrument.normalizeSet(pitchClass, classSet)}${octave}`
-  }
-
-  /**
-   * Turns a string representing a note to upper case.
-   * @param noteStr
-   * @returns {String}
-   */
-  static normalizeNoteStr(noteStr) {
-    return firstToUpper(noteStr)
   }
 
   /**
@@ -128,8 +117,8 @@ export default class Instrument {
     } else {
       this.players.add(key, source)
       const player   = this.players.get(key)
-      player.fadeIn  = .2
-      player.fadeOut = .5
+      player.fadeIn  = .05
+      player.fadeOut = .3
       player.toMaster()
 
       this.loadedFiles.push(key)
@@ -147,7 +136,7 @@ export default class Instrument {
 
   /**
    * Gets a string consisting of:
-   * 1. The pitch CLASS
+   * 1. The pitch class
    * 2. The octave
    * @param {String} note
    * @returns {Note}
@@ -156,7 +145,7 @@ export default class Instrument {
    * console.log(C.interval(2))         // D3
    */
   note(note) {
-    return this.notes.get(Instrument.normalizeNoteStr(note))
+    return this.notes.get(firstToUpper(note))
   }
 
   /**
@@ -174,8 +163,8 @@ export default class Instrument {
    * @returns {String}
    */
   static notePipeline(rawNote) {
-    validateRawNote(rawNote)
-    rawNote = Instrument.normalizeNoteStr(rawNote)
+    // validateRawNote(rawNote)
+    rawNote = firstToUpper(rawNote)
     if (rawNote.includes('#')) {
       const pitchClass = Instrument.normalizeSet(rawNote.slice(0, 2), '#')
       const octave     = rawNote[rawNote.length - 1]
@@ -189,15 +178,13 @@ export default class Instrument {
    * @param {string} note
    * @param {string} [duration='3']
    */
-  play(rawNote, duration = '3', time = 0) {
-    const key = Instrument.notePipeline(rawNote)
+  play(note, duration = '3', time = 0) {
+    const key = Instrument.notePipeline(note)
     if (!this.loadedFiles.includes(key)) {
       throw new Error('File was not loaded!')
     }
 
-    const player = this.players.get(key)
-    player.start(time + 0.10).stop(`+${duration}`)
-
+    this.players.get(key).start(time + 0.10).stop(`+${duration}`)
     return true
   }
 

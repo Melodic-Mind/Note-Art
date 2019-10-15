@@ -59,4 +59,25 @@ describe('Scale', () => {
       expect(C_Major.seventhChords).to.eql(stub)
     })
   })
+
+  describe('#raw', () => {
+    describe('scale with less than 7 pitch classes', () => {
+      it('scale [1, 2, 4, 6, 7, 11]', () => {
+        const scale = new Scale(new PitchClass('c'), [1, 2, 4, 6, 7, 11])
+        expect(scale.raw).to.eql(['C', 'Db', 'Ebb', 'Fb', 'Gb', 'Abb', 'B'])
+      })
+    })
+
+    describe('scale with more or less than 7', () => {
+      it('scale [1, 2, 4]', () => {
+        const scale = new Scale(new PitchClass('c'), [1, 2, 4])
+        expect(scale.raw).to.eql(['C', 'Db', 'D', 'E'])
+      })
+
+      it('scale [1, 2, 4]', () => {
+        const scale = new Scale(new PitchClass('c'), [1, 2, 3, 4, 6, 7, 9, 11])
+        expect(scale.raw).to.eql(['C', 'Db', 'D', 'Eb', 'E', 'Gb', 'G', 'A', 'B'])
+      })
+    })
+  })
 })

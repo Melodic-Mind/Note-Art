@@ -38,7 +38,7 @@ describe('Musical Pattern', () => {
       const mp   = new MusicalPattern(new PitchClass('C'), [1, 2])
       const stub = [
         new PitchClass('D'),
-        new PitchClass('D#'),
+        new PitchClass('Eb'),
         new PitchClass('E'),
       ]
       expect(mp.transpose(2).pitchClasses).to.eql(stub)

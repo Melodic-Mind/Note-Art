@@ -14,11 +14,11 @@ export default class PitchClassRule {
    * @returns {boolean}
    */
   static exists(str) {
-    if (!PitchClassRule.validLetters.includes(str[0])) {
+    const [letter, accidental] = str
+    if (!PitchClassRule.validLetters.includes(letter)) {
       return false
     }
 
-    const accidental = str[1]
     if (accidental) {
       if (accidental === 'b') {
         if (![...str].slice(2).every(char => char === 'b')) {

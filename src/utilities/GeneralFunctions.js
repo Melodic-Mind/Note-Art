@@ -73,30 +73,14 @@ export function mapString(str, toMap, mapTo) {
  * @param {String} string               The string
  * @param {String} subString            The sub string to search for
  * @returns {number}
- *
- * @author Vitim.us https://gist.github.com/victornpb/7736865
- * @see Unit Test https://jsfiddle.net/Victornpb/5axuh96u/
- * @see http://stackoverflow.com/questions/4009756/how-to-count-string-occurrence-in-string/7924240#7924240
  */
 export function occurrencesInString(string, subString) {
-  string += ''
-  subString += ''
-  if (subString.length <= 0) {
-    return (string.length + 1)
-  }
+  return string.split(subString).length - 1
+}
 
-  let n    = 0,
-      pos  = 0,
-      step = subString.length
-
-  while (true) {
-    pos = string.indexOf(subString, pos)
-    if (pos >= 0) {
-      ++n
-      pos += step
-    } else {
-      break
-    }
+export function fitArrayToSize([...arr], size) {
+  while (arr.length<size){
+    arr = arr.concat([...arr])
   }
-  return n
+  return arr.slice(0, size)
 }

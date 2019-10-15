@@ -18,7 +18,7 @@ export default function playMelodically(notes, duration, timeInterval = 0.3, res
   })
   if (resolve) {
     context.setTimeout(
-        () => this.play(Note.builder(notes[0]).interval(12).raw, duration),
+        () => this.play(Note.builder(notes[0]).interval(12).toString(), duration),
         notes.length * timeInterval,
     )
   }

@@ -1,8 +1,6 @@
-import {InvalidInput}   from '../Exceptions'
-import {firstToUpper}   from '../utilities'
-import {PitchClassRule} from '../validation'
-import {PitchClass}     from '../theory'
-import {isRawNote}      from '../utilities'
+import {InvalidInput} from '../Exceptions'
+import {PitchClass}   from '../theory'
+import {isRawNote}    from '../utilities'
 
 /**
  * Validates an argument is an array, fails if not.

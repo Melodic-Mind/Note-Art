@@ -3,6 +3,8 @@ import {PitchClassRule}               from '../validation'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 import {InvalidInput}                 from '../Exceptions'
 import ModelHelper                    from '../utilities/ModelHelper'
+import RawHelper                      from '../utilities/RawHelper'
+import {NUMBER_OF_PITCH_CLASSES}      from '../Constants'
 
 /**
  * @class PitchClass
@@ -13,15 +15,15 @@ import ModelHelper                    from '../utilities/ModelHelper'
  */
 export default class PitchClass {
   constructor(pitchClass) {
-    const attributes = {}
+    this.attributes = {}
     if (!PitchClassRule.exists(pitchClass)) {
       throw new InvalidInput(`${pitchClass} should be a pitch class.`)
     }
 
-    attributes.pitchClass = firstToUpper(pitchClass)
-    attributes.classSet   = mts.circleOfFourths.includes(attributes.pitchClass) ? 'b' : '#'
-
-    this.attributes = attributes
+    this.attributes.raw        = firstToUpper(pitchClass)
+    this.attributes.classSet   = pitchClass.includes('#') ? '#' : 'b'
+    this.attributes.pitchClass = ModelHelper.transformPitchClass(this)
+    this.attributes.classIndex = mts.getPitchClassSet(this.classSet).indexOf(this.pitchClass)
   }
 
   /**
@@ -38,17 +40,6 @@ export default class PitchClass {
    */
   get classSet() {
     return this.attributes.classSet
-  }
-
-  set classSet(set) {
-    if (mts.pitchClassSets.includes(set)) {
-      if (this.classSet === 'b') {
-        this.attributes.pitchClass = PitchClass.flatToSharp(this.pitchClass)
-      } else {
-        this.attributes.pitchClass = PitchClass.sharpToFlat(this.pitchClass)
-      }
-      this.attributes.classSet = set
-    }
   }
 
   /**
@@ -69,41 +60,6 @@ export default class PitchClass {
     return pitchClass.includes('#')
   }
 
-  /**
-   * Transforms a pitch class represented with a flat to a sharp. e.g Gb -> F#
-   * @param {string} pitchClass
-   * @returns {string}
-   */
-  static flatToSharp(pitchClass) {
-    return this.alterPitchClass(pitchClass, 'isFlat', -1)
-  }
-
-  /**
-   * Transforms a pitch class represented with a sharp to a flat. e.g F# -> Gb
-   * @param {string} pitchClass
-   * @returns {string}
-   */
-  static sharpToFlat(pitchClass) {
-    return this.alterPitchClass(pitchClass, 'isSharp', 1)
-  }
-
-  /**
-   * Helper method for sharpToFlat & flatToSharp,
-   * should never be called.
-   * @param pitchClass
-   * @param operation
-   * @param constant
-   * @returns {string}
-   * @private
-   */
-  static alterPitchClass(pitchClass, operation, constant) {
-    if (PitchClass[operation](pitchClass)) {
-      return mts.pitchClasses[mts.pitchClasses.indexOf(pitchClass) + constant]
-    }
-
-    return pitchClass
-  }
-
   static isPitchClass(obj) {
     return obj instanceof PitchClass
   }
@@ -113,24 +69,39 @@ export default class PitchClass {
    * @type {Number}
    */
   get classIndex() {
-    return mts.getPitchClassSet(this.classSet).indexOf(this.pitchClass)
+    return this.attributes.classIndex
   }
 
   /**
-   * Retuns the pure pitch class at interval.
-   * @param interval
+   * Returns the pure pitch class at interval as a new instance.
+   * @param {number} interval The interval, e.g 5, 7
    * @returns {PitchClass}
    * @throws InvalidInput
    * @example
-   * const c = new PitchClass('c")
+   * const c = new PitchClass('c')
    * console.log(c.interval(5)) // F
    */
   interval(interval) {
-    if (interval === parseInt(interval)) {
-      if (interval >= 0) {
-        return new PitchClass(mts.getPitchClassSet(this.classSet)[(this.classIndex + interval) % 12])
+    if (typeof interval === 'number') {
+      const normalizedInterval = interval % NUMBER_OF_PITCH_CLASSES
+      if (mts.pitchClasses.includes(this.raw)) {
+        const index      = Math.abs((this.classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES)
+        const pitchClass = mts.getPitchClassSet(this.classSet)[index]
+        return new PitchClass(pitchClass)
+      } else {
+        const classIndex  = mts.getPitchClassSet(this.classSet).indexOf(this.raw[0])
+        const index       = Math.abs((classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES)
+        let [letter, acc] = mts.getPitchClassSet(this.classSet)[index]
+        const accidentals = this.raw.slice(1)
+        if (acc === 'b' && !accidentals.includes('b')) {
+          const pc2     = mts.flatClassNotes[(mts.flatClassNotes.indexOf(`${letter}${acc}`) - 1) % 12];
+          [letter, acc] = RawHelper.enharmonicPitchClass(`${letter}${acc}`, pc2)
+        }
+      if(accidentals[accidentals.length-1] === '#' && acc){
+        return new PitchClass(`${letter}${accidentals.slice(0, accidentals.length - 1)}x`)
       }
-      return new PitchClass(mts.getPitchClassSet(this.classSet)[Math.abs((this.classIndex + (12 + (interval % 12))) % 12)])
+        return new PitchClass(`${letter}${accidentals}${acc ? acc : ''}`)
+      }
     }
 
     throw new InvalidInput(`${interval} is not a valid interval`)
@@ -141,7 +112,7 @@ export default class PitchClass {
    * @returns {String}
    */
   toString() {
-    return this.pitchClass
+    return this.raw
   }
 
   /**
@@ -149,6 +120,6 @@ export default class PitchClass {
    * @returns {String}
    */
   get raw() {
-    return this.pitchClass
+    return this.attributes.raw
   }
 }

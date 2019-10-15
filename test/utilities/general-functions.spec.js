@@ -1,5 +1,5 @@
 import {
-  firstToUpper, twoDigitFormat, PitchClass, validateInstance, switchMembers, rearrangeArray, mapString,
+  firstToUpper, twoDigitFormat, PitchClass, validateInstance, switchMembers, rearrangeArray, mapString, fitArrayToSize,
 }                     from '../../src'
 import {InvalidInput} from '../../src/Exceptions'
 
@@ -29,6 +29,20 @@ describe('general-functions', () => {
   describe('#mapString', () => {
     it('reduces a string', () => {
       expect(mapString('A###', '##', 'x')).to.equal('Ax#')
+    })
+  })
+
+  describe('#fitArrayToSize', () => {
+    it('should fit the array to the size with the elements', () => {
+      expect(fitArrayToSize(['a', 'b'], 3)).to.eql(['a', 'b', 'a'])
+    })
+
+    it('should simply return the array when the size is the same as the array length', () => {
+      expect(fitArrayToSize(['a', 'b'], 2)).to.eql(['a', 'b'])
+    })
+
+    it('should cut the array length when the size is smaller', () => {
+      expect(fitArrayToSize(['a', 'b'], 1)).to.eql(['a'])
     })
   })
 })

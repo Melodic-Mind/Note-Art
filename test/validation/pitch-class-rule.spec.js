@@ -19,5 +19,6 @@ describe('Pitch Class Rule', () => {
     expect(PitchClassRule.exists('F#b')).to.be.false
     expect(PitchClassRule.exists('gbbbbbx')).to.be.false
     expect(PitchClassRule.exists('axxxb')).to.be.false
+    expect(PitchClassRule.exists('axbb')).to.be.false
   })
 })

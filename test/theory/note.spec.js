@@ -1,5 +1,6 @@
-import {Note}         from '../../src'
-import {InvalidInput} from '../../src/Exceptions'
+import {Note}          from '../../src'
+import {InvalidInput}  from '../../src/Exceptions'
+import {testIntervals} from '../Helpers'
 
 let c
 beforeEach(() => {
@@ -30,7 +31,7 @@ describe('Note', () => {
   })
 
   describe('#interval', () => {
-    it('Checks the note Db', function () {
+    describe('Checks the note Db', function () {
       const db      = new Note('db', 5)
       const db_stub = {
         '-13': new Note('c', 4),
@@ -43,10 +44,10 @@ describe('Note', () => {
         '12':  new Note('db', 6),
         '13':  new Note('d', 6),
       }
-      testNoteIntervals(db, db_stub)
+      testIntervals(db, db_stub)
     })
 
-    it('Checks the note cs', function () {
+    describe('Checks the note cs', function () {
       const cs      = new Note('c#', 3)
       const cs_stub = {
         '-13': new Note('c', 2),
@@ -59,7 +60,7 @@ describe('Note', () => {
         '12':  new Note('c#', 4),
         '13':  new Note('d', 4),
       }
-      testNoteIntervals(cs, cs_stub)
+      testIntervals(cs, cs_stub)
     })
 
     it('should throw an error when interval is not valid', () => {
@@ -78,17 +79,7 @@ describe('Note', () => {
   })
 
   it('#raw, #toString', () => {
-    expect(c.raw).to.eql('C3')
+    expect(c.raw).to.eql('C')
     expect(c.toString()).to.eql('C3')
   })
 })
-
-function assertInterval(obj, interval, note) {
-  expect(obj.interval(Number(interval))).to.eql(note)
-}
-
-function testNoteIntervals(note_tested, stub) {
-  Object.entries(stub).forEach(([interval, note]) => {
-    assertInterval(note_tested, interval, note)
-  })
-}

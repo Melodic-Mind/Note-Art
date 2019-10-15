@@ -45,7 +45,7 @@ describe('ModelHelper', () => {
           Note.builder('g3'),
           Note.builder('B3'),
           Note.builder('d4'),
-          Note.builder('g#4'),
+          Note.builder('Ab4'),
           Note.builder('c5'),
         ]
 
@@ -93,13 +93,23 @@ describe('ModelHelper', () => {
     })
   })
 
-  describe('#reducePitchClsss', () => {
+  describe('#transformPitchClass', () => {
     it('just a letter', () => {
       expect(ModelHelper.transformPitchClass(new PitchClass('C'))).to.equal('C')
     })
 
-    it('with one sharp', () => {
-      expect(ModelHelper.transformPitchClass(new PitchClass('C#'))).to.equal('C#')
+    describe('with one sharp', () => {
+      it('C# to C#', () => {
+        expect(ModelHelper.transformPitchClass(new PitchClass('C#'))).to.equal('C#')
+      })
+
+      it('E# to F', () => {
+        expect(ModelHelper.transformPitchClass(new PitchClass('E#'))).to.equal('F')
+      })
+
+      it('B# to C', () => {
+        expect(ModelHelper.transformPitchClass(new PitchClass('B#'))).to.equal('C')
+      })
     })
 
     describe('multiple sharps', () => {

@@ -68,7 +68,7 @@ export default class MusicalPattern {
    * @returns {String}
    */
   toString() {
-    return this.pitchClasses.map(pc => pc.raw).join(', ')
+    return this.pitchClasses.map(pc => pc.toString()).join(', ')
   }
 
   /**

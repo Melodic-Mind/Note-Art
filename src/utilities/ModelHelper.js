@@ -66,7 +66,7 @@ export default class ModelHelper {
       str = mapString(str, '##', 'x')
     }
 
-    return `${pc2.pitchClass}${str}`
+    return `${pc2.raw}${str}`
   }
 
   /**
@@ -74,34 +74,33 @@ export default class ModelHelper {
    * @param {PitchClass} pc
    */
   static transformPitchClass(pc) {
-    const [pitchLetter, accidental] = pc.pitchClass
+    const [pitchLetter, accidental] = pc.raw
+    let times
+    switch (accidental) {
+      case '#':
+        return !['E', 'B'].includes(pitchLetter) ?
+               pc.raw :
+               mts.sharpClassNotes[(mts.sharpClassNotes.indexOf(pitchLetter) + 1) % 12]
 
-    if (!accidental) {
-      return pitchLetter
+      case 'x':
+        times = occurrencesInString(pc.raw, 'x') * 2
+        if (pc.raw[pc.raw.length - 1] === '#') {
+          ++times
+        }
+        return mts.sharpClassNotes[(mts.sharpClassNotes.indexOf(pitchLetter) + times) % NUMBER_OF_PITCH_CLASSES]
+
+      case 'b':
+        if (!['C', 'F'].includes(pitchLetter) && pc.raw.length === 2) {
+          return pc.raw
+        }
+
+        times               = occurrencesInString(pc.raw, 'b')
+        const index         = mts.flatClassNotes.indexOf(pitchLetter) - times
+        const accurateIndex = index >= 0 ? index : NUMBER_OF_PITCH_CLASSES + index
+        return mts.flatClassNotes[(accurateIndex) % NUMBER_OF_PITCH_CLASSES]
+
+      default:
+        return pitchLetter
     }
-
-    if (accidental === '#') {
-      return !['E', 'B'].includes(accidental) ?
-             pc.pitchClass :
-             mts.sharpClassNotes[mts.sharpClassNotes.indexOf(pitchLetter) + 1]
-    }
-
-    if (accidental === 'x') {
-      let times = occurrencesInString(pc.pitchClass, 'x') * 2
-      if (pc.pitchClass[pc.pitchClass.length - 1] === '#') {
-        ++times
-      }
-
-      return mts.sharpClassNotes[(mts.sharpClassNotes.indexOf(pitchLetter) + times) % NUMBER_OF_PITCH_CLASSES]
-    }
-
-    if (!['C', 'F'].includes(pitchLetter) && pc.pitchClass.length === 2) {
-      return pc.pitchClass
-    }
-
-    let times           = occurrencesInString(pc.pitchClass, 'b')
-    const index         = mts.flatClassNotes.indexOf(pitchLetter) - times
-    const accurateIndex = index >= 0 ? index : 12 + index
-    return mts.flatClassNotes[(accurateIndex) % NUMBER_OF_PITCH_CLASSES]
   }
 }

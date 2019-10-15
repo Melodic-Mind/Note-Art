@@ -1,5 +1,5 @@
-import ModelHelper from './ModelHelper'
-import {PitchClass}  from '../theory'
+import ModelHelper  from './ModelHelper'
+import {PitchClass} from '../theory'
 
 export default class RawHelper extends ModelHelper {
   /**
@@ -9,8 +9,7 @@ export default class RawHelper extends ModelHelper {
    * @returns {Array}
    */
   static pitchClassesToNotes(pitchClasses, octave) {
-    const pcInstances = pitchClasses.map(pc => new PitchClass(pc))
-    return super.pitchClassesToNotes(pcInstances, octave).map(note => note.raw)
+    return super.pitchClassesToNotes(pitchClasses.map(pc => new PitchClass(pc)), octave).map(note => note.toString())
   }
 
   /**
@@ -22,8 +21,7 @@ export default class RawHelper extends ModelHelper {
    * @returns {Array}
    */
   static pitchClassesToPianoChordNotes(pitchClasses, octave, inversion = 0) {
-    const pcs = pitchClasses.map(pc => new PitchClass(pc))
-    return super.pitchClassesToPianoChordNotes(pcs, octave, inversion).map(n => n.raw)
+    return super.pitchClassesToPianoChordNotes(pitchClasses.map(pc => new PitchClass(pc)), octave, inversion).map(n => n.toString())
   }
 
   /**

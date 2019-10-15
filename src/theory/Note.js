@@ -96,14 +96,6 @@ export default class Note extends PitchClass {
    * Returns a string of the pitch class and octave of the Note.
    * @returns {string}
    */
-  get raw() {
-    return `${super.toString()}${this.octave}`
-  }
-
-  /**
-   * Returns a string of the pitch class and octave of the Note.
-   * @returns {string}
-   */
   toString() {
     return `${super.toString()}${this.octave}`
   }

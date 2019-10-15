@@ -16,10 +16,6 @@ describe('Guitar', () => {
       stub.restore()
     })
 
-    it('should throw an error when the note is not valid', () => {
-      expect(() => {guitar.play('NOT A NOTE')}).to.throw(InvalidInput)
-    })
-
     it('should return false when the note doesn\'nt exist', () => {
       expect(guitar.play('e1')).to.be.false
     })
