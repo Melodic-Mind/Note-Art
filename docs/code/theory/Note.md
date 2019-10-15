@@ -18,9 +18,6 @@ title: Note
 <dt><a href="#octave">octave</a> : <code>String</code></dt>
 <dd><p>Returns the octave of the note.</p>
 </dd>
-<dt><a href="#raw">raw</a> ⇒ <code>string</code></dt>
-<dd><p>Returns a string of the pitch class and octave of the Note.</p>
-</dd>
 </dl>
 
 ## Functions
@@ -85,12 +82,6 @@ console.log(a) //A4
 
 ## octave : <code>String</code>
 Returns the octave of the note.
-
-**Kind**: global variable  
-<a name="raw"></a>
-
-## raw ⇒ <code>string</code>
-Returns a string of the pitch class and octave of the Note.
 
 **Kind**: global variable  
 <a name="builder"></a>

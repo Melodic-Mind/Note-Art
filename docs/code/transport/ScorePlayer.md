@@ -7,7 +7,7 @@ title: ScorePlayer
 ## Classes
 
 <dl>
-<dt><a href="#ScorePlayer">ScorePlayer</a></dt>
+<dt><a href="#ScorePlayerjjj">ScorePlayerjjj</a></dt>
 <dd><p>Represents a driver that can play a score.
 Best practice is to create one driver that will be used to play everything inside the app/website.</p>
 </dd>
@@ -31,8 +31,6 @@ Best practice is to create one driver that will be used to play everything insid
 <dt><a href="#state">state</a> ⇒ <code>Tone.State</code></dt>
 <dd><p>Returns the current state of the transport.</p>
 </dd>
-<dt><a href="#position">position</a> ⇒ <code>Ticks</code></dt>
-<dd></dd>
 </dl>
 
 ## Functions
@@ -47,13 +45,13 @@ Best practice is to create one driver that will be used to play everything insid
 <dt><a href="#addInstrument">addInstrument(instrument)</a></dt>
 <dd><p>Adds an instrument to the score.</p>
 </dd>
-<dt><a href="#startMetronome">startMetronome()</a> ⇒ <code><a href="#ScorePlayer">ScorePlayer</a></code></dt>
+<dt><a href="#startMetronome">startMetronome()</a> ⇒ <code>ScorePlayer</code></dt>
 <dd><p>Schedules the metronome to the transport.</p>
 </dd>
-<dt><a href="#stopMetronome">stopMetronome()</a> ⇒ <code><a href="#ScorePlayer">ScorePlayer</a></code></dt>
+<dt><a href="#stopMetronome">stopMetronome()</a> ⇒ <code>ScorePlayer</code></dt>
 <dd><p>Removes the metronome from the transport.</p>
 </dd>
-<dt><a href="#toggleMetronome">toggleMetronome()</a> ⇒ <code><a href="#ScorePlayer">ScorePlayer</a></code></dt>
+<dt><a href="#toggleMetronome">toggleMetronome()</a> ⇒ <code>ScorePlayer</code></dt>
 <dd><p>Toggles the metronome.</p>
 </dd>
 <dt><a href="#scheduleVoices">scheduleVoices()</a></dt>
@@ -68,7 +66,7 @@ Best practice is to create one driver that will be used to play everything insid
 <dt><a href="#toggle">toggle([startTime])</a></dt>
 <dd><p>Toggles the state of the transport.</p>
 </dd>
-<dt><a href="#start">start(startTime)</a></dt>
+<dt><a href="#start">start(startTime, delay)</a></dt>
 <dd><p>Start playing.</p>
 </dd>
 <dt><a href="#stop">stop()</a></dt>
@@ -79,9 +77,9 @@ Best practice is to create one driver that will be used to play everything insid
 </dd>
 </dl>
 
-<a name="ScorePlayer"></a>
+<a name="ScorePlayerjjj"></a>
 
-## ScorePlayer
+## ScorePlayerjjj
 Represents a driver that can play a score.
 Best practice is to create one driver that will be used to play everything inside the app/website.
 
@@ -131,10 +129,6 @@ Set the loop start time.
 Returns the current state of the transport.
 
 **Kind**: global variable  
-<a name="position"></a>
-
-## position ⇒ <code>Ticks</code>
-**Kind**: global variable  
 <a name="setScore"></a>
 
 ## setScore(score, [updateTransport]) ⇒ <code>this</code>
@@ -171,19 +165,19 @@ Adds an instrument to the score.
 
 <a name="startMetronome"></a>
 
-## startMetronome() ⇒ [<code>ScorePlayer</code>](#ScorePlayer)
+## startMetronome() ⇒ <code>ScorePlayer</code>
 Schedules the metronome to the transport.
 
 **Kind**: global function  
 <a name="stopMetronome"></a>
 
-## stopMetronome() ⇒ [<code>ScorePlayer</code>](#ScorePlayer)
+## stopMetronome() ⇒ <code>ScorePlayer</code>
 Removes the metronome from the transport.
 
 **Kind**: global function  
 <a name="toggleMetronome"></a>
 
-## toggleMetronome() ⇒ [<code>ScorePlayer</code>](#ScorePlayer)
+## toggleMetronome() ⇒ <code>ScorePlayer</code>
 Toggles the metronome.
 
 **Kind**: global function  
@@ -229,14 +223,15 @@ Toggles the state of the transport.
 
 <a name="start"></a>
 
-## start(startTime)
+## start(startTime, delay)
 Start playing.
 
 **Kind**: global function  
 
-| Param | Default |
-| --- | --- |
-| startTime | <code>0</code> | 
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| startTime |  | <code>0</code> | Time to start the transport from |
+| delay | <code>string</code> | <code>&quot;0.3&quot;</code> | Time to delay the start of the transport for, gives more time to scheduling. |
 
 <a name="stop"></a>
 

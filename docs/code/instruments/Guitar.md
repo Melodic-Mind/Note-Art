@@ -12,23 +12,26 @@ title: Guitar
 using different input methods.
 This guitar uses all the audio files from the note-art server,
 if you wish to create a different guitar you can do so easily by using the template below
-with your number of strings, their ranges, etc.</p>
+with your number of cords, their ranges, etc.</p>
 </dd>
 </dl>
 
 ## Functions
 
 <dl>
-<dt><a href="#playString">playString(string, note, duration)</a></dt>
+<dt><a href="#playCord">playCord(cord, note, duration)</a></dt>
 <dd><p>Plays a single note on a specific string for some duration.</p>
 </dd>
-<dt><a href="#playMultiple">playMultiple(stringsAndNotes, duration)</a></dt>
+<dt><a href="#playMultiple">playMultiple(cordsAndNotes, duration)</a></dt>
 <dd></dd>
+<dt><a href="#loadFile">loadFile(cord, rawNote, source)</a></dt>
+<dd><p>Load a note for any string that contains that note.</p>
+</dd>
 <dt><a href="#play">play(note, duration)</a></dt>
 <dd><p>Syncs a note to the transport with a duration.</p>
 </dd>
 <dt><a href="#strum">strum(pattern, duration)</a></dt>
-<dd><p>Strums the guitar&#39;s strings using guitar pattern(low to high).</p>
+<dd><p>Strums the guitar&#39;s cords using guitar pattern(low to high).</p>
 </dd>
 <dt><a href="#toString">toString()</a> ⇒ <code>string</code></dt>
 <dd><p>Returns the name of the instrument.</p>
@@ -42,37 +45,50 @@ Represents a guitar which can play notes, individually or strum them together
 using different input methods.
 This guitar uses all the audio files from the note-art server,
 if you wish to create a different guitar you can do so easily by using the template below
-with your number of strings, their ranges, etc.
+with your number of cords, their ranges, etc.
 
 **Kind**: global class  
-<a name="playString"></a>
+<a name="playCord"></a>
 
-## playString(string, note, duration)
+## playCord(cord, note, duration)
 Plays a single note on a specific string for some duration.
 
 **Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| string | <code>string</code> | String to play. |
+| cord | <code>string</code> | Cord to play. |
 | note | <code>string</code> | Note to play. |
 | duration | <code>string</code> | duration to play the note for. |
 
 <a name="playMultiple"></a>
 
-## playMultiple(stringsAndNotes, duration)
+## playMultiple(cordsAndNotes, duration)
 **Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| stringsAndNotes | <code>Object</code> | Object which contains string and notes to play. |
+| cordsAndNotes | <code>Object</code> | Object which contains string and notes to play. |
 | duration |  | Duration to play for. |
 
 **Example**  
 ```js
-const stringsAndNotes = {1: 'E4', 2: 'C4'}
-guitarInstance.play(stringsAndNotes, '4n')   //notes are played.
+const cordsAndNotes = {1: 'E4', 2: 'C4'}
+guitarInstance.play(cordsAndNotes, '4n')   //notes are played.
 ```
+<a name="loadFile"></a>
+
+## loadFile(cord, rawNote, source)
+Load a note for any string that contains that note.
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| cord | <code>number</code> |  | Cord to load the file for. |
+| rawNote | <code>string</code> |  | The note |
+| source | <code>string</code> \| <code>AudioBuffer</code> | <code>null</code> | The source for the file as a string or a AudioBuffer. |
+
 <a name="play"></a>
 
 ## play(note, duration)
@@ -88,7 +104,7 @@ Syncs a note to the transport with a duration.
 <a name="strum"></a>
 
 ## strum(pattern, duration)
-Strums the guitar's strings using guitar pattern(low to high).
+Strums the guitar's cords using guitar pattern(low to high).
 
 **Kind**: global function  
 

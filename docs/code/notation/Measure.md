@@ -47,7 +47,7 @@ Should not be called as it&#39;s called automatically when needed.</p>
 <dt><a href="#validateInsertion">validateInsertion(position, duration)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Checks whether a new data member can be added at a certain position in the measure.</p>
 </dd>
-<dt><a href="#addNote">addNote(note, [duration], position)</a> ⇒ <code>boolean</code></dt>
+<dt><a href="#addNote">addNote(position)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Adds a note to the measure at some position.</p>
 </dd>
 <dt><a href="#addNotes">addNotes(notes, [duration], position)</a> ⇒ <code>*</code></dt>
@@ -167,15 +167,15 @@ Checks whether a new data member can be added at a certain position in the measu
 
 <a name="addNote"></a>
 
-## addNote(note, [duration], position) ⇒ <code>boolean</code>
+## addNote(position) ⇒ <code>boolean</code>
 Adds a note to the measure at some position.
 
 **Kind**: global function  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| note | <code>string</code> |  | raw note representation. |
-| [duration] | <code>string</code> | <code>&quot;this.duration&quot;</code> |  |
+| data.note | <code>string</code> |  | raw note representation. |
+| [data.duration] | <code>string</code> | <code>&quot;this.duration&quot;</code> |  |
 | position | <code>number</code> |  | The position in the data to add the note to. |
 
 <a name="addNotes"></a>

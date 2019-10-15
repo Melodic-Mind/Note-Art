@@ -118,7 +118,7 @@ export default class Score {
    * Returns the voice at the index, starts from voice 0.
    * If the voice doesn't exist it returns false.
    * @param {number} [index=1] The voice index.
-   * @returns {boolean|[*]}
+   * @returns {Array|false}
    */
   getVoice(index = 0) {
     if (this.attributes.voices[index]) {

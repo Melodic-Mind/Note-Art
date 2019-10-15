@@ -44,6 +44,7 @@ export default class PitchClass {
 
   /**
    * Returns true if pitch class has a flat in it, else false.
+   * @static
    * @param pitchClass
    * @returns {boolean}
    */
@@ -53,13 +54,20 @@ export default class PitchClass {
 
   /**
    * Returns true if pitch class has a sharp in it, else false.
+   * @static
    * @param pitchClass
    * @returns {boolean}
    */
   static isSharp(pitchClass) {
-    return pitchClass.includes('#')
+    return ['#', 'x'].includes(pitchClass[1])
   }
 
+  /**
+   * Returns true if obj is an instance of PitchClass, else false.
+   * @static
+   * @param obj
+   * @returns {boolean}
+   */
   static isPitchClass(obj) {
     return obj instanceof PitchClass
   }
@@ -97,9 +105,9 @@ export default class PitchClass {
           const pc2     = mts.flatClassNotes[(mts.flatClassNotes.indexOf(`${letter}${acc}`) - 1) % 12];
           [letter, acc] = RawHelper.enharmonicPitchClass(`${letter}${acc}`, pc2)
         }
-      if(accidentals[accidentals.length-1] === '#' && acc){
-        return new PitchClass(`${letter}${accidentals.slice(0, accidentals.length - 1)}x`)
-      }
+        if (accidentals[accidentals.length - 1] === '#' && acc) {
+          return new PitchClass(`${letter}${accidentals.slice(0, accidentals.length - 1)}x`)
+        }
         return new PitchClass(`${letter}${accidentals}${acc ? acc : ''}`)
       }
     }

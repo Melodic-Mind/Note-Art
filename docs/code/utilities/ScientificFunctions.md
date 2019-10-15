@@ -10,10 +10,10 @@ title: ScientificFunctions
 <dt><a href="#freqFromPitch">freqFromPitch()</a> ⇒ <code>Number</code></dt>
 <dd><p>Calculate the frequency of a note by its octave and index out of all notes(c, c#, etc...).</p>
 </dd>
-<dt><a href="#realNumberFromFreq">realNumberFromFreq(frequency)</a> ⇒ <code>number</code></dt>
+<dt><a href="#freqToMidi">freqToMidi(frequency)</a> ⇒ <code>number</code></dt>
 <dd><p>Generate real number from frequency.</p>
 </dd>
-<dt><a href="#freqFromRealNumber">freqFromRealNumber(realNumber)</a> ⇒ <code>Number</code></dt>
+<dt><a href="#midiToFreq">midiToFreq(realNumber)</a> ⇒ <code>Number</code></dt>
 <dd><p>Generate frequency from real number.</p>
 </dd>
 </dl>
@@ -24,9 +24,9 @@ title: ScientificFunctions
 Calculate the frequency of a note by its octave and index out of all notes(c, c#, etc...).
 
 **Kind**: global function  
-<a name="realNumberFromFreq"></a>
+<a name="freqToMidi"></a>
 
-## realNumberFromFreq(frequency) ⇒ <code>number</code>
+## freqToMidi(frequency) ⇒ <code>number</code>
 Generate real number from frequency.
 
 **Kind**: global function  
@@ -35,9 +35,9 @@ Generate real number from frequency.
 | --- |
 | frequency | 
 
-<a name="freqFromRealNumber"></a>
+<a name="midiToFreq"></a>
 
-## freqFromRealNumber(realNumber) ⇒ <code>Number</code>
+## midiToFreq(realNumber) ⇒ <code>Number</code>
 Generate frequency from real number.
 
 **Kind**: global function  

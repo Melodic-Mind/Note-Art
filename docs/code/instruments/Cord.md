@@ -32,13 +32,13 @@ A cord which represents a cord as part of a stringed instrument.
 **Extends**: <code>Instrument</code>  
 <a name="new_Cord_new"></a>
 
-### new Cord(base, range, stringNumber)
+### new Cord(base, range, cordNumber)
 
 | Param |
 | --- |
 | base | 
 | range | 
-| stringNumber | 
+| cordNumber | 
 
 <a name="generatePath"></a>
 

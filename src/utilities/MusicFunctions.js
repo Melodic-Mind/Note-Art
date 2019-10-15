@@ -102,7 +102,7 @@ export function getNoteDuration(note, bpm) {
 }
 
 export function spellScale(scale) {
-  const letters = fitArrayToSize(rearrangeArray(mts.pitchClassLetters, mts.pitchClassLetters.indexOf(scale.root.pitchClass[0])), scale.pattern.length + 1)
+  const letters = rearrangeArray(mts.pitchClassLetters, mts.pitchClassLetters.indexOf(scale.root.pitchClass[0]))
   const res     = [scale.root.pitchClass];
   [...scale.pitchClasses].slice(1).forEach((pc, i) => {
     res.push(ModelHelper.enharmonicPitchClass(pc, new PitchClass(letters[i + 1])))

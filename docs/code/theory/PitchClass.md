@@ -38,14 +38,11 @@ title: PitchClass
 <dt><a href="#isSharp">isSharp(pitchClass)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Returns true if pitch class has a sharp in it, else false.</p>
 </dd>
-<dt><a href="#flatToSharp">flatToSharp(pitchClass)</a> ⇒ <code>string</code></dt>
-<dd><p>Transforms a pitch class represented with a flat to a sharp. e.g Gb -&gt; F#</p>
-</dd>
-<dt><a href="#sharpToFlat">sharpToFlat(pitchClass)</a> ⇒ <code>string</code></dt>
-<dd><p>Transforms a pitch class represented with a sharp to a flat. e.g F# -&gt; Gb</p>
+<dt><a href="#isPitchClass">isPitchClass(obj)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns true if obj is an instance of PitchClass, else false.</p>
 </dd>
 <dt><a href="#interval">interval(interval)</a> ⇒ <code><a href="#PitchClass">PitchClass</a></code></dt>
-<dd><p>Retuns the pure pitch class at interval.</p>
+<dd><p>Returns the pure pitch class at interval as a new instance.</p>
 </dd>
 <dt><a href="#toString">toString()</a> ⇒ <code>String</code></dt>
 <dd><p>Returns string of the pitch class.</p>
@@ -116,32 +113,21 @@ Returns true if pitch class has a sharp in it, else false.
 | --- |
 | pitchClass | 
 
-<a name="flatToSharp"></a>
+<a name="isPitchClass"></a>
 
-## flatToSharp(pitchClass) ⇒ <code>string</code>
-Transforms a pitch class represented with a flat to a sharp. e.g Gb -> F#
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| pitchClass | <code>string</code> | 
-
-<a name="sharpToFlat"></a>
-
-## sharpToFlat(pitchClass) ⇒ <code>string</code>
-Transforms a pitch class represented with a sharp to a flat. e.g F# -> Gb
+## isPitchClass(obj) ⇒ <code>boolean</code>
+Returns true if obj is an instance of PitchClass, else false.
 
 **Kind**: global function  
 
-| Param | Type |
-| --- | --- |
-| pitchClass | <code>string</code> | 
+| Param |
+| --- |
+| obj | 
 
 <a name="interval"></a>
 
 ## interval(interval) ⇒ [<code>PitchClass</code>](#PitchClass)
-Retuns the pure pitch class at interval.
+Returns the pure pitch class at interval as a new instance.
 
 **Kind**: global function  
 **Throws**:
@@ -149,13 +135,13 @@ Retuns the pure pitch class at interval.
 - InvalidInput
 
 
-| Param |
-| --- |
-| interval | 
+| Param | Type | Description |
+| --- | --- | --- |
+| interval | <code>number</code> | The interval, e.g 5, 7 |
 
 **Example**  
 ```js
-const c = new PitchClass('c")
+const c = new PitchClass('c')
 console.log(c.interval(5)) // F
 ```
 <a name="toString"></a>
