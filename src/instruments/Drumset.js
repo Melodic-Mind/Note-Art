@@ -56,10 +56,6 @@ export default class Drumset extends Instrument {
     }
   }
 
-  getBuffer(filename) {
-    return this.players.get(filename).buffer
-  }
-
   /**
    * @inheritDoc
    */
