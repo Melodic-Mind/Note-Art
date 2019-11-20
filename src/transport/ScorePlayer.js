@@ -5,12 +5,13 @@ import Tone                           from 'tone'
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 
 /**
- * @class ScorePlayerjjj
+ * @class ScorePlayer
  * @classdesc Represents a driver that can play a score.
  * Best practice is to create one driver that will be used to play everything inside the app/website.
  */
 export default class ScorePlayer {
-  constructor() {
+  constructor(transport) {
+    // this.transport = transport
     this.resetPosition()
   }
 
@@ -20,7 +21,7 @@ export default class ScorePlayer {
    * @returns {ScorePlayer}
    */
   init() {
-    this.transport               = Tone.Transport
+    this.transport               = {}
     this.bpm                     = 120
     this.transport.timeSignature = 4
     this.transport.loop          = true
@@ -29,7 +30,7 @@ export default class ScorePlayer {
   }
 
   resetPosition() {
-    this.position = {voices: null, beat: null, position: null}
+    this.position = {voices: null, beat: null}
   }
 
   get beat() {
@@ -37,7 +38,7 @@ export default class ScorePlayer {
   }
 
   get currentTime() {
-    return this.position.currentTime
+    return this.transport.getSecondsAtTime()
   }
 
   get sustain() {
@@ -62,6 +63,7 @@ export default class ScorePlayer {
     }
     this.score = score
     this.clear()
+    this.resetPosition()
     return this
   }
 
@@ -71,8 +73,12 @@ export default class ScorePlayer {
    * @return {this}
    */
   setInstruments(instruments) {
-    this.instruments = instruments
-    return this
+    if (Array.isArray(instruments)) {
+      this.instruments = instruments
+      return this
+    }
+
+    throw new Error(`${instruments} must be an array.`)
   }
 
   /**
@@ -96,7 +102,7 @@ export default class ScorePlayer {
   startMetronome() {
     this.metronome.isActive = true
     this.metronome.id       = this.transport.scheduleRepeat(time => {
-      this.metronome.instrument.play(this.metronome.sound)
+      this.metronome.instrument.play(this.metronome.sound, time)
     }, '4n', '0')
 
     return this
@@ -130,7 +136,7 @@ export default class ScorePlayer {
    * @param value
    */
   set bpm(value) {
-    this.transport.bpm.value = value
+    // this.transport.bpm.value = value
     if (this.score) {
       this.score.bpm = value
     }
@@ -174,13 +180,12 @@ export default class ScorePlayer {
    */
   scheduleVoices() {
     this.transport.loopEnd = this.score.voices[0].length + 'm'
-    const voicesPositions  = []
+    this.position.voices   = []
     for (let i = 0; i < this.score.voices.length; ++i) {
-      voicesPositions.push({measure: null, noteSet: null})
+      this.position.voices.push({measure: null, noteSet: null})
       this.scheduleMeasures(i)
     }
 
-    this.position.voices = voicesPositions
     return this
   }
 
@@ -204,18 +209,13 @@ export default class ScorePlayer {
     this.score.voices[voiceIndex][measureIndex].data.forEach((data, dataIndex) => {
       data.notes.forEach((note) => {
         this.transport.schedule((time) => {
-          Tone.Draw.schedule(() => {
-            if (this.position.voices && this.position.voices[voiceIndex]) {
-              if (this.position.voices[voiceIndex].measure !== measureIndex) {
-                this.position.voices[voiceIndex].measure = measureIndex
-              }
-              this.position.voices[voiceIndex].noteSet = dataIndex
-            }
-          }, time)
           if (note !== 'R') {
             const duration = this.sustain ? '10' : data.duration
             this.instruments[voiceIndex].play(note, duration, time)
           }
+          this.metronome.instrument.play(this.metronome.sound, time)
+          this.position.voices[voiceIndex].measure = measureIndex
+          this.position.voices[voiceIndex].noteSet = dataIndex
         }, `${measureIndex}:0:${setTime}`)
       })
       setTime += mts.noteDurations()[data.duration] / 4
@@ -247,12 +247,11 @@ export default class ScorePlayer {
       this.startMetronome()
     }
     this.transport.scheduleRepeat(time => {
-      this.position.currentTime = this.transport.getSecondsAtTime()
       this.position.beat++
-      if (this.position.beat === (this.score.measureSize / 16) + 1) {
+      if (this.position.beat > 4) {
         this.position.beat = 1
       }
-    }, '4n', '0')
+    }, '8n')
     this.transport.start(`+${delay}`, startTime)
   }
 
@@ -262,6 +261,9 @@ export default class ScorePlayer {
   stop() {
     this.transport.stop()
     this.resetPosition()
+    // if (this.instruments) {
+    //   this.instruments.forEach(ins => ins.unsync())
+    // }
     return this
   }
 

@@ -1,6 +1,6 @@
-import {firstToUpper, transposeRawNote, isRawNote} from '../utilities'
-import {MusicTheoryStructures as mts}              from '../resources/MusicTheoryStructures'
-import {validateArray}                             from '../validation'
+import {firstToUpper, transpose, isRawNote} from '../utilities'
+import {MusicTheoryStructures as mts}       from '../resources/MusicTheoryStructures'
+import {validateArray}                      from '../validation'
 
 /**
  * @class Measure
@@ -216,7 +216,7 @@ export default class Measure {
     this.data.forEach((data, position) => {
       data.notes.forEach((note) => {
         transposedMeasure.addNote({
-          note:     transposeRawNote(note, interval),
+          note:     transpose(note, interval),
           duration: data.duration,
         }, position)
       })

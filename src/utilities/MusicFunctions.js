@@ -60,11 +60,11 @@ export function isRawNote(str) {
 
 /**
  * Transpose a raw note by interval.
- * @param {string} note Raw note.
+ * @param {string} note either pitch class or note as string.
  * @param {number} interval Interval to transpose by.
  * @returns {string|*}
  */
-export function transposeRawNote(note, interval) {
+export function transpose(note, interval) {
   validateRawNote(note)
 
   if (!isRest(note)) {
@@ -97,8 +97,19 @@ export function notesInRange(baseNote, range) {
   return notes
 }
 
-export function getNoteDuration(note, bpm) {
-  //@TODo
+export function getNoteDurations(bpm, note) {
+  // const time = parseFloat((note.end - note.start).toFixed(4))
+  const q = 60/bpm
+
+
+}
+
+function extractQuarterNoteInSecondsFromTimeSignature() {
+
+}
+
+export function noteDurationInSeconds() {
+
 }
 
 export function spellScale(scale) {
@@ -109,4 +120,12 @@ export function spellScale(scale) {
   })
 
   return res
+}
+
+export function extractOctave(rawNote) {
+  return rawNote[rawNote.length - 1]
+}
+
+export function extractPitchClass(rawNote) {
+  return rawNote.slice(0, rawNote.length - 1)
 }

@@ -1,6 +1,7 @@
 import {InstrumentMixin} from '../mixins'
 import Instrument        from './Instrument'
 import Cord              from './Cord'
+import {extractOctave}   from '../utilities'
 
 /**
  * @class Guitar
@@ -66,7 +67,10 @@ export default class Guitar {
         return this.cords[i][method](rawNote, duration)
       }
     }
-    return false
+    if (parseInt(extractOctave(rawNote)) < 4) {
+      return this.cords[5][method](rawNote, duration)
+    }
+    return this.cords[0][method](rawNote, duration)
   }
 
   /**
@@ -81,6 +85,14 @@ export default class Guitar {
         this.cords[i].loadFile(rawNote, source)
       }
     }
+  }
+
+  sync(){
+    this.cords.forEach(cord => cord.sync())
+  }
+
+  unsync(){
+    this.cords.forEach(cord => cord.unsync())
   }
 
   /**

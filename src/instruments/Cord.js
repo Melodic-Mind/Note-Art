@@ -24,10 +24,7 @@ export default class Cord extends Instrument {
    * @inheritDoc
    */
   generatePath(note) {
-    const set  = Instrument.normalizeSet(note.pitchClass, note.classSet)
-    const file = `${set}${note.octave}`
-
-    return `${Instrument.server}${Cord.instrumentPath}/${this.cordNumber}/${file}.mp3`
+    return `${Instrument.server}${Instrument.instrumentPath}/${this.cordNumber}/${note}.mp3`
   }
 
   /**

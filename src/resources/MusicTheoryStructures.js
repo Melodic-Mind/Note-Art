@@ -56,44 +56,34 @@ export class MusicTheoryStructures {
    * @type {object}
    */
   static intervals = {
-    U:    0,
-    m2:   1,
-    M2:   2,
-    m3:   3,
-    M3:   4,
-    P4:   5,
+    U: 0,
+    m2: 1,
+    M2: 2,
+    m3: 3,
+    M3: 4,
+    P4: 5,
     aug4: 6,
     dim5: 6,
-    P5:   7,
-    m6:   8,
-    M6:   9,
-    m7:   10,
-    M7:   11,
-    P8:   12,
+    P5: 7,
+    m6: 8,
+    M6: 9,
+    m7: 10,
+    M7: 11,
+    P8: 12,
   }
 
-  static noteDurations(backwards = false) {
-    return backwards ?
-           {
-             64: '1',
-             32: '2n',
-             16: '4n',
-             8:  '8n',
-             4:  '16n',
-             2:  '32n',
-             1:  '64n',
-           }
-                     :
-           {
-             '1n':  64,
-             '2n':  32,
-             '4n':  16,
-             '8n':  8,
-             '16n': 4,
-             '32n': 2,
-             '64n': 1,
-           }
-
+  static noteDurations() {
+    return {
+      '1n': 64,
+      '2n': 32,
+      '2n.': 48,
+      '2t': 21,
+      '4n': 16,
+      '8n': 8,
+      '16n': 4,
+      '32n': 2,
+      '64n': 1,
+    }
   }
 
   /**

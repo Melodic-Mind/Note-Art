@@ -82,7 +82,6 @@ export default class ScoreHandler {
    * @return {Score}
    */
   static objectToScore(scoreObject) {
-
     const score = new Score({
       timeSignature: scoreObject.timeSignature,
       bpm:           scoreObject.bpm,

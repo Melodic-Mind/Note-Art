@@ -6,8 +6,8 @@ import {
   Chord,
   PitchClass,
   spellScale,
-  Scale,
-}                     from '../../src'
+  Scale, extractOctave, extractPitchClass,
+} from '../../src'
 import {InvalidInput} from '../../src/Exceptions'
 
 describe('Music addon functions', () => {
@@ -64,6 +64,20 @@ describe('Music addon functions', () => {
         const stub  = ['Db', 'Ebb', 'Fbb', 'G', 'A', 'Bb', 'C']
         expect(spellScale(scale)).to.eql(stub)
       })
+    })
+  })
+
+  describe('#extractOctave', () => {
+    it('returns the octave of a raw note', () => {
+      expect(extractOctave('c5')).to.equal('5')
+      expect(extractOctave('ebb4')).to.equal('4')
+    })
+  })
+
+  describe('#extractPitchClass', () => {
+    it('returns the pitch class of a raw note', () => {
+      expect(extractPitchClass('c5')).to.equal('c')
+      expect(extractPitchClass('ebb4')).to.equal('ebb')
     })
   })
 })

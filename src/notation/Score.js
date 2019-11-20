@@ -27,9 +27,9 @@ export default class Score {
     }
 
     const reducedTimeSig = (timeSignature[0] / timeSignature[1]) * 4
-    const bitLength      = mts.noteDurations()[`${timeSignature[1]}n`]
+    const beatLength      = mts.noteDurations()[`${timeSignature[1]}n`]
 
-    return reducedTimeSig * bitLength * timeSignature[1] / 4
+    return reducedTimeSig * beatLength * timeSignature[1] / 4
   }
 
   /**
@@ -37,6 +37,7 @@ export default class Score {
    * @param timeSignature
    */
   setTimeSignature(timeSignature) {
+
     this.measureSize   = Score.getMeasureSize(timeSignature)
     this.timeSignature = timeSignature
   }

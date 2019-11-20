@@ -6,9 +6,9 @@ import Instrument from '../instruments/Instrument'
  * @extends Instrument
  */
 export default class Piano extends Instrument {
-  constructor(base = 'A0', range = 87) {
+  constructor() {
     super()
-    this.init(base, range)
+    this.init()
   }
 
   static get name() {
@@ -17,10 +17,7 @@ export default class Piano extends Instrument {
 
   /** @inheritDoc */
   generatePath(note) {
-    const set  = Instrument.normalizeSet(note.pitchClass, note.classSet)
-    const file = `${set}${note.octave}`
-
-    return `${Instrument.server}${Piano.instrumentPath}/${file}.mp3`
+    return `${Instrument.server}${Instrument.instrumentPath}/${note}.mp3`
   }
 
 
