@@ -1,6 +1,6 @@
-import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
-import {InvalidInput}                 from '../Exceptions'
-import {PitchClass}                   from '../theory'
+import { MusicTheoryStructures as mts } from '../resources/MusicTheoryStructures';
+import { InvalidInput } from '../Exceptions';
+import { PitchClass } from '../theory';
 
 /**
  * @classdesc Rules for validating a pitchClass
@@ -14,43 +14,46 @@ export default class PitchClassRule {
    * @returns {boolean}
    */
   static exists(str) {
-    const [letter, accidental] = str
+    const [letter, accidental] = str;
     if (!PitchClassRule.validLetters.includes(letter)) {
-      return false
+      return false;
     }
 
-    if (accidental) {
-      if (accidental === 'b') {
+    switch (accidental) {
+      case 'b':
         if (![...str].slice(2).every(char => char === 'b')) {
-          return false
+          return false;
         }
-      } else if (accidental === 'x') {
+        break;
+
+      case 'x':
         if (![...str].slice(2, str.length - 1).every(char => char === 'x')) {
-          return false
+          return false;
         }
         if (!['x', '#'].includes(str[str.length - 1])) {
-          return false
+          return false;
         }
-      }
-      else {
-        if(str.length > 2){
-          return false
+        break;
+
+      case '#':
+        if (str.length > 2) {
+          return false;
         }
-      }
+        break;
     }
 
-    return true
+    return true;
   }
 
   static get validLetters() {
-    return mts.pitchClassLetters.concat(mts.pitchClassLetters.map(letter => letter.toLowerCase()))
+    return mts.pitchClassLetters.concat(mts.pitchClassLetters.map(letter => letter.toLowerCase()));
   }
 
   static isPitchClass(obj) {
     if (!PitchClass.isPitchClass(obj)) {
-      throw new InvalidInput(`expected ${obj} to be an instance of PitchClass`)
+      throw new InvalidInput(`expected ${obj} to be an instance of PitchClass`);
     }
 
-    return true
+    return true;
   }
 }

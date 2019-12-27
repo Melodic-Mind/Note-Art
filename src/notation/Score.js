@@ -10,9 +10,10 @@ import {DurationRule}                 from '../validation'
  * @param {string} [attributes.name=my_score] Name for the score.
  */
 export default class Score {
-  constructor({bpm = 100, timeSignature = [4, 4], name = 'my_score'} = {}) {
+  constructor({bpm = 100, timeSignature = [4, 4], name = 'my_score', numberOfVoices = 1} = {}) {
     this.setTimeSignature(timeSignature)
-    this.attributes = {name, bpm, duration: '4n', voices: [[new Measure(this.measureSize)]]}
+    const voices = new Array(numberOfVoices).fill([new Measure(this.measureSize)])
+    this.attributes = {name, bpm, duration: '4n', voices}
   }
 
   /**

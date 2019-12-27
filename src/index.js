@@ -2,11 +2,9 @@ import {lib} from './Lib'
 
 export *                       from './utilities'
 export *                       from './theory'
-// export *                       from './instruments'
 export *                       from './notation'
 export *                       from './validation'
 export {MusicTheoryStructures} from './resources/MusicTheoryStructures'
-// export ScorePlayer             from './transport/ScorePlayer'
 export {lib}
 
 //@todo add good docs using vuepress - like this:
