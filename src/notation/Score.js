@@ -1,4 +1,4 @@
-import {Constants } from 'resources/Constants'
+import {Constants } from '../resources/Constants'
 import Measure            from './Measure'
 import {DurationRule}     from '../validation'
 import {longestArray}     from '../utilities/GeneralFunctions'

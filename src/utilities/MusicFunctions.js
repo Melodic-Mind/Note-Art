@@ -1,4 +1,4 @@
-import {Constants }                             from 'resources/Constants'
+import {Constants }                             from '../resources/Constants'
 import {Note, PitchClass}                             from '../theory'
 import {firstToUpper, fitArrayToSize, rearrangeArray} from '../utilities'
 import {validateRawNote, PitchClassRule}              from '../validation'

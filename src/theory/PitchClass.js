@@ -1,6 +1,6 @@
 import {firstToUpper}            from '../utilities'
 import {PitchClassRule}          from '../validation'
-import {Constants }        from 'resources/Constants'
+import {Constants }        from '../resources/Constants'
 import {InvalidInput}            from '../Exceptions'
 import ModelHelper               from '../utilities/ModelHelper'
 import RawHelper                 from '../utilities/RawHelper'

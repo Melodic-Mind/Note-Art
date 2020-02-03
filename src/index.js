@@ -4,7 +4,7 @@ export *                       from './utilities'
 export *                       from './theory'
 export *                       from './notation'
 export *                       from './validation'
-export {Constants} from 'resources/Constants'
+export {Constants} from './resources/Constants'
 export {lib}
 
 //@todo add good docs using vuepress - like this:

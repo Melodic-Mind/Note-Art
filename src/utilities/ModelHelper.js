@@ -1,7 +1,7 @@
 import {Note, PitchClass}                                                  from '../theory'
 import {rearrangeArray, mapString, calculateInterval, occurrencesInString} from '../utilities'
 import {validateNumber, validatePitchClasses}                              from '../validation'
-import {Constants }                                                  from 'resources/Constants'
+import {Constants }                                                  from '../resources/Constants'
 import {NUMBER_OF_PITCH_CLASSES}                                           from '../Constants'
 
 export default class ModelHelper {

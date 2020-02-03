@@ -1,4 +1,4 @@
-import {Constants } from 'resources/Constants'
+import {Constants } from '../resources/Constants'
 
 /**
  * Validate duration.

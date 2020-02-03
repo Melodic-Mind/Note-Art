@@ -1,5 +1,5 @@
 import PitchClass                 from './PitchClass'
-import {Constants }         from 'resources/Constants'
+import {Constants }         from '../resources/Constants'
 import {freqToMidi, noteToObject} from '../utilities'
 import {validateNumber}           from '../validation'
 

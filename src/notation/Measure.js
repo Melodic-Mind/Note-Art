@@ -1,5 +1,5 @@
 import {firstToUpper, transpose, isRawNote} from '../utilities'
-import {Constants }                   from 'resources/Constants'
+import {Constants }                   from '../resources/Constants'
 import {validateArray}                      from '../validation'
 
 /**
