@@ -1,9 +1,9 @@
 /**
- * @class MusicTheoryStructures
+ * @class Constants
  * @classdesc Contains music theory structures and databases
  * e.g pitch classes, interval names, scales and more.
  */
-export class MusicTheoryStructures {
+export class Constants {
   /**
    * The raw pitch classes using sharps.
    * @type {Array}
@@ -20,10 +20,10 @@ export class MusicTheoryStructures {
 
   static getPitchClassSet(set) {
     if (set === '#') {
-      return MusicTheoryStructures.sharpClassNotes
+      return Constants.sharpClassNotes
     }
     if (set === 'b') {
-      return MusicTheoryStructures.flatClassNotes
+      return Constants.flatClassNotes
     }
     return null
   }

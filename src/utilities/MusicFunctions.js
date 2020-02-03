@@ -1,4 +1,4 @@
-import {MusicTheoryStructures as mts}                 from '../resources/MusicTheoryStructures'
+import {Constants }                             from 'resources/Constants'
 import {Note, PitchClass}                             from '../theory'
 import {firstToUpper, fitArrayToSize, rearrangeArray} from '../utilities'
 import {validateRawNote, PitchClassRule}              from '../validation'
@@ -85,7 +85,7 @@ export function notesInRange(baseNote, range) {
   let tmpPitchClass
 
   for (let i = 0; i <= range; ++i) {
-    tmpPitchClass = mts.flatClassNotes[(mts.flatClassNotes.indexOf(pitchClass) + i) % 12]
+    tmpPitchClass = Constants.flatClassNotes[(Constants.flatClassNotes.indexOf(pitchClass) + i) % 12]
 
     notes[tmpPitchClass + octave] = {pitchClass: tmpPitchClass, octave}
 
@@ -113,7 +113,7 @@ export function noteDurationInSeconds() {
 }
 
 export function spellScale(scale) {
-  const letters = rearrangeArray(mts.pitchClassLetters, mts.pitchClassLetters.indexOf(scale.root.pitchClass[0]))
+  const letters = rearrangeArray(Constants.pitchClassLetters, Constants.pitchClassLetters.indexOf(scale.root.pitchClass[0]))
   const res     = [scale.root.pitchClass];
   [...scale.pitchClasses].slice(1).forEach((pc, i) => {
     res.push(ModelHelper.enharmonicPitchClass(pc, new PitchClass(letters[i + 1])))

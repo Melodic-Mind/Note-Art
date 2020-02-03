@@ -1,6 +1,6 @@
-import { MusicTheoryStructures as mts } from '../resources/MusicTheoryStructures';
-import { InvalidInput } from '../Exceptions';
-import { PitchClass } from '../theory';
+import { Constants  } from 'resources/Constants';
+import { InvalidInput }     from '../Exceptions';
+import { PitchClass }       from '../theory';
 
 /**
  * @classdesc Rules for validating a pitchClass
@@ -46,7 +46,7 @@ export default class PitchClassRule {
   }
 
   static get validLetters() {
-    return mts.pitchClassLetters.concat(mts.pitchClassLetters.map(letter => letter.toLowerCase()));
+    return Constants.pitchClassLetters.concat(Constants.pitchClassLetters.map(letter => letter.toLowerCase()));
   }
 
   static isPitchClass(obj) {

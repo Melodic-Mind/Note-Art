@@ -1,7 +1,7 @@
 import {Note, PitchClass}                                                  from '../theory'
 import {rearrangeArray, mapString, calculateInterval, occurrencesInString} from '../utilities'
 import {validateNumber, validatePitchClasses}                              from '../validation'
-import {MusicTheoryStructures as mts}                                      from '../resources/MusicTheoryStructures'
+import {Constants }                                                  from 'resources/Constants'
 import {NUMBER_OF_PITCH_CLASSES}                                           from '../Constants'
 
 export default class ModelHelper {
@@ -80,14 +80,14 @@ export default class ModelHelper {
       case '#':
         return !['E', 'B'].includes(pitchLetter) ?
                pc.raw :
-               mts.sharpClassNotes[(mts.sharpClassNotes.indexOf(pitchLetter) + 1) % 12]
+               Constants.sharpClassNotes[(Constants.sharpClassNotes.indexOf(pitchLetter) + 1) % 12]
 
       case 'x':
         times = occurrencesInString(pc.raw, 'x') * 2
         if (pc.raw[pc.raw.length - 1] === '#') {
           ++times
         }
-        return mts.sharpClassNotes[(mts.sharpClassNotes.indexOf(pitchLetter) + times) % NUMBER_OF_PITCH_CLASSES]
+        return Constants.sharpClassNotes[(Constants.sharpClassNotes.indexOf(pitchLetter) + times) % NUMBER_OF_PITCH_CLASSES]
 
       case 'b':
         if (!['C', 'F'].includes(pitchLetter) && pc.raw.length === 2) {
@@ -95,9 +95,9 @@ export default class ModelHelper {
         }
 
         times               = occurrencesInString(pc.raw, 'b')
-        const index         = mts.flatClassNotes.indexOf(pitchLetter) - times
+        const index         = Constants.flatClassNotes.indexOf(pitchLetter) - times
         const accurateIndex = index >= 0 ? index : NUMBER_OF_PITCH_CLASSES + index
-        return mts.flatClassNotes[(accurateIndex) % NUMBER_OF_PITCH_CLASSES]
+        return Constants.flatClassNotes[(accurateIndex) % NUMBER_OF_PITCH_CLASSES]
 
       default:
         return pitchLetter

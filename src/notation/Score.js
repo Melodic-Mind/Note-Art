@@ -1,7 +1,7 @@
-import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
-import Measure                        from './Measure'
-import {DurationRule}                 from '../validation'
-import {longestArray}                 from '../utilities/GeneralFunctions'
+import {Constants } from 'resources/Constants'
+import Measure            from './Measure'
+import {DurationRule}     from '../validation'
+import {longestArray}     from '../utilities/GeneralFunctions'
 
 /**
  * @class Score
@@ -32,7 +32,7 @@ export default class Score {
     }
 
     const reducedTimeSig = (timeSignature[0] / timeSignature[1]) * 4
-    const beatLength     = mts.noteDurations[`${timeSignature[1]}n`]
+    const beatLength     = Constants.noteDurations[`${timeSignature[1]}n`]
 
     return reducedTimeSig * beatLength * timeSignature[1] / 4
   }

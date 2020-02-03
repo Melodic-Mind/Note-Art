@@ -46,7 +46,7 @@ declare namespace NoteArt {
 
     }
 
-    export class MusicTheoryStructures {
+    export class Constants {
 
     }
 

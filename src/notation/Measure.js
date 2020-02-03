@@ -1,5 +1,5 @@
 import {firstToUpper, transpose, isRawNote} from '../utilities'
-import {MusicTheoryStructures as mts}       from '../resources/MusicTheoryStructures'
+import {Constants }                   from 'resources/Constants'
 import {validateArray}                      from '../validation'
 
 /**
@@ -38,7 +38,7 @@ export default class Measure {
    * @param {string} duration
    */
   set duration(duration) {
-    if (Object.keys(mts.noteDurations).includes(duration)) {
+    if (Object.keys(Constants.noteDurations).includes(duration)) {
       this.attributes.duration = duration
     }
   }
@@ -74,7 +74,7 @@ export default class Measure {
     return this.maxDuration - this.data.slice(0, position)
                                   .reduce((prev, curr) => {
                                     return curr.notes.size ?
-                                           prev + mts.noteDurations[curr.duration] : prev + 0
+                                           prev + Constants.noteDurations[curr.duration] : prev + 0
                                   }, 0)
   }
 
@@ -100,7 +100,7 @@ export default class Measure {
     return !(
         position > this.data.length
         ||
-        mts.noteDurations[duration] > this.durationLeft(position) + duration
+        Constants.noteDurations[duration] > this.durationLeft(position) + duration
     )
   }
 
@@ -207,7 +207,7 @@ export default class Measure {
    * @returns {boolean}
    */
   isFull(duration) {
-    return !(mts.noteDurations[duration] <= this.durationLeft())
+    return !(Constants.noteDurations[duration] <= this.durationLeft())
   }
 
   /**

@@ -1,5 +1,5 @@
 import {SEMITONE, NUMBER_OF_PITCH_CLASSES, PITCH_STANDARD} from '../Constants'
-import {MusicTheoryStructures as mts}                      from '../resources/MusicTheoryStructures'
+import {Constants }                                  from 'resources/Constants'
 
 /**
  * Calculate the frequency of a note by its octave and index out of all notes(c, c#, etc...).
@@ -7,7 +7,7 @@ import {MusicTheoryStructures as mts}                      from '../resources/Mu
  */
 export function freqFromPitch(pitch) {
   const oct = pitch.octave - PITCH_STANDARD.octave //calculate octave difference
-  return Math.pow(SEMITONE, pitch.classIndex - mts.flatClassNotes.indexOf(PITCH_STANDARD.pitchClass) + oct * NUMBER_OF_PITCH_CLASSES) * PITCH_STANDARD.frequency
+  return Math.pow(SEMITONE, pitch.classIndex - Constants.flatClassNotes.indexOf(PITCH_STANDARD.pitchClass) + oct * NUMBER_OF_PITCH_CLASSES) * PITCH_STANDARD.frequency
 }
 
 /**
