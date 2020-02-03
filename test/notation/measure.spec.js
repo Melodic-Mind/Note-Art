@@ -136,10 +136,6 @@ describe('Measure', () => {
       expect(measure.addChord({notes: ['c3', 'e3', 'g3'], name: 'C M', duration: '4n'}, 0)).to.be.true
       expect(measure.data[0].name).to.equal('C M')
     })
-
-    it('should return false when the measure is full or the name is not sent', () => {
-      expect(measure.addChord({notes: ['c3', 'e3'], duration: '8n'}, 0)).to.be.false
-    })
   })
 
   describe('#deleteMember', () => {
@@ -215,6 +211,12 @@ describe('Measure', () => {
       expect(measure.data[0].notes.has('C3')).to.be.true
       measure.clear()
       expect(measure.data[0].notes.has('C3')).to.be.false
+    })
+  })
+
+  describe('#length', () => {
+    it('should return the length as the number of sixteenth notes in a measure', () => {
+
     })
   })
 })

@@ -1,5 +1,6 @@
 import {
   firstToUpper, twoDigitFormat, PitchClass, validateInstance, switchMembers, rearrangeArray, mapString, fitArrayToSize,
+  longestArray
 }                     from '../../src'
 import {InvalidInput} from '../../src/Exceptions'
 
@@ -43,6 +44,21 @@ describe('general-functions', () => {
 
     it('should cut the array length when the size is smaller', () => {
       expect(fitArrayToSize(['a', 'b'], 1)).to.eql(['a'])
+    })
+  })
+
+  describe('#longestArray', () => {
+    it('returns the longest array out of a matrix', () => {
+      const stub = [[1,2,3],[1,2],[1,2,3,4,5]]
+      expect(longestArray(stub)).to.eql(stub[2])
+    })
+
+    it('throws an error when input is not matrix', () => {
+      expect(() => longestArray('NOT MATRIX')).to.throw(InvalidInput)
+    })
+
+    it('throws an error when one of the matrix elements is not an array', () => {
+      expect(() => longestArray([[1,2]['omg']])).to.throw(InvalidInput)
     })
   })
 })

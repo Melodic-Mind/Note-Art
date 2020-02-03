@@ -14,6 +14,11 @@ import {InvalidInput}   from '../Exceptions'
  * const C_Maj = new Chord(c, [4, 7]) // new C major chord.
  */
 export default class Chord extends MusicalPattern {
+  /**
+   * Applies an inversion to a chord.
+   * @param {number} type
+   * @returns {Array}
+   */
   inversion(type) {
     if (type > 0 && type <= this.pitchClasses.length) {
       return rearrangeArray(this.pitchClasses, type)

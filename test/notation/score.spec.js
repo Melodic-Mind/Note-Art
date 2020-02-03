@@ -21,6 +21,20 @@ describe('Score', () => {
     })
   })
 
+  describe.skip('#length', () => {
+    it('should return 1 for a new score with 1 measure', () => {
+      score.addMeasure(0)
+      expect(score.length).to.equal('1m')
+    })
+
+    it('should return the length of the longest voice', () => {
+      score.addVoice(1)
+      score.addMeasure(0, 1)
+      score.addMeasure(1, 1)
+      expect(score.length).to.equal('2m')
+    })
+  })
+
   describe('attributes', () => {
     it('should have a time signature property that defaults to 4:4', () => {
       expect(score.timeSignature).to.be.eql([4, 4])
@@ -44,8 +58,8 @@ describe('Score', () => {
       expect(score.bpm).to.eql(100)
     })
 
-    it('should initialize with one empty measure', () => {
-      expect(new Score().voices[0].length).to.equal(1)
+    it('should initialize with no measures', () => {
+      expect(new Score().voices[0].length).to.equal(0)
     })
 
     it('name attribute', () => {
@@ -57,6 +71,7 @@ describe('Score', () => {
 
   describe('#setMeasureDuration', () => {
     it('should set the duration property of a measure when it exists', () => {
+      score.addMeasure(0)
       score.duration = '8n'
       score.setMeasureDuration(0)
       expect(score.getMeasure(0).duration).to.equal('8n')
@@ -99,6 +114,7 @@ describe('Score', () => {
 
   describe('#addMeasure', () => {
     it('should add a measure at the end of the score when no position arg is sent', () => {
+      score.addMeasure(0)
       const measure = score.getMeasure(0)
       score.addMeasure()
       expect(score.getMeasure(1)).to.not.equal(measure)
@@ -134,6 +150,7 @@ describe('Score', () => {
 
   describe('#cloneMeasure', () => {
     it('should clone the measure at the position and make its index position + 1', () => {
+      score.addMeasure()
       const stub = sinon.stub(score.getMeasure(0), 'clone')
       score.cloneMeasure(0)
       expect(stub).to.have.been.calledOnce
@@ -147,6 +164,7 @@ describe('Score', () => {
 
   describe('#addNote', () => {
     it('should add notes to the measure when it exists', () => {
+      score.addMeasure()
       const spy = sinon.spy(score.getMeasure(0), 'addNote')
       expect(score.addNote({note: 'C3'}, 0, 0)).to.be.true
       expect(spy).to.have.been.calledOnce
@@ -164,6 +182,7 @@ describe('Score', () => {
 
   describe('#addNotes', () => {
     it('should throw an error when it doesn\'t get a note array props', () => {
+      score.addMeasure()
       const spy = sinon.spy(score.getMeasure(0), 'addNotes')
       score.addNotes({notes: ['C3', 'E3']}, 0, 0)
       expect(spy).to.have.been.calledOnce
@@ -181,6 +200,7 @@ describe('Score', () => {
 
   describe('#deleteNote', () => {
     it('deletes the note at the position from the measure', () => {
+      score.addMeasure()
       score.addMeasure()
       const stub = sinon.stub(score.getMeasure(1), 'deleteNote').returns(true)
       expect(score.addNote({note: 'C3'}, 0, 1)).to.be.true
@@ -200,6 +220,7 @@ describe('Score', () => {
 
   describe('#deleteNotes', () => {
     it('should delete notes from a measure that exists in the score', () => {
+      score.addMeasure()
       const spy = sinon.spy(score.getMeasure(0), 'deleteNotes')
       expect(score.addNotes({notes: ['c3', 'g3']}, 0, 0)).to.be.true
       expect(score.deleteNotes(['c3', 'g3'], 0, 0)).to.be.true
@@ -254,6 +275,7 @@ describe('Score', () => {
 
   describe('#clearMeasure', () => {
     it('should clear a measure from all data', () => {
+      score.addMeasure()
       expect(score.addNote({note: 'C3'}, 0, 0)).to.be.true
       expect(score.clearMeasure(0)).to.be.true
       expect(score.getMeasure(0).data[0].notes.size).to.equal(0)
@@ -266,6 +288,7 @@ describe('Score', () => {
 
   describe('#transpose', () => {
     it('should transpose all measures', () => {
+      score.addMeasure()
       score.addMeasure()
       const spy1 = sinon.spy(score.getMeasure(0), 'transpose')
       const spy2 = sinon.spy(score.getMeasure(1), 'transpose')

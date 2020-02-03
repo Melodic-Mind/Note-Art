@@ -3,6 +3,8 @@
  * @param {String} str String to transform
  * @returns {String}
  */
+import {InvalidInput} from '../Exceptions'
+
 export function firstToUpper(str) {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
@@ -57,7 +59,8 @@ export function rearrangeArray([...array], index) {
  */
 export function mapString(str, toMap, mapTo) {
   while (str.includes(toMap)) {
-    for (let i = 0; i < str.length; ++i) {
+    const length = str.length
+    for (let i = 0; i < length; ++i) {
       if (str.substr(i, toMap.length) === toMap) {
         str = `${str.slice(0, i)}${mapTo}${str.slice(i + toMap.length)}`
         break
@@ -78,9 +81,27 @@ export function occurrencesInString(string, subString) {
   return string.split(subString).length - 1
 }
 
+/**
+ * Fills an array with it's own elements to fit a certain size.
+ * @param arr The array to fit.
+ * @param size The new size.
+ * @returns {Array}
+ */
 export function fitArrayToSize([...arr], size) {
   while (arr.length<size){
     arr = arr.concat([...arr])
   }
   return arr.slice(0, size)
+}
+
+/**
+ * Returns the longest array from an array of arrays.
+ * @param matrix Array of arrays
+ * @returns {Array}
+ */
+export function longestArray(matrix) {
+  if(!Array.isArray(matrix) || !matrix.every(arr => Array.isArray(arr))){
+    throw new InvalidInput(`Expected ${matrix} and each of it's elements to be an array`)
+  }
+  return matrix.reduce((a, b) => (a.length > b.length ? a : b),[]);
 }

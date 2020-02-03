@@ -22,7 +22,7 @@ export default class ModelHelper {
    * Returns an array of notes that represent a chord played on a piano in a certain octave.
    * @param {Array} {pitchClasses} Array of pitch classes.
    * @param {number} octave Octave for the chord root.
-   * @param {number} inversion Whhether to invert the chord. 0 - root position, 1 - 1st inversion, 2 - 2nd inversion,
+   * @param {number} inversion Whether to invert the chord. 0 - root position, 1 - 1st inversion, 2 - 2nd inversion,
    *     etc...
    * @returns {Array}
    */

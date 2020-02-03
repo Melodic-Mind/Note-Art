@@ -16,19 +16,12 @@ import MusicalPattern                  from './MusicalPattern'
  */
 export default class Scale extends MusicalPattern {
   /**
-   * Returns an array of chords(triads) where each member is the chord at the degree where 0 is the root chord.
+   * Returns an array of chords where each member is the chord at the degree where 0 is the root chord.
+   * @param {boolean} [seventh=false] Whether to return seventh chords or triads.
    * @type {Array}
    */
-  get chords() {
-    return this.pitchClasses.map((pitchClass, degree) => this.chord(degree + 1, 3))
-  }
-
-  /**
-   * Returns an array of chords(seventh) where each member is the chord at the degree where 0 is the root chord.
-   * @type {Array}
-   */
-  get seventhChords() {
-    return this.pitchClasses.map((pitchClass, degree) => this.chord(degree + 1, 4))
+  chords(seventh = false) {
+    return this.pitchClasses.map((pitchClass, degree) => this.chord(degree + 1, seventh ? 4 : 3))
   }
 
   /**

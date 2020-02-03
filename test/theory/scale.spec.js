@@ -41,7 +41,7 @@ describe('Scale', () => {
         new Chord(new PitchClass('a'), [3, 7]),
         new Chord(new PitchClass('b'), [3, 6]),
       ]
-      expect(C_Major.chords).to.eql(stub)
+      expect(C_Major.chords()).to.eql(stub)
     })
   })
 
@@ -56,7 +56,7 @@ describe('Scale', () => {
         new Chord(new PitchClass('a'), [3, 7, 10]),
         new Chord(new PitchClass('b'), [3, 6, 10]),
       ]
-      expect(C_Major.seventhChords).to.eql(stub)
+      expect(C_Major.chords(true)).to.eql(stub)
     })
   })
 

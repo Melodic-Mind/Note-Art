@@ -89,6 +89,9 @@ export default class ScoreHandler {
     })
 
     scoreObject.voices.forEach((voice, voiceIndex) => {
+      if (voiceIndex) {
+        score.addVoice(voiceIndex)
+      }
       voice.forEach((measureObject, measureIndex) => {
         if (measureObject.data[0].notes.length) {
           score.addMeasure(measureIndex, voiceIndex, this.objectToMeasure(measureObject))
@@ -97,5 +100,9 @@ export default class ScoreHandler {
     })
 
     return score
+  }
+
+  static cloneScore(score) {
+    return this.objectToScore(this.scoreToObject(score))
   }
 }

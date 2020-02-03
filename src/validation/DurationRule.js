@@ -5,6 +5,6 @@ import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
  */
 export default class DurationRule {
   static validate(duration) {
-    return Object.keys(mts.noteDurations()).includes(duration)
+    return Object.keys(mts.noteDurations).includes(duration)
   }
 }

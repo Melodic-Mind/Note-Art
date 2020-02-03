@@ -38,7 +38,7 @@ export default class Measure {
    * @param {string} duration
    */
   set duration(duration) {
-    if (Object.keys(mts.noteDurations()).includes(duration)) {
+    if (Object.keys(mts.noteDurations).includes(duration)) {
       this.attributes.duration = duration
     }
   }
@@ -51,6 +51,10 @@ export default class Measure {
    */
   get maxDuration() {
     return this.attributes.maxDuration
+  }
+
+  get length(){
+
   }
 
   /**
@@ -70,7 +74,7 @@ export default class Measure {
     return this.maxDuration - this.data.slice(0, position)
                                   .reduce((prev, curr) => {
                                     return curr.notes.size ?
-                                           prev + mts.noteDurations()[curr.duration] : prev + 0
+                                           prev + mts.noteDurations[curr.duration] : prev + 0
                                   }, 0)
   }
 
@@ -96,7 +100,7 @@ export default class Measure {
     return !(
         position > this.data.length
         ||
-        mts.noteDurations()[duration] > this.durationLeft(position) + duration
+        mts.noteDurations[duration] > this.durationLeft(position) + duration
     )
   }
 
@@ -109,7 +113,7 @@ export default class Measure {
    */
   addNote({note, duration}, position) {
     this.duration = duration
-    if(isRawNote(note)){
+    if (isRawNote(note)) {
       note = firstToUpper(note)
     }
     if (this.validateInsertion(position + 1)) {
@@ -148,8 +152,8 @@ export default class Measure {
    *      duration: '4n'
    *      }, 0)      // Adds a C major chord at the start of the measure.
    */
-  addChord({notes, name, duration}, position) {
-    if (name && this.validateInsertion(position + 1)) {
+  addChord({notes, name = '?', duration}, position) {
+    if (this.validateInsertion(position + 1)) {
       this.data[position].name = name
       return this.addNotes({notes, duration}, position)
     }
@@ -203,7 +207,7 @@ export default class Measure {
    * @returns {boolean}
    */
   isFull(duration) {
-    return !(mts.noteDurations()[duration] <= this.durationLeft())
+    return !(mts.noteDurations[duration] <= this.durationLeft())
   }
 
   /**

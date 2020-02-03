@@ -1,6 +1,7 @@
 import {MusicTheoryStructures as mts} from '../resources/MusicTheoryStructures'
 import Measure                        from './Measure'
 import {DurationRule}                 from '../validation'
+import {longestArray}                 from '../utilities/GeneralFunctions'
 
 /**
  * @class Score
@@ -12,7 +13,10 @@ import {DurationRule}                 from '../validation'
 export default class Score {
   constructor({bpm = 100, timeSignature = [4, 4], name = 'my_score', numberOfVoices = 1} = {}) {
     this.setTimeSignature(timeSignature)
-    const voices = new Array(numberOfVoices).fill([new Measure(this.measureSize)])
+    const voices = []
+    for (let i = 0; i < numberOfVoices; ++i) {
+      voices.push([])
+    }
     this.attributes = {name, bpm, duration: '4n', voices}
   }
 
@@ -28,7 +32,7 @@ export default class Score {
     }
 
     const reducedTimeSig = (timeSignature[0] / timeSignature[1]) * 4
-    const beatLength      = mts.noteDurations()[`${timeSignature[1]}n`]
+    const beatLength     = mts.noteDurations[`${timeSignature[1]}n`]
 
     return reducedTimeSig * beatLength * timeSignature[1] / 4
   }
@@ -38,7 +42,6 @@ export default class Score {
    * @param timeSignature
    */
   setTimeSignature(timeSignature) {
-
     this.measureSize   = Score.getMeasureSize(timeSignature)
     this.timeSignature = timeSignature
   }
@@ -102,6 +105,13 @@ export default class Score {
     return this.attributes.voices
   }
 
+  get length() {
+    let longestVoice = longestArray(this.voices)
+    const measure = Math.max(...this.voices.map(voice => voice.length))
+    // const
+    return `${longestVoice}m`
+  }
+
   /**
    * Sets the duration for a measure.
    * @param {number} measureIndex The measure index to set the duration to.
@@ -130,15 +140,18 @@ export default class Score {
     return false
   }
 
+  getVoiceDuration(index = 0){
+    const m = this.voices[index].length
+  }
+
   /**
    * Adds a voice to the score.
    *
    * @param {number} position Position to add the voice in the score to.
    * @param {Array} [voice=false] An array of measures, defaults to an array with one empty measure.
    */
-  addVoice(position, voice = false) {
-    voice = voice || [new Measure()]
-    this.voices.splice(position, 0, voice)
+  addVoice(position, voice) {
+    this.voices.splice(position, 0, voice || [])
   }
 
   /**
