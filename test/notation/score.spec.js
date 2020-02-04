@@ -4,6 +4,7 @@ describe('Score', () => {
   let score
   beforeEach(() => {
     score = new Score()
+    score.addMeasure()
   })
 
   describe('#getMeasureSize', () => {
@@ -21,17 +22,16 @@ describe('Score', () => {
     })
   })
 
-  describe.skip('#length', () => {
-    it('should return 1 for a new score with 1 measure', () => {
-      score.addMeasure(0)
-      expect(score.length).to.equal('1m')
+  describe('#length', () => {
+    it('should return the correct length', () => {
+      expect(score.length).to.equal('0:0:4')
     })
 
     it('should return the length of the longest voice', () => {
       score.addVoice(1)
       score.addMeasure(0, 1)
       score.addMeasure(1, 1)
-      expect(score.length).to.equal('2m')
+      expect(score.length).to.equal('1:0:4')
     })
   })
 
@@ -71,7 +71,6 @@ describe('Score', () => {
 
   describe('#setMeasureDuration', () => {
     it('should set the duration property of a measure when it exists', () => {
-      score.addMeasure(0)
       score.duration = '8n'
       score.setMeasureDuration(0)
       expect(score.getMeasure(0).duration).to.equal('8n')
@@ -114,7 +113,6 @@ describe('Score', () => {
 
   describe('#addMeasure', () => {
     it('should add a measure at the end of the score when no position arg is sent', () => {
-      score.addMeasure(0)
       const measure = score.getMeasure(0)
       score.addMeasure()
       expect(score.getMeasure(1)).to.not.equal(measure)
@@ -136,7 +134,6 @@ describe('Score', () => {
   describe('#deleteMeasure', () => {
     it('should remove the measure at the position', () => {
       score.addMeasure()
-      score.addMeasure()
       const measures       = score.getVoice(0).slice(0, 2)
       const deletedMeasure = score.getVoice(0)[2]
       expect(score.deleteMeasure(2)[0]).to.equal(deletedMeasure)
@@ -150,7 +147,6 @@ describe('Score', () => {
 
   describe('#cloneMeasure', () => {
     it('should clone the measure at the position and make its index position + 1', () => {
-      score.addMeasure()
       const stub = sinon.stub(score.getMeasure(0), 'clone')
       score.cloneMeasure(0)
       expect(stub).to.have.been.calledOnce
@@ -164,7 +160,6 @@ describe('Score', () => {
 
   describe('#addNote', () => {
     it('should add notes to the measure when it exists', () => {
-      score.addMeasure()
       const spy = sinon.spy(score.getMeasure(0), 'addNote')
       expect(score.addNote({note: 'C3'}, 0, 0)).to.be.true
       expect(spy).to.have.been.calledOnce
@@ -182,7 +177,6 @@ describe('Score', () => {
 
   describe('#addNotes', () => {
     it('should throw an error when it doesn\'t get a note array props', () => {
-      score.addMeasure()
       const spy = sinon.spy(score.getMeasure(0), 'addNotes')
       score.addNotes({notes: ['C3', 'E3']}, 0, 0)
       expect(spy).to.have.been.calledOnce
@@ -200,7 +194,6 @@ describe('Score', () => {
 
   describe('#deleteNote', () => {
     it('deletes the note at the position from the measure', () => {
-      score.addMeasure()
       score.addMeasure()
       const stub = sinon.stub(score.getMeasure(1), 'deleteNote').returns(true)
       expect(score.addNote({note: 'C3'}, 0, 1)).to.be.true
@@ -243,7 +236,6 @@ describe('Score', () => {
     })
 
     it('should return false when the chord is not added', () => {
-      score.addMeasure(0)
       const stub = sinon.stub(score.getMeasure(0), 'addChord').returns(false)
       expect(score.addChord({}, 0, 0)).to.be.false
       expect(stub).to.have.been.calledOnce
@@ -253,7 +245,6 @@ describe('Score', () => {
 
   describe('#deleteMember', () => {
     it('should call the deleteMember funtion on the specified measure', () => {
-      score.addMeasure(0)
       const stub = sinon.stub(score.getMeasure(0), 'deleteMember').returns(true)
       expect(score.deleteMember(0, 0)).to.be.true
       expect(stub).to.have.been.calledOnce
@@ -261,7 +252,6 @@ describe('Score', () => {
     })
 
     it('should return false when the chord is not added inside the measure process', () => {
-      score.addMeasure(0)
       const stub = sinon.stub(score.getMeasure(0), 'deleteMember').returns(false)
       expect(score.deleteMember(0, 0)).to.be.false
       expect(stub).to.have.been.calledOnce
@@ -275,7 +265,6 @@ describe('Score', () => {
 
   describe('#clearMeasure', () => {
     it('should clear a measure from all data', () => {
-      score.addMeasure()
       expect(score.addNote({note: 'C3'}, 0, 0)).to.be.true
       expect(score.clearMeasure(0)).to.be.true
       expect(score.getMeasure(0).data[0].notes.size).to.equal(0)
@@ -288,7 +277,6 @@ describe('Score', () => {
 
   describe('#transpose', () => {
     it('should transpose all measures', () => {
-      score.addMeasure()
       score.addMeasure()
       const spy1 = sinon.spy(score.getMeasure(0), 'transpose')
       const spy2 = sinon.spy(score.getMeasure(1), 'transpose')

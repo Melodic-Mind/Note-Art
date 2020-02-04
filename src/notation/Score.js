@@ -107,9 +107,7 @@ export default class Score {
 
   get length() {
     let longestVoice = longestArray(this.voices)
-    const measure = Math.max(...this.voices.map(voice => voice.length))
-    // const
-    return `${longestVoice}m`
+    return `${longestVoice.length-1}:0:${longestVoice[longestVoice.length-1].length}`
   }
 
   /**

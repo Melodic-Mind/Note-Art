@@ -1,4 +1,4 @@
-import {Chord, Measure} from '../../src'
+import { Measure} from '../../src'
 
 import {InvalidInput} from '../../src/Exceptions'
 
@@ -216,7 +216,9 @@ describe('Measure', () => {
 
   describe('#length', () => {
     it('should return the length as the number of sixteenth notes in a measure', () => {
-
+      expect(measure.length).to.eql(4)
+      measure.addNote({note: 'c3', duration: '4n'}, 0)
+      expect(measure.length).to.eql(8)
     })
   })
 })

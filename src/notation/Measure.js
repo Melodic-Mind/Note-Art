@@ -1,5 +1,5 @@
 import {firstToUpper, transpose, isRawNote} from '../utilities'
-import {Constants }                   from '../resources/Constants'
+import {Constants}                          from '../resources/Constants'
 import {validateArray}                      from '../validation'
 
 /**
@@ -53,8 +53,10 @@ export default class Measure {
     return this.attributes.maxDuration
   }
 
-  get length(){
-
+  get length() {
+    let sn = 0
+    this.data.forEach(({duration}) => sn += Constants.noteDurations[duration])
+    return sn / 4
   }
 
   /**
