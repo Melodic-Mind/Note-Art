@@ -53,6 +53,10 @@ export default class Measure {
     return this.attributes.maxDuration
   }
 
+  /**
+   * Returns the number of sixteenth notes in the measure.
+   * @returns {number}
+   */
   get length() {
     return this.data.reduce((acc, {duration}) => acc + Constants.noteDurations[duration], 0) / 4
   }
