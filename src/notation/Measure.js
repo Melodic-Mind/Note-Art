@@ -54,9 +54,7 @@ export default class Measure {
   }
 
   get length() {
-    let sn = 0
-    this.data.forEach(({duration}) => sn += Constants.noteDurations[duration])
-    return sn / 4
+    return this.data.reduce((acc, {duration}) => acc + Constants.noteDurations[duration], 0) / 4
   }
 
   /**
