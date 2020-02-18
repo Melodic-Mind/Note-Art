@@ -93,9 +93,7 @@ export default class ScoreHandler {
         score.addVoice(voiceIndex)
       }
       voice.forEach((measureObject, measureIndex) => {
-        if (measureObject.data[0].notes.length) {
-          score.addMeasure(measureIndex, voiceIndex, this.objectToMeasure(measureObject))
-        }
+        score.addMeasure(measureIndex, voiceIndex, this.objectToMeasure(measureObject))
       })
     })
 

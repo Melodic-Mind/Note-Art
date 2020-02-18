@@ -157,7 +157,7 @@ export default class Measure {
    *      }, 0)      // Adds a C major chord at the start of the measure.
    */
   addChord({notes, name = '?', duration}, position) {
-    if (this.validateInsertion(position + 1)) {
+    if (this.validateInsertion(position + 1, duration)) {
       this.data[position].name = name
       return this.addNotes({notes, duration}, position)
     }

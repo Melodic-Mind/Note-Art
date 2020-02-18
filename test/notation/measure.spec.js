@@ -1,4 +1,4 @@
-import { Measure} from '../../src'
+import {Measure} from '../../src'
 
 import {InvalidInput} from '../../src/Exceptions'
 
@@ -123,7 +123,7 @@ describe('Measure', () => {
       expect(() => {measure.deleteNotes('BAD INPUT', 0)}).to.throw(InvalidInput)
     })
 
-    it('should return false when of the notes does not exist', () => {
+    it('should return false when the notes do not exist', () => {
       measure.addNotes({notes: ['c3', 'e3']}, 0)
       expect(measure.data[0].notes.has('C3')).to.be.true
       expect(measure.data[0].notes.has('E3')).to.be.true
@@ -135,6 +135,16 @@ describe('Measure', () => {
     it('should add all the notes in the chord to the note set and add the chord name to the name of the member', () => {
       expect(measure.addChord({notes: ['c3', 'e3', 'g3'], name: 'C M', duration: '4n'}, 0)).to.be.true
       expect(measure.data[0].name).to.equal('C M')
+    })
+
+    it('chord name defaults to ? when not sent', () => {
+      expect(measure.addChord({notes: ['c3', 'e3', 'g3'], duration: '4n'}, 0)).to.be.true
+      expect(measure.data[0].name).to.equal('?')
+    })
+
+    it('should return false when the measure if too full', () => {
+      expect(measure.addChord({notes: ['c3', 'e3', 'g3'], name: 'C M', duration: '1n'}, 0)).to.be.true
+      expect(measure.addChord({notes: ['c3', 'e3', 'g3'], name: 'C M', duration: '1n'}, 1)).to.be.false
     })
   })
 

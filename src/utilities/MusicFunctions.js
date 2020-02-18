@@ -1,8 +1,8 @@
-import {Constants }                             from '../resources/Constants'
-import {Note, PitchClass}                             from '../theory'
-import {firstToUpper, fitArrayToSize, rearrangeArray} from '../utilities'
-import {validateRawNote, PitchClassRule}              from '../validation'
-import ModelHelper                                    from './ModelHelper'
+import {Constants}                       from '../resources/Constants'
+import {Note, PitchClass}                from '../theory'
+import {firstToUpper, rearrangeArray}    from '../utilities'
+import {validateRawNote, PitchClassRule} from '../validation'
+import ModelHelper                       from './ModelHelper'
 
 /**
  * Calculate the pure interval between 2 pitch classes.
@@ -95,21 +95,6 @@ export function notesInRange(baseNote, range) {
   }
 
   return notes
-}
-
-export function getNoteDurations(bpm, note) {
-  // const time = parseFloat((note.end - note.start).toFixed(4))
-  const q = 60/bpm
-
-
-}
-
-function extractQuarterNoteInSecondsFromTimeSignature() {
-
-}
-
-export function noteDurationInSeconds() {
-
 }
 
 export function spellScale(scale) {

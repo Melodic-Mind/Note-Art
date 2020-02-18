@@ -33,6 +33,11 @@ describe('Score', () => {
       score.addMeasure(1, 1)
       expect(score.length).to.equal('1:0:4')
     })
+
+    it('returns 0 when the score is empty', () => {
+      score = new Score()
+      expect(score.length).to.equal(0)
+    })
   })
 
   describe('attributes', () => {
@@ -134,9 +139,9 @@ describe('Score', () => {
   describe('#deleteMeasure', () => {
     it('should remove the measure at the position', () => {
       score.addMeasure()
-      const measures       = score.getVoice(0).slice(0, 2)
-      const deletedMeasure = score.getVoice(0)[2]
-      expect(score.deleteMeasure(2)[0]).to.equal(deletedMeasure)
+      const measures       = score.getVoice(0).slice(0, 1)
+      const deletedMeasure = score.getVoice(0)[1]
+      expect(score.deleteMeasure(1)[0]).to.equal(deletedMeasure)
       expect(measures).to.eql(score.getVoice())
     })
 

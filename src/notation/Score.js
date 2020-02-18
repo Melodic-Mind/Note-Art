@@ -1,7 +1,7 @@
-import {Constants } from '../resources/Constants'
-import Measure            from './Measure'
-import {DurationRule}     from '../validation'
-import {longestArray}     from '../utilities/GeneralFunctions'
+import {Constants}    from '../resources/Constants'
+import Measure        from './Measure'
+import {DurationRule} from '../validation'
+import {longestArray} from '../utilities/GeneralFunctions'
 
 /**
  * @class Score
@@ -107,7 +107,8 @@ export default class Score {
 
   get length() {
     let longestVoice = longestArray(this.voices)
-    return `${longestVoice.length-1}:0:${longestVoice[longestVoice.length-1].length}`
+    return longestVoice.length ?
+           `${longestVoice.length - 1}:0:${longestVoice[longestVoice.length - 1].length}` : 0
   }
 
   /**
@@ -136,10 +137,6 @@ export default class Score {
     }
 
     return false
-  }
-
-  getVoiceDuration(index = 0){
-    const m = this.voices[index].length
   }
 
   /**
