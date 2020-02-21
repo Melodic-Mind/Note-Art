@@ -1,5 +1,5 @@
 export * from './GeneralFunctions'
 export * from './MusicFunctions'
 export * from './ScientificFunctions'
-export ModelHelper from './ModelHelper'
-export RawHelper from './RawHelper'
+export {default as ModelHelper} from './ModelHelper'
+export {default as RawHelper} from './RawHelper'

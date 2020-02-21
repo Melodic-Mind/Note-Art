@@ -22,28 +22,10 @@ const sidebarTree = (title = 'About') => ({
             ],
         },
         {
-            'title':       'instruments',
-            'collapsable': true,
-            'children':    [
-                'instruments/Instrument',
-                'instruments/Piano',
-                'instruments/Drumset',
-                'instruments/Cord',
-                'instruments/Guitar',
-            ],
-        },
-        {
             'title':       'resources',
             'collapsable': true,
             'children':    [
-                'resources/MusicTheoryStructures',
-            ],
-        },
-        {
-            'title':       'transport',
-            'collapsable': true,
-            'children':    [
-                'transport/ScorePlayer',
+                'resources/Constants',
             ],
         },
         {
@@ -53,6 +35,8 @@ const sidebarTree = (title = 'About') => ({
                 'utilities/ScientificFunctions',
                 'utilities/MusicFunctions',
                 'utilities/GeneralFunctions',
+                'utilities/ModelHelper',
+                'utilities/RawHelper',
             ],
         },
     ],

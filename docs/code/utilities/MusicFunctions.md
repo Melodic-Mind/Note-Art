@@ -16,11 +16,23 @@ title: MusicFunctions
 <dt><a href="#isRest">isRest(note)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Returns true if a note is a rest, else false.</p>
 </dd>
-<dt><a href="#transposeRawNote">transposeRawNote(note, interval)</a> ⇒ <code>string</code> | <code>*</code></dt>
+<dt><a href="#isRawNote">isRawNote(str)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Checks if a string represents a raw musical note.</p>
+</dd>
+<dt><a href="#transpose">transpose(note, interval)</a> ⇒ <code>string</code> | <code>*</code></dt>
 <dd><p>Transpose a raw note by interval.</p>
 </dd>
-<dt><a href="#notesInRange">notesInRange(baseNote, range)</a></dt>
+<dt><a href="#notesInRange">notesInRange(baseNote, range)</a> ⇒ <code>Array</code></dt>
 <dd><p>Returns an object where the keys are raw notes and their value is an instance of that note.</p>
+</dd>
+<dt><a href="#spellScale">spellScale(scale)</a> ⇒ <code>Array</code></dt>
+<dd><p>Returns a correctly spelled scale where no pitch class appears more than once.</p>
+</dd>
+<dt><a href="#extractOctave">extractOctave(rawNote)</a> ⇒ <code>*</code></dt>
+<dd><p>Returns the octave from a raw note.</p>
+</dd>
+<dt><a href="#extractPitchClass">extractPitchClass(rawNote)</a> ⇒ <code>*</code></dt>
+<dd><p>Returns the pitch class from a raw note.</p>
 </dd>
 </dl>
 
@@ -58,21 +70,32 @@ Returns true if a note is a rest, else false.
 | --- | --- | --- |
 | note | <code>string</code> | Raw note. |
 
-<a name="transposeRawNote"></a>
+<a name="isRawNote"></a>
 
-## transposeRawNote(note, interval) ⇒ <code>string</code> \| <code>\*</code>
+## isRawNote(str) ⇒ <code>boolean</code>
+Checks if a string represents a raw musical note.
+
+**Kind**: global function  
+
+| Param |
+| --- |
+| str | 
+
+<a name="transpose"></a>
+
+## transpose(note, interval) ⇒ <code>string</code> \| <code>\*</code>
 Transpose a raw note by interval.
 
 **Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| note | <code>string</code> | Raw note. |
+| note | <code>string</code> | either pitch class or note as string. |
 | interval | <code>number</code> | Interval to transpose by. |
 
 <a name="notesInRange"></a>
 
-## notesInRange(baseNote, range)
+## notesInRange(baseNote, range) ⇒ <code>Array</code>
 Returns an object where the keys are raw notes and their value is an instance of that note.
 
 **Kind**: global function  
@@ -81,4 +104,37 @@ Returns an object where the keys are raw notes and their value is an instance of
 | --- | --- |
 | baseNote | <code>string</code> | 
 | range | <code>number</code> | 
+
+<a name="spellScale"></a>
+
+## spellScale(scale) ⇒ <code>Array</code>
+Returns a correctly spelled scale where no pitch class appears more than once.
+
+**Kind**: global function  
+
+| Param |
+| --- |
+| scale | 
+
+<a name="extractOctave"></a>
+
+## extractOctave(rawNote) ⇒ <code>\*</code>
+Returns the octave from a raw note.
+
+**Kind**: global function  
+
+| Param |
+| --- |
+| rawNote | 
+
+<a name="extractPitchClass"></a>
+
+## extractPitchClass(rawNote) ⇒ <code>\*</code>
+Returns the pitch class from a raw note.
+
+**Kind**: global function  
+
+| Param |
+| --- |
+| rawNote | 
 

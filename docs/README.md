@@ -5,9 +5,9 @@ actionLink: /code/index
 features:
 - title: Simple & Intuitive
   details: Create Notes, Chord, Scales and more easily.
-- title: Play different instruments
-  details: Note-Art loads instrument audio-files from a server and can play any note, currently supports only piano.
-- title: Easily schedule notes to play anything
-  details: Uses ToneJS to take advantage of the Web-Audio-API to schedule perfectly without delays.
-footer: MIT Licensed | Copyright © 2019 Sean Dvir
+- title: Create scores using music composition logic
+  details: Note-Art has a music notation api that works like writing music sheets.
+- title: Easily integrate with other music libraries to play music in the browser
+  details: You can use libraries like ToneJS to easily play scales, chords and even scores you create with Note-Art.
+footer: MIT Licensed | Copyright © 2020 Sean Dvir
 ---

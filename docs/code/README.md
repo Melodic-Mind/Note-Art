@@ -1,30 +1,44 @@
 ### Welcome to the Note-Art API!
 
-#### Disclaimer
-I still work on this library intensively,and even though it can already be used for tons of use-cases, there's much more to do.
+> Music is a highly versatile art that originates in nature, and has been taken up by mankind as a way of expression and also as an art.
+> Now, it's going to be taken up by machines as well.
 <br>
-If anything is unclear or you have any questions dont hesitate to ask.
-<br>If you want to help check out the help & contribute section in the repo. 
+
+## Table of Contents
+
+* [About the Project](#about)
+* [Features](#features)
+* [Getting Started](#getting-started)
+  * [Usage](#usage)
+  
+* [Contribute and Support](#contribute-and-support)
+* [Todo](#todo)
+* [Contact](#contact)
+* [License](#license)
+
+
+## About
+
+* Designed to be simple and intuitive.
+* Use this library to create tools for musicians, research music theory, just create some fun music with programming and much more! 
 
 ## Features
-1. Create Notes, Chords, Scales and more, and extract information from them.
-2. Create full musical scores with multiple instruments.
-3. Play music right away using built in Instruments (or easily create your own).
+1. Create Notes, Chords, Scales and more, manipulate and extract information from them.
+2. Create full musical scores with multiple instruments.(Only theoretically)
+* You can use awesome libraries like ToneJS to play audio and schedule music in the browser.
 
 ## Getting Started
 One of the things that make note-art so awesome & easy to use is the way 
-it was designed, music models, instruments and the notation system 
+it was designed, musical models, and the notation system 
 are not tightly coupled and do not rely on each other to work.<br>
-That means you can easily create instruments and music scores and play them
-without ever needing to understand how the music models work, or
+That means you can easily create music scores
+without ever needing to understand how the musical models work, or
 you can even create your own way of interacting with the notation API 
 which is super intuitive and simple.
 <br>
 <br>
 
-To Start create a new node project(or go to an existing one).
-<br>
-install note-art -
+Installation:
 ``` bash
 npm install note-art
 ```
@@ -69,48 +83,12 @@ console.log(A_Major.pitchClasses) // C, D, E, F, G, A, B
 ```
 <br>
 
-#### Instruments
-The instruments are literal instruments that have a range of notes they can play.
-In order to save bandwidth usage, you have to load each note specifically to play it.
-
-For example, if you want to initially load only 2 octaves you can use the [notesInRange](https://note-art-docs.netlify.com/code/utilities/MusicFunctions.html#notesInRange)
-function to get the notes and load them, and later dynamically load more notes if needed.
-```
-import {Piano} from 'note-art'
-
-const piano = new Piano() // defaults to A0, 87 to create 88 keys.
-piano.load('c3', 'path/to/file').then(() => { // Load the file.
-    piano.play('c3') // C3 note is played!
-})
-```
-<br>
-
 #### Notation
 The notation api is more complex so check out the api, or the demo source code to see an example of using it.
 
 <br>
 
-##### Important!!
-
-*When playing audio, make sure to resume the audio context on user interaction, and also wait for all the buffers to load:*
-```
-import {lib} from 'note-art'
-
-lib.get('tone').context.resume() // Resume context
-lib.get('ready')    // True when all buffers have loaded
-```
-
-<br>
-
-Set the path to your desired location which can be local or on a remote server.
-You are welcome to use my server, hosted on heroku and has piano, guitar and drum sounds.
-```
-lib.set('path', () => {
-    return 'https://note-art-server.herokuapp.com/audio/' // the path to my server
-        // Now every call to loadFile for any instrument will default to that server/instrument_name/note_name.mp3
-        // e.g 'https://note-art-server.herokuapp.com/audio/piano/C3.mp3'
-})
-```
+Check out the [API](https://note-art-docs.netlify.com/) for more.
 
 ## Contribute and Support :pray:
 * Make a [pull request :avocado:](https://github.com/Seanitzel/Note-Art).
@@ -125,13 +103,15 @@ lib.set('path', () => {
 * Support me on [patreon](https://www.patreon.com/Seanitzel).
 * Download my app on the google play store - [Scale Heaven](https://play.google.com/store/apps/details?id=com.scales.scaleheaven) - **which can generate and play any scale in the history of mankind** on google play (and press the banner once in a while ;)).
 
+## Todo:
+* Create base music models - pitch class, note, chord, etc... :heavy_check_mark: 
+
+* Implement Music notation. :heavy_check_mark: 
+
 ## Contact
 Sean Dvir - [seandvir12@gmail.com](seandvir12@gmail.com) - [@seanitzel](https://twitter.com/seanitzel) <br>
 
 Your welcome to mail me your ideas and recommendations!<br>
-
-## Credits
-[Tone JS](https://tonejs.github.io/) - I used this awesome framework which wraps the web audio API for all audio handling and scheduling.
 
 ## License
 Note-Art uses the MIT license, check out the license tab for more information.

@@ -29,6 +29,9 @@ object has a set of notes and the duration for those notes.</p>
 <dd><p>Returns the maximum sum of durations for the measure as a number,
 where each unit is 1/64 bit.</p>
 </dd>
+<dt><a href="#length">length</a> ⇒ <code>number</code></dt>
+<dd><p>Returns the number of sixteenth notes in the measure.</p>
+</dd>
 </dl>
 
 ## Functions
@@ -124,6 +127,12 @@ where each unit is 1/64 bit.
 
 **Kind**: global variable  
 **Read only**: true  
+<a name="length"></a>
+
+## length ⇒ <code>number</code>
+Returns the number of sixteenth notes in the measure.
+
+**Kind**: global variable  
 <a name="clone"></a>
 
 ## clone() ⇒ [<code>Measure</code>](#Measure)
