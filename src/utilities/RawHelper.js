@@ -1,6 +1,9 @@
 import ModelHelper  from './ModelHelper'
 import {PitchClass} from '../theory'
 
+/**
+ * A wrapper for the ModelHelper class for manipulations from and to strings that represent music.
+ */
 export default class RawHelper extends ModelHelper {
   /**
    * Returns an array of raw notes with a specific octave.

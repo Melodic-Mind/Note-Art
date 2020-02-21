@@ -1,3 +1,4 @@
+
 /**
  * @class Constants
  * @classdesc Contains music theory structures and databases

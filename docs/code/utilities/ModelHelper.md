@@ -44,7 +44,7 @@ Returns an array of notes that represent a chord played on a piano in a certain 
 | --- | --- | --- |
 | {pitchClasses} | <code>Array</code> | Array of pitch classes. |
 | octave | <code>number</code> | Octave for the chord root. |
-| inversion | <code>number</code> | Whhether to invert the chord. 0 - root position, 1 - 1st inversion, 2 - 2nd inversion,     etc... |
+| inversion | <code>number</code> | Whether to invert the chord. 0 - root position, 1 - 1st inversion, 2 - 2nd inversion,     etc... |
 
 <a name="enharmonicPitchClass"></a>
 

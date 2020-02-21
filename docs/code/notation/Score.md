@@ -36,6 +36,10 @@ title: Score
 <dt><a href="#voices">voices</a> ⇒ <code>Array</code></dt>
 <dd><p>Returns an array of voices where each voice represents an instrument.</p>
 </dd>
+<dt><a href="#length">length</a> ⇒ <code>0</code> | <code>string</code></dt>
+<dd><p>Returns the length of the score as the length if it&#39;s longest voice.
+The format is &#39;MM:QQ:SS&#39; - Measures:Quarter-notes:Sixteenth-notes</p>
+</dd>
 </dl>
 
 ## Functions
@@ -80,6 +84,9 @@ If the voice doesn&#39;t exist it returns false.</p>
 </dd>
 <dt><a href="#deleteNotes">deleteNotes(notes, position, measureIndex, [voiceIndex])</a> ⇒ <code>boolean</code></dt>
 <dd><p>Delete notes from a measure in one of the voices.</p>
+</dd>
+<dt><a href="#deleteMember">deleteMember(position, measure, voice)</a> ⇒ <code>*</code> | <code>boolean</code> | <code>boolean</code></dt>
+<dd><p>Deletes</p>
 </dd>
 <dt><a href="#clearMeasure">clearMeasure(measureIndex, [voiceIndex])</a> ⇒ <code>boolean</code></dt>
 <dd><p>Clears a measure.</p>
@@ -166,6 +173,13 @@ Set the score's BPM value.
 
 ## voices ⇒ <code>Array</code>
 Returns an array of voices where each voice represents an instrument.
+
+**Kind**: global variable  
+<a name="length"></a>
+
+## length ⇒ <code>0</code> \| <code>string</code>
+Returns the length of the score as the length if it's longest voice.
+The format is 'MM:QQ:SS' - Measures:Quarter-notes:Sixteenth-notes
 
 **Kind**: global variable  
 <a name="getMeasureSize"></a>
@@ -343,6 +357,19 @@ Delete notes from a measure in one of the voices.
 | position | <code>number</code> |  | Position in the measure to add the notes to. |
 | measureIndex | <code>number</code> |  | The index of the measure to add the notes to. |
 | [voiceIndex] | <code>number</code> | <code>0</code> | The index of the voice to add the notes to. |
+
+<a name="deleteMember"></a>
+
+## deleteMember(position, measure, voice) ⇒ <code>\*</code> \| <code>boolean</code> \| <code>boolean</code>
+Deletes
+
+**Kind**: global function  
+
+| Param | Default |
+| --- | --- |
+| position |  | 
+| measure |  | 
+| voice | <code>0</code> | 
 
 <a name="clearMeasure"></a>
 

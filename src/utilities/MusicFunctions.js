@@ -39,6 +39,11 @@ export function isRest(str) {
   return ['r', 'R'].includes(str)
 }
 
+/**
+ * Checks if a string represents a raw musical note.
+ * @param str
+ * @returns {boolean}
+ */
 export function isRawNote(str) {
   if (typeof str !== 'string') {
     return false
@@ -78,6 +83,7 @@ export function transpose(note, interval) {
  * Returns an object where the keys are raw notes and their value is an instance of that note.
  * @param {string} baseNote
  * @param {number} range
+ * @returns {Array}
  */
 export function notesInRange(baseNote, range) {
   let {pitchClass, octave} = noteToObject(baseNote)
@@ -97,6 +103,11 @@ export function notesInRange(baseNote, range) {
   return notes
 }
 
+/**
+ * Returns a correctly spelled scale where no pitch class appears more than once.
+ * @param scale
+ * @returns {Array}
+ */
 export function spellScale(scale) {
   const letters = rearrangeArray(Constants.pitchClassLetters, Constants.pitchClassLetters.indexOf(scale.root.pitchClass[0]))
   const res     = [scale.root.pitchClass];
@@ -107,10 +118,20 @@ export function spellScale(scale) {
   return res
 }
 
+/**
+ * Returns the octave from a raw note.
+ * @param rawNote
+ * @returns {*}
+ */
 export function extractOctave(rawNote) {
   return rawNote[rawNote.length - 1]
 }
 
+/**
+ * Returns the pitch class from a raw note.
+ * @param rawNote
+ * @returns {*}
+ */
 export function extractPitchClass(rawNote) {
   return rawNote.slice(0, rawNote.length - 1)
 }

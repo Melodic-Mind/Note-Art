@@ -1,7 +1,7 @@
-import {Note, PitchClass}                                                  from '../theory'
+import {Note}                                                              from '../theory'
 import {rearrangeArray, mapString, calculateInterval, occurrencesInString} from '../utilities'
 import {validateNumber, validatePitchClasses}                              from '../validation'
-import {Constants }                                                  from '../resources/Constants'
+import {Constants}                                                         from '../resources/Constants'
 import {NUMBER_OF_PITCH_CLASSES}                                           from '../Constants'
 
 export default class ModelHelper {
@@ -75,7 +75,7 @@ export default class ModelHelper {
    */
   static transformPitchClass(pc) {
     const [pitchLetter, accidental] = pc.raw
-    let times
+    let times, index, accurateIndex
     switch (accidental) {
       case '#':
         return !['E', 'B'].includes(pitchLetter) ?
@@ -94,9 +94,9 @@ export default class ModelHelper {
           return pc.raw
         }
 
-        times               = occurrencesInString(pc.raw, 'b')
-        const index         = Constants.flatClassNotes.indexOf(pitchLetter) - times
-        const accurateIndex = index >= 0 ? index : NUMBER_OF_PITCH_CLASSES + index
+        times         = occurrencesInString(pc.raw, 'b')
+        index         = Constants.flatClassNotes.indexOf(pitchLetter) - times
+        accurateIndex = index >= 0 ? index : NUMBER_OF_PITCH_CLASSES + index
         return Constants.flatClassNotes[(accurateIndex) % NUMBER_OF_PITCH_CLASSES]
 
       default:

@@ -7,9 +7,6 @@ title: GeneralFunctions
 ## Functions
 
 <dl>
-<dt><a href="#firstToUpper">firstToUpper(str)</a> ⇒ <code>String</code></dt>
-<dd><p>Transforms the first letter of a string to upper case.</p>
-</dd>
 <dt><a href="#twoDigitFormat">twoDigitFormat(num)</a> ⇒ <code>Number</code></dt>
 <dd><p>Returns a number formatted to show only 2 digits after the decimal point.</p>
 </dd>
@@ -25,18 +22,13 @@ title: GeneralFunctions
 <dt><a href="#occurrencesInString">occurrencesInString(string, subString)</a> ⇒ <code>number</code></dt>
 <dd><p>Function that count occurrences of a substring in a string.</p>
 </dd>
+<dt><a href="#fitArrayToSize">fitArrayToSize(arr, size)</a> ⇒ <code>Array</code></dt>
+<dd><p>Fills an array with it&#39;s own elements to fit a certain size.</p>
+</dd>
+<dt><a href="#longestArray">longestArray(matrix)</a> ⇒ <code>Array</code></dt>
+<dd><p>Returns the longest array from an array of arrays.</p>
+</dd>
 </dl>
-
-<a name="firstToUpper"></a>
-
-## firstToUpper(str) ⇒ <code>String</code>
-Transforms the first letter of a string to upper case.
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| str | <code>String</code> | String to transform |
 
 <a name="twoDigitFormat"></a>
 
@@ -98,4 +90,27 @@ Function that count occurrences of a substring in a string.
 | --- | --- | --- |
 | string | <code>String</code> | The string |
 | subString | <code>String</code> | The sub string to search for |
+
+<a name="fitArrayToSize"></a>
+
+## fitArrayToSize(arr, size) ⇒ <code>Array</code>
+Fills an array with it's own elements to fit a certain size.
+
+**Kind**: global function  
+
+| Param | Description |
+| --- | --- |
+| arr | The array to fit. |
+| size | The new size. |
+
+<a name="longestArray"></a>
+
+## longestArray(matrix) ⇒ <code>Array</code>
+Returns the longest array from an array of arrays.
+
+**Kind**: global function  
+
+| Param | Description |
+| --- | --- |
+| matrix | Array of arrays |
 

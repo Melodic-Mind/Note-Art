@@ -13,20 +13,12 @@ title: Scale
 </dd>
 </dl>
 
-## Members
-
-<dl>
-<dt><a href="#chords">chords</a> : <code>Array</code></dt>
-<dd><p>Returns an array of chords(triads) where each member is the chord at the degree where 0 is the root chord.</p>
-</dd>
-<dt><a href="#seventhChords">seventhChords</a> : <code>Array</code></dt>
-<dd><p>Returns an array of chords(seventh) where each member is the chord at the degree where 0 is the root chord.</p>
-</dd>
-</dl>
-
 ## Functions
 
 <dl>
+<dt><a href="#chords">chords([seventh])</a> : <code>Array</code></dt>
+<dd><p>Returns an array of chords where each member is the chord at the degree where 0 is the root chord.</p>
+</dd>
 <dt><a href="#degree">degree(degree)</a> ⇒ <code>PitchClass</code></dt>
 <dd><p>Returns the degree inside the Scale.
 for example - if the Scale is a C Major,
@@ -62,16 +54,15 @@ const C_Major_by_pattern = new Scale(c, [0, 2, 4, 5, 7, 9, 11]) // new C major s
 ```
 <a name="chords"></a>
 
-## chords : <code>Array</code>
-Returns an array of chords(triads) where each member is the chord at the degree where 0 is the root chord.
+## chords([seventh]) : <code>Array</code>
+Returns an array of chords where each member is the chord at the degree where 0 is the root chord.
 
-**Kind**: global variable  
-<a name="seventhChords"></a>
+**Kind**: global function  
 
-## seventhChords : <code>Array</code>
-Returns an array of chords(seventh) where each member is the chord at the degree where 0 is the root chord.
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [seventh] | <code>boolean</code> | <code>false</code> | Whether to return seventh chords or triads. |
 
-**Kind**: global variable  
 <a name="degree"></a>
 
 ## degree(degree) ⇒ <code>PitchClass</code>

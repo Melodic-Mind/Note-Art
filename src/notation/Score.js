@@ -105,6 +105,11 @@ export default class Score {
     return this.attributes.voices
   }
 
+  /**
+   * Returns the length of the score as the length if it's longest voice.
+   * The format is 'MM:QQ:SS' - Measures:Quarter-notes:Sixteenth-notes
+   * @returns {0|string}
+   */
   get length() {
     let longestVoice = longestArray(this.voices)
     return longestVoice.length ?
@@ -132,11 +137,7 @@ export default class Score {
    * @returns {Array|false}
    */
   getVoice(index = 0) {
-    if (this.attributes.voices[index]) {
-      return this.attributes.voices[index]
-    }
-
-    return false
+    return this.attributes.voices[index] || false
   }
 
   /**
@@ -160,7 +161,7 @@ export default class Score {
       return this.voices.splice(index, 1)
     }
 
-    throw new Error('This score does not have a ${index} voice')
+    throw new Error(`This score does not have a ${index} voice`)
   }
 
   /**
@@ -234,17 +235,13 @@ export default class Score {
   }
 
   /**
-   * Private function to handle addition operations for code quality.
+   * Private function to handle addition operations.
    * @private
    */
   addOperation(method, data, position, measureIndex, voice) {
     const measure = this.getMeasure(measureIndex, voice)
 
-    if (measure) {
-      return measure[method](data, position)
-    }
-
-    return false
+    return measure ? measure[method](data, position) : false
   }
 
   /**
@@ -272,23 +269,24 @@ export default class Score {
   }
 
   /**
-   * Private function to handle deletion operations for code quality.
+   * Private function to handle deletion operations.
    * @private
    */
   deleteOperation(operation, data, position, measure, voice) {
-    if (this.getMeasure(measure, voice)) {
-      return this.getMeasure(measure, voice)[operation](data, position)
-    }
-
-    return false
+    const m = this.getMeasure(measure, voice)
+    return m ? m[operation](data, position) : false
   }
 
+  /**
+   * Deletes
+   * @param position
+   * @param measure
+   * @param voice
+   * @returns {*|boolean|boolean}
+   */
   deleteMember(position, measure, voice = 0) {
-    if (this.getMeasure(measure, voice)) {
-      return this.getMeasure(measure, voice).deleteMember(position)
-    }
-
-    return false
+    const m = this.getMeasure(measure, voice)
+    return m ? m.deleteMember(position) : false
   }
 
   /**
@@ -298,11 +296,8 @@ export default class Score {
    * @returns {boolean}
    */
   clearMeasure(measureIndex, voiceIndex = 0) {
-    if (this.getMeasure(measureIndex, voiceIndex)) {
-      return this.getMeasure(measureIndex, voiceIndex).clear()
-    }
-
-    return false
+    const m = this.getMeasure(measureIndex, voiceIndex)
+    return m ? m.clear() : false
   }
 
   /**
@@ -326,8 +321,9 @@ export default class Score {
    * @returns {boolean}
    */
   cloneMeasure(measureIndex, voiceIndex = 0) {
-    if (this.getMeasure(measureIndex, voiceIndex)) {
-      const clone = this.getMeasure(measureIndex, voiceIndex).clone()
+    const m = this.getMeasure(measureIndex, voiceIndex)
+    if (m) {
+      const clone = m.clone()
       this.voices[voiceIndex].splice(measureIndex, 0, clone)
       return true
     }
