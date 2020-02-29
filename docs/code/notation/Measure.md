@@ -8,7 +8,7 @@ title: Measure
 
 <dl>
 <dt><a href="#Measure">Measure</a></dt>
-<dd><p>Represents a single measure as part of a musical score in musical notation.</p>
+<dd><p>Represents a single measure as part of a musical score in musical notation.ds</p>
 </dd>
 </dl>
 
@@ -40,7 +40,7 @@ where each unit is 1/64 bit.</p>
 <dt><a href="#clone">clone()</a> ⇒ <code><a href="#Measure">Measure</a></code></dt>
 <dd><p>Returns a deep clone of the measure.</p>
 </dd>
-<dt><a href="#durationLeft">durationLeft([position])</a> ⇒ <code>number</code></dt>
+<dt><a href="#durationLeft">durationLeft(position)</a> ⇒ <code>number</code></dt>
 <dd><p>Returns the duration left for notes in the measure.</p>
 </dd>
 <dt><a href="#initNext">initNext(position)</a></dt>
@@ -50,10 +50,10 @@ Should not be called as it&#39;s called automatically when needed.</p>
 <dt><a href="#validateInsertion">validateInsertion(position, duration)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Checks whether a new data member can be added at a certain position in the measure.</p>
 </dd>
-<dt><a href="#addNote">addNote(position)</a> ⇒ <code>boolean</code></dt>
+<dt><a href="#addNote">addNote(data, position)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Adds a note to the measure at some position.</p>
 </dd>
-<dt><a href="#addNotes">addNotes(notes, [duration], position)</a> ⇒ <code>*</code></dt>
+<dt><a href="#addNotes">addNotes(notes, duration, position)</a> ⇒ <code>*</code></dt>
 <dd><p>Adds notes to the note set at the position.</p>
 </dd>
 <dt><a href="#addChord">addChord(notes, name, duration, position)</a> ⇒ <code>boolean</code></dt>
@@ -84,16 +84,16 @@ and initializes a new data member with the measure&#39;s duration.</p>
 <a name="Measure"></a>
 
 ## Measure
-Represents a single measure as part of a musical score in musical notation.
+Represents a single measure as part of a musical score in musical notation.ds
 
 **Kind**: global class  
 <a name="new_Measure_new"></a>
 
-### new Measure([maxDuration])
+### new Measure(maxDuration)
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [maxDuration] | <code>Number</code> | <code>0</code> | Max duration of the measure(determined by time signature) |
+| maxDuration | <code>Number</code> | <code>0</code> | Max duration of the measure(determined by time signature) |
 
 <a name="data"></a>
 
@@ -141,14 +141,14 @@ Returns a deep clone of the measure.
 **Kind**: global function  
 <a name="durationLeft"></a>
 
-## durationLeft([position]) ⇒ <code>number</code>
+## durationLeft(position) ⇒ <code>number</code>
 Returns the duration left for notes in the measure.
 
 **Kind**: global function  
 
 | Param | Type | Default |
 | --- | --- | --- |
-| [position] | <code>number</code> | <code>this.data.length</code> | 
+| position | <code>number</code> | <code>this.data.length</code> | 
 
 <a name="initNext"></a>
 
@@ -176,20 +176,21 @@ Checks whether a new data member can be added at a certain position in the measu
 
 <a name="addNote"></a>
 
-## addNote(position) ⇒ <code>boolean</code>
+## addNote(data, position) ⇒ <code>boolean</code>
 Adds a note to the measure at some position.
 
 **Kind**: global function  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
+| data | <code>Object</code> |  |  |
 | data.note | <code>string</code> |  | raw note representation. |
-| [data.duration] | <code>string</code> | <code>&quot;this.duration&quot;</code> |  |
+| data.duration | <code>string</code> | <code>&quot;this.duration&quot;</code> |  |
 | position | <code>number</code> |  | The position in the data to add the note to. |
 
 <a name="addNotes"></a>
 
-## addNotes(notes, [duration], position) ⇒ <code>\*</code>
+## addNotes(notes, duration, position) ⇒ <code>\*</code>
 Adds notes to the note set at the position.
 
 **Kind**: global function  
@@ -197,7 +198,7 @@ Adds notes to the note set at the position.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | notes | <code>Array</code> |  | An array of raw notes. |
-| [duration] | <code>string</code> | <code>&quot;this.duration&quot;</code> |  |
+| duration | <code>string</code> | <code>&quot;this.duration&quot;</code> |  |
 | position | <code>number</code> |  | The position in the data to add the notes to. |
 
 <a name="addChord"></a>

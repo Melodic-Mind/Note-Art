@@ -4,8 +4,8 @@ import {validateArray}                      from '../validation'
 
 /**
  * @class Measure
- * @classdesc Represents a single measure as part of a musical score in musical notation.
- * @param {Number} [maxDuration = 0] Max duration of the measure(determined by time signature)
+ * @classdesc Represents a single measure as part of a musical score in musical notation.ds
+ * @param {Number} maxDuration=0 Max duration of the measure(determined by time signature)
  */
 export default class Measure {
   constructor(maxDuration = 64) {
@@ -71,7 +71,7 @@ export default class Measure {
 
   /**
    * Returns the duration left for notes in the measure.
-   * @param {number} [position=this.data.length]
+   * @param {number} position=this.data.length
    * @returns {number}
    */
   durationLeft(position = this.data.length) {
@@ -110,8 +110,9 @@ export default class Measure {
 
   /**
    * Adds a note to the measure at some position.
+   * @param {Object} data
    * @param {string} data.note raw note representation.
-   * @param {string} [data.duration=this.duration]
+   * @param {string} data.duration=this.duration
    * @param {number} position The position in the data to add the note to.
    * @returns {boolean}
    */
@@ -132,7 +133,7 @@ export default class Measure {
   /**
    * Adds notes to the note set at the position.
    * @param {Array} notes An array of raw notes.
-   * @param {string} [duration=this.duration]
+   * @param {string} duration=this.duration
    * @param {number} position The position in the data to add the notes to.
    * @returns {*}
    */

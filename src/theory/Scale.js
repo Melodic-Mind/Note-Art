@@ -17,7 +17,7 @@ import MusicalPattern                  from './MusicalPattern'
 export default class Scale extends MusicalPattern {
   /**
    * Returns an array of chords where each member is the chord at the degree where 0 is the root chord.
-   * @param {boolean} [seventh=false] Whether to return seventh chords or triads.
+   * @param {boolean} seventh=false Whether to return seventh chords or triads.
    * @type {Array}
    */
   chords(seventh = false) {
@@ -45,7 +45,7 @@ export default class Scale extends MusicalPattern {
   /**
    * Returns the chord at the degree with size.
    * @param {number} degree Degree to get chord at.
-   * @param {number} [size=3] Number of pitch classes in the chord.
+   * @param {number} size=3 Number of pitch classes in the chord.
    * @returns {*}
    */
   chord(degree, size = 3) {

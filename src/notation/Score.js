@@ -6,9 +6,9 @@ import {longestArray} from '../utilities/GeneralFunctions'
 /**
  * @class Score
  * @classdesc Represents a full musical score consisting of a number of voices.
- * @param {number} [attributes.bpm=100] The bpm for the score.
- * @param {Array} [attributes.timeSignature=[4,4]] Time signature for the score.
- * @param {string} [attributes.name=my_score] Name for the score.
+ * @param {number} attributes.bpm=100 The bpm for the score.
+ * @param {Array} attributes.timeSignature=[4,4] Time signature for the score.
+ * @param {string} attributes.name=my_score Name for the score.
  */
 export default class Score {
   constructor({bpm = 100, timeSignature = [4, 4], name = 'my_score', numberOfVoices = 1} = {}) {
@@ -119,7 +119,7 @@ export default class Score {
   /**
    * Sets the duration for a measure.
    * @param {number} measureIndex The measure index to set the duration to.
-   * @param {number} [voiceIndex=0] The voice the measure belongs to.
+   * @param {number} voiceIndex=0 The voice the measure belongs to.
    */
   setMeasureDuration(measureIndex, voiceIndex = 0) {
     if (this.getMeasure(measureIndex, voiceIndex)) {
@@ -133,7 +133,7 @@ export default class Score {
   /**
    * Returns the voice at the index, starts from voice 0.
    * If the voice doesn't exist it returns false.
-   * @param {number} [index=1] The voice index.
+   * @param {number} index=1 The voice index.
    * @returns {Array|false}
    */
   getVoice(index = 0) {
@@ -144,7 +144,7 @@ export default class Score {
    * Adds a voice to the score.
    *
    * @param {number} position Position to add the voice in the score to.
-   * @param {Array} [voice=false] An array of measures, defaults to an array with one empty measure.
+   * @param {Array} voice=false An array of measures, defaults to an array with one empty measure.
    */
   addVoice(position, voice) {
     this.voices.splice(position, 0, voice || [])
@@ -167,7 +167,7 @@ export default class Score {
   /**
    * Returns a measure from a voice
    * @param {number} measureIndex The index of the measure.
-   * @param {number} [voiceIndex=0] The index of the voice that the measure belongs to.
+   * @param {number} voiceIndex=0 The index of the voice that the measure belongs to.
    */
   getMeasure(measureIndex, voiceIndex = 0) {
     return this.voices[voiceIndex][measureIndex]
@@ -176,8 +176,8 @@ export default class Score {
   /**
    * Add measure to a voice at an index.
    * @param {number} index Index to add the measure at.
-   * @param {number} [voiceIndex=0] The index of the voice.
-   * @param {Measure} [measure=null] Measure to add.
+   * @param {number} voiceIndex=0 The index of the voice.
+   * @param {Measure} measure=null Measure to add.
    */
   addMeasure(index, voiceIndex = 0, measure = null) {
     if (index === undefined) {
@@ -197,10 +197,10 @@ export default class Score {
   /**
    * Add a note to a measure in one of the voices.
    * @param {string} data.note Raw note.
-   * @param {string} [data.duration=measure.duration]
+   * @param {string} data.duration=measure.duration
    * @param {number} position Position in the measure to add the note to.
    * @param {number} measureIndex The index of the measure to add the note to.
-   * @param {number} [voiceIndex=0] The index of the voice to add the note to.
+   * @param {number} voiceIndex=0 The index of the voice to add the note to.
    * @returns {boolean}
    */
   addNote({note, duration}, position, measureIndex, voiceIndex = 0) {
@@ -213,7 +213,7 @@ export default class Score {
    * @param {obj.string} [duration=measure.duration]
    * @param {number} position Position in the measure to add the notes to.
    * @param {number} measureIndex The index of the measure to add the notes to.
-   * @param {number} [voiceIndex=0] The index of the voice to add the notes to.
+   * @param {number} voiceIndex=0 The index of the voice to add the notes to.
    * @returns {boolean}
    */
   addNotes({notes, duration}, position, measureIndex, voiceIndex = 0) {
@@ -227,7 +227,7 @@ export default class Score {
    * @param {obj.string} [duration=measure.duration]
    * @param {number} position Position in the measure to add the notes to.
    * @param {number} measureIndex The index of the measure to add the notes to.
-   * @param {number} [voiceIndex=0] The index of the voice to add the notes to.
+   * @param {number} voiceIndex=0 The index of the voice to add the notes to.
    * @returns {boolean}
    */
   addChord({notes, name, duration}, position, measureIndex, voiceIndex = 0) {
@@ -249,7 +249,7 @@ export default class Score {
    * @param {string} note Raw note.
    * @param {number} position Position in the measure to add the note to.
    * @param {number} measureIndex The index of the measure to add the note to.
-   * @param {number} [voiceIndex=0] The index of the voice to add the note to.
+   * @param {number} voiceIndex=0 The index of the voice to add the note to.
    * @returns {boolean}
    */
   deleteNote(note, position, measureIndex, voiceIndex = 0) {
@@ -261,7 +261,7 @@ export default class Score {
    * @param {Array} notes An array of raw note.
    * @param {number} position Position in the measure to add the notes to.
    * @param {number} measureIndex The index of the measure to add the notes to.
-   * @param {number} [voiceIndex=0] The index of the voice to add the notes to.
+   * @param {number} voiceIndex=0 The index of the voice to add the notes to.
    * @returns {boolean}
    */
   deleteNotes(notes, position, measureIndex, voiceIndex = 0) {
@@ -292,7 +292,7 @@ export default class Score {
   /**
    * Clears a measure.
    * @param {number} measureIndex The index of the measure to clear.
-   * @param {number} [voiceIndex=0] The index of the voice the measure belongs to.
+   * @param {number} voiceIndex=0 The index of the voice the measure belongs to.
    * @returns {boolean}
    */
   clearMeasure(measureIndex, voiceIndex = 0) {
@@ -303,7 +303,7 @@ export default class Score {
   /**
    * Deletes a measure.
    * @param {number} measureIndex The index of the measure to delete.
-   * @param {number} [voiceIndex=0] The index of the voice the measure belongs to.
+   * @param {number} voiceIndex=0 The index of the voice the measure belongs to.
    * @returns {boolean}
    */
   deleteMeasure(measureIndex, voiceIndex = 0) {
@@ -317,7 +317,7 @@ export default class Score {
   /**
    * Clones a measure inside a voice and adds the clone next to the original measure.
    * @param {number} measureIndex The index of the measure to clone.
-   * @param {number} [voiceIndex=0] The index of the voice the measure belongs to.
+   * @param {number} voiceIndex=0 The index of the voice the measure belongs to.
    * @returns {boolean}
    */
   cloneMeasure(measureIndex, voiceIndex = 0) {
