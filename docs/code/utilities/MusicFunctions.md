@@ -90,7 +90,7 @@ Transpose a raw note by interval.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| note | <code>string</code> | either pitch class or note as string. |
+| note | <code>string</code> | Either pitch class or note as string. |
 | interval | <code>number</code> | Interval to transpose by. |
 
 <a name="notesInRange"></a>
