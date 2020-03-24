@@ -65,7 +65,7 @@ export function isRawNote(str) {
 
 /**
  * Transpose a raw note by interval.
- * @param {string} note either pitch class or note as string.
+ * @param {string} note Either pitch class or note as string.
  * @param {number} interval Interval to transpose by.
  * @returns {string|*}
  */

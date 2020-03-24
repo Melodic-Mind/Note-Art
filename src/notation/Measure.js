@@ -157,9 +157,11 @@ export default class Measure {
    *      duration: '4n'
    *      }, 0)      // Adds a C major chord at the start of the measure.
    */
-  addChord({notes, name = '?', duration}, position) {
+  addChord({notes, name, duration}, position) {
     if (this.validateInsertion(position + 1, duration)) {
-      this.data[position].name = name
+      if (name) {
+        this.data[position].name = name
+      }
       return this.addNotes({notes, duration}, position)
     }
 
@@ -223,12 +225,9 @@ export default class Measure {
   transpose(interval) {
     const transposedMeasure = new Measure(this.maxDuration)
     this.data.forEach((data, position) => {
-      data.notes.forEach((note) => {
-        transposedMeasure.addNote({
-          note:     transpose(note, interval),
-          duration: data.duration,
-        }, position)
-      })
+      const {name, duration} = data
+      const notes            = [...data.notes].map(note => transpose(note, interval))
+      transposedMeasure.addChord({notes, name, duration}, position)
     })
 
     return transposedMeasure

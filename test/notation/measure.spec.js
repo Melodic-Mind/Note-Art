@@ -137,9 +137,9 @@ describe('Measure', () => {
       expect(measure.data[0].name).to.equal('C M')
     })
 
-    it('chord name defaults to ? when not sent', () => {
+    it('chord name not set when not sent', () => {
       expect(measure.addChord({notes: ['c3', 'e3', 'g3'], duration: '4n'}, 0)).to.be.true
-      expect(measure.data[0].name).to.equal('?')
+      expect(measure.data[0].name).to.equal(undefined)
     })
 
     it('should return false when the measure if too full', () => {
@@ -210,6 +210,12 @@ describe('Measure', () => {
   describe('#clone', () => {
     it('should return a new measure with the same duration and notes', () => {
       measure.addNotes({notes: ['c3', 'g3']}, 0)
+      expect(measure.clone()).to.eql(measure)
+      expect(measure.clone()).to.not.equal(measure)
+    })
+
+    it('should return a new measure with the same name for notes', () => {
+      measure.addChord({notes: ['c3', 'e3', 'g3'], name: 'C M', duration: '4n'}, 0)
       expect(measure.clone()).to.eql(measure)
       expect(measure.clone()).to.not.equal(measure)
     })

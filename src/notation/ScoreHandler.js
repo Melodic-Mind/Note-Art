@@ -64,8 +64,9 @@ export default class ScoreHandler {
    * @return {{duration: string, voices: array, timeSignature: array, bpm: number}}
    */
   static scoreToObject(score) {
-    const voices = score.voices.map(voice =>
-        voice.map(measure => this.measureToObject(measure)),
+    const voices = {}
+    Object.entries(score.voices).map(([voiceName, voiceData]) =>
+        voices[voiceName] = voiceData.map(measure => this.measureToObject(measure)),
     )
 
     return {
@@ -88,12 +89,10 @@ export default class ScoreHandler {
       name:          scoreObject.name,
     })
 
-    scoreObject.voices.forEach((voice, voiceIndex) => {
-      if (voiceIndex) {
-        score.addVoice(voiceIndex)
-      }
-      voice.forEach((measureObject, measureIndex) => {
-        score.addMeasure(measureIndex, voiceIndex, this.objectToMeasure(measureObject))
+    Object.entries(scoreObject.voices).forEach(([voiceName, voiceData]) => {
+      score.addVoice(voiceName)
+      voiceData.forEach((measureObject, measureIndex) => {
+        score.addMeasure(voiceName, {index: measureIndex, measure: this.objectToMeasure(measureObject)})
       })
     })
 

@@ -11,6 +11,7 @@ describe('Scientific functions', () => {
 
   it('#freqToMidi', () => {
     expect(funcs.freqToMidi(440)).to.eql(69)
+    expect(funcs.freqToMidi(428)).to.eql(69)
   })
 
   it('#midiToFreq', () => {

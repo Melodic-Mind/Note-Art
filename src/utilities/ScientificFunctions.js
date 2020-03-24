@@ -1,5 +1,5 @@
 import {SEMITONE, NUMBER_OF_PITCH_CLASSES, PITCH_STANDARD} from '../Constants'
-import {Constants }                                  from '../resources/Constants'
+import {Constants}                                         from '../resources/Constants'
 
 /**
  * Calculate the frequency of a note by its octave and index out of all notes(c, c#, etc...).

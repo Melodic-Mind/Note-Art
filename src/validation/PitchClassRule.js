@@ -10,7 +10,7 @@ export default class PitchClassRule {
   /**
    * Check if pitch class exists.
    * @param {String} str string to validate
-   * @throws {InvalidInput}
+   * @throws {InvalidInput
    * @returns {boolean}
    */
   static exists(str) {

@@ -3,7 +3,7 @@ import {Measure, Score, ScoreHandler} from '../../src/'
 describe('Score Handler', () => {
   let score, measure, chordMeasure
   beforeEach(() => {
-    score   = new Score({bpm: 80, timeSignature: [2, 4], name: 'my score'})
+    score   = new Score({bpm: 80, timeSignature: [2, 4], name: 'my score', voiceNames: ['v1']})
     measure = new Measure()
 
     measure.addNotes({notes: ['c3', 'c4'], duration: '4n'}, 0)
@@ -14,8 +14,8 @@ describe('Score Handler', () => {
     chordMeasure = new Measure()
     chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4N'}, 0)
 
-    score.addMeasure(0, 0, measure)
-    score.addMeasure(1, 0, chordMeasure)
+    score.addMeasure('v1', measure, 0)
+    score.addMeasure('v1', chordMeasure, 0)
   })
 
   describe('#measureToObject', () => {
@@ -94,8 +94,8 @@ describe('Score Handler', () => {
       chordMeasure = new Measure()
       chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4N'}, 0)
 
-      score.addMeasure(0, 1, measure)
-      score.addMeasure(1, 1, chordMeasure)
+      score.addMeasure('v1', {index: 1, measure})
+      score.addMeasure('v1', {index: 1, measure: chordMeasure})
       const scoreString  = ScoreHandler.scoreToObject(score)
       const sameOldScore = ScoreHandler.objectToScore(scoreString)
       expect(sameOldScore).to.eql(score)
