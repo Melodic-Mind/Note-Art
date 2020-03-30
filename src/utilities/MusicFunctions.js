@@ -1,8 +1,8 @@
-import {Constants}                       from '../resources/Constants'
-import {Note, PitchClass}                from '../theory'
-import {firstToUpper, rearrangeArray}    from '../utilities'
-import {validateRawNote, PitchClassRule} from '../validation'
-import ModelHelper                       from './ModelHelper'
+import { Constants }                       from '../resources/Constants'
+import { Note, PitchClass }                from '../theory'
+import { firstToUpper, rearrangeArray }    from '../utilities'
+import { PitchClassRule, validateRawNote } from '../validation'
+import ModelHelper                         from './ModelHelper'
 
 /**
  * Calculate the pure interval between 2 pitch classes.
@@ -27,7 +27,7 @@ export function noteToObject(note) {
   const pitchClass = firstToUpper(note.slice(0, note.length - 1))
   const octave     = parseInt(note[note.length - 1])
 
-  return {pitchClass, octave}
+  return { pitchClass, octave }
 }
 
 /**
@@ -39,24 +39,28 @@ export function isRest(str) {
   return ['r', 'R'].includes(str)
 }
 
+export function isDuration(dur) {
+  return Object.keys(Constants.noteDurations).includes(dur)
+}
+
 /**
  * Checks if a string represents a raw musical note.
  * @param str
  * @returns {boolean}
  */
 export function isRawNote(str) {
-  if (typeof str !== 'string') {
+  if(typeof str !== 'string') {
     return false
   }
 
-  if (isRest(str)) {
+  if(isRest(str)) {
     return true
   }
 
   const pitchClass = firstToUpper(str.slice(0, str.length - 1))
   const octave     = parseInt(str[str.length - 1])
 
-  if (!PitchClassRule.exists(pitchClass) || typeof octave !== 'number') {
+  if(!PitchClassRule.exists(pitchClass) || typeof octave !== 'number') {
     return false
   }
 
@@ -72,7 +76,7 @@ export function isRawNote(str) {
 export function transpose(note, interval) {
   validateRawNote(note)
 
-  if (!isRest(note)) {
+  if(!isRest(note)) {
     return Note.builder(note).interval(interval).toString()
   }
 
@@ -86,16 +90,16 @@ export function transpose(note, interval) {
  * @returns {Array}
  */
 export function notesInRange(baseNote, range) {
-  let {pitchClass, octave} = noteToObject(baseNote)
-  const notes              = {}
+  let { pitchClass, octave } = noteToObject(baseNote)
+  const notes                = {}
   let tmpPitchClass
 
-  for (let i = 0; i <= range; ++i) {
+  for(let i = 0; i <= range; ++i) {
     tmpPitchClass = Constants.flatClassNotes[(Constants.flatClassNotes.indexOf(pitchClass) + i) % 12]
 
-    notes[tmpPitchClass + octave] = {pitchClass: tmpPitchClass, octave}
+    notes[tmpPitchClass + octave] = { pitchClass: tmpPitchClass, octave }
 
-    if (tmpPitchClass === 'B') {
+    if(tmpPitchClass === 'B') {
       octave++
     }
   }

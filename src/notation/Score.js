@@ -1,6 +1,5 @@
 import { Constants }    from '../resources/Constants'
 import Measure          from './Measure'
-import { DurationRule } from '../validation'
 import { longestArray } from '../utilities/GeneralFunctions'
 import { InvalidInput } from '../Exceptions'
 
@@ -19,7 +18,7 @@ export default class Score {
     for(const name of voiceNames) {
       voices[name] = []
     }
-    this.attributes = { name, bpm, duration: '4n', voices }
+    this.attributes = { name, bpm, voices }
   }
 
   /**
@@ -46,23 +45,6 @@ export default class Score {
   setTimeSignature(timeSignature) {
     this.measureSize   = Score.getMeasureSize(timeSignature)
     this.timeSignature = timeSignature
-  }
-
-  /**
-   * Returns the duration the score will use when adding a new member to a measure.
-   * @returns {string}
-   */
-  get duration() {
-    return this.attributes.duration
-  }
-
-  /**
-   * Sets the duration for the score's current measure next data input.
-   * @param {string} duration
-   */
-  set duration(duration) {
-    DurationRule.validate(duration)
-    this.attributes.duration = duration
   }
 
   /**
@@ -122,21 +104,6 @@ export default class Score {
     let longestVoice = longestArray(Object.values(this.voices))
     return longestVoice.length ?
            `${longestVoice.length - 1}:0:${longestVoice[longestVoice.length - 1].length}` : 0
-  }
-
-  /**
-   * Sets the duration for a measure.
-   * @param {string} voiceName The voice the measure belongs to.
-   * @param {number} measureIndex The measure index to set the duration to.
-   */
-  setMeasureDuration(voiceName, measureIndex) {
-    const measure = this.getMeasure(voiceName, measureIndex)
-    if(measure) {
-      measure.duration = this.duration
-      return true
-    }
-
-    return false
   }
 
   /**
@@ -205,7 +172,7 @@ export default class Score {
    * @param {number} position Position in the measure.
    * @param {Object} data
    * @param {string} data.note Raw note.
-   * @param {string} data.duration=measure.duration Duration of the note.
+   * @param {string} data.duration Duration of the note.
    * @returns {boolean}
    */
   addNote(voiceName, measureIndex, position, { note, duration }) {
@@ -219,7 +186,7 @@ export default class Score {
    * @param {number} position Position in the measure.
    * @param {Object} data
    * @param {Array} data.notes An array of notes.
-   * @param {string} data.duration=measure.duration Duration of the note.
+   * @param {string} data.duration Duration of the note.
    * @returns {boolean}
    */
   addNotes(voiceName, measureIndex, position, { notes, duration }) {
@@ -233,7 +200,7 @@ export default class Score {
    * @param {number} position Position in the measure.
    * @param {Object} data
    * @param {Array} data.notes An array of notes.
-   * @param {string} data.duration=measure.duration Duration of the note.
+   * @param {string} data.duration Duration of the note.
    * @param {name} data.name Name of the chord.
    * @returns {boolean}
    */

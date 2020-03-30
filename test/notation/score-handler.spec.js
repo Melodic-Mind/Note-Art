@@ -12,7 +12,7 @@ describe('Score Handler', () => {
     measure.addNotes({notes: ['d3', 'd4'], duration: '4n'}, 3)
 
     chordMeasure = new Measure()
-    chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4N'}, 0)
+    chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4n'}, 0)
 
     score.addMeasure('v1', measure, 0)
     score.addMeasure('v1', chordMeasure, 0)
@@ -22,7 +22,6 @@ describe('Score Handler', () => {
     it('turns a measure with notes into object literal', () => {
       const stub = {
         maxDuration: 64,
-        duration:    '4n',
         data:        [
           {
             notes:    ['C3', 'C4'],
@@ -49,7 +48,6 @@ describe('Score Handler', () => {
     it('turns a measure with chords into object literal', () => {
       const stub = {
         maxDuration: 64,
-        duration:    '4n',
         data:        [
           {notes: ['C3', 'E3', 'G3'], duration: '4n', name: 'C M'},
           {notes: [], duration: '4n'},
@@ -68,7 +66,7 @@ describe('Score Handler', () => {
 
     it('creates a new measure from object with chords', () => {
       const chordMeasure = new Measure()
-      chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4N'}, 0)
+      chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4n'}, 0)
       const obj = ScoreHandler.measureToObject(chordMeasure)
       expect(ScoreHandler.objectToMeasure(obj)).to.eql(chordMeasure)
     })
@@ -92,7 +90,7 @@ describe('Score Handler', () => {
       measure.addNotes({notes: ['d3', 'd4'], duration: '4n'}, 3)
 
       chordMeasure = new Measure()
-      chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4N'}, 0)
+      chordMeasure.addChord({name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4n'}, 0)
 
       score.addMeasure('v1', {index: 1, measure})
       score.addMeasure('v1', {index: 1, measure: chordMeasure})

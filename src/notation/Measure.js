@@ -1,6 +1,6 @@
-import {firstToUpper, transpose, isRawNote} from '../utilities'
-import {Constants}                          from '../resources/Constants'
-import {validateArray}                      from '../validation'
+import { firstToUpper, isRawNote, transpose } from '../utilities'
+import { Constants }                          from '../resources/Constants'
+import { validateArray, validateDuration } from '../validation'
 
 /**
  * @class Measure
@@ -12,7 +12,7 @@ export default class Measure {
     this.attributes = {
       maxDuration,
       duration: '4n',
-      data:     [{notes: new Set(), duration: '4n'}],
+      data:     [{ notes: new Set(), duration: '4n' }],
     }
   }
 
@@ -23,24 +23,6 @@ export default class Measure {
    */
   get data() {
     return this.attributes.data
-  }
-
-  /**
-   * Returns the duration the measure will use when adding a new member to the data.
-   * @returns {string}
-   */
-  get duration() {
-    return this.attributes.duration
-  }
-
-  /**
-   * Sets the duration for the measure's next data input.
-   * @param {string} duration
-   */
-  set duration(duration) {
-    if (Object.keys(Constants.noteDurations).includes(duration)) {
-      this.attributes.duration = duration
-    }
   }
 
   /**
@@ -58,7 +40,7 @@ export default class Measure {
    * @returns {number}
    */
   get length() {
-    return this.data.reduce((acc, {duration}) => acc + Constants.noteDurations[duration], 0) / 4
+    return this.data.reduce((acc, { duration }) => acc + Constants.noteDurations[duration], 0) / 4
   }
 
   /**
@@ -86,25 +68,27 @@ export default class Measure {
    * Creates a slot for the next notes that will be added in the measure if there is space.
    * Should not be called as it's called automatically when needed.
    * @param {number} position Position to initialize the next notes to.
+   * @param {string} duration duration to create for the notes
+   * @private
    */
-  initNext(position) {
+  initNext(position, duration) {
     const durationLeft = this.durationLeft(this.data.length)
-    if (durationLeft > 0) {
-      this.data[position] = {notes: new Set(), duration: this.duration}
+    if(durationLeft > 0) {
+      this.data[position] = { notes: new Set(), duration }
     }
   }
 
   /**
    * Checks whether a new data member can be added at a certain position in the measure.
    * @param {number} position The position to check for.
-   * @param duration
+   * @param {string} duration duration of new notes
    * @returns {boolean}
    */
-  validateInsertion(position, duration = this.duration) {
+  validateInsertion(position, duration) {
     return !(
-        position > this.data.length
-        ||
-        Constants.noteDurations[duration] > this.durationLeft(position) + duration
+      position > this.data.length
+      ||
+      Constants.noteDurations[duration] > this.durationLeft(position) + duration
     )
   }
 
@@ -112,19 +96,19 @@ export default class Measure {
    * Adds a note to the measure at some position.
    * @param {Object} data
    * @param {string} data.note raw note representation.
-   * @param {string} data.duration=this.duration
+   * @param {string} data.duration
    * @param {number} position The position in the data to add the note to.
    * @returns {boolean}
    */
-  addNote({note, duration}, position) {
-    this.duration = duration
-    if (isRawNote(note)) {
+  addNote({ note, duration }, position) {
+    if(isRawNote(note)) {
       note = firstToUpper(note)
     }
-    if (this.validateInsertion(position + 1)) {
+    validateDuration(duration)
+    if(this.validateInsertion(position + 1, duration)) {
       this.data[position].notes.add(note)
-      this.data[position].duration = this.duration
-      this.initNext(position + 1)
+      this.data[position].duration = duration
+      this.initNext(position + 1, duration)
       return true
     }
     return false
@@ -133,13 +117,13 @@ export default class Measure {
   /**
    * Adds notes to the note set at the position.
    * @param {Array} notes An array of raw notes.
-   * @param {string} duration=this.duration
+   * @param {string} duration
    * @param {number} position The position in the data to add the notes to.
    * @returns {*}
    */
-  addNotes({notes, duration}, position) {
+  addNotes({ notes, duration }, position) {
     validateArray(notes)
-    return notes.every(note => this.addNote({note, duration}, position))
+    return notes.every(note => this.addNote({ note, duration }, position))
   }
 
   /**
@@ -157,12 +141,12 @@ export default class Measure {
    *      duration: '4n'
    *      }, 0)      // Adds a C major chord at the start of the measure.
    */
-  addChord({notes, name, duration}, position) {
-    if (this.validateInsertion(position + 1, duration)) {
-      if (name) {
+  addChord({ notes, name, duration }, position) {
+    if(this.validateInsertion(position + 1, duration)) {
+      if(name) {
         this.data[position].name = name
       }
-      return this.addNotes({notes, duration}, position)
+      return this.addNotes({ notes, duration }, position)
     }
 
     return false
@@ -196,10 +180,10 @@ export default class Measure {
    * @return {boolean}
    */
   deleteMember(position) {
-    if (this.data[position]) {
+    if(this.data[position]) {
       this.data.splice(position, 1)
       // if the measure doesnt have a new member ready for adding new notes, create one
-      if (this.data[this.data.length - 1].notes.size !== 0) {
+      if(this.data[this.data.length - 1].notes.size !== 0) {
         this.initNext(this.data.length)
       }
       return true
@@ -225,9 +209,9 @@ export default class Measure {
   transpose(interval) {
     const transposedMeasure = new Measure(this.maxDuration)
     this.data.forEach((data, position) => {
-      const {name, duration} = data
-      const notes            = [...data.notes].map(note => transpose(note, interval))
-      transposedMeasure.addChord({notes, name, duration}, position)
+      const { name, duration } = data
+      const notes              = [...data.notes].map(note => transpose(note, interval))
+      transposedMeasure.addChord({ notes, name, duration }, position)
     })
 
     return transposedMeasure

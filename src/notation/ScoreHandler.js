@@ -16,7 +16,6 @@ export default class ScoreHandler {
 
     return {
       maxDuration: measure.maxDuration,
-      duration:    measure.duration,
       data:        notes,
     }
   }
@@ -46,7 +45,6 @@ export default class ScoreHandler {
    */
   static objectToMeasure(measureObject) {
     const measure    = new Measure(measureObject.maxDuration)
-    measure.duration = measureObject.duration
     measureObject.data.forEach((notesMember, position) => {
       if (notesMember.name) {
         measure.addChord({...notesMember}, position)

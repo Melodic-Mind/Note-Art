@@ -1,6 +1,6 @@
 import {InvalidInput} from '../Exceptions'
-import {PitchClass}   from '../theory'
-import {isRawNote}    from '../utilities'
+import {PitchClass}              from '../theory'
+import { isDuration, isRawNote } from '../utilities'
 
 /**
  * Validates an argument is an array, fails if not.
@@ -48,4 +48,12 @@ export function validateRawNote(str) {
 export function validatePitchClasses(pitchClasses) {
   validateArray(pitchClasses)
   pitchClasses.forEach(pitchClass => validateInstance(pitchClass, PitchClass))
+}
+
+export function validateDuration(str) {
+  if (!isDuration(str)) {
+    throw new InvalidInput(`Expected ${str} to be a string representing note duration.`)
+  }
+
+  return true
 }

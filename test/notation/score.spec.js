@@ -84,24 +84,6 @@ describe('Score', () => {
     })
   })
 
-  describe('#setMeasureDuration', () => {
-    it('should set the duration property of a measure when it exists', () => {
-      score.duration = '8n'
-      score.setMeasureDuration('v1', 0)
-      expect(score.getMeasure('v1', 0).duration).to.equal('8n')
-    })
-
-    it('should throw error when the name does not exist', () => {
-      score.duration = '8n'
-      expect(() => score.setMeasureDuration('doesnt exist', 0)).to.throw(Error)
-    })
-
-    it('should do nothing when the measure does not exist but the voice does', () => {
-      score.duration = '8n'
-      expect(() => score.setMeasureDuration('v1', 5)).to.not.throw(Error)
-    })
-  })
-
   describe('#getVoice', () => {
     it('should return an array of measures as a voice', () => {
       expect(Array.isArray(score.getVoice('v1'))).to.be.true
@@ -192,34 +174,34 @@ describe('Score', () => {
   describe('#addNote', () => {
     it('should add notes to the measure when it exists', () => {
       const spy = sinon.spy(score.getMeasure('v1', 0), 'addNote')
-      expect(score.addNote('v1', 0, 0, { note: 'C3' })).to.be.true
+      expect(score.addNote('v1', 0, 0, { note: 'C3', duration: '4n' })).to.be.true
       expect(spy).to.have.been.calledOnce
       spy.restore()
     })
 
     it('should return false when it doesnt add the note to the measure', () => {
-      expect(score.addNote('v1', 0, 2, { note: 'c3' })).to.be.false
+      expect(score.addNote('v1', 0, 2, { note: 'c3', duration: '4n' })).to.be.false
     })
 
     it('should return false when the measure doesnt exist', () => {
-      expect(score.addNote('v1', 4, 0, { note: 'c3' })).to.be.false
+      expect(score.addNote('v1', 4, 0, { note: 'c3', duration: '4n' })).to.be.false
     })
   })
 
   describe('#addNotes', () => {
     it('should throw an error when it doesn\'t get a note array props', () => {
       const spy = sinon.spy(score.getMeasure('v1', 0), 'addNotes')
-      score.addNotes('v1', 0, 0, { notes: ['C3', 'E3'] })
+      score.addNotes('v1', 0, 0, { notes: ['C3', 'E3'], duration: '4n' })
       expect(spy).to.have.been.calledOnce
       spy.restore()
     })
 
     it('should return false when it doesnt add the note to the measure', () => {
-      expect(score.addNotes('v1', 0, 2, { notes: ['c3'] })).to.be.false
+      expect(score.addNotes('v1', 0, 2, { notes: ['c3'], duration: '4n' })).to.be.false
     })
 
     it('should return false when the measure doesnt exist', () => {
-      expect(score.addNotes('v1', 4, 0, { notes: ['c3'] })).to.be.false
+      expect(score.addNotes('v1', 4, 0, { notes: ['c3'], duration: '4n' })).to.be.false
     })
   })
 
@@ -227,7 +209,7 @@ describe('Score', () => {
     it('deletes the note at the position from the measure', () => {
       score.addMeasure('v1')
       const stub = sinon.stub(score.getMeasure('v1', 1), 'deleteNote').returns(true)
-      expect(score.addNote('v1', 1, 0, { note: 'C3' })).to.be.true
+      expect(score.addNote('v1', 1, 0, { note: 'C3', duration: '4n' })).to.be.true
       expect(score.deleteNote('v1', 1, 0, 'C3')).to.be.true
       expect(stub).to.have.been.calledOnce
       stub.restore()
@@ -246,7 +228,7 @@ describe('Score', () => {
     it('should delete notes from a measure that exists in the score', () => {
       score.addMeasure('v1')
       const spy = sinon.spy(score.getMeasure('v1', 0), 'deleteNotes')
-      expect(score.addNotes('v1', 0, 0, { notes: ['c3', 'g3'] })).to.be.true
+      expect(score.addNotes('v1', 0, 0, { notes: ['c3', 'g3'], duration: '4n' })).to.be.true
       expect(score.deleteNotes('v1', 0, 0, ['c3', 'g3'])).to.be.true
       expect(spy).to.have.been.calledOnce
       spy.restore()
@@ -259,7 +241,7 @@ describe('Score', () => {
 
   describe('#addChord', () => {
     it('should call the addChord funtion on the specified measure', () => {
-      score.addMeasure('v1', 0)
+      score.addMeasure('v1')
       const stub = sinon.stub(score.getMeasure('v1', 0), 'addChord').returns(true)
       expect(score.addChord('v1', 0, 0, {})).to.be.true
       expect(stub).to.have.been.calledOnce
@@ -296,7 +278,7 @@ describe('Score', () => {
 
   describe('#clearMeasure', () => {
     it('should clear a measure from all data', () => {
-      expect(score.addNote('v1', 0, 0, { note: 'C3' })).to.be.true
+      expect(score.addNote('v1', 0, 0, { note: 'C3', duration: '4n' })).to.be.true
       expect(score.clearMeasure('v1', 0)).to.be.true
       expect(score.getMeasure('v1', 0).data[0].notes.size).to.equal(0)
     })
