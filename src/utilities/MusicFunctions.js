@@ -60,11 +60,7 @@ export function isRawNote(str) {
   const pitchClass = firstToUpper(str.slice(0, str.length - 1))
   const octave     = parseInt(str[str.length - 1])
 
-  if(!PitchClassRule.exists(pitchClass) || typeof octave !== 'number') {
-    return false
-  }
-
-  return true
+  return !(!PitchClassRule.exists(pitchClass) || typeof octave !== 'number');
 }
 
 /**

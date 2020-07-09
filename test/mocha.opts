@@ -1,2 +1,0 @@
--r @babel/register
--r ./test/bootstrap.js
