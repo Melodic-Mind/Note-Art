@@ -1,6 +1,6 @@
-import {calculateInterval, spellScale} from '../utilities'
-import Chord                           from './Chord'
-import MusicalPattern                  from './MusicalPattern'
+import { calculateInterval, spellScale } from '../utilities'
+import Chord                             from './Chord'
+import MusicalPattern                    from './MusicalPattern'
 
 /**
  * @class Scale
@@ -20,8 +20,8 @@ export default class Scale extends MusicalPattern {
    * @param {boolean} seventh=false Whether to return seventh chords or triads.
    * @type {Array}
    */
-  chords(seventh = false) {
-    return this.pitchClasses.map((pitchClass, degree) => this.chord(degree + 1, seventh ? 4 : 3))
+  chords ( seventh = false ) {
+    return this.pitchClasses.map( ( pitchClass, degree ) => this.chord( degree + 1, seventh ? 4 : 3 ) )
   }
 
   /**
@@ -31,13 +31,13 @@ export default class Scale extends MusicalPattern {
    * @param {Number} degree
    * @returns {PitchClass}
    */
-  degree(degree) {
+  degree ( degree ) {
     return this.pitchClasses[degree - 1]
   }
 
-  get raw() {
-    if (this.pattern.length === 6) {
-      return spellScale(this)
+  get raw () {
+    if ( this.pattern.length === 6 ) {
+      return spellScale( this )
     }
     return super.raw
   }
@@ -48,16 +48,16 @@ export default class Scale extends MusicalPattern {
    * @param {number} size=3 Number of pitch classes in the chord.
    * @returns {*}
    */
-  chord(degree, size = 3) {
+  chord ( degree, size = 3 ) {
     const pc      = this.pitchClasses,
-          root    = this.degree(degree),
+          root    = this.degree( degree ),
           index   = degree - 1,
           pattern = []
 
-    for (let i = 1; i < size; ++i) {
-      pattern.push(calculateInterval(root, pc[(index + (i * 2)) % pc.length]))
+    for ( let i = 1; i < size; ++i ) {
+      pattern.push( calculateInterval( root, pc[(index + (i * 2)) % pc.length] ) )
     }
 
-    return new Chord(root, pattern)
+    return new Chord( root, pattern )
   }
 }

@@ -1,6 +1,6 @@
-import PitchClass                      from './PitchClass'
-import {calculateInterval}             from '../utilities'
-import {validateInstance, PatternRule} from '../validation'
+import PitchClass                        from './PitchClass'
+import { calculateInterval }             from '../utilities'
+import { validateInstance, PatternRule } from '../validation'
 
 /**
  * @class GuitarChordPattern
@@ -11,16 +11,16 @@ import {validateInstance, PatternRule} from '../validation'
  * @param {string} name The chords name.
  */
 export default class GuitarChordPattern {
-  constructor(pattern, pitchClass, name) {
-    PatternRule.isArray(pattern)
-    this.attributes = {pattern, pitchClass, name}
+  constructor ( pattern, pitchClass, name ) {
+    PatternRule.isArray( pattern )
+    this.attributes = { pattern, pitchClass, name }
   }
 
   /**
    * Returns the chord pattern.
    * @returns {Array}
    */
-  get pattern() {
+  get pattern () {
     return this.attributes.pattern
   }
 
@@ -28,7 +28,7 @@ export default class GuitarChordPattern {
    * Returns the chord's pitch class.
    * @returns {PitchClass}
    */
-  get pitchClass() {
+  get pitchClass () {
     return this.attributes.pitchClass
   }
 
@@ -36,7 +36,7 @@ export default class GuitarChordPattern {
    * Returns the chord name.
    * @returns {string}
    */
-  get name() {
+  get name () {
     return this.attributes.name
   }
 
@@ -45,10 +45,10 @@ export default class GuitarChordPattern {
    * @param {PitchClass} root The root of the chord.
    * @returns {{chord: string, name: string}}
    */
-  getChord(root) {
-    validateInstance(root, PitchClass)
-    const interval = calculateInterval(this.pitchClass, root)
-    const pattern  = this.pattern.map(pos => pos === 'x' ? 'x' : pos + interval)
-    return {pattern, name: `${root} ${this.name}`}
+  getChord ( root ) {
+    validateInstance( root, PitchClass )
+    const interval = calculateInterval( this.pitchClass, root )
+    const pattern  = this.pattern.map( pos => pos === 'x' ? 'x' : pos + interval )
+    return { pattern, name: `${ root } ${ this.name }` }
   }
 }

@@ -1,4 +1,3 @@
-
 /**
  * @class Constants
  * @classdesc Contains music theory structures and databases
@@ -9,21 +8,21 @@ export class Constants {
    * The raw pitch classes using sharps.
    * @type {Array}
    */
-  static sharpClassNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+  static sharpClassNotes = [ 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B' ]
 
   /**
    * The raw pitch classes using flats.
    * @type {Array}
    */
-  static flatClassNotes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+  static flatClassNotes = [ 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B' ]
 
-  static pitchClassLetters = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+  static pitchClassLetters = [ 'C', 'D', 'E', 'F', 'G', 'A', 'B' ]
 
-  static getPitchClassSet(set) {
-    if (set === '#') {
+  static getPitchClassSet ( set ) {
+    if ( set === '#' ) {
       return Constants.sharpClassNotes
     }
-    if (set === 'b') {
+    if ( set === 'b' ) {
       return Constants.flatClassNotes
     }
     return null

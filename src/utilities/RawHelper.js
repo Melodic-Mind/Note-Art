@@ -1,5 +1,5 @@
-import ModelHelper  from './ModelHelper'
-import {PitchClass} from '../theory'
+import ModelHelper    from './ModelHelper'
+import { PitchClass } from '../theory'
 
 /**
  * A wrapper for the ModelHelper class for manipulations from and to strings that represent music.
@@ -7,12 +7,12 @@ import {PitchClass} from '../theory'
 export default class RawHelper extends ModelHelper {
   /**
    * Returns an array of raw notes with a specific octave.
-   * @param {Array} {pitchClasses} Array of pitch classes.
+   * @param {Array} pitchClasses Array of pitch classes.
    * @param {number} octave Octave to assign to notes..
    * @returns {Array}
    */
-  static pitchClassesToNotes(pitchClasses, octave) {
-    return super.pitchClassesToNotes(pitchClasses.map(pc => new PitchClass(pc)), octave).map(note => note.toString())
+  static pitchClassesToNotes ( pitchClasses, octave ) {
+    return super.pitchClassesToNotes( pitchClasses.map( pc => new PitchClass( pc ) ), octave ).map( note => note.toString() )
   }
 
   /**
@@ -23,8 +23,8 @@ export default class RawHelper extends ModelHelper {
    *     etc...
    * @returns {Array}
    */
-  static pitchClassesToPianoChordNotes(pitchClasses, octave, inversion = 0) {
-    return super.pitchClassesToPianoChordNotes(pitchClasses.map(pc => new PitchClass(pc)), octave, inversion).map(n => n.toString())
+  static pitchClassesToPianoChordNotes ( pitchClasses, octave, inversion = 0 ) {
+    return super.pitchClassesToPianoChordNotes( pitchClasses.map( pc => new PitchClass( pc ) ), octave, inversion ).map( n => n.toString() )
   }
 
   /**
@@ -33,7 +33,7 @@ export default class RawHelper extends ModelHelper {
    * @param {string} pc2 pitch class to transform.
    * @returns {string}
    */
-  static enharmonicPitchClass(pc1, pc2) {
-    return super.enharmonicPitchClass(new PitchClass(pc1), new PitchClass(pc2))
+  static enharmonicPitchClass ( pc1, pc2 ) {
+    return super.enharmonicPitchClass( new PitchClass( pc1 ), new PitchClass( pc2 ) )
   }
 }

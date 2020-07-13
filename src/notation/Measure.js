@@ -1,6 +1,6 @@
 import { firstToUpper, isRawNote, transpose } from '../utilities'
 import { Constants }                          from '../resources/Constants'
-import { validateArray, validateDuration } from '../validation'
+import { validateArray, validateDuration }    from '../validation'
 
 /**
  * @class Measure
@@ -8,11 +8,11 @@ import { validateArray, validateDuration } from '../validation'
  * @param {Number} maxDuration=0 Max duration of the measure(determined by time signature)
  */
 export default class Measure {
-  constructor(maxDuration = 64) {
+  constructor ( maxDuration = 64 ) {
     this.attributes = {
       maxDuration,
       duration: '4n',
-      data:     [{ notes: new Set(), duration: '4n' }],
+      data:     [ { notes: new Set(), duration: '4n' } ],
     }
   }
 
@@ -21,7 +21,7 @@ export default class Measure {
    * object has a set of notes and the duration for those notes.
    * @returns {Array}
    */
-  get data() {
+  get data () {
     return this.attributes.data
   }
 
@@ -31,7 +31,7 @@ export default class Measure {
    * @returns {number}
    * @readonly
    */
-  get maxDuration() {
+  get maxDuration () {
     return this.attributes.maxDuration
   }
 
@@ -39,16 +39,16 @@ export default class Measure {
    * Returns the number of sixteenth notes in the measure.
    * @returns {number}
    */
-  get length() {
-    return this.data.reduce((acc, { duration }) => acc + Constants.noteDurations[duration], 0) / 4
+  get length () {
+    return this.data.reduce( ( acc, { duration } ) => acc + Constants.noteDurations[duration], 0 ) / 4
   }
 
   /**
    * Returns a deep clone of the measure.
    * @returns {Measure}
    */
-  clone() {
-    return this.transpose(0)
+  clone () {
+    return this.transpose( 0 )
   }
 
   /**
@@ -56,12 +56,12 @@ export default class Measure {
    * @param {number} position=this.data.length
    * @returns {number}
    */
-  durationLeft(position = this.data.length) {
-    return this.maxDuration - this.data.slice(0, position)
-                                  .reduce((prev, curr) => {
+  durationLeft ( position = this.data.length ) {
+    return this.maxDuration - this.data.slice( 0, position )
+                                  .reduce( ( prev, curr ) => {
                                     return curr.notes.size ?
                                            prev + Constants.noteDurations[curr.duration] : prev + 0
-                                  }, 0)
+                                  }, 0 )
   }
 
   /**
@@ -71,9 +71,9 @@ export default class Measure {
    * @param {string} duration duration to create for the notes
    * @private
    */
-  initNext(position, duration) {
-    const durationLeft = this.durationLeft(this.data.length)
-    if(durationLeft > 0) {
+  initNext ( position, duration ) {
+    const durationLeft = this.durationLeft( this.data.length )
+    if ( durationLeft > 0 ) {
       this.data[position] = { notes: new Set(), duration }
     }
   }
@@ -84,11 +84,11 @@ export default class Measure {
    * @param {string} duration duration of new notes
    * @returns {boolean}
    */
-  validateInsertion(position, duration) {
+  validateInsertion ( position, duration ) {
     return !(
       position > this.data.length
       ||
-      Constants.noteDurations[duration] > this.durationLeft(position) + duration
+      Constants.noteDurations[duration] > this.durationLeft( position ) + duration
     )
   }
 
@@ -100,15 +100,15 @@ export default class Measure {
    * @param {number} position The position in the data to add the note to.
    * @returns {boolean}
    */
-  addNote({ note, duration }, position) {
-    if(isRawNote(note)) {
-      note = firstToUpper(note)
+  addNote ( { note, duration }, position ) {
+    if ( isRawNote( note ) ) {
+      note = firstToUpper( note )
     }
-    validateDuration(duration)
-    if(this.validateInsertion(position + 1, duration)) {
-      this.data[position].notes.add(note)
+    validateDuration( duration )
+    if ( this.validateInsertion( position + 1, duration ) ) {
+      this.data[position].notes.add( note )
       this.data[position].duration = duration
-      this.initNext(position + 1, duration)
+      this.initNext( position + 1, duration )
       return true
     }
     return false
@@ -121,9 +121,9 @@ export default class Measure {
    * @param {number} position The position in the data to add the notes to.
    * @returns {*}
    */
-  addNotes({ notes, duration }, position) {
-    validateArray(notes)
-    return notes.every(note => this.addNote({ note, duration }, position))
+  addNotes ( { notes, duration }, position ) {
+    validateArray( notes )
+    return notes.every( note => this.addNote( { note, duration }, position ) )
   }
 
   /**
@@ -141,12 +141,12 @@ export default class Measure {
    *      duration: '4n'
    *      }, 0)      // Adds a C major chord at the start of the measure.
    */
-  addChord({ notes, name, duration }, position) {
-    if(this.validateInsertion(position + 1, duration)) {
-      if(name) {
+  addChord ( { notes, name, duration }, position ) {
+    if ( this.validateInsertion( position + 1, duration ) ) {
+      if ( name ) {
         this.data[position].name = name
       }
-      return this.addNotes({ notes, duration }, position)
+      return this.addNotes( { notes, duration }, position )
     }
 
     return false
@@ -158,8 +158,8 @@ export default class Measure {
    * @param {number} position The position in the data to delete the note at.
    * @returns {boolean}
    */
-  deleteNote(note, position) {
-    return this.data[position].notes.delete(firstToUpper(note))
+  deleteNote ( note, position ) {
+    return this.data[position].notes.delete( firstToUpper( note ) )
   }
 
   /**
@@ -168,9 +168,9 @@ export default class Measure {
    * @param {number} position The position in the data to delete the notes at.
    * @returns {*}
    */
-  deleteNotes(notes, position) {
-    validateArray(notes)
-    return notes.every(note => this.deleteNote(note, position))
+  deleteNotes ( notes, position ) {
+    validateArray( notes )
+    return notes.every( note => this.deleteNote( note, position ) )
   }
 
   /**
@@ -179,12 +179,12 @@ export default class Measure {
    * @param {number} position Position of the member to delete.
    * @return {boolean}
    */
-  deleteMember(position) {
-    if(this.data[position]) {
-      this.data.splice(position, 1)
+  deleteMember ( position ) {
+    if ( this.data[position] ) {
+      this.data.splice( position, 1 )
       // if the measure doesnt have a new member ready for adding new notes, create one
-      if(this.data[this.data.length - 1].notes.size !== 0) {
-        this.initNext(this.data.length)
+      if ( this.data[this.data.length - 1].notes.size !== 0 ) {
+        this.initNext( this.data.length )
       }
       return true
     }
@@ -197,7 +197,7 @@ export default class Measure {
    * @param duration
    * @returns {boolean}
    */
-  isFull(duration) {
+  isFull ( duration ) {
     return !(Constants.noteDurations[duration] <= this.durationLeft())
   }
 
@@ -206,13 +206,13 @@ export default class Measure {
    * @param {number} interval Interval to transpose by.
    * @returns {Measure}
    */
-  transpose(interval) {
-    const transposedMeasure = new Measure(this.maxDuration)
-    this.data.forEach((data, position) => {
+  transpose ( interval ) {
+    const transposedMeasure = new Measure( this.maxDuration )
+    this.data.forEach( ( data, position ) => {
       const { name, duration } = data
-      const notes              = [...data.notes].map(note => transpose(note, interval))
-      transposedMeasure.addChord({ notes, name, duration }, position)
-    })
+      const notes              = [ ...data.notes ].map( note => transpose( note, interval ) )
+      transposedMeasure.addChord( { notes, name, duration }, position )
+    } )
 
     return transposedMeasure
   }
@@ -221,9 +221,9 @@ export default class Measure {
    * Removes all the data from the measure.
    * @returns {boolean}
    */
-  clear() {
+  clear () {
     this.data.length = 0
-    this.initNext(0)
+    this.initNext( 0 )
     return true
   }
 }

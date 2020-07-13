@@ -1,5 +1,5 @@
-import {InvalidInput} from '../Exceptions'
-import {PitchClass}              from '../theory'
+import { InvalidInput }          from '../Exceptions'
+import { PitchClass }            from '../theory'
 import { isDuration, isRawNote } from '../utilities'
 
 /**
@@ -8,25 +8,25 @@ import { isDuration, isRawNote } from '../utilities'
  * @param arg
  * @returns {boolean}
  */
-export function validateArray(arg) {
-  if (!Array.isArray(arg)) {
-    throw new InvalidInput(`expected ${arg} to be an array`)
+export function validateArray ( arg ) {
+  if ( !Array.isArray( arg ) ) {
+    throw new InvalidInput( `expected ${ arg } to be an array` )
   }
 
   return true
 }
 
-export function validateInstance(instance, classToCheckFor) {
-  if (!(instance instanceof classToCheckFor)) {
-    throw new InvalidInput(`expected ${instance} to be an instance of ${classToCheckFor.name}`)
+export function validateInstance ( instance, classToCheckFor ) {
+  if ( !(instance instanceof classToCheckFor) ) {
+    throw new InvalidInput( `expected ${ instance } to be an instance of ${ classToCheckFor.name }` )
   }
 
   return true
 }
 
-export function validateNumber(val) {
-  if (typeof val !== 'number') {
-    throw new InvalidInput(`expected ${val} to be a number`)
+export function validateNumber ( val ) {
+  if ( typeof val !== 'number' ) {
+    throw new InvalidInput( `expected ${ val } to be a number` )
   }
 
   return true
@@ -37,22 +37,22 @@ export function validateNumber(val) {
  * @param str
  * @returns {boolean}
  */
-export function validateRawNote(str) {
-  if (!isRawNote(str)) {
-    throw new InvalidInput(`Expected ${str} to be a string representing a note`)
+export function validateRawNote ( str ) {
+  if ( !isRawNote( str ) ) {
+    throw new InvalidInput( `Expected ${ str } to be a string representing a note` )
   }
 
   return true
 }
 
-export function validatePitchClasses(pitchClasses) {
-  validateArray(pitchClasses)
-  pitchClasses.forEach(pitchClass => validateInstance(pitchClass, PitchClass))
+export function validatePitchClasses ( pitchClasses ) {
+  validateArray( pitchClasses )
+  pitchClasses.forEach( pitchClass => validateInstance( pitchClass, PitchClass ) )
 }
 
-export function validateDuration(str) {
-  if (!isDuration(str)) {
-    throw new InvalidInput(`Expected ${str} to be a string representing note duration.`)
+export function validateDuration ( str ) {
+  if ( !isDuration( str ) ) {
+    throw new InvalidInput( `Expected ${ str } to be a string representing note duration.` )
   }
 
   return true

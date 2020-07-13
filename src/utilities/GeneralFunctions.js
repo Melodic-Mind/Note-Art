@@ -3,10 +3,10 @@
  * @param {String} str String to transform
  * @returns {String}
  */
-import {InvalidInput} from '../Exceptions'
+import { InvalidInput } from '../Exceptions'
 
-export function firstToUpper(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1)
+export function firstToUpper ( str ) {
+  return str.charAt( 0 ).toUpperCase() + str.slice( 1 )
 }
 
 /**
@@ -14,8 +14,8 @@ export function firstToUpper(str) {
  * @param {number} num
  * @returns {Number}
  */
-export function twoDigitFormat(num) {
-  return Number(Number.parseFloat(num).toFixed(2))
+export function twoDigitFormat ( num ) {
+  return Number( Number.parseFloat( num ).toFixed( 2 ) )
 }
 
 /**
@@ -25,7 +25,7 @@ export function twoDigitFormat(num) {
  * @param {number} i2
  * @returns {Array}
  */
-export function switchMembers([...arr], i1, i2) {
+export function switchMembers ( [ ...arr ], i1, i2 ) {
   const tmp = arr[i1]
   arr[i1]   = arr[i2]
   arr[i2]   = tmp
@@ -38,16 +38,16 @@ export function switchMembers([...arr], i1, i2) {
  * @param {number} index to arrange from.
  * @returns {Array}
  */
-export function rearrangeArray([...array], index) {
+export function rearrangeArray ( [ ...array ], index ) {
   const tmp = []
   let i     = 0
 
-  while (i < index) {
-    tmp.push(array.shift())
+  while ( i < index ) {
+    tmp.push( array.shift() )
     ++i
   }
 
-  return [...array, ...tmp]
+  return [ ...array, ...tmp ]
 }
 
 /**
@@ -57,12 +57,12 @@ export function rearrangeArray([...array], index) {
  * @param {string} mapTo String to reduce to.
  * @returns {string}
  */
-export function mapString(str, toMap, mapTo) {
-  while (str.includes(toMap)) {
+export function mapString ( str, toMap, mapTo ) {
+  while ( str.includes( toMap ) ) {
     const length = str.length
-    for (let i = 0; i < length; ++i) {
-      if (str.substr(i, toMap.length) === toMap) {
-        str = `${str.slice(0, i)}${mapTo}${str.slice(i + toMap.length)}`
+    for ( let i = 0; i < length; ++i ) {
+      if ( str.substr( i, toMap.length ) === toMap ) {
+        str = `${ str.slice( 0, i ) }${ mapTo }${ str.slice( i + toMap.length ) }`
         break
       }
     }
@@ -77,8 +77,8 @@ export function mapString(str, toMap, mapTo) {
  * @param {String} subString            The sub string to search for
  * @returns {number}
  */
-export function occurrencesInString(string, subString) {
-  return string.split(subString).length - 1
+export function occurrencesInString ( string, subString ) {
+  return string.split( subString ).length - 1
 }
 
 /**
@@ -87,11 +87,11 @@ export function occurrencesInString(string, subString) {
  * @param size The new size.
  * @returns {Array}
  */
-export function fitArrayToSize([...arr], size) {
-  while (arr.length<size){
-    arr = arr.concat([...arr])
+export function fitArrayToSize ( [ ...arr ], size ) {
+  while ( arr.length < size ) {
+    arr = arr.concat( [ ...arr ] )
   }
-  return arr.slice(0, size)
+  return arr.slice( 0, size )
 }
 
 /**
@@ -99,9 +99,9 @@ export function fitArrayToSize([...arr], size) {
  * @param matrix Array of arrays
  * @returns {Array}
  */
-export function longestArray(matrix) {
-  if(!Array.isArray(matrix) || !matrix.every(arr => Array.isArray(arr))){
-    throw new InvalidInput(`Expected ${matrix} and each of it's elements to be an array`)
+export function longestArray ( matrix ) {
+  if ( !Array.isArray( matrix ) || !matrix.every( arr => Array.isArray( arr ) ) ) {
+    throw new InvalidInput( `Expected ${ matrix } and each of it's elements to be an array` )
   }
-  return matrix.reduce((a, b) => (a.length > b.length ? a : b),[]);
+  return matrix.reduce( ( a, b ) => (a.length > b.length ? a : b), [] )
 }

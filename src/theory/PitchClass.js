@@ -1,10 +1,10 @@
-import {firstToUpper}            from '../utilities'
-import {PitchClassRule}          from '../validation'
-import {Constants }        from '../resources/Constants'
-import {InvalidInput}            from '../Exceptions'
-import ModelHelper               from '../utilities/ModelHelper'
-import RawHelper                 from '../utilities/RawHelper'
-import {NUMBER_OF_PITCH_CLASSES} from '../Constants'
+import { firstToUpper }            from '../utilities'
+import { PitchClassRule }          from '../validation'
+import { Constants }               from '../resources/Constants'
+import { InvalidInput }            from '../Exceptions'
+import ModelHelper                 from '../utilities/ModelHelper'
+import RawHelper                   from '../utilities/RawHelper'
+import { NUMBER_OF_PITCH_CLASSES } from '../Constants'
 
 /**
  * @class PitchClass
@@ -14,23 +14,23 @@ import {NUMBER_OF_PITCH_CLASSES} from '../Constants'
  * @param {string} pitchClass
  */
 export default class PitchClass {
-  constructor(pitchClass) {
+  constructor ( pitchClass ) {
     this.attributes = {}
-    if (!PitchClassRule.exists(pitchClass)) {
-      throw new InvalidInput(`${pitchClass} should be a pitch class.`)
+    if ( !PitchClassRule.exists( pitchClass ) ) {
+      throw new InvalidInput( `${ pitchClass } should be a pitch class.` )
     }
 
-    this.attributes.raw        = firstToUpper(pitchClass)
-    this.attributes.classSet   = pitchClass.includes('#') ? '#' : 'b'
-    this.attributes.pitchClass = ModelHelper.transformPitchClass(this)
-    this.attributes.classIndex = Constants.getPitchClassSet(this.classSet).indexOf(this.pitchClass)
+    this.attributes.raw        = firstToUpper( pitchClass )
+    this.attributes.classSet   = pitchClass.includes( '#' ) ? '#' : 'b'
+    this.attributes.pitchClass = ModelHelper.transformPitchClass( this )
+    this.attributes.classIndex = Constants.getPitchClassSet( this.classSet ).indexOf( this.pitchClass )
   }
 
   /**
    * Returns the pitch class.
    * @type {String}
    */
-  get pitchClass() {
+  get pitchClass () {
     return this.attributes.pitchClass
   }
 
@@ -38,7 +38,7 @@ export default class PitchClass {
    * Get the set of the pitch class - sharp or flat.
    * @type {String}
    */
-  get classSet() {
+  get classSet () {
     return this.attributes.classSet
   }
 
@@ -48,8 +48,8 @@ export default class PitchClass {
    * @param pitchClass
    * @returns {boolean}
    */
-  static isFlat(pitchClass) {
-    return pitchClass.includes('b')
+  static isFlat ( pitchClass ) {
+    return pitchClass.includes( 'b' )
   }
 
   /**
@@ -58,8 +58,8 @@ export default class PitchClass {
    * @param pitchClass
    * @returns {boolean}
    */
-  static isSharp(pitchClass) {
-    return ['#', 'x'].includes(pitchClass[1])
+  static isSharp ( pitchClass ) {
+    return [ '#', 'x' ].includes( pitchClass[1] )
   }
 
   /**
@@ -68,7 +68,7 @@ export default class PitchClass {
    * @param obj
    * @returns {boolean}
    */
-  static isPitchClass(obj) {
+  static isPitchClass ( obj ) {
     return obj instanceof PitchClass
   }
 
@@ -76,7 +76,7 @@ export default class PitchClass {
    * Get the index of the pitch class out of the 12 classes (C, Db, etc...).
    * @type {Number}
    */
-  get classIndex() {
+  get classIndex () {
     return this.attributes.classIndex
   }
 
@@ -89,37 +89,37 @@ export default class PitchClass {
    * const c = new PitchClass('c')
    * console.log(c.interval(5)) // F
    */
-  interval(interval) {
-    if (typeof interval === 'number') {
+  interval ( interval ) {
+    if ( typeof interval === 'number' ) {
       const normalizedInterval = interval % NUMBER_OF_PITCH_CLASSES
-      if (Constants.pitchClasses.includes(this.raw)) {
-        const index      = Math.abs((this.classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES)
-        const pitchClass = Constants.getPitchClassSet(this.classSet)[index]
-        return new PitchClass(pitchClass)
+      if ( Constants.pitchClasses.includes( this.raw ) ) {
+        const index      = Math.abs( (this.classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES )
+        const pitchClass = Constants.getPitchClassSet( this.classSet )[index]
+        return new PitchClass( pitchClass )
       } else {
-        const classIndex  = Constants.getPitchClassSet(this.classSet).indexOf(this.raw[0])
-        const index       = Math.abs((classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES)
-        let [letter, acc] = Constants.getPitchClassSet(this.classSet)[index]
-        const accidentals = this.raw.slice(1)
-        if (acc === 'b' && !accidentals.includes('b')) {
-          const pc2     = Constants.flatClassNotes[(Constants.flatClassNotes.indexOf(`${letter}${acc}`) - 1) % 12];
-          [letter, acc] = RawHelper.enharmonicPitchClass(`${letter}${acc}`, pc2)
+        const classIndex    = Constants.getPitchClassSet( this.classSet ).indexOf( this.raw[0] )
+        const index         = Math.abs( (classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES )
+        let [ letter, acc ] = Constants.getPitchClassSet( this.classSet )[index]
+        const accidentals   = this.raw.slice( 1 )
+        if ( acc === 'b' && !accidentals.includes( 'b' ) ) {
+          const pc2       = Constants.flatClassNotes[(Constants.flatClassNotes.indexOf( `${ letter }${ acc }` ) - 1) % 12];
+          [ letter, acc ] = RawHelper.enharmonicPitchClass( `${ letter }${ acc }`, pc2 )
         }
-        if (accidentals[accidentals.length - 1] === '#' && acc) {
-          return new PitchClass(`${letter}${accidentals.slice(0, accidentals.length - 1)}x`)
+        if ( accidentals[accidentals.length - 1] === '#' && acc ) {
+          return new PitchClass( `${ letter }${ accidentals.slice( 0, accidentals.length - 1 ) }x` )
         }
-        return new PitchClass(`${letter}${accidentals}${acc ? acc : ''}`)
+        return new PitchClass( `${ letter }${ accidentals }${ acc ? acc : '' }` )
       }
     }
 
-    throw new InvalidInput(`${interval} is not a valid interval`)
+    throw new InvalidInput( `${ interval } is not a valid interval` )
   }
 
   /**
    * Returns string of the pitch class.
    * @returns {String}
    */
-  toString() {
+  toString () {
     return this.raw
   }
 
@@ -127,7 +127,7 @@ export default class PitchClass {
    * Returns the pitch class as a string.
    * @returns {String}
    */
-  get raw() {
+  get raw () {
     return this.attributes.raw
   }
 }

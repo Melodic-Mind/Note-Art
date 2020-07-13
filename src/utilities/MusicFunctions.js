@@ -10,10 +10,10 @@ import ModelHelper                         from './ModelHelper'
  * @param {PitchClass} pitchClass2 second note
  * @returns {Number}
  */
-export function calculateInterval(pitchClass1, pitchClass2) {
+export function calculateInterval ( pitchClass1, pitchClass2 ) {
   const i1 = pitchClass1.classIndex,
         i2 = pitchClass2.classIndex
-  return i1 - i2 <= 0 ? Math.abs(i1 - i2) : 12 - (i1 - i2)
+  return i1 - i2 <= 0 ? Math.abs( i1 - i2 ) : 12 - (i1 - i2)
 }
 
 /**
@@ -21,11 +21,11 @@ export function calculateInterval(pitchClass1, pitchClass2) {
  * @param {string} pitch Pitch as a string, e.g Ab3
  * @returns {{octave: number, pitchClass: String}}
  */
-export function noteToObject(note) {
-  validateRawNote(note)
+export function noteToObject ( note ) {
+  validateRawNote( note )
 
-  const pitchClass = firstToUpper(note.slice(0, note.length - 1))
-  const octave     = parseInt(note[note.length - 1])
+  const pitchClass = firstToUpper( note.slice( 0, note.length - 1 ) )
+  const octave     = parseInt( note[note.length - 1] )
 
   return { pitchClass, octave }
 }
@@ -35,12 +35,12 @@ export function noteToObject(note) {
  * @param {string} note Raw note.
  * @returns {boolean}
  */
-export function isRest(str) {
-  return ['r', 'R'].includes(str)
+export function isRest ( str ) {
+  return [ 'r', 'R' ].includes( str )
 }
 
-export function isDuration(dur) {
-  return Object.keys(Constants.noteDurations).includes(dur)
+export function isDuration ( dur ) {
+  return Object.keys( Constants.noteDurations ).includes( dur )
 }
 
 /**
@@ -48,19 +48,19 @@ export function isDuration(dur) {
  * @param str
  * @returns {boolean}
  */
-export function isRawNote(str) {
-  if(typeof str !== 'string') {
+export function isRawNote ( str ) {
+  if ( typeof str !== 'string' ) {
     return false
   }
 
-  if(isRest(str)) {
+  if ( isRest( str ) ) {
     return true
   }
 
-  const pitchClass = firstToUpper(str.slice(0, str.length - 1))
-  const octave     = parseInt(str[str.length - 1])
+  const pitchClass = firstToUpper( str.slice( 0, str.length - 1 ) )
+  const octave     = parseInt( str[str.length - 1] )
 
-  return !(!PitchClassRule.exists(pitchClass) || typeof octave !== 'number');
+  return !( !PitchClassRule.exists( pitchClass ) || typeof octave !== 'number')
 }
 
 /**
@@ -69,11 +69,11 @@ export function isRawNote(str) {
  * @param {number} interval Interval to transpose by.
  * @returns {string|*}
  */
-export function transpose(note, interval) {
-  validateRawNote(note)
+export function transpose ( note, interval ) {
+  validateRawNote( note )
 
-  if(!isRest(note)) {
-    return Note.builder(note).interval(interval).toString()
+  if ( !isRest( note ) ) {
+    return Note.builder( note ).interval( interval ).toString()
   }
 
   return note
@@ -85,17 +85,17 @@ export function transpose(note, interval) {
  * @param {number} range
  * @returns {Array}
  */
-export function notesInRange(baseNote, range) {
-  let { pitchClass, octave } = noteToObject(baseNote)
+export function notesInRange ( baseNote, range ) {
+  let { pitchClass, octave } = noteToObject( baseNote )
   const notes                = {}
   let tmpPitchClass
 
-  for(let i = 0; i <= range; ++i) {
-    tmpPitchClass = Constants.flatClassNotes[(Constants.flatClassNotes.indexOf(pitchClass) + i) % 12]
+  for ( let i = 0; i <= range; ++i ) {
+    tmpPitchClass = Constants.flatClassNotes[(Constants.flatClassNotes.indexOf( pitchClass ) + i) % 12]
 
     notes[tmpPitchClass + octave] = { pitchClass: tmpPitchClass, octave }
 
-    if(tmpPitchClass === 'B') {
+    if ( tmpPitchClass === 'B' ) {
       octave++
     }
   }
@@ -108,12 +108,12 @@ export function notesInRange(baseNote, range) {
  * @param scale
  * @returns {Array}
  */
-export function spellScale(scale) {
-  const letters = rearrangeArray(Constants.pitchClassLetters, Constants.pitchClassLetters.indexOf(scale.root.pitchClass[0]))
-  const res     = [scale.root.pitchClass];
-  [...scale.pitchClasses].slice(1).forEach((pc, i) => {
-    res.push(ModelHelper.enharmonicPitchClass(pc, new PitchClass(letters[i + 1])))
-  })
+export function spellScale ( scale ) {
+  const letters = rearrangeArray( Constants.pitchClassLetters, Constants.pitchClassLetters.indexOf( scale.root.pitchClass[0] ) )
+  const res     = [ scale.root.pitchClass ];
+  [ ...scale.pitchClasses ].slice( 1 ).forEach( ( pc, i ) => {
+    res.push( ModelHelper.enharmonicPitchClass( pc, new PitchClass( letters[i + 1] ) ) )
+  } )
 
   return res
 }
@@ -123,7 +123,7 @@ export function spellScale(scale) {
  * @param rawNote
  * @returns {*}
  */
-export function extractOctave(rawNote) {
+export function extractOctave ( rawNote ) {
   return rawNote[rawNote.length - 1]
 }
 
@@ -132,6 +132,6 @@ export function extractOctave(rawNote) {
  * @param rawNote
  * @returns {*}
  */
-export function extractPitchClass(rawNote) {
-  return rawNote.slice(0, rawNote.length - 1)
+export function extractPitchClass ( rawNote ) {
+  return rawNote.slice( 0, rawNote.length - 1 )
 }
