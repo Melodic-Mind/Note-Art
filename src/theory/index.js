@@ -1,6 +1,15 @@
-export { default as PitchClass }         from './PitchClass'
-export { default as Note }               from './Note'
-export { default as MusicalPattern }     from './MusicalPattern'
-export { default as Chord }              from './Chord'
-export { default as Scale }              from './Scale'
-export { default as GuitarChordPattern } from './GuitarChordPattern'
+import Chord from './Chord'
+import GuitarChordPattern from './GuitarChordPattern'
+import MusicalPattern from './MusicalPattern'
+import Note from './Note'
+import PitchClass from './PitchClass'
+import Scale from './Scale'
+
+export {
+  Chord,
+  GuitarChordPattern,
+  MusicalPattern,
+  Note,
+  PitchClass,
+  Scale
+}

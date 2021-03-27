@@ -1,6 +1,6 @@
-import { Constants }    from '../resources/Constants'
-import { InvalidInput } from '../Exceptions'
-import { PitchClass }   from '../theory'
+import { InvalidInput }        from '../Exceptions'
+import { PitchClass }          from '../theory'
+import { PITCH_CLASS_LETTERS } from '../Constants'
 
 /**
  * @classdesc Rules for validating a pitchClass
@@ -46,7 +46,7 @@ export default class PitchClassRule {
   }
 
   static get validLetters () {
-    return Constants.pitchClassLetters.concat( Constants.pitchClassLetters.map( letter => letter.toLowerCase() ) )
+    return PITCH_CLASS_LETTERS.concat( PITCH_CLASS_LETTERS.map( letter => letter.toLowerCase() ) )
   }
 
   static isPitchClass ( obj ) {

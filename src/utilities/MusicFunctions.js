@@ -1,8 +1,8 @@
-import { Constants }                       from '../resources/Constants'
 import { Note, PitchClass }                from '../theory'
 import { firstToUpper, rearrangeArray }    from '../utilities'
 import { PitchClassRule, validateRawNote } from '../validation'
-import ModelHelper                         from './ModelHelper'
+import ModelHelper                                                              from './ModelHelper'
+import { FLAT_CLASS_NOTES, NOTE_DURATIONS, PITCH_CLASS_LETTERS } from '../Constants'
 
 /**
  * Calculate the pure interval between 2 pitch classes.
@@ -40,7 +40,7 @@ export function isRest ( str ) {
 }
 
 export function isDuration ( dur ) {
-  return Object.keys( Constants.noteDurations ).includes( dur )
+  return Object.keys( NOTE_DURATIONS ).includes( dur )
 }
 
 /**
@@ -91,7 +91,7 @@ export function notesInRange ( baseNote, range ) {
   let tmpPitchClass
 
   for ( let i = 0; i <= range; ++i ) {
-    tmpPitchClass = Constants.flatClassNotes[(Constants.flatClassNotes.indexOf( pitchClass ) + i) % 12]
+    tmpPitchClass = FLAT_CLASS_NOTES[(FLAT_CLASS_NOTES.indexOf( pitchClass ) + i) % 12]
 
     notes[tmpPitchClass + octave] = { pitchClass: tmpPitchClass, octave }
 
@@ -109,7 +109,7 @@ export function notesInRange ( baseNote, range ) {
  * @returns {Array}
  */
 export function spellScale ( scale ) {
-  const letters = rearrangeArray( Constants.pitchClassLetters, Constants.pitchClassLetters.indexOf( scale.root.pitchClass[0] ) )
+  const letters = rearrangeArray( PITCH_CLASS_LETTERS, PITCH_CLASS_LETTERS.indexOf( scale.root.pitchClass[0] ) )
   const res     = [ scale.root.pitchClass ];
   [ ...scale.pitchClasses ].slice( 1 ).forEach( ( pc, i ) => {
     res.push( ModelHelper.enharmonicPitchClass( pc, new PitchClass( letters[i + 1] ) ) )

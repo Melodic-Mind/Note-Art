@@ -1,3 +1,8 @@
-export { default as PatternRule }    from './PatternRule'
-export { default as PitchClassRule } from './PitchClassRule'
-export *                             from './Validators'
+import PatternRule     from './PatternRule'
+import PitchClassRule  from './PitchClassRule'
+
+export {
+  PatternRule,
+  PitchClassRule,
+}
+export * from './Validators'

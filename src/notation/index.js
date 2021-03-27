@@ -1,3 +1,9 @@
-export { default as Measure }      from './Measure'
-export { default as Score }        from './Score'
-export { default as ScoreHandler } from './ScoreHandler'
+import Measure from './Measure'
+import Score from './Score'
+import ScoreHandler from './ScoreHandler'
+
+export {
+  Measure,
+  Score,
+  ScoreHandler
+}

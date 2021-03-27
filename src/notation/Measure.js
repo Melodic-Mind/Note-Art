@@ -1,6 +1,6 @@
 import { firstToUpper, isRawNote, transpose } from '../utilities'
-import { Constants }                          from '../resources/Constants'
 import { validateArray, validateDuration }    from '../validation'
+import { NOTE_DURATIONS }                     from '../Constants'
 
 /**
  * @class Measure
@@ -40,7 +40,7 @@ export default class Measure {
    * @returns {number}
    */
   get length () {
-    return this.data.reduce( ( acc, { duration } ) => acc + Constants.noteDurations[duration], 0 ) / 4
+    return this.data.reduce( ( acc, { duration } ) => acc + NOTE_DURATIONS[duration], 0 ) / 4
   }
 
   /**
@@ -60,7 +60,7 @@ export default class Measure {
     return this.maxDuration - this.data.slice( 0, position )
                                   .reduce( ( prev, curr ) => {
                                     return curr.notes.size ?
-                                           prev + Constants.noteDurations[curr.duration] : prev + 0
+                                           prev + NOTE_DURATIONS[curr.duration] : prev + 0
                                   }, 0 )
   }
 
@@ -88,7 +88,7 @@ export default class Measure {
     return !(
       position > this.data.length
       ||
-      Constants.noteDurations[duration] > this.durationLeft( position ) + duration
+      NOTE_DURATIONS[duration] > this.durationLeft( position ) + duration
     )
   }
 
@@ -198,7 +198,7 @@ export default class Measure {
    * @returns {boolean}
    */
   isFull ( duration ) {
-    return !(Constants.noteDurations[duration] <= this.durationLeft())
+    return !(NOTE_DURATIONS[duration] <= this.durationLeft())
   }
 
   /**

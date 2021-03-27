@@ -1,10 +1,9 @@
 import { Note }                                                              from '../theory'
 import { rearrangeArray, mapString, calculateInterval, occurrencesInString } from '../utilities'
-import { validateNumber, validatePitchClasses }                              from '../validation'
-import { Constants }                                                         from '../resources/Constants'
-import { NUMBER_OF_PITCH_CLASSES }                                           from '../Constants'
+import { validateNumber, validatePitchClasses }                         from '../validation'
+import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, SHARP_CLASS_NOTES } from '../Constants'
 
-export default class ModelHelper {
+export class ModelHelper {
   /**
    * Returns an array of notes with a specific octave.
    * @param {Array} pitchClasses Array of pitch classes.
@@ -80,14 +79,14 @@ export default class ModelHelper {
       case '#':
         return ![ 'E', 'B' ].includes( pitchLetter ) ?
                pc.raw :
-               Constants.sharpClassNotes[(Constants.sharpClassNotes.indexOf( pitchLetter ) + 1) % 12]
+               SHARP_CLASS_NOTES[(SHARP_CLASS_NOTES.indexOf( pitchLetter ) + 1) % 12]
 
       case 'x':
         times = occurrencesInString( pc.raw, 'x' ) * 2
         if ( pc.raw[pc.raw.length - 1] === '#' ) {
           ++times
         }
-        return Constants.sharpClassNotes[(Constants.sharpClassNotes.indexOf( pitchLetter ) + times) % NUMBER_OF_PITCH_CLASSES]
+        return SHARP_CLASS_NOTES[(SHARP_CLASS_NOTES.indexOf( pitchLetter ) + times) % NUMBER_OF_PITCH_CLASSES]
 
       case 'b':
         if ( ![ 'C', 'F' ].includes( pitchLetter ) && pc.raw.length === 2 ) {
@@ -95,12 +94,14 @@ export default class ModelHelper {
         }
 
         times         = occurrencesInString( pc.raw, 'b' )
-        index         = Constants.flatClassNotes.indexOf( pitchLetter ) - times
+        index         = FLAT_CLASS_NOTES.indexOf( pitchLetter ) - times
         accurateIndex = index >= 0 ? index : NUMBER_OF_PITCH_CLASSES + index
-        return Constants.flatClassNotes[(accurateIndex) % NUMBER_OF_PITCH_CLASSES]
+        return FLAT_CLASS_NOTES[(accurateIndex) % NUMBER_OF_PITCH_CLASSES]
 
       default:
         return pitchLetter
     }
   }
 }
+
+export default ModelHelper

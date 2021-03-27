@@ -1,7 +1,7 @@
 import PitchClass                   from './PitchClass'
-import { Constants }                from '../resources/Constants'
 import { freqToMidi, noteToObject } from '../utilities'
 import { validateNumber }           from '../validation'
+import { SHARP_CLASS_NOTES }        from '../Constants'
 
 /**
  * @class Note
@@ -53,7 +53,7 @@ export default class Note extends PitchClass {
    */
   static fromFrequency ( frequency ) {
     const n          = freqToMidi( frequency )
-    const pitchClass = Constants.sharpClassNotes[n % 12]
+    const pitchClass = SHARP_CLASS_NOTES[n % 12]
     const octave     = Math.floor( n / 12 - 1 )
 
     return new Note( pitchClass, octave )

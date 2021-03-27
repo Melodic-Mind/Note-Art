@@ -1,10 +1,9 @@
 import { firstToUpper }            from '../utilities'
 import { PitchClassRule }          from '../validation'
-import { Constants }               from '../resources/Constants'
 import { InvalidInput }            from '../Exceptions'
 import ModelHelper                 from '../utilities/ModelHelper'
-import RawHelper                   from '../utilities/RawHelper'
-import { NUMBER_OF_PITCH_CLASSES } from '../Constants'
+import RawHelper                                                                      from '../utilities/RawHelper'
+import { FLAT_CLASS_NOTES, getPitchClassSet, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES } from '../Constants'
 
 /**
  * @class PitchClass
@@ -23,7 +22,7 @@ export default class PitchClass {
     this.attributes.raw        = firstToUpper( pitchClass )
     this.attributes.classSet   = pitchClass.includes( '#' ) ? '#' : 'b'
     this.attributes.pitchClass = ModelHelper.transformPitchClass( this )
-    this.attributes.classIndex = Constants.getPitchClassSet( this.classSet ).indexOf( this.pitchClass )
+    this.attributes.classIndex = getPitchClassSet( this.classSet ).indexOf( this.pitchClass )
   }
 
   /**
@@ -92,17 +91,17 @@ export default class PitchClass {
   interval ( interval ) {
     if ( typeof interval === 'number' ) {
       const normalizedInterval = interval % NUMBER_OF_PITCH_CLASSES
-      if ( Constants.pitchClasses.includes( this.raw ) ) {
+      if ( PITCH_CLASSES.includes( this.raw ) ) {
         const index      = Math.abs( (this.classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES )
-        const pitchClass = Constants.getPitchClassSet( this.classSet )[index]
+        const pitchClass = getPitchClassSet( this.classSet )[index]
         return new PitchClass( pitchClass )
       } else {
-        const classIndex    = Constants.getPitchClassSet( this.classSet ).indexOf( this.raw[0] )
+        const classIndex    = getPitchClassSet( this.classSet ).indexOf( this.raw[0] )
         const index         = Math.abs( (classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES )
-        let [ letter, acc ] = Constants.getPitchClassSet( this.classSet )[index]
+        let [ letter, acc ] = getPitchClassSet( this.classSet )[index]
         const accidentals   = this.raw.slice( 1 )
         if ( acc === 'b' && !accidentals.includes( 'b' ) ) {
-          const pc2       = Constants.flatClassNotes[(Constants.flatClassNotes.indexOf( `${ letter }${ acc }` ) - 1) % 12];
+          const pc2       = FLAT_CLASS_NOTES[(FLAT_CLASS_NOTES.indexOf( `${ letter }${ acc }` ) - 1) % 12];
           [ letter, acc ] = RawHelper.enharmonicPitchClass( `${ letter }${ acc }`, pc2 )
         }
         if ( accidentals[accidentals.length - 1] === '#' && acc ) {

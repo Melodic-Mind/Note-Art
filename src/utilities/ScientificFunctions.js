@@ -1,5 +1,4 @@
-import { SEMITONE, NUMBER_OF_PITCH_CLASSES, PITCH_STANDARD } from '../Constants'
-import { Constants }                                         from '../resources/Constants'
+import { SEMITONE, NUMBER_OF_PITCH_CLASSES, PITCH_STANDARD, FLAT_CLASS_NOTES } from '../Constants'
 
 /**
  * Calculate the frequency of a note by its octave and index out of all notes(c, c#, etc...).
@@ -7,7 +6,7 @@ import { Constants }                                         from '../resources/
  */
 export function freqFromPitch ( pitch ) {
   const oct = pitch.octave - PITCH_STANDARD.octave //calculate octave difference
-  return Math.pow( SEMITONE, pitch.classIndex - Constants.flatClassNotes.indexOf( PITCH_STANDARD.pitchClass ) + oct * NUMBER_OF_PITCH_CLASSES ) * PITCH_STANDARD.frequency
+  return Math.pow( SEMITONE, pitch.classIndex - FLAT_CLASS_NOTES.indexOf( PITCH_STANDARD.pitchClass ) + oct * NUMBER_OF_PITCH_CLASSES ) * PITCH_STANDARD.frequency
 }
 
 /**
