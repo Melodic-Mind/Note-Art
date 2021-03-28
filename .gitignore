@@ -5,6 +5,8 @@
 .idea/
 dist/
 .vscode/
+/lib
+/built
 
 ### Linux ###
 *~

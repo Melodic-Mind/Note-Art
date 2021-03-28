@@ -1,24 +1,30 @@
 {
-    "presets": [
-        [
-            "@babel/preset-env", {
-            "targets": {
-                "node": "current"
-            }
-        }
-        ]
-    ],
-    "env": {
-        "test": {
-            "plugins": [
-                "istanbul"
-            ]
-        }
-    },
-    "plugins": [
-        "@babel/plugin-proposal-object-rest-spread",
-        "@babel/plugin-proposal-class-properties",
-        "@babel/plugin-proposal-throw-expressions",
-        "@babel/plugin-proposal-export-default-from"
+  "presets": [
+    [
+      "@babel/preset-env", {
+      "targets": {
+        "node": "current"
+      }
+    }
     ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  },
+  "plugins": [
+    "@babel/plugin-proposal-throw-expressions",
+    [
+      "module-resolver", {
+      "extensions": [".js", ".json"],
+      "root": ["."],
+      "alias": {
+        "test": "./test"
+      }
+    }
+    ]
+  ]
 }

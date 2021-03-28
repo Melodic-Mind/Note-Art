@@ -1,5 +1,5 @@
-import { Note, PitchClass }                from '../theory'
-import { firstToUpper, rearrangeArray }    from '../utilities'
+import { Note, PitchClass }             from '../theory'
+import { firstToUpper, rearrangeArray } from '../utilities'
 import { PitchClassRule, validateRawNote } from '../validation'
 import ModelHelper                                                              from './ModelHelper'
 import { FLAT_CLASS_NOTES, NOTE_DURATIONS, PITCH_CLASS_LETTERS } from '../Constants'

@@ -1,4 +1,4 @@
-import { Scale, PitchClass, Chord } from '../../src'
+import { Scale, PitchClass, Chord } from 'src'
 
 describe( 'Scale', () => {
 

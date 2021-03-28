@@ -1,44 +1,29 @@
 const path        = require('path')
-const libraryName = 'note-art'
-const outputFile  = '[name].js'
 
 module.exports = {
-  entry:       {
-    'note-art': __dirname + '/src/index.js',
-    theory:     __dirname + '/src/theory/index.js',
-    notation:   __dirname + '/src/notation/index.js',
-  },
+  entry:     "./src/index.ts",
   output:      {
-    filename:       outputFile,
+    filename:       'note-art.js',
     path:           path.resolve(__dirname, 'dist'),
-    library:        libraryName,
-    libraryTarget:  'umd',
-    umdNamedDefine: true,
   },
+  devtool: "source-map",
   resolve:     {
-    // modules: [
-    //   path.resolve(__dirname, 'src'),
-    // ],
+    extensions: ["", ".webpack.js", ".web.js", ".ts", ".js"],
     alias:   {
       resources: path.resolve(__dirname, 'src/resources'),
+      src: path.resolve(__dirname, 'src/'),
+      built: path.resolve(__dirname, 'built/')
     },
   },
   performance: {
     hints: process.env.NODE_ENV === 'production' ? 'warning' : false,
   },
-  module:      {
+  module: {
     rules: [
-      {
-        test:    /\.js$/, // include .js files
-        exclude: /node_modules/, // exclude any and all files in the node_modules folder,
-        use:     {
-          loader:  'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-object-rest-spread'],
-          },
-        },
-      },
+      // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
+      { test: /\.tsx?$/, loader: "ts-loader" },
+      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+      { test: /\.js$/, loader: "source-map-loader" },
     ],
   },
 }

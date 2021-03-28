@@ -1,6 +1,6 @@
-import { Measure } from '../../src'
+import { Measure } from '../../built'
 
-import { InvalidInput } from '../../src/Exceptions'
+import { InvalidInput } from '../../built/Exceptions'
 
 
 describe( 'Measure', () => {

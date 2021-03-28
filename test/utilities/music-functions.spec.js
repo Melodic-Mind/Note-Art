@@ -7,7 +7,7 @@ import {
   PitchClass,
   spellScale,
   Scale, extractOctave, extractPitchClass,
-}                       from '../../src'
+}                       from 'src'
 import { InvalidInput } from '../../src/Exceptions'
 
 describe( 'Music addon functions', () => {

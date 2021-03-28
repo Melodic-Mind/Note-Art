@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "target": "es6",
+    "declaration": true,
+    "baseUrl": ".",
+    "paths": {
+      "src": ["./src"] // This mapping is relative to "baseUrl"
+    }
+  },
+  "include": ["./src/**/*"],
+  "module": "AMD",
+  "moduleResolution": "node"
+}

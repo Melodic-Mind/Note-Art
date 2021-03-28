@@ -1,4 +1,4 @@
-import { Chord, Note, PitchClass } from '../../src'
+import { Chord, Note, PitchClass } from 'src'
 import { InvalidInput }            from '../../src/Exceptions'
 import { ModelHelper }             from '../../src/utilities'
 

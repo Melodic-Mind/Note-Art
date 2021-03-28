@@ -1,7 +1,7 @@
 import {
   firstToUpper, twoDigitFormat, PitchClass, validateInstance, switchMembers, rearrangeArray, mapString, fitArrayToSize,
   longestArray,
-}                       from '../../src'
+}                       from 'src'
 import { InvalidInput } from '../../src/Exceptions'
 
 describe( 'general-functions', () => {

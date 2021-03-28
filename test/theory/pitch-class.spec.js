@@ -1,4 +1,4 @@
-import { Note, PitchClass } from '../../src'
+import { Note, PitchClass } from 'src'
 import { InvalidInput }     from '../../src/Exceptions'
 import { testIntervals }    from '../Helpers'
 
