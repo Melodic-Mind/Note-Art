@@ -1,7 +1,7 @@
-import { Note }                                                              from '../theory'
 import { rearrangeArray, mapString, calculateInterval, occurrencesInString } from '../utilities'
-import { validateNumber, validatePitchClasses }                         from '../validation'
-import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, SHARP_CLASS_NOTES } from '../Constants'
+import { validateNumber, validatePitchClasses }                              from '../validation'
+import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, SHARP_CLASS_NOTES }      from '../Constants'
+import Note                                                                  from '../theory/Note'
 
 export class ModelHelper {
   /**
@@ -10,37 +10,37 @@ export class ModelHelper {
    * @param {number} octave Octave to assign to notes..
    * @returns {Array}
    */
-  static pitchClassesToNotes ( pitchClasses, octave ) {
-    validatePitchClasses( pitchClasses )
-    validateNumber( octave )
+  static pitchClassesToNotes(pitchClasses, octave) {
+    validatePitchClasses(pitchClasses)
+    validateNumber(octave)
 
-    return pitchClasses.map( pitchClass => new Note( pitchClass.pitchClass, octave ) )
+    return pitchClasses.map(pitchClass => new Note(pitchClass.pitchClass, octave))
   }
 
   /**
    * Returns an array of notes that represent a chord played on a piano in a certain octave.
-   * @param {Array} {pitchClasses} Array of pitch classes.
+   * @param {Array} pitchClasses
    * @param {number} octave Octave for the chord root.
    * @param {number} inversion Whether to invert the chord. 0 - root position, 1 - 1st inversion, 2 - 2nd inversion,
    *     etc...
    * @returns {Array}
    */
-  static pitchClassesToPianoChordNotes ( pitchClasses, octave, inversion = 0 ) {
-    validatePitchClasses( pitchClasses )
-    validateNumber( octave )
+  static pitchClassesToPianoChordNotes(pitchClasses, octave, inversion = 0) {
+    validatePitchClasses(pitchClasses)
+    validateNumber(octave)
 
-    if ( inversion ) {
-      pitchClasses = rearrangeArray( pitchClasses, inversion )
+    if(inversion) {
+      pitchClasses = rearrangeArray(pitchClasses, inversion)
     }
 
     let currentOctave = octave
 
-    return pitchClasses.map( ( pitchClass, i ) => {
-      if ( (i - 1) >= 0 && pitchClass.classIndex < pitchClasses[i - 1].classIndex ) {
+    return pitchClasses.map((pitchClass, i) => {
+      if((i - 1) >= 0 && pitchClass.classIndex < pitchClasses[i - 1].classIndex) {
         currentOctave++
       }
-      return new Note( pitchClass.pitchClass, currentOctave )
-    } )
+      return new Note(pitchClass.pitchClass, currentOctave)
+    })
   }
 
   /**
@@ -49,20 +49,20 @@ export class ModelHelper {
    * @param {PitchClass} to new pitch class, Should have no accidentals.
    * @returns {string}
    */
-  static enharmonicPitchClass ( from, to ) {
-    const interval = calculateInterval( from, to )
+  static enharmonicPitchClass(from, to) {
+    const interval = calculateInterval(from, to)
 
     const type = interval >= 7 ? '#' : 'b'
 
     let times = interval >= 7 ? 12 - interval : interval
 
     let str = ''
-    for ( let i = 0; i < times; ++i ) {
-      str = str.concat( type )
+    for(let i = 0; i < times; ++i) {
+      str = str.concat(type)
     }
 
-    if ( type === '#' ) {
-      str = mapString( str, '##', 'x' )
+    if(type === '#') {
+      str = mapString(str, '##', 'x')
     }
 
     return `${ to.raw }${ str }`
@@ -72,29 +72,29 @@ export class ModelHelper {
    * Transform a pitch class to it's basic form.
    * @param {PitchClass} pc
    */
-  static transformPitchClass ( pc ) {
-    const [ pitchLetter, accidental ] = pc.raw
+  static transformPitchClass(pc) {
+    const [pitchLetter, accidental] = pc.raw
     let times, index, accurateIndex
-    switch ( accidental ) {
+    switch(accidental) {
       case '#':
-        return ![ 'E', 'B' ].includes( pitchLetter ) ?
+        return !['E', 'B'].includes(pitchLetter) ?
                pc.raw :
-               SHARP_CLASS_NOTES[(SHARP_CLASS_NOTES.indexOf( pitchLetter ) + 1) % 12]
+               SHARP_CLASS_NOTES[(SHARP_CLASS_NOTES.indexOf(pitchLetter) + 1) % 12]
 
       case 'x':
-        times = occurrencesInString( pc.raw, 'x' ) * 2
-        if ( pc.raw[pc.raw.length - 1] === '#' ) {
+        times = occurrencesInString(pc.raw, 'x') * 2
+        if(pc.raw[pc.raw.length - 1] === '#') {
           ++times
         }
-        return SHARP_CLASS_NOTES[(SHARP_CLASS_NOTES.indexOf( pitchLetter ) + times) % NUMBER_OF_PITCH_CLASSES]
+        return SHARP_CLASS_NOTES[(SHARP_CLASS_NOTES.indexOf(pitchLetter) + times) % NUMBER_OF_PITCH_CLASSES]
 
       case 'b':
-        if ( ![ 'C', 'F' ].includes( pitchLetter ) && pc.raw.length === 2 ) {
+        if( !['C', 'F'].includes(pitchLetter) && pc.raw.length === 2) {
           return pc.raw
         }
 
-        times         = occurrencesInString( pc.raw, 'b' )
-        index         = FLAT_CLASS_NOTES.indexOf( pitchLetter ) - times
+        times         = occurrencesInString(pc.raw, 'b')
+        index         = FLAT_CLASS_NOTES.indexOf(pitchLetter) - times
         accurateIndex = index >= 0 ? index : NUMBER_OF_PITCH_CLASSES + index
         return FLAT_CLASS_NOTES[(accurateIndex) % NUMBER_OF_PITCH_CLASSES]
 

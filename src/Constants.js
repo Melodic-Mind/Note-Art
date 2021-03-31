@@ -35,14 +35,3 @@ export const NOTE_DURATIONS      = {
   '32n': 2,
   '64n': 1
 }
-
-
-export function getPitchClassSet(set) {
-  if(set === '#') {
-    return SHARP_CLASS_NOTES
-  }
-  if(set === 'b') {
-    return FLAT_CLASS_NOTES
-  }
-  return null
-}

@@ -3,12 +3,11 @@ import {
   calculateInterval,
   notesInRange,
   noteToObject,
-  Chord,
   PitchClass,
   spellScale,
   Scale, extractOctave, extractPitchClass,
-}                       from 'src'
-import { InvalidInput } from '../../src/Exceptions'
+}                       from '../../'
+import { InvalidInput } from '../../Exceptions'
 
 describe( 'Music addon functions', () => {
   describe( '#calculateInterval', () => {

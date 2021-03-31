@@ -38,7 +38,7 @@ export function switchMembers([...arr] : [], i1 : number, i2 : number) : [] {
  * @param {number} index to arrange from.
  * @returns {Array}
  */
-export function rearrangeArray([...array] : [], index : number) : [] {
+export function rearrangeArray([...array] : Array<any>, index : number) : Array<any> {
   const tmp = []
   let i     = 0
 
@@ -87,7 +87,7 @@ export function occurrencesInString(str : string, subString : string) : number {
  * @param size The new size.
  * @returns {Array}
  */
-export function fitArrayToSize([...arr] : [], size : number) : [] {
+export function fitArrayToSize([...arr] : Array<any>, size : number) : Array<any> {
   while (arr.length < size) {
     arr = arr.concat([...arr])
   }
@@ -99,7 +99,7 @@ export function fitArrayToSize([...arr] : [], size : number) : [] {
  * @param matrix Array of arrays
  * @returns {Array}
  */
-export function longestArray(matrix : [][]) : [] {
+export function longestArray(matrix : Array<Array<any>>) : Array<any> {
   if (!Array.isArray(matrix) || !matrix.every(arr => Array.isArray(arr))) {
     throw new InvalidInput(`Expected ${ matrix } and each of it's elements to be an array`)
   }

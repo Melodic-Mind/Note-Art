@@ -1,4 +1,4 @@
-import { Measure, Score } from '../../src'
+import { Measure, Score } from '../..'
 import { InvalidInput }   from 'src/Exceptions'
 
 describe('Score', () => {

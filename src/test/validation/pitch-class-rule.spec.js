@@ -1,4 +1,4 @@
-import { PitchClassRule } from 'src'
+import { PitchClassRule } from '../../validation'
 
 describe( 'Pitch Class Rule', () => {
   it( 'should return true when valid', () => {

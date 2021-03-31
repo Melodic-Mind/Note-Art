@@ -26,7 +26,10 @@
     "traceResolution": false,
     "types": ["node"],
     "sourceMap": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "emitDeclarationOnly": true,
+    // Ensure that Babel can safely transpile files in the TypeScript project
+    "isolatedModules": true
   },
   "compileOnSave": true,
   "exclude": ["node_modules", "dist"],

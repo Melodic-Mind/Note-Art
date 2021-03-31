@@ -1,8 +1,8 @@
 import {
   firstToUpper, twoDigitFormat, PitchClass, validateInstance, switchMembers, rearrangeArray, mapString, fitArrayToSize,
   longestArray,
-}                       from 'src'
-import { InvalidInput } from '../../src/Exceptions'
+}                       from '../../'
+import { InvalidInput } from '../../Exceptions'
 
 describe( 'general-functions', () => {
   it( '#firstToUpper', () => {

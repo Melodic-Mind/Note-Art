@@ -1,7 +1,8 @@
-import PitchClass                   from './PitchClass'
-import { freqToMidi, noteToObject } from '../utilities'
-import { validateNumber }           from '../validation'
-import { SHARP_CLASS_NOTES }        from '../Constants'
+import PitchClass            from './PitchClass'
+import { freqToMidi }        from '../utilities/ScientificFunctions'
+import { validateNumber }    from '../validation'
+import { SHARP_CLASS_NOTES } from '../Constants'
+import { noteToObject }      from 'src/utilities/PureMusicUtils'
 
 /**
  * @class Note
@@ -30,7 +31,7 @@ import { SHARP_CLASS_NOTES }        from '../Constants'
  * const a = Note.fromFrequency(440)
  * console.log(a) //A4
  */
-export default class Note extends PitchClass {
+class Note extends PitchClass {
   constructor(pitchClass, octave) {
     super(pitchClass)
     validateNumber(octave)
@@ -101,3 +102,5 @@ export default class Note extends PitchClass {
     return `${ super.toString() }${ this.octave }`
   }
 }
+
+export default Note
