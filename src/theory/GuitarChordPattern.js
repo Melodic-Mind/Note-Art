@@ -1,5 +1,5 @@
-import PitchClass                        from './PitchClass'
-import { calculateInterval }             from '../utilities'
+import PitchClass            from './PitchClass'
+import { calculateInterval } from '../utilities'
 import { validateInstance, PatternRule } from '../validation'
 
 /**

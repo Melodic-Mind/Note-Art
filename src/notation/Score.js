@@ -1,6 +1,6 @@
-import Measure            from './Measure'
-import { longestArray }   from '../utilities/GeneralFunctions'
-import { InvalidInput }   from '../Exceptions'
+import Measure          from './Measure'
+import { longestArray } from '../utilities/GeneralFunctions'
+import { InvalidInput } from '../Exceptions'
 import { NOTE_DURATIONS } from '../Constants'
 
 /**

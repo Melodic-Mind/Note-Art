@@ -5,7 +5,7 @@ import { InvalidInput } from '../Exceptions'
  * @param {String} str String to transform
  * @returns {String}
  */
-export function firstToUpper(str) {
+export function firstToUpper(str : string) {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
@@ -14,18 +14,18 @@ export function firstToUpper(str) {
  * @param {number} num
  * @returns {Number}
  */
-export function twoDigitFormat(num) {
-  return Number(Number.parseFloat(num).toFixed(2))
+export function twoDigitFormat(num : number) {
+  return Number(Number.parseFloat(String(num)).toFixed(2))
 }
 
 /**
- * Gets an array and 2 indexes and returns a new array with those members indexes switched.
+ * Switch the index of one member of an array with another member.
  * @param {Array} arr
  * @param {number} i1
  * @param {number} i2
  * @returns {Array}
  */
-export function switchMembers([...arr], i1, i2) {
+export function switchMembers([...arr] : [], i1 : number, i2 : number) : [] {
   const tmp = arr[i1]
   arr[i1]   = arr[i2]
   arr[i2]   = tmp
@@ -38,11 +38,11 @@ export function switchMembers([...arr], i1, i2) {
  * @param {number} index to arrange from.
  * @returns {Array}
  */
-export function rearrangeArray([...array], index) {
+export function rearrangeArray([...array] : [], index : number) : [] {
   const tmp = []
   let i     = 0
 
-  while(i < index) {
+  while (i < index) {
     tmp.push(array.shift())
     ++i
   }
@@ -57,11 +57,11 @@ export function rearrangeArray([...array], index) {
  * @param {string} mapTo String to reduce to.
  * @returns {string}
  */
-export function mapString(str, toMap, mapTo) {
-  while(str.includes(toMap)) {
+export function mapString(str : string, toMap : string, mapTo : string) : string {
+  while (str.includes(toMap)) {
     const length = str.length
-    for(let i = 0; i < length; ++i) {
-      if(str.substr(i, toMap.length) === toMap) {
+    for (let i = 0; i < length; ++i) {
+      if (str.substr(i, toMap.length) === toMap) {
         str = `${ str.slice(0, i) }${ mapTo }${ str.slice(i + toMap.length) }`
         break
       }
@@ -73,12 +73,12 @@ export function mapString(str, toMap, mapTo) {
 
 
 /** Function that count occurrences of a substring in a string.
- * @param {String} string               The string
+ * @param {String} str               The string
  * @param {String} subString            The sub string to search for
  * @returns {number}
  */
-export function occurrencesInString(string, subString) {
-  return string.split(subString).length - 1
+export function occurrencesInString(str : string, subString : string) : number {
+  return str.split(subString).length - 1
 }
 
 /**
@@ -87,8 +87,8 @@ export function occurrencesInString(string, subString) {
  * @param size The new size.
  * @returns {Array}
  */
-export function fitArrayToSize([...arr], size) {
-  while(arr.length < size) {
+export function fitArrayToSize([...arr] : [], size : number) : [] {
+  while (arr.length < size) {
     arr = arr.concat([...arr])
   }
   return arr.slice(0, size)
@@ -99,8 +99,8 @@ export function fitArrayToSize([...arr], size) {
  * @param matrix Array of arrays
  * @returns {Array}
  */
-export function longestArray(matrix) {
-  if( !Array.isArray(matrix) || !matrix.every(arr => Array.isArray(arr))) {
+export function longestArray(matrix : [][]) : [] {
+  if (!Array.isArray(matrix) || !matrix.every(arr => Array.isArray(arr))) {
     throw new InvalidInput(`Expected ${ matrix } and each of it's elements to be an array`)
   }
   return matrix.reduce((a, b) => (a.length > b.length ? a : b), [])

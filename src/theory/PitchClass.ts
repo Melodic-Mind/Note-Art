@@ -5,6 +5,10 @@ import ModelHelper                 from '../utilities/ModelHelper'
 import RawHelper                                                                      from '../utilities/RawHelper'
 import { FLAT_CLASS_NOTES, getPitchClassSet, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES } from '../Constants'
 
+interface PitchClass {
+  attributes: object;
+}
+
 /**
  * @class PitchClass
  * @classdesc Represents a pitch class.
@@ -13,10 +17,10 @@ import { FLAT_CLASS_NOTES, getPitchClassSet, NUMBER_OF_PITCH_CLASSES, PITCH_CLAS
  * @param {string} pitchClass
  */
 export default class PitchClass {
-  constructor ( pitchClass ) {
+  constructor ( pitchClass: string ) {
     this.attributes = {}
     if ( !PitchClassRule.exists( pitchClass ) ) {
-      throw new InvalidInput( `${ pitchClass } should be a pitch class.` )
+      throw new InvalidInput( `${ pitchClass } should be a string representing a pitch class.` )
     }
 
     this.attributes.raw        = firstToUpper( pitchClass )

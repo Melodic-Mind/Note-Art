@@ -19,7 +19,7 @@
     ],
     "scripts": {
         "dev": "webpack --mode development",
-        "build": "rm -fr dist/* && tsc -p tsconfig.json --preserveSymlinks && webpack --mode production",
+        "build": "rm -fr dist/* && tsc -p tsconfig.json && webpack --mode production",
         "prepare": "",
         "webpack:build": "webpack -p --env.production",
         "ts:build": "tsc",
