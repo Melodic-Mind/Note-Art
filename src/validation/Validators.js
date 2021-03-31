@@ -1,6 +1,6 @@
 import { InvalidInput } from '../Exceptions'
-import { isRawNote }    from '../utilities/MusicFunctions'
-import { isDuration }   from 'src/utilities/PureMusicUtils'
+import { isRawNote }  from '../utilities/MusicFunctions'
+import { isDuration } from '../utilities/PureMusicUtils'
 
 /**
  * Validates an argument is an array, fails if not.

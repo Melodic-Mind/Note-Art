@@ -2,10 +2,9 @@ import {
   FLAT_CLASS_NOTES, NOTE_DURATIONS, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES, SHARP_CLASS_NOTES
 }                                                       from '../Constants'
 import { firstToUpper, mapString, occurrencesInString } from './GeneralFunctions'
-import ModelHelper                                      from 'src/utilities/ModelHelper'
-import PitchClass                                       from 'src/theory'
+import { NoteAsObject }                                 from '../types'
 
-export function getPitchClassSet(set) {
+export function getPitchClassSet(set: string): Array<String> {
   if(set === '#') {
     return SHARP_CLASS_NOTES
   }
@@ -17,27 +16,27 @@ export function getPitchClassSet(set) {
 
 /**
  * Returns the octave from a raw note.
- * @param rawNote
  * @returns {*}
+ * @param note
  */
-export function extractOctave(rawNote) {
-  return rawNote[rawNote.length - 1]
+export function extractOctave(note: string): string {
+  return note[note.length - 1]
 }
 
 /**
  * Returns the pitch class from a raw note.
- * @param rawNote
+ * @param note
  * @returns {*}
  */
-export function extractPitchClass(rawNote) {
-  return rawNote.slice(0, rawNote.length - 1)
+export function extractPitchClass(note: string): string {
+  return note.slice(0, note.length - 1)
 }
 
 /**
  * Transform a pitch class to it's basic form.
  * @param {String} pc
  */
-export function normalizePitchClass(pc) {
+export function normalizePitchClass(pc: string): string {
   const [pitchLetter, accidental] = pc
   let times, index, accurateIndex
   switch(accidental) {
@@ -73,9 +72,7 @@ export function normalizePitchClass(pc) {
  * @param {string} note Pitch as a string, e.g Ab3
  * @returns {{octave: number, pitchClass: String}}
  */
-export function noteToObject(note) {
-  // validateRawNote(note)
-
+export function noteToObject(note: string): NoteAsObject {
   const pitchClass = firstToUpper(note.slice(0, note.length - 1))
   const octave     = parseInt(note[note.length - 1])
 
@@ -84,14 +81,14 @@ export function noteToObject(note) {
 
 /**
  * Returns true if a note is a rest, else false.
- * @param {string} note Raw note.
+ * @param {string} str
  * @returns {boolean}
  */
-export function isRest(str) {
+export function isRest(str: string): boolean {
   return ['r', 'R'].includes(str)
 }
 
-export function isDuration(dur) {
+export function isDuration(dur: string): boolean {
   return Object.keys(NOTE_DURATIONS).includes(dur)
 }
 
@@ -101,9 +98,9 @@ export function isDuration(dur) {
  * @param {number} range
  * @returns {Array}
  */
-export function notesInRange(baseNote, range) {
-  let { pitchClass, octave } = noteToObject(baseNote)
-  const notes                = {}
+export function notesInRange(baseNote: string, range: number): any {
+  let { pitchClass, octave }       = noteToObject(baseNote)
+  const notes: any = {}
   let tmpPitchClass
 
   for(let i = 0; i <= range; ++i) {
@@ -124,7 +121,7 @@ export function notesInRange(baseNote, range) {
  * @param pc
  * @returns {number}
  */
-export function getPitchClassIndex(pc) {
+export function getPitchClassIndex(pc: string): number {
   const classSet = pc.includes('#') ? '#' : 'b'
   return getPitchClassSet(classSet).indexOf(pc)
 }
@@ -135,7 +132,7 @@ export function getPitchClassIndex(pc) {
  * @param {String} pitchClass2 second note
  * @returns {Number}
  */
-export function calculateInterval(pitchClass1, pitchClass2) {
+export function calculateInterval(pitchClass1: string, pitchClass2: string): number {
   const i1 = getPitchClassIndex(pitchClass1),
         i2 = getPitchClassIndex(pitchClass2)
   return i1 - i2 <= 0 ? Math.abs(i1 - i2) : 12 - (i1 - i2)
@@ -147,7 +144,7 @@ export function calculateInterval(pitchClass1, pitchClass2) {
  * @param {String} pc2
  * @returns {string}
  */
-export function enharmonicPitchClass(from, to) {
+export function enharmonicPitchClass(from: string, to: string): string {
   const interval = calculateInterval(from, to)
 
   const type = interval >= 7 ? '#' : 'b'
@@ -165,3 +162,5 @@ export function enharmonicPitchClass(from, to) {
 
   return `${ to }${ str }`
 }
+
+

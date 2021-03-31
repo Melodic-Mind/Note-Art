@@ -2,8 +2,8 @@ import Note                                from '../theory/Note'
 import { firstToUpper }                    from '../utilities/GeneralFunctions'
 import { isRawNote }                       from '../utilities/MusicFunctions'
 import { validateArray, validateDuration } from '../validation/Validators'
-import { NOTE_DURATIONS }                  from '../Constants'
-import { isRest }                          from 'src/utilities/PureMusicUtils'
+import { NOTE_DURATIONS } from '../Constants'
+import { isRest }         from '../utilities/PureMusicUtils'
 
 /**
  * @class Measure

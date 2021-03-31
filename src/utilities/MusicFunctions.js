@@ -1,6 +1,7 @@
-import { firstToUpper } from '../utilities/GeneralFunctions'
-import PitchClassRule   from '../validation/PitchClassRule'
-import { isRest }       from 'src/utilities/PureMusicUtils'
+import { firstToUpper, rearrangeArray }         from '../utilities/GeneralFunctions'
+import PitchClassRule                           from '../validation/PitchClassRule'
+import { getPitchClassIndex, isRest }           from './PureMusicUtils'
+import { validateNumber, validatePitchClasses } from '../validation'
 
 /**
  * Checks if a string represents a raw musical note.
@@ -23,17 +24,41 @@ export function isRawNote(str) {
 }
 
 /**
- * Transpose a raw note by interval.
- * @param {string} note Either pitch class or note as string.
- * @param {number} interval Interval to transpose by.
- * @returns {string|*}
+ * Returns an array of notes with a specific octave.
+ * @param {Array} pitchClasses Array of pitch classes.
+ * @param {number} octave Octave to assign to notes..
+ * @returns {Array}
  */
-// export function transpose(note, interval) {
-//   validateRawNote(note)
-//
-//   if( !isRest(note)) {
-//     return Note.builder(note).interval(interval).toString()
-//   }
-//
-//   return note
-// }
+export function pitchClassesToNotes(pitchClasses, octave) {
+  return pitchClasses.map(pitchClass => `${pitchClass}${octave}`)
+}
+
+/**
+ * Returns an array of notes that represent a chord played on a piano in a certain octave.
+ * @param {Array} pitchClasses
+ * @param {number} octave Octave for the chord root.
+ * @param {number} inversion Whether to invert the chord. 0 - root position, 1 - 1st inversion, 2 - 2nd inversion,
+ *     etc...
+ * @returns {Array}
+ */
+export function pitchClassesToPianoChordNotes(pitchClasses, octave, inversion = 0) {
+  validatePitchClasses(pitchClasses)
+  validateNumber(octave)
+
+  if(inversion) {
+    pitchClasses = rearrangeArray(pitchClasses, inversion)
+  }
+
+  let currentOctave = octave
+
+  return pitchClasses.map((pitchClass, i) => {
+    if(i !== 0) {
+      const pcIndex     = getPitchClassIndex(pitchClass)
+      const prevPcIndex = getPitchClassIndex(pitchClasses[i - 1])
+      if((i - 1) >= 0 && pcIndex < prevPcIndex) {
+        currentOctave++
+      }
+    }
+    return `${ pitchClass }${ currentOctave }`
+  })
+}

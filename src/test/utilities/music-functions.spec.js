@@ -5,7 +5,7 @@ import {
   noteToObject,
   PitchClass,
   spellScale,
-  Scale, extractOctave, extractPitchClass
+  Scale, extractOctave, extractPitchClass, Chord, ModelHelper, pitchClassesToPianoChordNotes, pitchClassesToNotes
 }                       from '../../'
 import { InvalidInput } from '../../Exceptions'
 
@@ -40,6 +40,55 @@ describe('Music addon functions', () => {
     it('returns the pitch class of a raw note', () => {
       expect(extractPitchClass('c5')).to.equal('c')
       expect(extractPitchClass('ebb4')).to.equal('ebb')
+    })
+  })
+
+  describe('#pitchClassesToNotes', () => {
+    it('should return an array of notes when input is valid', () => {
+      const pitchClasses = ['C', 'E']
+      const stub         = ['C3', 'E3']
+      expect(pitchClassesToNotes(pitchClasses, 3)).to.eql(stub)
+    })
+  })
+
+  describe('#pitchClassesToPianoChordNotes', () => {
+    let g, gChord
+    beforeEach(() => {
+      g      = new PitchClass('g')
+      gChord = new Chord(g, [4, 7])
+    })
+
+    describe('returns the correct notes for a chord', () => {
+      it('normal chord', () => {
+        const stub = ['G3', 'B3', 'D4']
+        expect(pitchClassesToPianoChordNotes(gChord.raw, 3)).to.eql(stub)
+      })
+
+      it('another normal chord', () => {
+        const pitchClasses = ['G#', 'B', 'D']
+        const stub         = ['G#3', 'B3', 'D4']
+        expect(pitchClassesToPianoChordNotes(pitchClasses, 3)).to.eql(stub)
+      })
+
+      it('big Chord', () => {
+        const bigChord = new Chord(g, [4, 7, 13, 17])
+        const stub2    = ['G3', 'B3', 'D4', 'Ab4', 'C5']
+
+        expect(pitchClassesToPianoChordNotes(bigChord.raw, 3)).to.eql(stub2)
+      })
+    })
+
+    it('should throw an error when the octave is not a valid piano octave', () => {
+      expect(() => pitchClassesToPianoChordNotes(gChord.raw, 'NOT OCTAVE')).to.throw(InvalidInput)
+    })
+
+    it('throws an error when pitchClasses is not an array of pitch classes', () => {
+      expect(() => pitchClassesToPianoChordNotes('omg', 2)).to.throw(InvalidInput)
+    })
+
+    it('should invert chords when called with inversion value', () => {
+      const stub = ['B3', 'D4', 'G4']
+      expect(pitchClassesToPianoChordNotes(gChord.raw, 3, 1)).to.eql(stub)
     })
   })
 })
