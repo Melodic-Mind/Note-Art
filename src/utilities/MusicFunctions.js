@@ -1,8 +1,6 @@
-import PitchClass                       from '../theory/PitchClass'
-import { firstToUpper, rearrangeArray } from '../utilities/GeneralFunctions'
-import PitchClassRule                   from '../validation/PitchClassRule'
-import { PITCH_CLASS_LETTERS }          from '../Constants'
-import { enharmonicPitchClass, isRest } from 'src/utilities/PureMusicUtils'
+import { firstToUpper } from '../utilities/GeneralFunctions'
+import PitchClassRule   from '../validation/PitchClassRule'
+import { isRest }       from 'src/utilities/PureMusicUtils'
 
 /**
  * Checks if a string represents a raw musical note.
@@ -39,18 +37,3 @@ export function isRawNote(str) {
 //
 //   return note
 // }
-
-/**
- * Returns a correctly spelled scale where no pitch class appears more than once.
- * @param scale
- * @returns {Array}
- */
-export function spellScale(scale) {
-  const letters = rearrangeArray(PITCH_CLASS_LETTERS, PITCH_CLASS_LETTERS.indexOf(scale.root.pitchClass[0]))
-  const res     = [scale.root.pitchClass];
-  [...scale.pitchClasses].slice(1).forEach((pc, i) => {
-    res.push(enharmonicPitchClass(pc.raw, new PitchClass(letters[i + 1])))
-  })
-
-  return res
-}

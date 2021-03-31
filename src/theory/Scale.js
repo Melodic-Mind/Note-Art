@@ -1,6 +1,8 @@
-import { calculateInterval, spellScale } from '../utilities'
-import Chord                             from './Chord'
-import MusicalPattern                    from './MusicalPattern'
+import { calculateInterval, enharmonicPitchClass, rearrangeArray } from '../utilities'
+import Chord                                                                   from './Chord'
+import MusicalPattern                                                          from './MusicalPattern'
+import { PITCH_CLASS_LETTERS }                                                 from 'src/Constants'
+import PitchClass                                                              from 'src/theory/PitchClass'
 
 /**
  * @class Scale
@@ -37,7 +39,7 @@ export default class Scale extends MusicalPattern {
 
   get raw() {
     if(this.pattern.length === 6) {
-      return spellScale(this)
+      return this.spellScale()
     }
     return super.raw
   }
@@ -59,5 +61,15 @@ export default class Scale extends MusicalPattern {
     }
 
     return new Chord(root, pattern)
+  }
+
+  spellScale() {
+    const letters = rearrangeArray(PITCH_CLASS_LETTERS, PITCH_CLASS_LETTERS.indexOf(this.root.pitchClass[0]))
+    const res     = [this.root.pitchClass];
+    [...this.pitchClasses].slice(1).forEach((pc, i) => {
+      res.push(enharmonicPitchClass(pc.raw, letters[i + 1]))
+    })
+
+    return res
   }
 }

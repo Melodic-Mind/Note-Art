@@ -1,8 +1,8 @@
 import PitchClass            from './PitchClass'
-import { freqToMidi }        from '../utilities/ScientificFunctions'
-import { validateNumber }    from '../validation'
-import { SHARP_CLASS_NOTES } from '../Constants'
 import { noteToObject }      from 'src/utilities/PureMusicUtils'
+import { freqToMidi }        from '../utilities/ScientificFunctions'
+import { validateNumber }    from '../validation/Validators'
+import { SHARP_CLASS_NOTES } from '../Constants'
 
 /**
  * @class Note

@@ -1,8 +1,8 @@
-import { Chord, Note, PitchClass } from '../../'
-import { InvalidInput }            from '../../Exceptions'
+import { Chord, enharmonicPitchClass, Note, PitchClass } from '../../'
+import { InvalidInput }                                  from '../../Exceptions'
 import { ModelHelper }             from '../../utilities'
 
-describe('ModelHelper', () => {
+describe('#PureMusicUtils', () => {
   describe('#pitchClassesToNotes', () => {
     it('should throw an Invalid Input error when pitch classes is not an array containing only pitch classes', () => {
       expect(() => ModelHelper.pitchClassesToNotes('OMG')).to.throw(InvalidInput)
@@ -67,6 +67,24 @@ describe('ModelHelper', () => {
     it('should invert chords when called with inversion value', () => {
       const stub = [Note.builder('B3'), Note.builder('d4'), Note.builder('g4')]
       expect(ModelHelper.pitchClassesToPianoChordNotes(gChord.pitchClasses, 3, 1)).to.eql(stub)
+    })
+  })
+
+  describe('#enharmonicPitchClass', () => {
+    it('returns a pitch class properly spelled through 4 semitones', () => {
+      expect(enharmonicPitchClass('B', 'G')).to.equal('Gxx')
+    })
+
+    it('properly spells sharp pitch class', () => {
+      expect(enharmonicPitchClass('A#', 'G')).to.equal('Gx#')
+    })
+
+    it('properly spells sharp pitch class', () => {
+      expect(enharmonicPitchClass('E','G')).to.equal('Gbbb')
+    })
+
+    it('properly spells sharp pitch class', () => {
+      expect(enharmonicPitchClass('Ab', 'G')).to.equal('G#')
     })
   })
 

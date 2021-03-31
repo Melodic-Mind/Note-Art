@@ -1,4 +1,4 @@
-import { Scale, PitchClass, Chord } from '../../'
+import { Scale, PitchClass, Chord, spellScale } from '../../'
 
 describe('Scale', () => {
 
@@ -77,6 +77,31 @@ describe('Scale', () => {
       it('scale [1, 2, 4]', () => {
         const scale = new Scale(new PitchClass('c'), [1, 2, 3, 4, 6, 7, 9, 11])
         expect(scale.raw).to.eql(['C', 'Db', 'D', 'Eb', 'E', 'Gb', 'G', 'A', 'B'])
+      })
+    })
+  })
+
+  describe('#spellScale', () => {
+    describe('spells a scale correctly', () => {
+      it('Locrian - [1, 3, 5, 6, 8, 10])', () => {
+        const pc    = new PitchClass('g')
+        const scale = new Scale(pc, [1, 3, 5, 6, 8, 10])
+        const stub  = ['G', 'Ab', 'Bb', 'C', 'Db', 'Eb', 'F']
+        expect(scale.raw).to.eql(stub)
+      })
+
+      it('with [1, 3, 5, 6, 8, 10])', () => {
+        const pc    = new PitchClass('f')
+        const scale = new Scale(pc, [1, 2, 5, 6, 7, 8])
+        const stub  = ['F', 'Gb', 'Abb', 'Bb', 'Cb', 'Dbb', 'Ebbb']
+        expect(scale.raw).to.eql(stub)
+      })
+
+      it('with [1, 2, 6, 8, 9, 11]', () => {
+        const pc    = new PitchClass('db')
+        const scale = new Scale(pc, [1, 2, 6, 8, 9, 11])
+        const stub  = ['Db', 'Ebb', 'Fbb', 'G', 'A', 'Bb', 'C']
+        expect(scale.raw).to.eql(stub)
       })
     })
   })
