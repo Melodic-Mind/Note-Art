@@ -1,5 +1,5 @@
 import { PatternRule }  from '../validation'
-import { InvalidInput } from 'src/Exceptions'
+import { InvalidInput } from '../Exceptions'
 
 /**
  * @class MusicalPattern

@@ -1,7 +1,7 @@
 import { calculateInterval, enharmonicPitchClass, rearrangeArray } from '../utilities'
 import Chord                                                                   from './Chord'
 import MusicalPattern                                                          from './MusicalPattern'
-import { PITCH_CLASS_LETTERS }                                                 from 'src/Constants'
+import { PITCH_CLASS_LETTERS }                                                 from '../Constants'
 
 /**
  * @class Scale
