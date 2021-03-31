@@ -4,7 +4,7 @@ import {
 import { firstToUpper, mapString, occurrencesInString } from './GeneralFunctions'
 import { NoteAsObject }                                 from '../types'
 
-export function getPitchClassSet(set: string): Array<String> {
+export function getPitchClassSet(set: string): Array<string> {
   if(set === '#') {
     return SHARP_CLASS_NOTES
   }

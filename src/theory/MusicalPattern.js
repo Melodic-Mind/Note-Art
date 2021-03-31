@@ -1,5 +1,5 @@
-import { PitchClassRule, PatternRule } from '../validation'
-import { InvalidInput }                from 'src/Exceptions'
+import { PatternRule }  from '../validation'
+import { InvalidInput } from 'src/Exceptions'
 
 /**
  * @class MusicalPattern
@@ -10,7 +10,6 @@ import { InvalidInput }                from 'src/Exceptions'
  */
 export default class MusicalPattern {
   constructor(pitchClass, pattern, info = {}) {
-    // PitchClassRule.isPitchClass(pitchClass)
     PatternRule.isPattern(pattern)
     this.attributes = {}
     this.setPitchClasses(pitchClass, pattern)
@@ -78,7 +77,7 @@ export default class MusicalPattern {
    * @returns {MusicalPattern}
    */
   transpose(interval) {
-    if(typeof interval !== 'number'){
+    if(typeof interval !== 'number') {
       throw InvalidInput('Interval should be an integer')
     }
     const root = this.root.interval(interval)

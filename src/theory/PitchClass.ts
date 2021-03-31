@@ -1,39 +1,31 @@
-import { firstToUpper }                                                from '../utilities/GeneralFunctions'
-import PitchClassRule                                                  from '../validation/PitchClassRule'
+import { firstToUpper } from '../utilities'
+import PitchClassRule   from '../validation/PitchClassRule'
 import { InvalidInput }                                                from '../Exceptions'
 import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES }    from '../Constants'
-import { getPitchClassSet, normalizePitchClass, enharmonicPitchClass } from '../utilities/PureMusicUtils'
-
-interface attributesProps {
-  raw: string;
-  classSet: '#' | 'b';
-  pitchClass: string;
-  classIndex: number;
-}
+import { getPitchClassSet, normalizePitchClass, enharmonicPitchClass } from '../utilities'
 
 /**
  * @class PitchClass
  * @classdesc Represents a pitch class.
  * @example
  * const c = new PitchClass('d')
- * @param {string} pitchClass
+ * @param {String} pitchClass
  */
 export default class PitchClass {
-  attributes: attributesProps
+  _raw: string
+  _classSet: '#' | 'b'
+  _pitchClass: string
+  _classIndex: number
 
   constructor(pitchClass: string) {
     if( !PitchClassRule.exists(pitchClass)) {
       throw new InvalidInput(`${ pitchClass } should be a string representing a pitch class.`)
     }
 
-    const raw        = firstToUpper(pitchClass)
-    const classSet   = pitchClass.includes('#') ? '#' : 'b'
-    pitchClass       = normalizePitchClass(raw)
-    const classIndex = getPitchClassSet(classSet).indexOf(pitchClass)
-
-    this.attributes = {
-      raw, classIndex, classSet, pitchClass
-    }
+    this._raw        = firstToUpper(pitchClass)
+    this._classSet   = pitchClass.includes('#') ? '#' : 'b'
+    this._pitchClass = normalizePitchClass(this._raw)
+    this._classIndex = getPitchClassSet(this._classSet).indexOf(this._pitchClass)
   }
 
   /**
@@ -41,7 +33,7 @@ export default class PitchClass {
    * @type {String}
    */
   get pitchClass() {
-    return this.attributes.pitchClass
+    return this._pitchClass
   }
 
   /**
@@ -49,7 +41,7 @@ export default class PitchClass {
    * @type {String}
    */
   get classSet() {
-    return this.attributes.classSet
+    return this._classSet
   }
 
   /**
@@ -87,7 +79,7 @@ export default class PitchClass {
    * @type {Number}
    */
   get classIndex(): number {
-    return this.attributes.classIndex
+    return this._classIndex
   }
 
   /**
@@ -128,7 +120,7 @@ export default class PitchClass {
    * @returns {String}
    */
   toString() {
-    return this.raw
+    return this._raw
   }
 
   /**
@@ -136,6 +128,6 @@ export default class PitchClass {
    * @returns {String}
    */
   get raw() {
-    return this.attributes.raw
+    return this._raw
   }
 }
