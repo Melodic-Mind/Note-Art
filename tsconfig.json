@@ -1,15 +1,35 @@
 {
   "compilerOptions": {
-    "outDir": "./built",
+    "outDir": "dist/esm",
+    "target": "esnext",
+    "module": "ES2015",
     "allowJs": true,
-    "target": "es6",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
     "declaration": true,
-    "baseUrl": ".",
+    "esModuleInterop": true,
+    "inlineSourceMap": false,
+    "lib": ["esnext"],
+    "listEmittedFiles": false,
+    "listFiles": false,
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "pretty": true,
+    "resolveJsonModule": true,
+    "rootDir": "src",
     "paths": {
-      "src": ["./src"] // This mapping is relative to "baseUrl"
-    }
+      "src": ["./src"],
+      "tone": ["node_modules/tone"]
+    },
+    "skipLibCheck": true,
+    "strict": true,
+    "traceResolution": false,
+    "types": ["node"],
+    "sourceMap": true,
+    "experimentalDecorators": true
   },
-  "include": ["./src/**/*"],
-  "module": "AMD",
-  "moduleResolution": "node"
+  "compileOnSave": true,
+  "exclude": ["node_modules", "dist"],
+  "include": ["src"],
+  "module": "AMD"
 }

@@ -1,5 +1,5 @@
-import { Measure, Score } from '../../built/'
-import { InvalidInput }   from '../../built'
+import { Measure, Score } from '../../src'
+import { InvalidInput }   from 'src/Exceptions'
 
 describe('Score', () => {
   let score

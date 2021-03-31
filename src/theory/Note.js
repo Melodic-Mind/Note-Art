@@ -5,6 +5,7 @@ import { SHARP_CLASS_NOTES }        from '../Constants'
 
 /**
  * @class Note
+ * @extends PitchClass
  * @classdesc Represents an abstract musical note.
  * @param {string} pitchClass
  * @param {number} octave
@@ -30,9 +31,9 @@ import { SHARP_CLASS_NOTES }        from '../Constants'
  * console.log(a) //A4
  */
 export default class Note extends PitchClass {
-  constructor ( pitchClass, octave ) {
-    super( pitchClass )
-    validateNumber( octave )
+  constructor(pitchClass, octave) {
+    super(pitchClass)
+    validateNumber(octave)
     this.attributes.octave = octave
   }
 
@@ -41,9 +42,9 @@ export default class Note extends PitchClass {
    * @param {string} noteString
    * @returns {Note}
    */
-  static builder ( noteString ) {
-    const { pitchClass, octave } = noteToObject( noteString )
-    return new Note( pitchClass, octave )
+  static builder(noteString) {
+    const { pitchClass, octave } = noteToObject(noteString)
+    return new Note(pitchClass, octave)
   }
 
   /**
@@ -51,19 +52,19 @@ export default class Note extends PitchClass {
    * @param frequency
    * @returns {Note}
    */
-  static fromFrequency ( frequency ) {
-    const n          = freqToMidi( frequency )
+  static fromFrequency(frequency) {
+    const n          = freqToMidi(frequency)
     const pitchClass = SHARP_CLASS_NOTES[n % 12]
-    const octave     = Math.floor( n / 12 - 1 )
+    const octave     = Math.floor(n / 12 - 1)
 
-    return new Note( pitchClass, octave )
+    return new Note(pitchClass, octave)
   }
 
   /**
    * Returns the octave of the note.
    * @type {String}
    */
-  get octave () { return this.attributes.octave }
+  get octave() { return this.attributes.octave }
 
   /**
    * Gets interval size (Number) and returns a new instance of a note
@@ -75,28 +76,28 @@ export default class Note extends PitchClass {
    * console.log(interval.constructor.name) //should output Note.
    * @param {number} interval Musical Interval
    */
-  interval ( interval ) {
-    const pitchClass = super.interval( interval ).pitchClass
-    let octDiff      = Math.floor( (this.classIndex + interval) / 12 )
-    if ( interval < 0 ) {
+  interval(interval) {
+    const pitchClass = super.interval(interval).pitchClass
+    let octDiff      = Math.floor((this.classIndex + interval) / 12)
+    if(interval < 0) {
       octDiff = this.classIndex + interval < 0 ? octDiff : 0
     }
-    return new Note( pitchClass, this.octave + octDiff )
+    return new Note(pitchClass, this.octave + octDiff)
   }
 
   /**
    * Alias for interval()
    * @param {Number} interval
    */
-  transpose ( interval ) {
-    return this.interval( interval )
+  transpose(interval) {
+    return this.interval(interval)
   }
 
   /**
    * Returns a string of the pitch class and octave of the Note.
    * @returns {string}
    */
-  toString () {
+  toString() {
     return `${ super.toString() }${ this.octave }`
   }
 }

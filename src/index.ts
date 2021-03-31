@@ -1,8 +1,9 @@
-export * from './utilities/index'
-export * from './theory/index'
-export * from './notation/index'
-export * from './validation/index'
-export * from './Constants'
+export *       from './utilities/index'
+export *       from './theory/index'
+export *       from './notation/index'
+export *       from './validation/index'
+export *       from './Constants'
+
 
 //@todo add good docs using vuepress - like this:
 /*
