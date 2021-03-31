@@ -1,7 +1,7 @@
-export *       from './utilities/index'
-export *       from './theory/index'
-export *       from './notation/index'
-export *       from './validation/index'
+export *       from './utilities'
+export *       from './theory'
+export *       from './notation'
+export *       from './validation'
 export *       from './Constants'
 
 

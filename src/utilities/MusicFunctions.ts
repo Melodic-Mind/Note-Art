@@ -1,26 +1,19 @@
-import { firstToUpper, rearrangeArray }         from '../utilities/GeneralFunctions'
-import PitchClassRule                           from '../validation/PitchClassRule'
-import { getPitchClassIndex, isRest }           from './PureMusicUtils'
-import { validateNumber, validatePitchClasses } from '../validation'
+import { rearrangeArray }                           from '../utilities/GeneralFunctions'
+import PitchClassRule                               from '../validation/PitchClassRule'
+import { getPitchClassIndex, isRest, noteToObject } from './PureMusicUtils'
 
 /**
  * Checks if a string represents a raw musical note.
  * @param str
  * @returns {boolean}
  */
-export function isRawNote(str) {
-  if(typeof str !== 'string') {
-    return false
-  }
-
+export function isRawNote(str: string): boolean {
   if(isRest(str)) {
     return true
   }
+  const { pitchClass, octave } = noteToObject(str)
 
-  const pitchClass = firstToUpper(str.slice(0, str.length - 1))
-  const octave     = parseInt(str[str.length - 1])
-
-  return !( !PitchClassRule.exists(pitchClass) || typeof octave !== 'number')
+  return PitchClassRule.exists(pitchClass) && !isNaN(octave)
 }
 
 /**
@@ -29,8 +22,8 @@ export function isRawNote(str) {
  * @param {number} octave Octave to assign to notes..
  * @returns {Array}
  */
-export function pitchClassesToNotes(pitchClasses, octave) {
-  return pitchClasses.map(pitchClass => `${pitchClass}${octave}`)
+export function pitchClassesToNotes(pitchClasses: Array<string>, octave: number): Array<string> {
+  return pitchClasses.map(pitchClass => `${ pitchClass }${ octave }`)
 }
 
 /**
@@ -41,10 +34,7 @@ export function pitchClassesToNotes(pitchClasses, octave) {
  *     etc...
  * @returns {Array}
  */
-export function pitchClassesToPianoChordNotes(pitchClasses, octave, inversion = 0) {
-  validatePitchClasses(pitchClasses)
-  validateNumber(octave)
-
+export function pitchClassesToPianoChordNotes(pitchClasses: Array<string>, octave: number, inversion: number = 0): Array<string> {
   if(inversion) {
     pitchClasses = rearrangeArray(pitchClasses, inversion)
   }

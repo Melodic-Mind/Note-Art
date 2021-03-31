@@ -1,13 +1,10 @@
 import {
-  Note,
   calculateInterval,
   notesInRange,
   noteToObject,
-  PitchClass,
-  spellScale,
-  Scale, extractOctave, extractPitchClass, Chord, ModelHelper, pitchClassesToPianoChordNotes, pitchClassesToNotes
-}                       from '../../'
-import { InvalidInput } from '../../Exceptions'
+  extractOctave, extractPitchClass, pitchClassesToPianoChordNotes, pitchClassesToNotes
+}                            from '../../utilities'
+import { PitchClass, Chord } from '../../theory'
 
 describe('Music addon functions', () => {
   describe('#calculateInterval', () => {
@@ -76,14 +73,6 @@ describe('Music addon functions', () => {
 
         expect(pitchClassesToPianoChordNotes(bigChord.raw, 3)).to.eql(stub2)
       })
-    })
-
-    it('should throw an error when the octave is not a valid piano octave', () => {
-      expect(() => pitchClassesToPianoChordNotes(gChord.raw, 'NOT OCTAVE')).to.throw(InvalidInput)
-    })
-
-    it('throws an error when pitchClasses is not an array of pitch classes', () => {
-      expect(() => pitchClassesToPianoChordNotes('omg', 2)).to.throw(InvalidInput)
     })
 
     it('should invert chords when called with inversion value', () => {

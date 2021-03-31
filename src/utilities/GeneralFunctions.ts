@@ -1,5 +1,3 @@
-import { InvalidInput } from '../Exceptions'
-
 /**
  * Transforms the first letter of a string to upper case.
  * @param {String} str String to transform
@@ -101,7 +99,7 @@ export function fitArrayToSize([...arr] : Array<any>, size : number) : Array<any
  */
 export function longestArray(matrix : Array<Array<any>>) : Array<any> {
   if (!Array.isArray(matrix) || !matrix.every(arr => Array.isArray(arr))) {
-    throw new InvalidInput(`Expected ${ matrix } and each of it's elements to be an array`)
+    throw new Error(`Expected ${ matrix } and each of it's elements to be an array`)
   }
   return matrix.reduce((a, b) => (a.length > b.length ? a : b), [])
 }

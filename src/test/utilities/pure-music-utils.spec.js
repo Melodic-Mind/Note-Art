@@ -1,6 +1,4 @@
-import { Chord, enharmonicPitchClass, normalizePitchClass, Note, PitchClass } from '../../'
-import { InvalidInput }                                                       from '../../Exceptions'
-import { ModelHelper }             from '../../utilities'
+import { enharmonicPitchClass, normalizePitchClass } from '../../utilities'
 
 describe('#PureMusicUtils', () => {
   describe('#enharmonicPitchClass', () => {
@@ -13,7 +11,7 @@ describe('#PureMusicUtils', () => {
     })
 
     it('properly spells sharp pitch class', () => {
-      expect(enharmonicPitchClass('E','G')).to.equal('Gbbb')
+      expect(enharmonicPitchClass('E', 'G')).to.equal('Gbbb')
     })
 
     it('properly spells sharp pitch class', () => {

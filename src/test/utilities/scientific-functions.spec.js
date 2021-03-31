@@ -3,8 +3,8 @@ import { Note }   from '../../'
 
 describe('Scientific functions', () => {
   it('#freqFromPitch', () => {
-    const note   = new Note('a', 4)
-    const pitch2 = new Note('e', 5)
+    const note   = 'A4'
+    const pitch2 = 'E5'
     expect(funcs.freqFromPitch(note)).to.eql(440)
     expect(Math.ceil(funcs.freqFromPitch(pitch2))).to.eql(660)
   })
