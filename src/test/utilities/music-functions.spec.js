@@ -2,14 +2,22 @@ import {
   calculateInterval,
   notesInRange,
   noteToObject,
-  extractOctave, extractPitchClass, pitchClassesToPianoChordNotes, pitchClassesToNotes
-}                            from '../../utilities'
+  extractOctave, extractPitchClass, pitchClassesToPianoChordNotes, pitchClassesToNotes, transposeNote
+} from '../../utilities'
 import { PitchClass, Chord } from '../../theory'
 
 describe('Music addon functions', () => {
   describe('#calculateInterval', () => {
     it('calculates the correct interval between two pitch classes', () => {
       expect(calculateInterval('C', 'G')).to.eql(7)
+    })
+  })
+
+  describe('#transposeNote', () => {
+    it('transpose a note correctly by interval', () => {
+      expect(transposeNote('C3', 7)).to.eql('G3')
+      expect(transposeNote('C3', -7)).to.eql('F2')
+      expect(transposeNote('G3', 7)).to.eql('D4')
     })
   })
 
