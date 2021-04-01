@@ -17,15 +17,6 @@ export function freqFromPitch(note: string): number {
 }
 
 /**
- * Generate real number from frequency.
- * @param frequency
- * @returns {number}
- */
-export function freqToMidi(frequency: number): number {
-  return Math.round(PITCH_STANDARD.midi + NUMBER_OF_PITCH_CLASSES * Math.log2(frequency / PITCH_STANDARD.frequency))
-}
-
-/**
  * Turns a midi value to frequency.
  * @param {Number} midi
  * @returns {number}
@@ -48,7 +39,7 @@ export function freqToFloatMidi(frequency: number): number {
  * @param {Number} frequency
  * @returns {number}
  */
-export function frequencyToMidi(frequency: number): number {
+export function freqToMidi(frequency: number): number {
   return Math.round(freqToFloatMidi(frequency))
 }
 
@@ -58,7 +49,7 @@ export function frequencyToMidi(frequency: number): number {
  * @param {Number} midi
  * @returns {number}
  */
-export function centsOffFromFrequency(frequency: number, midi: number): number {
+export function centsOffFromFreq(frequency: number, midi: number): number {
   return Math.floor(1200 * Math.log(frequency / freqFromMidi(midi)) / Math.log(2))
 }
 
