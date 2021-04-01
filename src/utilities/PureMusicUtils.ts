@@ -1,8 +1,9 @@
 import {
-  FLAT_CLASS_NOTES, NOTE_DURATIONS, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES, SHARP_CLASS_NOTES
-}                                                       from '../Constants'
-import { firstToUpper, mapString, occurrencesInString } from './GeneralFunctions'
-import { NoteAsObject }                                 from '../types'
+  FLAT_CLASS_NOTES, INTERVALS, NOTE_DURATIONS, NOTE_DURATIONS_AS_SIZE_IN_MEASURE, NUMBER_OF_PITCH_CLASSES,
+  PITCH_CLASSES, SHARP_CLASS_NOTES
+}                                                                         from '../Constants'
+import { firstToUpper, isNumberAsString, mapString, occurrencesInString } from './GeneralFunctions'
+import { NoteAsObject }                                                   from '../types'
 
 export function getPitchClassSet(set: string): Array<string> {
   if(set === '#') {
@@ -89,7 +90,7 @@ export function isRest(str: string): boolean {
 }
 
 export function isDuration(dur: string): boolean {
-  return Object.keys(NOTE_DURATIONS).includes(dur)
+  return Object.keys(NOTE_DURATIONS_AS_SIZE_IN_MEASURE).includes(dur)
 }
 
 /**
@@ -99,8 +100,8 @@ export function isDuration(dur: string): boolean {
  * @returns {Array}
  */
 export function notesInRange(baseNote: string, range: number): any {
-  let { pitchClass, octave }       = noteToObject(baseNote)
-  const notes: any = {}
+  let { pitchClass, octave } = noteToObject(baseNote)
+  const notes: any           = {}
   let tmpPitchClass
 
   for(let i = 0; i <= range; ++i) {
@@ -140,9 +141,9 @@ export function calculateInterval(pitchClass1: string, pitchClass2: string): num
 
 /**
  *
- * @param {String} pc1
- * @param {String} pc2
  * @returns {string}
+ * @param from
+ * @param to
  */
 export function enharmonicPitchClass(from: string, to: string): string {
   const interval = calculateInterval(from, to)
@@ -163,4 +164,107 @@ export function enharmonicPitchClass(from: string, to: string): string {
   return `${ to }${ str }`
 }
 
+/**
+ * Turns any sharp pitch class to flat.
+ * @returns {String}
+ * @param str
+ */
+export function toFlat(str: string): string {
+  if(str.includes('#')) {
+    const { pitchClass, octave } = noteToObject(str)
+    const pc                     = FLAT_CLASS_NOTES[SHARP_CLASS_NOTES.indexOf(pitchClass)]
+    return octave ? `${ pc }${ octave }` : pc
+  }
 
+  return str
+}
+
+/**
+ * Normalize any interval representation to a semitone of Number type.
+ * @param {Number | String} interval
+ * @returns {number}
+ */
+export function toSemitones(interval: number | string): number {
+  let semitones: number
+  if(typeof interval === 'number') {
+    semitones = interval
+  } else {
+    if(isNumberAsString(interval)) {
+      semitones = INTERVALS[interval]
+    } else {
+      semitones = parseInt(interval)
+    }
+  }
+  return semitones
+}
+
+/**
+ * Returns the max interval from an array of intervals.
+ * @param {Array} intervals
+ * @returns {number}
+ */
+export function maxInterval(intervals: Array<number | string>): number {
+  let max: number = -Infinity
+  intervals.forEach(interval => {
+    const curr: number = toSemitones(interval)
+    max                = curr > max ? curr : max
+  })
+  return max
+}
+
+/**
+ * Returns the highest note between 2 notes.
+ * @param {String} note1
+ * @param {String} note2
+ * @returns {String}
+ */
+export function highestNote(note1: string, note2: string): string {
+  return lowestNote(note1, note2) === note1 ? note2 : note1
+}
+
+/**
+ * Returns the lowest note between 2 notes.
+ * @param {String} note1
+ * @param {String} note2
+ * @returns {String}
+ */
+export function lowestNote(note1: string, note2: string): string {
+  const noteObj1 = noteToObject(note1)
+  const noteObj2 = noteToObject(note2)
+  if(noteObj1.octave < noteObj2.octave) {
+    return note1
+  } else if(noteObj1.octave > noteObj2.octave) {
+    return note2
+  } else {
+    const pitchClass = lowestPitch(noteObj1.pitchClass, noteObj2.pitchClass)
+    return `${ pitchClass }${ noteObj1.octave }`
+  }
+}
+
+/**
+ * Returns the lowest pitch between 2 pitch classes.
+ * @param {String} pc1
+ * @param {String} pc2
+ * @returns {String}
+ */
+export function lowestPitch(pc1: string, pc2: string): string {
+  return PITCH_CLASSES.indexOf(pc1) <= PITCH_CLASSES.indexOf(pc2) ? pc1 : pc2
+}
+
+/**
+ * Returns the lowest note from an array of notes.
+ * @param {Array} notes
+ * @returns {String}
+ */
+export function lowestNoteFromArray(notes: Array<string>): string {
+  return notes.reduce((acc, curr) => lowestNote(acc, curr), notes[0])
+}
+
+/**
+ * Returns the highest note from an array of notes.
+ * @param {Array} notes
+ * @returns {String}
+ */
+export function highestNoteFromArray(notes: Array<string>): string {
+  return notes.reduce((acc, curr) => highestNote(acc, curr), notes[0])
+}

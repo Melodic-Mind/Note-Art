@@ -2,7 +2,7 @@ import Note                                from '../theory/Note'
 import { firstToUpper }                    from '../utilities/GeneralFunctions'
 import { isRawNote }                       from '../utilities/MusicFunctions'
 import { validateArray, validateDuration } from '../validation/Validators'
-import { NOTE_DURATIONS } from '../Constants'
+import { NOTE_DURATIONS_AS_SIZE_IN_MEASURE } from '../Constants'
 import { isRest }         from '../utilities/PureMusicUtils'
 
 /**
@@ -43,7 +43,7 @@ export default class Measure {
    * @returns {number}
    */
   get length() {
-    return this.data.reduce((acc, { duration }) => acc + NOTE_DURATIONS[duration], 0) / 4
+    return this.data.reduce((acc, { duration }) => acc + NOTE_DURATIONS_AS_SIZE_IN_MEASURE[duration], 0) / 4
   }
 
   /**
@@ -63,7 +63,7 @@ export default class Measure {
     return this.maxDuration - this.data.slice(0, position)
                                   .reduce((prev, curr) => {
                                     return curr.notes.size ?
-                                           prev + NOTE_DURATIONS[curr.duration] : prev + 0
+                                           prev + NOTE_DURATIONS_AS_SIZE_IN_MEASURE[curr.duration] : prev + 0
                                   }, 0)
   }
 
@@ -91,7 +91,7 @@ export default class Measure {
     return !(
       position > this.data.length
       ||
-      NOTE_DURATIONS[duration] > this.durationLeft(position) + duration
+      NOTE_DURATIONS_AS_SIZE_IN_MEASURE[duration] > this.durationLeft(position) + duration
     )
   }
 
@@ -201,7 +201,7 @@ export default class Measure {
    * @returns {boolean}
    */
   isFull(duration) {
-    return !(NOTE_DURATIONS[duration] <= this.durationLeft())
+    return !(NOTE_DURATIONS_AS_SIZE_IN_MEASURE[duration] <= this.durationLeft())
   }
 
   /**

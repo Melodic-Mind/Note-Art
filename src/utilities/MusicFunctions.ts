@@ -1,7 +1,7 @@
 import { rearrangeArray }                           from '../utilities/GeneralFunctions'
-import PitchClassRule                               from '../validation/PitchClassRule'
-import { getPitchClassIndex, isRest, noteToObject } from './PureMusicUtils'
-import Note                                     from '../theory/Note'
+import PitchClassRule                                            from '../validation/PitchClassRule'
+import { getPitchClassIndex, isRest, noteToObject, toSemitones } from './PureMusicUtils'
+import Note                                                      from '../theory/Note'
 
 export function transposeNote(note: string, interval: number): string {
   return Note.builder(note).interval(interval).toString()
@@ -55,5 +55,18 @@ export function pitchClassesToPianoChordNotes(pitchClasses: Array<string>, octav
       }
     }
     return `${ pitchClass }${ currentOctave }`
+  })
+}
+
+/**
+ * Returns an array of notes from a base note and array of intervals.
+ * @param {String} baseNote
+ * @param {Array<Number>} intervals
+ * @returns {Array<String>}
+ */
+export function intervalsToNotes(baseNote: string, intervals: Array<number | string>) {
+  return intervals.map(interval => {
+    const semitones = toSemitones(interval)
+    return transposeNote(baseNote, semitones)
   })
 }

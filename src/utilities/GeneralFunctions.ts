@@ -103,3 +103,12 @@ export function longestArray(matrix : Array<Array<any>>) : Array<any> {
   }
   return matrix.reduce((a, b) => (a.length > b.length ? a : b), [])
 }
+
+/**
+ * Returns true if string represents a number, else false.
+ * @param {String} str
+ * @returns {boolean}
+ */
+export function isNumberAsString(str: string) {
+  return isNaN(parseInt(str))
+}

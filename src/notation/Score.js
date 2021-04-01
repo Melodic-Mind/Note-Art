@@ -1,7 +1,7 @@
 import Measure          from './Measure'
 import { longestArray } from '../utilities/GeneralFunctions'
 import { InvalidInput } from '../Exceptions'
-import { NOTE_DURATIONS } from '../Constants'
+import { NOTE_DURATIONS_AS_SIZE_IN_MEASURE } from '../Constants'
 
 /**
  * @class Score
@@ -33,7 +33,7 @@ export default class Score {
     }
 
     const reducedTimeSig = (timeSignature[0] / timeSignature[1]) * 4
-    const beatLength     = NOTE_DURATIONS[`${ timeSignature[1] }n`]
+    const beatLength     = NOTE_DURATIONS_AS_SIZE_IN_MEASURE[`${ timeSignature[1] }n`]
 
     return reducedTimeSig * beatLength * timeSignature[1] / 4
   }
