@@ -39,7 +39,7 @@ export function freqFromMidi(midi: number) : number {
  * @param frequency
  * @returns {number}
  */
-export function frequencyToFloatMidi(frequency: number): number {
+export function freqToFloatMidi(frequency: number): number {
   return PITCH_STANDARD.midi + NUMBER_OF_PITCH_CLASSES * Math.log2(frequency / PITCH_STANDARD.frequency)
 }
 

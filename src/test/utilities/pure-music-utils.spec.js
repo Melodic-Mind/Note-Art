@@ -99,10 +99,25 @@ describe('#PureMusicUtils', () => {
     })
   })
 
-  describe.only('#toFlat', () => {
-    it('should turn pitch classes flat', () => {
+  describe('#toFlat', () => {
+    it('should turn sharp pitch classes flat', () => {
       expect(toFlat('C#')).to.equal('Db')
       expect(toFlat('D#')).to.equal('Eb')
+    })
+
+    it('should do nothing to other pitch classes', () => {
+      expect(toFlat('C')).to.equal('C')
+      expect(toFlat('Gb')).to.equal('Gb')
+    })
+
+    it('should turn sharp notes flat', () => {
+      expect(toFlat('C#3')).to.equal('Db3')
+      expect(toFlat('D#4')).to.equal('Eb4')
+    })
+
+    it('should do nothing to other notes', () => {
+      expect(toFlat('C3')).to.equal('C3')
+      expect(toFlat('Gb6')).to.equal('Gb6')
     })
   })
 })
