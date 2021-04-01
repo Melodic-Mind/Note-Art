@@ -11,9 +11,14 @@ import { validateInstance, PatternRule }   from '../validation'
  * @param {string} name The chords name.
  */
 export default class GuitarChordPattern {
-  constructor(pattern, pitchClass, name) {
-    PatternRule.isArray(pattern)
-    this.attributes = { pattern, pitchClass, name }
+  _pattern: Array<number | string>
+  _pitchClass: PitchClass
+  _name: string
+
+  constructor(pattern: Array<number | string>, pitchClass: string | PitchClass, name: string) {
+    this._pitchClass = typeof pitchClass === 'string' ? new PitchClass(pitchClass) : pitchClass
+    this._pattern    = pattern
+    this._name       = name
   }
 
   /**
@@ -21,7 +26,7 @@ export default class GuitarChordPattern {
    * @returns {Array}
    */
   get pattern() {
-    return this.attributes.pattern
+    return this._pattern
   }
 
   /**
@@ -29,7 +34,7 @@ export default class GuitarChordPattern {
    * @returns {PitchClass}
    */
   get pitchClass() {
-    return this.attributes.pitchClass
+    return this._pitchClass
   }
 
   /**
@@ -37,7 +42,7 @@ export default class GuitarChordPattern {
    * @returns {string}
    */
   get name() {
-    return this.attributes.name
+    return this._name
   }
 
   /**
@@ -45,11 +50,10 @@ export default class GuitarChordPattern {
    * @param {String} root The root of the chord.
    * @returns {{chord: string, name: string}}
    */
-  getChord(root) {
-    root = firstToUpper(root)
+  getChord(root: string) {
+    root           = firstToUpper(root)
     const interval = calculateInterval(this.pitchClass.raw, root)
-    // dd(this.pitchClass.raw)
-    const pattern  = this.pattern.map(pos => pos === 'x' ? 'x' : pos + interval)
+    const pattern  = this.pattern.map(pos => typeof pos === 'number' ? pos + interval : pos)
     return { pattern, name: `${ root } ${ this.name }` }
   }
 }

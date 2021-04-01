@@ -19,7 +19,7 @@ export default class Chord extends MusicalPattern {
    * @param {number} type
    * @returns {Array}
    */
-  inversion ( type ) {
+  inversion ( type: number ) {
     if ( type > 0 && type <= this.pitchClasses.length ) {
       return rearrangeArray( this.pitchClasses, type )
     }

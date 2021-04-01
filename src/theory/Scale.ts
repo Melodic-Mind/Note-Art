@@ -21,7 +21,7 @@ export default class Scale extends MusicalPattern {
    * @param {boolean} seventh=false Whether to return seventh chords or triads.
    * @type {Array}
    */
-  chords(seventh = false) {
+  chords(seventh: boolean = false) {
     return this.pitchClasses.map((pitchClass, degree) => this.chord(degree + 1, seventh ? 4 : 3))
   }
 
@@ -32,7 +32,7 @@ export default class Scale extends MusicalPattern {
    * @param {Number} degree
    * @returns {PitchClass}
    */
-  degree(degree) {
+  degree(degree: number) {
     return this.pitchClasses[degree - 1]
   }
 
@@ -49,7 +49,7 @@ export default class Scale extends MusicalPattern {
    * @param {number} size=3 Number of pitch classes in the chord.
    * @returns {*}
    */
-  chord(degree, size = 3) {
+  chord(degree: number, size: number = 3) {
     const pc      = this.pitchClasses,
           root    = this.degree(degree),
           index   = degree - 1,

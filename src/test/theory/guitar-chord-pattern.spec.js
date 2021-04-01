@@ -9,12 +9,6 @@ describe('Guitar Chord Pattern', () => {
     gcp = new GuitarChordPattern([3, 2, 0, 0, 3, 3], new PitchClass('g'), 'Major')
   })
 
-  describe('#ctor', () => {
-    it('should throw an error when pattern is not valid', () => {
-      expect(() => new GuitarChordPattern()).to.throw(InvalidInput)
-    })
-  })
-
   describe('#getChord', () => {
     it('returns a string representing the chord correctly', () => {
       const gChord = gcp.getChord(g)

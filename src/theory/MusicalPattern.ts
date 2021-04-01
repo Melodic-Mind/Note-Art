@@ -1,5 +1,4 @@
-import { PatternRule }  from '../validation'
-import { InvalidInput } from '../Exceptions'
+import PitchClass       from './PitchClass'
 
 /**
  * @class MusicalPattern
@@ -9,18 +8,17 @@ import { InvalidInput } from '../Exceptions'
  * @param {Object} [info={}] Any additional information to save about the pattern.
  */
 export default class MusicalPattern {
-  constructor(pitchClass, pattern, info = {}) {
-    PatternRule.isPattern(pattern)
-    this.attributes = {}
-    this.setPitchClasses(pitchClass, pattern)
-    this.attributes.info = { ...info, pattern }
+  _info: {
+    pattern: Array<number>;
   }
+  _pitchClasses: Array<PitchClass>
 
-  setPitchClasses(pitchClass, pattern) {
-    const notes = [pitchClass]
-    pattern.forEach(interval => notes.push(pitchClass.interval(interval)))
+  constructor(pitchClass: string | PitchClass, pattern: Array<number>, info: Object = {}) {
+    const pc: PitchClass = typeof pitchClass === 'string' ? new PitchClass(pitchClass) : pitchClass
+    this._pitchClasses = [pc]
+    pattern.forEach(interval => this._pitchClasses.push(pc.interval(interval)))
 
-    this.attributes.pitchClasses = notes
+    this._info         = { ...info, pattern }
   }
 
   /**
@@ -28,7 +26,7 @@ export default class MusicalPattern {
    * @returns {Array}
    */
   get pitchClasses() {
-    return this.attributes.pitchClasses
+    return this._pitchClasses
   }
 
   /**
@@ -36,7 +34,7 @@ export default class MusicalPattern {
    * @returns {*}
    */
   get root() {
-    return this.pitchClasses[0]
+    return this._pitchClasses[0]
   }
 
   /**
@@ -44,7 +42,7 @@ export default class MusicalPattern {
    * @returns {{}}
    */
   get info() {
-    return this.attributes.info
+    return this._info
   }
 
   /**
@@ -52,7 +50,7 @@ export default class MusicalPattern {
    * @returns {Array}
    */
   get pattern() {
-    return this.info.pattern
+    return this._info.pattern
   }
 
   /**
@@ -60,7 +58,7 @@ export default class MusicalPattern {
    * @returns {Array}
    */
   get raw() {
-    return this.pitchClasses.map(pitchClass => pitchClass.raw)
+    return this._pitchClasses.map(pitchClass => pitchClass.raw)
   }
 
   /**
@@ -68,18 +66,15 @@ export default class MusicalPattern {
    * @returns {String}
    */
   toString() {
-    return this.pitchClasses.map(pc => pc.toString()).join(', ')
+    return this._pitchClasses.map(pc => pc.toString()).join(', ')
   }
 
   /**
-   * Generates a new chord with the interval applied
+   * Generates a new pattern with the interval applied
    * @param {Number} interval the interval to apply
    * @returns {MusicalPattern}
    */
-  transpose(interval) {
-    if(typeof interval !== 'number') {
-      throw InvalidInput('Interval should be an integer')
-    }
+  transpose(interval: number) {
     const root = this.root.interval(interval)
     return new MusicalPattern(root, this.pattern, this.info)
   }

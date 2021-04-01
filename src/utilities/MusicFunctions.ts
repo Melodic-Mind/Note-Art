@@ -1,7 +1,7 @@
 import { rearrangeArray }                           from '../utilities/GeneralFunctions'
 import PitchClassRule                               from '../validation/PitchClassRule'
 import { getPitchClassIndex, isRest, noteToObject } from './PureMusicUtils'
-import { Note }                                     from '../theory'
+import Note                                     from '../theory/Note'
 
 export function transposeNote(note: string, interval: number): string {
   return Note.builder(note).interval(interval).toString()
