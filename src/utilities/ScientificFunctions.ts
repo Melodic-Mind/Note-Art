@@ -49,7 +49,7 @@ export function freqToFloatMidi(frequency: number): number {
  * @returns {number}
  */
 export function frequencyToMidi(frequency: number): number {
-  return Math.round(frequencyToFloatMidi(frequency))
+  return Math.round(freqToFloatMidi(frequency))
 }
 
 /**
