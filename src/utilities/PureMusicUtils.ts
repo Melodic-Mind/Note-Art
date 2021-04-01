@@ -172,8 +172,12 @@ export function enharmonicPitchClass(from: string, to: string): string {
 export function toFlat(str: string): string {
   if(str.includes('#')) {
     const { pitchClass, octave } = noteToObject(str)
-    const pc                     = FLAT_CLASS_NOTES[SHARP_CLASS_NOTES.indexOf(pitchClass)]
-    return octave ? `${ pc }${ octave }` : pc
+    if(isNaN(octave)) {
+      return FLAT_CLASS_NOTES[SHARP_CLASS_NOTES.indexOf(str)]
+    } else {
+      const pc = FLAT_CLASS_NOTES[SHARP_CLASS_NOTES.indexOf(pitchClass)]
+      return `${ pc }${ octave }`
+    }
   }
 
   return str

@@ -1,4 +1,4 @@
-import { enharmonicPitchClass, normalizePitchClass } from '../../utilities'
+import { enharmonicPitchClass, normalizePitchClass, toFlat } from '../../utilities'
 
 describe('#PureMusicUtils', () => {
   describe('#enharmonicPitchClass', () => {
@@ -96,6 +96,13 @@ describe('#PureMusicUtils', () => {
       it('Dbbbb to Bb', () => {
         expect(normalizePitchClass('Dbbbb')).to.equal('Bb')
       })
+    })
+  })
+
+  describe.only('#toFlat', () => {
+    it('should turn pitch classes flat', () => {
+      expect(toFlat('C#')).to.equal('Db')
+      expect(toFlat('D#')).to.equal('Eb')
     })
   })
 })
