@@ -1,5 +1,5 @@
 import {
-  calculateInterval,
+  getPitchClassesInterval,
   notesInRange,
   noteToObject,
   extractOctave, extractPitchClass, pitchClassesToPianoChordNotes, pitchClassesToNotes, transposeNote
@@ -7,9 +7,9 @@ import {
 import { PitchClass, Chord } from '../../theory'
 
 describe('Music addon functions', () => {
-  describe('#calculateInterval', () => {
+  describe('#getPitchClassesInterval', () => {
     it('calculates the correct interval between two pitch classes', () => {
-      expect(calculateInterval('C', 'G')).to.eql(7)
+      expect(getPitchClassesInterval('C', 'G')).to.eql(7)
     })
   })
 

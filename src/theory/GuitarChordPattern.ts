@@ -1,5 +1,5 @@
 import PitchClass                          from './PitchClass'
-import { calculateInterval, firstToUpper } from '../utilities'
+import { getPitchClassesInterval, firstToUpper } from '../utilities'
 import { validateInstance, PatternRule }   from '../validation'
 
 /**
@@ -52,7 +52,7 @@ export default class GuitarChordPattern {
    */
   getChord(root: string) {
     root           = firstToUpper(root)
-    const interval = calculateInterval(this.pitchClass.raw, root)
+    const interval = getPitchClassesInterval(this.pitchClass.raw, root)
     const pattern  = this.pattern.map(pos => typeof pos === 'number' ? pos + interval : pos)
     return { pattern, name: `${ root } ${ this.name }` }
   }

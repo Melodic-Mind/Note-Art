@@ -1,4 +1,4 @@
-import { rearrangeArray }                           from '../utilities/GeneralFunctions'
+import { rearrangeArray }                                        from '../utilities/GeneralFunctions'
 import PitchClassRule                                            from '../validation/PitchClassRule'
 import { getPitchClassIndex, isRest, noteToObject, toSemitones } from './PureMusicUtils'
 import Note                                                      from '../theory/Note'

@@ -1,4 +1,4 @@
-import { enharmonicPitchClass, normalizePitchClass, toFlat } from '../../utilities'
+import { enharmonicPitchClass, getNotesInterval, normalizePitchClass, toFlat } from '../../utilities'
 
 describe('#PureMusicUtils', () => {
   describe('#enharmonicPitchClass', () => {
@@ -118,6 +118,15 @@ describe('#PureMusicUtils', () => {
     it('should do nothing to other notes', () => {
       expect(toFlat('C3')).to.equal('C3')
       expect(toFlat('Gb6')).to.equal('Gb6')
+    })
+  })
+
+  describe.only('#getNotesInterval', () => {
+    it('should return the correct interval between 2 notes', () => {
+      expect(getNotesInterval('C3', 'G3')).to.equal(7)
+      expect(getNotesInterval('C3', 'G4')).to.equal(19)
+      expect(getNotesInterval('C3', 'G2')).to.equal(-5)
+      expect(getNotesInterval('F3', 'Bb3')).to.equal(5)
     })
   })
 })

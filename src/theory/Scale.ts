@@ -1,4 +1,4 @@
-import { calculateInterval, enharmonicPitchClass, rearrangeArray } from '../utilities'
+import { getPitchClassesInterval, enharmonicPitchClass, rearrangeArray } from '../utilities'
 import Chord                                                                   from './Chord'
 import MusicalPattern                                                          from './MusicalPattern'
 import { PITCH_CLASS_LETTERS }                                                 from '../Constants'
@@ -56,7 +56,7 @@ export default class Scale extends MusicalPattern {
           pattern = []
 
     for(let i = 1; i < size; ++i) {
-      pattern.push(calculateInterval(root.raw, pc[(index + (i * 2)) % pc.length].raw))
+      pattern.push(getPitchClassesInterval(root.raw, pc[(index + (i * 2)) % pc.length].raw))
     }
 
     return new Chord(root, pattern)

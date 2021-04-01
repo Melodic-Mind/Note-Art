@@ -5,6 +5,32 @@ import {
 import { firstToUpper, isNumberAsString, mapString, occurrencesInString } from './GeneralFunctions'
 import { NoteAsObject }                                                   from '../types'
 
+/**
+ * Returns the interval from one note to another.
+ * @param note1
+ * @param note2
+ */
+export function getNotesInterval(note1: string, note2: string): number {
+  const {
+          pitchClass: pc1,
+          octave:     octave1
+        } = noteToObject(note1)
+
+  const {
+          pitchClass: pc2,
+          octave:     octave2
+        } = noteToObject(note2)
+
+  const pitchClassDistance = getPitchClassesInterval(pc1, pc2)
+  const octaveDistance     = (octave2 - octave1)
+
+  const pc2Index                 = getPitchClassIndex(pc2)
+  const pc1Index                 = getPitchClassIndex(pc1)
+  const normalizedOctaveDistance = octaveDistance - (pc2Index >= pc1Index ? 0 : 1)
+
+  return normalizedOctaveDistance * 12 + pitchClassDistance
+}
+
 export function getPitchClassSet(set: string): Array<string> {
   if(set === '#') {
     return SHARP_CLASS_NOTES
@@ -133,7 +159,7 @@ export function getPitchClassIndex(pc: string): number {
  * @param {String} pitchClass2 second note
  * @returns {Number}
  */
-export function calculateInterval(pitchClass1: string, pitchClass2: string): number {
+export function getPitchClassesInterval(pitchClass1: string, pitchClass2: string): number {
   const i1 = getPitchClassIndex(pitchClass1),
         i2 = getPitchClassIndex(pitchClass2)
   return i1 - i2 <= 0 ? Math.abs(i1 - i2) : 12 - (i1 - i2)
@@ -146,7 +172,7 @@ export function calculateInterval(pitchClass1: string, pitchClass2: string): num
  * @param to
  */
 export function enharmonicPitchClass(from: string, to: string): string {
-  const interval = calculateInterval(from, to)
+  const interval = getPitchClassesInterval(from, to)
 
   const type = interval >= 7 ? '#' : 'b'
 
