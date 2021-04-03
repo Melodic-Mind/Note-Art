@@ -1,4 +1,5 @@
-import { firstToUpper, getPitchClassesInterval } from '../utilities'
+import { firstToUpper } from '../utilities/GeneralFunctions'
+import { getPitchClassesInterval } from '../utilities/PureMusicUtils'
 
 /**
  * @class GuitarChordPattern

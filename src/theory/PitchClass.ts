@@ -1,4 +1,4 @@
-import { firstToUpper }                                                from '../utilities'
+import { firstToUpper }                                                from '../utilities/GeneralFunctions'
 import PitchClassRule                                                  from '../validation/PitchClassRule'
 import { InvalidInput }                                                from '../Exceptions'
 import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES }    from '../Constants'
