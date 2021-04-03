@@ -1,4 +1,3 @@
-import PitchClass                                from './PitchClass'
 import { firstToUpper, getPitchClassesInterval } from '../utilities'
 
 /**
@@ -10,13 +9,16 @@ import { firstToUpper, getPitchClassesInterval } from '../utilities'
  * @param {string} name The chords name.
  */
 export default class GuitarChordPattern {
-  constructor(pattern: Array<number | string>, pitchClass: string | PitchClass, name: string) {
-    this._pitchClass = typeof pitchClass === 'string' ? new PitchClass(pitchClass) : pitchClass
+  _pitchClass: string
+  _pattern: Array<number | string>
+  _name: string
+
+  constructor(pattern: Array<number | string>, pitchClass: string, name: string) {
+    this._pitchClass = firstToUpper(pitchClass)
     this._pattern    = pattern
     this._name       = name
   }
 
-  _pattern: Array<number | string>
 
   /**
    * Returns the chord pattern.
@@ -26,8 +28,6 @@ export default class GuitarChordPattern {
     return this._pattern
   }
 
-  _pitchClass: PitchClass
-
   /**
    * Returns the chord's pitch class.
    * @returns {PitchClass}
@@ -35,8 +35,6 @@ export default class GuitarChordPattern {
   get pitchClass() {
     return this._pitchClass
   }
-
-  _name: string
 
   /**
    * Returns the chord name.
@@ -53,7 +51,7 @@ export default class GuitarChordPattern {
    */
   getChord(root: string) {
     root           = firstToUpper(root)
-    const interval = getPitchClassesInterval(this.pitchClass.raw, root)
+    const interval = getPitchClassesInterval(this.pitchClass, root)
     const pattern  = this.pattern.map(pos => typeof pos === 'number' ? pos + interval : pos)
     return { pattern, name: `${ root } ${ this.name }` }
   }

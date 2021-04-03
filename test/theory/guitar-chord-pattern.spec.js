@@ -5,7 +5,7 @@ describe('Guitar Chord Pattern', () => {
   beforeEach(() => {
     c   = 'C'
     g   = 'G'
-    gcp = new GuitarChordPattern([3, 2, 0, 0, 3, 3], new PitchClass('g'), 'Major')
+    gcp = new GuitarChordPattern([3, 2, 0, 0, 3, 3], 'g', 'Major')
   })
 
   describe('#getChord', () => {
@@ -17,7 +17,7 @@ describe('Guitar Chord Pattern', () => {
     })
 
     it('works for chord with x is well', () => {
-      const C_gcp = new GuitarChordPattern(['x', 3, 2, 0, 1, 0], new PitchClass(c), 'Major')
+      const C_gcp = new GuitarChordPattern(['x', 3, 2, 0, 1, 0], 'c', 'Major')
       expect(C_gcp.getChord(c).pattern).to.eql(['x', 3, 2, 0, 1, 0])
       expect(C_gcp.getChord(g).pattern).to.eql(['x', 10, 9, 7, 8, 7])
     })

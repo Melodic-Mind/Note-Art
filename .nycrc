@@ -6,7 +6,7 @@
         "src/transport/ScorePlayer.js",
         "src/Lib.js"
     ],
-    "extension": [".js"],
+    "extension": [".js", ".ts"],
     "reporter": ["lcov", "text", "html"],
     "require": "@babel/register",
     "sourceMap": false,
