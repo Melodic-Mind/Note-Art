@@ -1,0 +1,1 @@
+exports.fileTree=[];exports.sidebarTree = (title = 'Mainpage') => ({"/code/":[{"title":"API","collapsable":false,"children":[["",""+title+""]]}]});

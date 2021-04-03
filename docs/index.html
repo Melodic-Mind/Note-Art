@@ -1,0 +1,449 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>note-art</title>
+	<meta name="description" content="Documentation for note-art">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">note-art</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>note-art</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#note-art-js-guitar" id="note-art-js-guitar" style="color: inherit; text-decoration: none;">
+					<h1>Note-Art JS :guitar:</h1>
+				</a>
+				<p>:fire:
+					<a href=""><img src="https://img.shields.io/npm/dt/note-art.svg?style=flat-square" alt="Downloads"></a>
+					&nbsp; <a href="https://semaphoreci.com/seanitzel/note-art"><img src="https://semaphoreci.com/api/v1/seanitzel/note-art/branches/master/shields_badge.svg" alt="Build Status"></a>
+					&nbsp; <a href="https://codeclimate.com/github/Seanitzel/Note-Art/maintainability"><img src="https://api.codeclimate.com/v1/badges/0206283c6843673ea6d6/maintainability" alt="Maintainability"></a>
+					&nbsp; <a href="https://codeclimate.com/github/Seanitzel/Note-Art/test_coverage"><img src="https://api.codeclimate.com/v1/badges/0206283c6843673ea6d6/test_coverage" alt="Test Coverage"></a>
+					&nbsp; <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+				:fire:</p>
+				<a href="#demo-outdated-musical_note--api-blue_book" id="demo-outdated-musical_note--api-blue_book" style="color: inherit; text-decoration: none;">
+					<h5><a href="https://note-art-demo.netlify.com/">Demo (outdated) :musical_note:</a> | <a href="https://note-art-docs.netlify.com/">API :blue_book:</a></h5>
+				</a>
+				<br>
+				<blockquote>
+					<p>Music is a highly versatile art that originates in nature, and has been taken up by mankind as a way of expression and also as an art.
+						Now, it&#39;s going to be taken up by machines as well.
+					<br></p>
+				</blockquote>
+				<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
+					<h2>Table of Contents</h2>
+				</a>
+				<ul>
+					<li><a href="#about">About the Project</a></li>
+					<li><a href="#features">Features</a></li>
+					<li><a href="#getting-started">Getting Started</a><ul>
+							<li><a href="#usage">Usage</a></li>
+						</ul>
+					</li>
+					<li><a href="#contribute-and-support">Contribute and Support</a></li>
+					<li><a href="#todo">Todo</a></li>
+					<li><a href="#contact">Contact</a></li>
+					<li><a href="#license">License</a></li>
+				</ul>
+				<a href="#about" id="about" style="color: inherit; text-decoration: none;">
+					<h2>About</h2>
+				</a>
+				<ul>
+					<li>Designed to be simple and intuitive.</li>
+					<li>Use this library to create tools for musicians, research music theory, just create some fun music with programming and much more! </li>
+				</ul>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
+				</a>
+				<ol>
+					<li>Create Notes, Chords, Scales and more, manipulate and extract information from them.</li>
+					<li>Create full musical scores with multiple instruments.(Only theoretically)</li>
+				</ol>
+				<ul>
+					<li>You can use awesome libraries like ToneJS to play audio and schedule music in the browser.</li>
+				</ul>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting Started</h2>
+				</a>
+				<p>One of the things that make note-art so awesome &amp; easy to use is the way
+					it was designed, musical models, and the notation system
+					are not tightly coupled and do not rely on each other to work.<br>
+					That means you can easily create music scores
+					without ever needing to understand how the musical models work, or
+					you can even create your own way of interacting with the notation API
+					which is super intuitive and simple.
+					<br>
+				<br></p>
+				<p>Installation:</p>
+				<pre><code class="language-bash"><span style="color: #000000">npm install note-art</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h3>Usage</h3>
+				</a>
+				<a href="#music-models" id="music-models" style="color: inherit; text-decoration: none;">
+					<h4>Music Models</h4>
+				</a>
+				<p>The music models are pure music theory concepts that are translated to code.</p>
+				<ul>
+					<li>patterns are in semi-tones.
+						```
+					import {PitchClass, Note, Chord, Scale} from &#39;note-art&#39;</li>
+				</ul>
+				<p>// PitchClass</p>
+				<p>const a = new PitchClass(&#39;a&#39;)</p>
+				<p>console.log(a.interval(5))  // Returns a new pitch class instance with &#39;D&#39; as the pitch.</p>
+				<p>// Note</p>
+				<p>const A = new Note(&#39;a&#39;, 4)</p>
+				<p>console.log(A)      // A4</p>
+				<p>console.log(A.frequency) // outputs 440</p>
+				<p>const fourth = A.interval(5) // calculate 5 semitones up - fourth is the note E with octave 5</p>
+				<p>console.log(fourth) // E4</p>
+				<p>//Chord</p>
+				<p>const A_M = new Chord(a, [4, 7]})</p>
+				<p>console.log(A_M.pitchClasses) // A, C, E(returns pitch class instances)</p>
+				<p>//Scale</p>
+				<p>const C_Major = new Scale(new PitchClass(&#39;c&#39;), [0, 2, 4, 5, 7, 9, 11]})</p>
+				<p>console.log(A_Major.pitchClasses) // C, D, E, F, G, A, B</p>
+				<pre><code><span style="color: #000000">&lt;</span><span style="color: #267F99">br</span><span style="color: #000000">&gt;</span>
+
+<span style="color: #000000">#### </span><span style="color: #001080">Notation</span>
+<span style="color: #001080">The</span><span style="color: #000000"> </span><span style="color: #001080">notation</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000"> </span><span style="color: #001080">is</span><span style="color: #000000"> </span><span style="color: #001080">more</span><span style="color: #000000"> </span><span style="color: #001080">complex</span><span style="color: #000000"> </span><span style="color: #001080">so</span><span style="color: #000000"> </span><span style="color: #001080">check</span><span style="color: #000000"> </span><span style="color: #001080">out</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">, </span><span style="color: #001080">or</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">demo</span><span style="color: #000000"> </span><span style="color: #001080">source</span><span style="color: #000000"> </span><span style="color: #001080">code</span><span style="color: #000000"> </span><span style="color: #001080">to</span><span style="color: #000000"> </span><span style="color: #001080">see</span><span style="color: #000000"> </span><span style="color: #001080">an</span><span style="color: #000000"> </span><span style="color: #001080">example</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #001080">using</span><span style="color: #000000"> </span><span style="color: #001080">it</span><span style="color: #000000">.</span>
+
+<span style="color: #000000">&lt;</span><span style="color: #267F99">br</span><span style="color: #000000">&gt;</span>
+
+<span style="color: #001080">Check</span><span style="color: #000000"> </span><span style="color: #001080">out</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> [</span><span style="color: #0070C1">API</span><span style="color: #000000">](</span><span style="color: #001080">https</span><span style="color: #000000">:</span><span style="color: #008000">//note-art-docs.netlify.com/) for more.</span>
+
+<span style="color: #000000">## </span><span style="color: #001080">Contribute</span><span style="color: #000000"> </span><span style="color: #001080">and</span><span style="color: #000000"> </span><span style="color: #001080">Support</span><span style="color: #000000"> :</span><span style="color: #001080">pray</span><span style="color: #000000">:</span>
+<span style="color: #000000">* </span><span style="color: #001080">Make</span><span style="color: #000000"> </span><span style="color: #001080">a</span><span style="color: #000000"> [</span><span style="color: #001080">pull</span><span style="color: #000000"> </span><span style="color: #001080">request</span><span style="color: #000000"> :</span><span style="color: #001080">avocado</span><span style="color: #000000">:](</span><span style="color: #001080">https</span><span style="color: #000000">:</span><span style="color: #008000">//github.com/Seanitzel/Note-Art).</span>
+<span style="color: #000000">  * </span><span style="color: #001080">Contributions</span><span style="color: #000000"> </span><span style="color: #001080">are</span><span style="color: #000000"> </span><span style="color: #001080">what</span><span style="color: #000000"> </span><span style="color: #001080">make</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">open</span><span style="color: #000000"> </span><span style="color: #001080">source</span><span style="color: #000000"> </span><span style="color: #001080">community</span><span style="color: #000000"> </span><span style="color: #001080">such</span><span style="color: #000000"> </span><span style="color: #001080">an</span><span style="color: #000000"> </span><span style="color: #001080">amazing</span><span style="color: #000000"> </span><span style="color: #001080">place</span><span style="color: #000000"> </span><span style="color: #001080">to</span><span style="color: #000000"> </span><span style="color: #001080">learn</span><span style="color: #000000">, </span><span style="color: #001080">inspire</span><span style="color: #000000">, </span><span style="color: #001080">and</span><span style="color: #000000"> </span><span style="color: #001080">create</span><span style="color: #000000">. </span><span style="color: #001080">Any</span><span style="color: #000000"> </span><span style="color: #001080">contributions</span><span style="color: #000000"> </span><span style="color: #001080">you</span><span style="color: #000000"> </span><span style="color: #001080">make</span><span style="color: #000000"> </span><span style="color: #001080">are</span><span style="color: #000000"> **</span><span style="color: #001080">greatly</span><span style="color: #000000"> </span><span style="color: #001080">appreciated</span><span style="color: #000000">**.</span>
+
+<span style="color: #000000">        </span><span style="color: #098658">1.</span><span style="color: #000000"> </span><span style="color: #001080">Fork</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">Project</span>
+<span style="color: #000000">        </span><span style="color: #098658">2.</span><span style="color: #000000"> </span><span style="color: #001080">Create</span><span style="color: #000000"> </span><span style="color: #001080">your</span><span style="color: #000000"> </span><span style="color: #001080">Feature</span><span style="color: #000000"> </span><span style="color: #795E26">Branch</span><span style="color: #000000"> (</span><span style="color: #A31515">`git checkout -b feature/AmazingFeature`</span><span style="color: #000000">)</span>
+<span style="color: #000000">        </span><span style="color: #098658">3.</span><span style="color: #000000"> </span><span style="color: #001080">Commit</span><span style="color: #000000"> </span><span style="color: #001080">your</span><span style="color: #000000"> </span><span style="color: #795E26">Changes</span><span style="color: #000000"> (</span><span style="color: #A31515">`git commit -m &#039;Add some AmazingFeature`</span><span style="color: #000000">)</span>
+<span style="color: #000000">        </span><span style="color: #098658">4.</span><span style="color: #000000"> </span><span style="color: #001080">Push</span><span style="color: #000000"> </span><span style="color: #001080">to</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #795E26">Branch</span><span style="color: #000000"> (</span><span style="color: #A31515">`git push origin feature/AmazingFeature`</span><span style="color: #000000">)</span>
+<span style="color: #000000">        </span><span style="color: #098658">5.</span><span style="color: #000000"> </span><span style="color: #001080">Open</span><span style="color: #000000"> </span><span style="color: #001080">a</span><span style="color: #000000"> </span><span style="color: #001080">Pull</span><span style="color: #000000"> </span><span style="color: #001080">Request</span>
+<span style="color: #000000">        </span>
+<span style="color: #000000">* </span><span style="color: #001080">Support</span><span style="color: #000000"> </span><span style="color: #001080">me</span><span style="color: #000000"> </span><span style="color: #001080">on</span><span style="color: #000000"> [</span><span style="color: #001080">patreon</span><span style="color: #000000">](</span><span style="color: #001080">https</span><span style="color: #000000">:</span><span style="color: #008000">//www.patreon.com/Seanitzel).</span>
+<span style="color: #000000">* </span><span style="color: #001080">Download</span><span style="color: #000000"> </span><span style="color: #001080">my</span><span style="color: #000000"> </span><span style="color: #001080">app</span><span style="color: #000000"> </span><span style="color: #001080">on</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">google</span><span style="color: #000000"> </span><span style="color: #001080">play</span><span style="color: #000000"> </span><span style="color: #001080">store</span><span style="color: #000000"> - [</span><span style="color: #001080">Scale</span><span style="color: #000000"> </span><span style="color: #001080">Heaven</span><span style="color: #000000">](</span><span style="color: #001080">https</span><span style="color: #000000">:</span><span style="color: #008000">//play.google.com/store/apps/details?id=com.scales.scaleheaven) - **which can generate and play any scale in the history of mankind** on google play (and press the banner once in a while ;)).</span>
+
+<span style="color: #000000">## </span><span style="color: #001080">Todo</span><span style="color: #000000">:</span>
+<span style="color: #000000">* </span><span style="color: #001080">Create</span><span style="color: #000000"> </span><span style="color: #001080">base</span><span style="color: #000000"> </span><span style="color: #001080">music</span><span style="color: #000000"> </span><span style="color: #001080">models</span><span style="color: #000000"> - </span><span style="color: #001080">pitch</span><span style="color: #000000"> </span><span style="color: #001080">class</span><span style="color: #000000">, </span><span style="color: #001080">note</span><span style="color: #000000">, </span><span style="color: #001080">chord</span><span style="color: #000000">, </span><span style="color: #001080">etc</span><span style="color: #000000">... :</span><span style="color: #001080">heavy_check_mark</span><span style="color: #000000">: </span>
+
+<span style="color: #000000">* </span><span style="color: #001080">Implement</span><span style="color: #000000"> </span><span style="color: #001080">Music</span><span style="color: #000000"> </span><span style="color: #001080">notation</span><span style="color: #000000">. :</span><span style="color: #001080">heavy_check_mark</span><span style="color: #000000">: </span>
+
+<span style="color: #000000">## </span><span style="color: #001080">Contact</span>
+<span style="color: #001080">Sean</span><span style="color: #000000"> </span><span style="color: #001080">Dvir</span><span style="color: #000000"> - [</span><span style="color: #001080">seandvir12</span><span style="color: #000000">@</span><span style="color: #001080">gmail</span><span style="color: #000000">.</span><span style="color: #001080">com</span><span style="color: #000000">](</span><span style="color: #001080">seandvir12</span><span style="color: #000000">@</span><span style="color: #001080">gmail</span><span style="color: #000000">.</span><span style="color: #001080">com</span><span style="color: #000000">) - [@</span><span style="color: #001080">seanitzel</span><span style="color: #000000">](</span><span style="color: #001080">https</span><span style="color: #000000">:</span><span style="color: #008000">//twitter.com/seanitzel) &lt;br&gt;</span>
+
+<span style="color: #001080">Your</span><span style="color: #000000"> </span><span style="color: #001080">welcome</span><span style="color: #000000"> </span><span style="color: #001080">to</span><span style="color: #000000"> </span><span style="color: #001080">mail</span><span style="color: #000000"> </span><span style="color: #001080">me</span><span style="color: #000000"> </span><span style="color: #001080">your</span><span style="color: #000000"> </span><span style="color: #001080">ideas</span><span style="color: #000000"> </span><span style="color: #001080">and</span><span style="color: #000000"> </span><span style="color: #001080">recommendations</span><span style="color: #000000">!&lt;</span><span style="color: #001080">br</span><span style="color: #000000">&gt;</span>
+
+<span style="color: #000000">## </span><span style="color: #001080">License</span>
+<span style="color: #001080">Note</span><span style="color: #000000">-</span><span style="color: #001080">Art</span><span style="color: #000000"> </span><span style="color: #001080">uses</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #0070C1">MIT</span><span style="color: #000000"> </span><span style="color: #001080">license</span><span style="color: #000000">, </span><span style="color: #001080">check</span><span style="color: #000000"> </span><span style="color: #001080">out</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">license</span><span style="color: #000000"> </span><span style="color: #001080">tab</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">more</span><span style="color: #000000"> </span><span style="color: #001080">information</span><span style="color: #000000">.</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/chord.html" class="tsd-kind-icon">Chord</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/guitarchordpattern.html" class="tsd-kind-icon">Guitar<wbr>Chord<wbr>Pattern</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/measure.html" class="tsd-kind-icon">Measure</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/musicalpattern.html" class="tsd-kind-icon">Musical<wbr>Pattern</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/note.html" class="tsd-kind-icon">Note</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/patternrule.html" class="tsd-kind-icon">Pattern<wbr>Rule</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/pitchclass.html" class="tsd-kind-icon">Pitch<wbr>Class</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/pitchclassrule.html" class="tsd-kind-icon">Pitch<wbr>Class<wbr>Rule</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/scale.html" class="tsd-kind-icon">Scale</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/score.html" class="tsd-kind-icon">Score</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/scorehandler.html" class="tsd-kind-icon">Score<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#flat_class_notes" class="tsd-kind-icon">FLAT_<wbr>CLASS_<wbr>NOTES</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#intervals" class="tsd-kind-icon">INTERVALS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#note_durations" class="tsd-kind-icon">NOTE_<wbr>DURATIONS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#note_durations_as_size_in_measure" class="tsd-kind-icon">NOTE_<wbr>DURATIONS_<wbr>AS_<wbr>SIZE_<wbr>IN_<wbr>MEASURE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#number_of_pitch_classes" class="tsd-kind-icon">NUMBER_<wbr>OF_<wbr>PITCH_<wbr>CLASSES</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#octaves_on_piano" class="tsd-kind-icon">OCTAVES_<wbr>ON_<wbr>PIANO</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#pitch_classes" class="tsd-kind-icon">PITCH_<wbr>CLASSES</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#pitch_class_letters" class="tsd-kind-icon">PITCH_<wbr>CLASS_<wbr>LETTERS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#pitch_standard" class="tsd-kind-icon">PITCH_<wbr>STANDARD</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#semitone" class="tsd-kind-icon">SEMITONE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#sharp_class_notes" class="tsd-kind-icon">SHARP_<wbr>CLASS_<wbr>NOTES</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#time_sig_numerators" class="tsd-kind-icon">TIME_<wbr>SIG_<wbr>NUMERATORS</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#centsofffromfreq" class="tsd-kind-icon">cents<wbr>Off<wbr>From<wbr>Freq</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#enharmonicpitchclass" class="tsd-kind-icon">enharmonic<wbr>Pitch<wbr>Class</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#extractoctave" class="tsd-kind-icon">extract<wbr>Octave</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#extractpitchclass" class="tsd-kind-icon">extract<wbr>Pitch<wbr>Class</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#firsttoupper" class="tsd-kind-icon">first<wbr>ToUpper</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#fitarraytosize" class="tsd-kind-icon">fit<wbr>Array<wbr>ToSize</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#freqfrommidi" class="tsd-kind-icon">freq<wbr>From<wbr>Midi</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#freqfrompitch" class="tsd-kind-icon">freq<wbr>From<wbr>Pitch</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#freqtofloatmidi" class="tsd-kind-icon">freq<wbr>ToFloat<wbr>Midi</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#freqtomidi" class="tsd-kind-icon">freq<wbr>ToMidi</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#getnotesinterval" class="tsd-kind-icon">get<wbr>Notes<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#getpatternfromnotes" class="tsd-kind-icon">get<wbr>Pattern<wbr>From<wbr>Notes</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#getpatternfrompitchclasses" class="tsd-kind-icon">get<wbr>Pattern<wbr>From<wbr>Pitch<wbr>Classes</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#getpitchclassindex" class="tsd-kind-icon">get<wbr>Pitch<wbr>Class<wbr>Index</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#getpitchclassset" class="tsd-kind-icon">get<wbr>Pitch<wbr>Class<wbr>Set</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#getpitchclassesinterval" class="tsd-kind-icon">get<wbr>Pitch<wbr>Classes<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#highestnote" class="tsd-kind-icon">highest<wbr>Note</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#highestnotefromarray" class="tsd-kind-icon">highest<wbr>Note<wbr>From<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#intervalstonotes" class="tsd-kind-icon">intervals<wbr>ToNotes</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#isduration" class="tsd-kind-icon">is<wbr>Duration</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#isnumberasstring" class="tsd-kind-icon">is<wbr>Number<wbr>AsString</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#israwnote" class="tsd-kind-icon">is<wbr>Raw<wbr>Note</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#isrest" class="tsd-kind-icon">is<wbr>Rest</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#longestarray" class="tsd-kind-icon">longest<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#lowestnote" class="tsd-kind-icon">lowest<wbr>Note</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#lowestnotefromarray" class="tsd-kind-icon">lowest<wbr>Note<wbr>From<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#lowestpitch" class="tsd-kind-icon">lowest<wbr>Pitch</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#mapstring" class="tsd-kind-icon">map<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#maxinterval" class="tsd-kind-icon">max<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#miditofreq" class="tsd-kind-icon">midi<wbr>ToFreq</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#normalizepitchclass" class="tsd-kind-icon">normalize<wbr>Pitch<wbr>Class</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#notetoobject" class="tsd-kind-icon">note<wbr>ToObject</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#notesinrange" class="tsd-kind-icon">notes<wbr>InRange</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#occurrencesinstring" class="tsd-kind-icon">occurrences<wbr>InString</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#pitchclassestonotes" class="tsd-kind-icon">pitch<wbr>Classes<wbr>ToNotes</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#pitchclassestopianochordnotes" class="tsd-kind-icon">pitch<wbr>Classes<wbr>ToPiano<wbr>Chord<wbr>Notes</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#rearrangearray" class="tsd-kind-icon">rearrange<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#switchmembers" class="tsd-kind-icon">switch<wbr>Members</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#toflat" class="tsd-kind-icon">to<wbr>Flat</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#tosemitones" class="tsd-kind-icon">to<wbr>Semitones</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#transposenote" class="tsd-kind-icon">transpose<wbr>Note</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#twodigitformat" class="tsd-kind-icon">two<wbr>Digit<wbr>Format</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#validatearray" class="tsd-kind-icon">validate<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#validateduration" class="tsd-kind-icon">validate<wbr>Duration</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#validateinstance" class="tsd-kind-icon">validate<wbr>Instance</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#validatenumber" class="tsd-kind-icon">validate<wbr>Number</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#validatepitchclasses" class="tsd-kind-icon">validate<wbr>Pitch<wbr>Classes</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#validaterawnote" class="tsd-kind-icon">validate<wbr>Raw<wbr>Note</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

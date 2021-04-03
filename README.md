@@ -28,8 +28,13 @@
 
 ## About
 
+* Create Notes, Chords, Scales and more easily.
 * Designed to be simple and intuitive.
-* Use this library to create tools for musicians, research music theory, just create some fun music with programming and much more! 
+* Create scores using music composition logic
+  Note-Art has a music notation api that works like writing music sheets.
+* Easily integrate with other music libraries to play music in the browser
+  You can use libraries like ToneJS to easily play scales, chords and even scores you create with Note-Art.
+* Use this library to create tools for musicians, research music theory, just create some fun music with programming and much more!
 
 ## Features
 1. Create Notes, Chords, Scales and more, manipulate and extract information from them.
