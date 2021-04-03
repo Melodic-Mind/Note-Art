@@ -23,11 +23,7 @@ export interface NormalizedMeasureData {
  * @param {Number} maxDuration=0 Max duration of the measure(determined by time signature)
  */
 export default class Measure {
-  _maxDuration: number
   _duration: string
-  _data: Array<NormalizedMeasureData>
-
-  [key: string]: any
 
   constructor(maxDuration = 64) {
     this._maxDuration = maxDuration
@@ -35,14 +31,9 @@ export default class Measure {
     this._data        = [{ notes: new Set(), duration: '4n', name: '' }]
   }
 
-  /**
-   * Returns the data of the measure - an array of objects where each
-   * object has a set of notes and the duration for those notes.
-   * @returns {Array}
-   */
-  get data() {
-    return this._data
-  }
+  _maxDuration: number
+
+  [key: string]: any
 
   /**
    * Returns the maximum sum of durations for the measure as a number,
@@ -52,6 +43,17 @@ export default class Measure {
    */
   get maxDuration() {
     return this._maxDuration
+  }
+
+  _data: Array<NormalizedMeasureData>
+
+  /**
+   * Returns the data of the measure - an array of objects where each
+   * object has a set of notes and the duration for those notes.
+   * @returns {Array}
+   */
+  get data() {
+    return this._data
   }
 
   /**
@@ -81,35 +83,6 @@ export default class Measure {
                                     return curr.notes.size ?
                                            prev + NOTE_DURATIONS_AS_SIZE_IN_MEASURE[curr.duration] : prev
                                   }, 0)
-  }
-
-  /**
-   * Creates a slot for the next notes that will be added in the measure if there is space.
-   * Should not be called as it's called automatically when needed.
-   * @param {number} position Position to initialize the next notes to.
-   * @param {string} duration duration to create for the notes
-   * @private
-   */
-  private initNext(position: number, duration: string = '4n') {
-    const durationLeft = this.durationLeft(this.data.length)
-    if(durationLeft > 0) {
-      this.data[position] = { notes: new Set(), duration, name: '' }
-    }
-  }
-
-  /**
-   * Checks whether a new data member can be added at a certain position in the measure.
-   * @param {number} position The position to check for.
-   * @param {string} duration duration of new notes
-   * @returns {boolean}
-   */
-  private canInsertToMeasure(position: number, duration: string) {
-    const isPositionValid = position > this.data.length
-
-    const durationSize            = NOTE_DURATIONS_AS_SIZE_IN_MEASURE[duration]
-    const enoughDurationAvailable = durationSize > this.durationLeft(position) + durationSize
-
-    return !(isPositionValid || enoughDurationAvailable)
   }
 
   /**
@@ -251,5 +224,34 @@ export default class Measure {
     this.data.length = 0
     this.initNext(0)
     return true
+  }
+
+  /**
+   * Creates a slot for the next notes that will be added in the measure if there is space.
+   * Should not be called as it's called automatically when needed.
+   * @param {number} position Position to initialize the next notes to.
+   * @param {string} duration duration to create for the notes
+   * @private
+   */
+  private initNext(position: number, duration: string = '4n') {
+    const durationLeft = this.durationLeft(this.data.length)
+    if(durationLeft > 0) {
+      this.data[position] = { notes: new Set(), duration, name: '' }
+    }
+  }
+
+  /**
+   * Checks whether a new data member can be added at a certain position in the measure.
+   * @param {number} position The position to check for.
+   * @param {string} duration duration of new notes
+   * @returns {boolean}
+   */
+  private canInsertToMeasure(position: number, duration: string) {
+    const isPositionValid = position > this.data.length
+
+    const durationSize            = NOTE_DURATIONS_AS_SIZE_IN_MEASURE[duration]
+    const enoughDurationAvailable = durationSize > this.durationLeft(position) + durationSize
+
+    return !(isPositionValid || enoughDurationAvailable)
   }
 }

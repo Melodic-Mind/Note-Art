@@ -1,4 +1,4 @@
-import { getPitchClassesInterval, enharmonicPitchClass, rearrangeArray } from '../utilities'
+import { enharmonicPitchClass, getPitchClassesInterval, rearrangeArray } from '../utilities'
 import Chord                                                             from './Chord'
 import MusicalPattern                                                    from './MusicalPattern'
 import { PITCH_CLASS_LETTERS }                                           from '../Constants'
@@ -16,6 +16,13 @@ import { PITCH_CLASS_LETTERS }                                           from '.
  * const C_Major_by_pattern = new Scale(c, [0, 2, 4, 5, 7, 9, 11]) // new C major scale.
  */
 export default class Scale extends MusicalPattern {
+  get raw() {
+    if(this.pattern.length === 6) {
+      return this.spellScale()
+    }
+    return super.raw
+  }
+
   /**
    * Returns an array of chords where each member is the chord at the degree where 0 is the root chord.
    * @param {boolean} seventh=false Whether to return seventh chords or triads.
@@ -34,13 +41,6 @@ export default class Scale extends MusicalPattern {
    */
   degree(degree: number) {
     return this.pitchClasses[degree - 1]
-  }
-
-  get raw() {
-    if(this.pattern.length === 6) {
-      return this.spellScale()
-    }
-    return super.raw
   }
 
   /**

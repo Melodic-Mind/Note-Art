@@ -8,11 +8,6 @@ import PitchClass from './PitchClass'
  * @param {Object} [info={}] Any additional information to save about the pattern.
  */
 export default class MusicalPattern {
-  _info: {
-    pattern: Array<number>;
-  }
-  _pitchClasses: Array<PitchClass>
-
   constructor(pitchClass: string | PitchClass, pattern: Array<number>, info: Object = {}) {
     const pc: PitchClass = typeof pitchClass === 'string' ? new PitchClass(pitchClass) : pitchClass
     this._pitchClasses   = [pc]
@@ -20,6 +15,20 @@ export default class MusicalPattern {
 
     this._info = { ...info, pattern }
   }
+
+  _info: {
+    pattern: Array<number>;
+  }
+
+  /**
+   * Returns the information object the pattern was created with.
+   * @returns {{}}
+   */
+  get info() {
+    return this._info
+  }
+
+  _pitchClasses: Array<PitchClass>
 
   /**
    * Returns an array of the pitch classes.
@@ -35,14 +44,6 @@ export default class MusicalPattern {
    */
   get root() {
     return this._pitchClasses[0]
-  }
-
-  /**
-   * Returns the information object the pattern was created with.
-   * @returns {{}}
-   */
-  get info() {
-    return this._info
   }
 
   /**

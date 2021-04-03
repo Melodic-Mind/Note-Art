@@ -1,6 +1,5 @@
 import PitchClass                                from './PitchClass'
-import { getPitchClassesInterval, firstToUpper } from '../utilities'
-import { validateInstance, PatternRule }         from '../validation'
+import { firstToUpper, getPitchClassesInterval } from '../utilities'
 
 /**
  * @class GuitarChordPattern
@@ -11,15 +10,13 @@ import { validateInstance, PatternRule }         from '../validation'
  * @param {string} name The chords name.
  */
 export default class GuitarChordPattern {
-  _pattern: Array<number | string>
-  _pitchClass: PitchClass
-  _name: string
-
   constructor(pattern: Array<number | string>, pitchClass: string | PitchClass, name: string) {
     this._pitchClass = typeof pitchClass === 'string' ? new PitchClass(pitchClass) : pitchClass
     this._pattern    = pattern
     this._name       = name
   }
+
+  _pattern: Array<number | string>
 
   /**
    * Returns the chord pattern.
@@ -29,6 +26,8 @@ export default class GuitarChordPattern {
     return this._pattern
   }
 
+  _pitchClass: PitchClass
+
   /**
    * Returns the chord's pitch class.
    * @returns {PitchClass}
@@ -36,6 +35,8 @@ export default class GuitarChordPattern {
   get pitchClass() {
     return this._pitchClass
   }
+
+  _name: string
 
   /**
    * Returns the chord name.

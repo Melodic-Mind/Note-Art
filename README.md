@@ -126,8 +126,8 @@ Check out the [API](https://note-art-docs.netlify.com/) for more.
 
 * Support me on [patreon](https://www.patreon.com/Seanitzel).
 * Download my app on the google play store
-  - [Scale Heaven](https://play.google.com/store/apps/details?id=com.scales.scaleheaven) - **which can generate and play
-  any scale in the history of mankind** on google play (and press the banner once in a while ;)).
+    - [Scale Heaven](https://play.google.com/store/apps/details?id=com.scales.scaleheaven) - **which can generate and
+      play any scale in the history of mankind** on google play (and press the banner once in a while ;)).
 
 ## Todo:
 

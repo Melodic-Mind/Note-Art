@@ -32,13 +32,19 @@ import { NUMBER_OF_PITCH_CLASSES, SHARP_CLASS_NOTES } from '../Constants'
  * console.log(a) //A4
  */
 export default class Note extends PitchClass {
-  _octave: number
-
   constructor(pitchClass: string, octave: number) {
     super(pitchClass)
     validateNumber(octave)
     this._octave = octave
   }
+
+  _octave: number
+
+  /**
+   * Returns the octave of the note.
+   * @type {String}
+   */
+  get octave(): number { return this._octave }
 
   /**
    * Builds a Note instance from string representing a note.
@@ -62,12 +68,6 @@ export default class Note extends PitchClass {
 
     return new Note(pitchClass, octave)
   }
-
-  /**
-   * Returns the octave of the note.
-   * @type {String}
-   */
-  get octave(): number { return this._octave }
 
   /**
    * Gets interval size (Number) and returns a new instance of a note

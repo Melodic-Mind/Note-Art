@@ -1,4 +1,4 @@
-import { SEMITONE, NUMBER_OF_PITCH_CLASSES, PITCH_STANDARD, FLAT_CLASS_NOTES } from '../Constants'
+import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_STANDARD, SEMITONE } from '../Constants'
 import { getPitchClassIndex, noteToObject }                                    from './PureMusicUtils'
 
 /**

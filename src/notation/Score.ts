@@ -19,9 +19,6 @@ interface ScoreProps {
  * @param {Array} voiceNames=[] Array with the names of the voices in the score.
  */
 export default class Score {
-  _name: string
-  _bpm: number
-  _voices: { [key: string]: Array<Measure> }
   measureSize: number
   timeSignature: [number, number]
 
@@ -37,6 +34,68 @@ export default class Score {
 
     this.timeSignature = timeSignature || [4, 4]
     this.measureSize   = Score.getMeasureSize(this.timeSignature)
+  }
+
+  _name: string
+
+  /**
+   * Returns the score name.
+   * @returns {string}
+   */
+  get name() {
+    return this._name
+  }
+
+  /**
+   * Set the score's name.
+   * @param {string} name
+   * @throws InvalidInput
+   */
+  set name(name: string) {
+    this._name = name
+  }
+
+  _bpm: number
+
+  /**
+   * Get the score's BPM value.
+   * @returns {number}
+   */
+  get bpm() {
+    return this._bpm
+  }
+
+  /**
+   * Set the score's BPM value.
+   * @param bpm
+   * @throws InvalidInput
+   */
+  set bpm(bpm) {
+    this._bpm = bpm
+  }
+
+  _voices: { [key: string]: Array<Measure> }
+
+  /**
+   * Returns an object with the scores voices.
+   * @returns {Array}
+   */
+  get voices() {
+    return this._voices
+  }
+
+  /**
+   * Returns the length of the score as the length if it's longest voice.
+   * The format is 'MM:QQ:SS' - Measures:Quarter-notes:Sixteenth-notes
+   * @returns {string}
+   */
+  get length() {
+    const voicesData = Object.values(this.voices)
+    if(voicesData.length) {
+      const longestVoice = longestArray(voicesData)
+      return `${ longestVoice.length - 1 }:0:${ longestVoice[longestVoice.length - 1].length }`
+    }
+    return '0:0:0'
   }
 
   /**
@@ -63,62 +122,6 @@ export default class Score {
   setTimeSignature(timeSignature: [number, number]) {
     this.measureSize   = Score.getMeasureSize(timeSignature)
     this.timeSignature = timeSignature
-  }
-
-  /**
-   * Returns the score name.
-   * @returns {string}
-   */
-  get name() {
-    return this._name
-  }
-
-  /**
-   * Set the score's name.
-   * @param {string} name
-   * @throws InvalidInput
-   */
-  set name(name: string) {
-    this._name = name
-  }
-
-  /**
-   * Get the score's BPM value.
-   * @returns {number}
-   */
-  get bpm() {
-    return this._bpm
-  }
-
-  /**
-   * Set the score's BPM value.
-   * @param bpm
-   * @throws InvalidInput
-   */
-  set bpm(bpm) {
-    this._bpm = bpm
-  }
-
-  /**
-   * Returns an object with the scores voices.
-   * @returns {Array}
-   */
-  get voices() {
-    return this._voices
-  }
-
-  /**
-   * Returns the length of the score as the length if it's longest voice.
-   * The format is 'MM:QQ:SS' - Measures:Quarter-notes:Sixteenth-notes
-   * @returns {string}
-   */
-  get length() {
-    const voicesData = Object.values(this.voices)
-    if(voicesData.length) {
-      const longestVoice = longestArray(voicesData)
-      return `${ longestVoice.length - 1 }:0:${ longestVoice[longestVoice.length - 1].length }`
-    }
-    return '0:0:0'
   }
 
   /**

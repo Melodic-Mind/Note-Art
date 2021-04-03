@@ -2,7 +2,7 @@ import { firstToUpper }                                                from '../
 import PitchClassRule                                                  from '../validation/PitchClassRule'
 import { InvalidInput }                                                from '../Exceptions'
 import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES }    from '../Constants'
-import { getPitchClassSet, normalizePitchClass, enharmonicPitchClass } from '../utilities/PureMusicUtils'
+import { enharmonicPitchClass, getPitchClassSet, normalizePitchClass } from '../utilities/PureMusicUtils'
 
 /**
  * @class PitchClass
@@ -12,11 +12,6 @@ import { getPitchClassSet, normalizePitchClass, enharmonicPitchClass } from '../
  * @param {String} pitchClass
  */
 export default class PitchClass {
-  _raw: string
-  _classSet: '#' | 'b'
-  _pitchClass: string
-  _classIndex: number
-
   constructor(pitchClass: string) {
     if( !PitchClassRule.exists(pitchClass)) {
       throw new InvalidInput(`${ pitchClass } should be a string representing a pitch class.`)
@@ -28,6 +23,28 @@ export default class PitchClass {
     this._classIndex = getPitchClassSet(this._classSet).indexOf(this._pitchClass)
   }
 
+  _raw: string
+
+  /**
+   * Returns the pitch class as a string.
+   * @returns {String}
+   */
+  get raw() {
+    return this._raw
+  }
+
+  _classSet: '#' | 'b'
+
+  /**
+   * Get the set of the pitch class - sharp or flat.
+   * @type {String}
+   */
+  get classSet() {
+    return this._classSet
+  }
+
+  _pitchClass: string
+
   /**
    * Returns the pitch class.
    * @type {String}
@@ -36,12 +53,14 @@ export default class PitchClass {
     return this._pitchClass
   }
 
+  _classIndex: number
+
   /**
-   * Get the set of the pitch class - sharp or flat.
-   * @type {String}
+   * Get the index of the pitch class out of the 12 classes (C, Db, etc...).
+   * @type {Number}
    */
-  get classSet() {
-    return this._classSet
+  get classIndex(): number {
+    return this._classIndex
   }
 
   /**
@@ -72,14 +91,6 @@ export default class PitchClass {
    */
   static isPitchClass(obj: any): boolean {
     return obj instanceof PitchClass
-  }
-
-  /**
-   * Get the index of the pitch class out of the 12 classes (C, Db, etc...).
-   * @type {Number}
-   */
-  get classIndex(): number {
-    return this._classIndex
   }
 
   /**
@@ -120,14 +131,6 @@ export default class PitchClass {
    * @returns {String}
    */
   toString() {
-    return this._raw
-  }
-
-  /**
-   * Returns the pitch class as a string.
-   * @returns {String}
-   */
-  get raw() {
     return this._raw
   }
 }

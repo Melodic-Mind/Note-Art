@@ -7,6 +7,10 @@ import { PITCH_CLASS_LETTERS } from '../Constants'
  * @class
  */
 export default class PitchClassRule {
+  static get validLetters() {
+    return PITCH_CLASS_LETTERS.concat(PITCH_CLASS_LETTERS.map(letter => letter.toLowerCase()))
+  }
+
   /**
    * Check if pitch class exists.
    * @param {String} str string to validate
@@ -43,10 +47,6 @@ export default class PitchClassRule {
     }
 
     return true
-  }
-
-  static get validLetters() {
-    return PITCH_CLASS_LETTERS.concat(PITCH_CLASS_LETTERS.map(letter => letter.toLowerCase()))
   }
 
   static isPitchClass(obj) {

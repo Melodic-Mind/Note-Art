@@ -1,6 +1,6 @@
 import {
-  FLAT_CLASS_NOTES, INTERVALS, NOTE_DURATIONS, NOTE_DURATIONS_AS_SIZE_IN_MEASURE, NUMBER_OF_PITCH_CLASSES,
-  PITCH_CLASSES, SHARP_CLASS_NOTES
+  FLAT_CLASS_NOTES, INTERVALS, NOTE_DURATIONS_AS_SIZE_IN_MEASURE, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES,
+  SHARP_CLASS_NOTES
 }                                                                         from '../Constants'
 import { firstToUpper, isNumberAsString, mapString, occurrencesInString } from './GeneralFunctions'
 import { NoteAsObject }                                                   from '../types'
