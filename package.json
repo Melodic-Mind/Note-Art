@@ -29,7 +29,6 @@
         "report": "nyc report --root coverage --format html",
         "docs": "typedoc",
         "docs:dev": "cd docs && server",
-        "docs:build": "vuepress build docs",
         "prepublish": "npm run ts:build",
         "predeploy": "npm version patch",
         "deploy": "npm publish"
@@ -55,7 +54,6 @@
         "@types/chai": "^4.2.16",
         "@types/mocha": "^8.2.2",
         "@types/node": "^14.14.37",
-        "amd-loader": "0.0.8",
         "babel-eslint": "^10.1.0",
         "babel-loader": "^8.2.2",
         "babel-plugin-istanbul": "^6.0.0",
