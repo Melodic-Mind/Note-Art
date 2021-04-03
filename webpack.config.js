@@ -14,7 +14,7 @@ module.exports = {
       resources: path.resolve(__dirname, 'src/resources'),
       src:       path.resolve(__dirname, 'src/'),
       built:     path.resolve(__dirname, 'built/'),
-      Tone: path.resolve(__dirname, 'node_modules/tone/esm')
+      Tone:      path.resolve(__dirname, 'node_modules/tone/esm')
     },
     modules:    ['node_modules/tone']
   },
