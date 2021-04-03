@@ -1,6 +1,6 @@
 import {
   enharmonicPitchClass, getNotesInterval, getPatternFromNotes, getPatternFromPitchClasses, normalizePitchClass, toFlat
-} from '../../utilities'
+} from '../../src/utilities'
 
 describe('#PureMusicUtils', () => {
   describe('#enharmonicPitchClass', () => {

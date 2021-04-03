@@ -1,4 +1,4 @@
-import { Measure, Score } from '../..'
+import { Measure, Score } from '../../src'
 
 describe('Score', () => {
   let score

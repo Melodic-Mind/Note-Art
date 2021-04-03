@@ -1,5 +1,5 @@
-import { PatternRule }  from '../../'
-import { InvalidInput } from '../../Exceptions'
+import { PatternRule }  from '../../src'
+import { InvalidInput } from '../../src/Exceptions'
 
 describe('Pattern Rule', () => {
   describe('#isPattern', () => {

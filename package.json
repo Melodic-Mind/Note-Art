@@ -24,7 +24,7 @@
         "webpack:build": "webpack --mode production",
         "ts:build": "tsc -p tsconfig.json",
         "ts:watch": "tsc --watch",
-        "test": "cross-env mocha -r ts-node/register -r esm  \"src/test/**/*.spec.js\"",
+        "test": "cross-env mocha -r ts-node/register -r esm  \"test/**/*.spec.js\"",
         "coverage": "cross-env NODE_ENV=test nyc npm run test -- --reporter landing --cache",
         "report": "nyc report --root coverage --format html",
         "docs": "typedoc",

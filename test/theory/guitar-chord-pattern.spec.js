@@ -1,4 +1,4 @@
-import { GuitarChordPattern, PitchClass } from '../..'
+import { GuitarChordPattern, PitchClass } from '../../src'
 
 describe('Guitar Chord Pattern', () => {
   let c, g, gcp

@@ -1,4 +1,4 @@
-import { Measure, Score, ScoreHandler } from '../..'
+import { Measure, Score, ScoreHandler } from '../../src'
 
 describe('Score Handler', () => {
   let score, measure, chordMeasure

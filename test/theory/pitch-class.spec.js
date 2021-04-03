@@ -1,5 +1,5 @@
-import { PitchClass }    from '../../'
-import { InvalidInput }  from '../../Exceptions'
+import { PitchClass }    from '../../src'
+import { InvalidInput }  from '../../src/Exceptions'
 import { testIntervals } from '../Helpers'
 
 describe('PitchClass', () => {

@@ -2,6 +2,6 @@
     "require": [
         "@babel/register",
         "ts-node/register",
-        "./src/test/bootstrap.js"
+        "./test/bootstrap.js"
     ]
 }

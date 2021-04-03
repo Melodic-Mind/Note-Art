@@ -1,4 +1,4 @@
-import { MusicalPattern, PitchClass } from '../../'
+import { MusicalPattern, PitchClass } from '../../src'
 
 describe('Musical Pattern', () => {
   describe('#constructor', () => {

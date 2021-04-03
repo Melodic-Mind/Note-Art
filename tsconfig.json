@@ -16,7 +16,6 @@
     "noFallthroughCasesInSwitch": true,
     "pretty": true,
     "resolveJsonModule": true,
-    "rootDir": "src",
     "paths": {
       "src": ["./src"],
       "tone": ["node_modules/tone"]

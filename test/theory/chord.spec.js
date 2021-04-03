@@ -1,5 +1,5 @@
-import { Chord, PitchClass } from '../..'
-import { InvalidInput }      from '../../Exceptions'
+import { Chord, PitchClass } from '../../src'
+import { InvalidInput }      from '../../src/Exceptions'
 
 const c = new PitchClass('c')
 
