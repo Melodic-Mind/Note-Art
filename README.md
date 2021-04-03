@@ -62,6 +62,7 @@ npm install note-art
 #### Music Models
 The music models are pure music theory concepts that are translated to code.
 * patterns are in semi-tones.
+
 ```
 import {PitchClass, Note, Chord, Scale} from 'note-art'
 
