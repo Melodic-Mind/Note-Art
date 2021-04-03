@@ -26,6 +26,7 @@ export default class Measure {
   _maxDuration: number
   _duration: string
   _data: Array<NormalizedMeasureData>
+
   [key: string]: any
 
   constructor(maxDuration = 64) {
@@ -103,7 +104,7 @@ export default class Measure {
    * @returns {boolean}
    */
   private canInsertToMeasure(position: number, duration: string) {
-    const isPositionValid         = position > this.data.length
+    const isPositionValid = position > this.data.length
 
     const durationSize            = NOTE_DURATIONS_AS_SIZE_IN_MEASURE[duration]
     const enoughDurationAvailable = durationSize > this.durationLeft(position) + durationSize
@@ -231,11 +232,11 @@ export default class Measure {
     this.data.forEach((data: NormalizedMeasureData, position: number) => {
       const { name, duration, notes } = data
 
-      const transposedNotes: Array<string>              = [...notes].map(note => {
+      const transposedNotes: Array<string> = [...notes].map(note => {
         return isRest(note) ? note : Note.builder(note).interval(interval).toString()
       })
 
-      const newData: MeasureData = {notes: transposedNotes, name, duration}
+      const newData: MeasureData = { notes: transposedNotes, name, duration }
       transposedMeasure.addChord(newData, position)
     })
 

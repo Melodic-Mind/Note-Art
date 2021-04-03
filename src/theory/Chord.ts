@@ -19,10 +19,10 @@ export default class Chord extends MusicalPattern {
    * @param {number} type
    * @returns {Array}
    */
-  inversion ( type: number ) {
-    if ( type > 0 && type <= this.pitchClasses.length ) {
-      return rearrangeArray( this.pitchClasses, type )
+  inversion(type: number) {
+    if(type > 0 && type <= this.pitchClasses.length) {
+      return rearrangeArray(this.pitchClasses, type)
     }
-    throw new InvalidInput( 'inversion cant be bigger then the number of pitch classes in the chord' )
+    throw new InvalidInput('inversion cant be bigger then the number of pitch classes in the chord')
   }
 }

@@ -4,7 +4,7 @@ import { InvalidInput }                   from '../../Exceptions'
 describe('Guitar Chord Pattern', () => {
   let c, g, gcp
   beforeEach(() => {
-    c = 'C'
+    c   = 'C'
     g   = 'G'
     gcp = new GuitarChordPattern([3, 2, 0, 0, 3, 3], new PitchClass('g'), 'Major')
   })

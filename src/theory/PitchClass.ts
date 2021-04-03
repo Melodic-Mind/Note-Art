@@ -1,5 +1,5 @@
-import { firstToUpper } from '../utilities'
-import PitchClassRule   from '../validation/PitchClassRule'
+import { firstToUpper }                                                from '../utilities'
+import PitchClassRule                                                  from '../validation/PitchClassRule'
 import { InvalidInput }                                                from '../Exceptions'
 import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES }    from '../Constants'
 import { getPitchClassSet, normalizePitchClass, enharmonicPitchClass } from '../utilities/PureMusicUtils'

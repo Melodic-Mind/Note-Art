@@ -190,7 +190,10 @@ export default class Score {
    * @param {string} data.duration Duration of the note.
    * @returns {boolean}
    */
-  addNote(voiceName: string, measureIndex: number, position: number, { note, duration }: { note: string, duration: string}) {
+  addNote(voiceName: string, measureIndex: number, position: number, {
+    note,
+    duration
+  }: { note: string, duration: string }) {
     return this.addOperation('addNote', voiceName, measureIndex, position, { note, duration })
   }
 

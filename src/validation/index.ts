@@ -1,8 +1,8 @@
-import PatternRule     from './PatternRule'
-import PitchClassRule  from './PitchClassRule'
+import PatternRule    from './PatternRule'
+import PitchClassRule from './PitchClassRule'
 
 export {
   PatternRule,
-  PitchClassRule,
+  PitchClassRule
 }
-export * from './Validators'
+export *              from './Validators'

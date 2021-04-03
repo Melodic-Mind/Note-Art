@@ -1,6 +1,6 @@
-import PitchClass                          from './PitchClass'
+import PitchClass                                from './PitchClass'
 import { getPitchClassesInterval, firstToUpper } from '../utilities'
-import { validateInstance, PatternRule }   from '../validation'
+import { validateInstance, PatternRule }         from '../validation'
 
 /**
  * @class GuitarChordPattern

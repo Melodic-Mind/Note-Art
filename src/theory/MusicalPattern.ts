@@ -1,4 +1,4 @@
-import PitchClass       from './PitchClass'
+import PitchClass from './PitchClass'
 
 /**
  * @class MusicalPattern
@@ -15,10 +15,10 @@ export default class MusicalPattern {
 
   constructor(pitchClass: string | PitchClass, pattern: Array<number>, info: Object = {}) {
     const pc: PitchClass = typeof pitchClass === 'string' ? new PitchClass(pitchClass) : pitchClass
-    this._pitchClasses = [pc]
+    this._pitchClasses   = [pc]
     pattern.forEach(interval => this._pitchClasses.push(pc.interval(interval)))
 
-    this._info         = { ...info, pattern }
+    this._info = { ...info, pattern }
   }
 
   /**

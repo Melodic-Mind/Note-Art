@@ -21,7 +21,7 @@ export function freqFromPitch(note: string): number {
  * @param {Number} midi
  * @returns {number}
  */
-export function freqFromMidi(midi: number) : number {
+export function freqFromMidi(midi: number): number {
   return PITCH_STANDARD.frequency * Math.pow(2, (midi - PITCH_STANDARD.midi) / NUMBER_OF_PITCH_CLASSES)
 }
 
