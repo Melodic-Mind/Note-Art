@@ -298,3 +298,22 @@ export function lowestNoteFromArray(notes: Array<string>): string {
 export function highestNoteFromArray(notes: Array<string>): string {
   return notes.reduce((acc, curr) => highestNote(acc, curr), notes[0])
 }
+
+export function getPatternFromPitchClasses(pitchClasses: Array<string>): Array<number> {
+  const base           = pitchClasses[0]
+  // for cases when it croses an octave, e.g C E G C E B
+  let octaveMultiplier = 0
+  return pitchClasses.map((pc, i) => {
+    if(base === pc && i > 0) {
+      ++octaveMultiplier
+    }
+    return getPitchClassesInterval(base, pc) + (12 * octaveMultiplier)
+  })
+}
+
+export function getPatternFromNotes(notes: Array<string>): Array<number> {
+  const base = notes[0]
+  return notes.map((pc, i) => {
+    return getNotesInterval(base, pc)
+  })
+}

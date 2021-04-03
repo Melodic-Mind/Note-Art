@@ -7,11 +7,14 @@ title: GeneralFunctions
 ## Functions
 
 <dl>
+<dt><a href="#firstToUpper">firstToUpper(str)</a> ⇒ <code>String</code></dt>
+<dd><p>Transforms the first letter of a string to upper case.</p>
+</dd>
 <dt><a href="#twoDigitFormat">twoDigitFormat(num)</a> ⇒ <code>Number</code></dt>
 <dd><p>Returns a number formatted to show only 2 digits after the decimal point.</p>
 </dd>
 <dt><a href="#switchMembers">switchMembers(arr, i1, i2)</a> ⇒ <code>Array</code></dt>
-<dd><p>Gets an array and 2 indexes and returns a new array with those members indexes switched.</p>
+<dd><p>Switch the index of one member of an array with another member.</p>
 </dd>
 <dt><a href="#rearrangeArray">rearrangeArray(array, index)</a> ⇒ <code>Array</code></dt>
 <dd><p>Returns a new array which starts from index, adds the rest of the members to it&#39;s end.</p>
@@ -19,7 +22,7 @@ title: GeneralFunctions
 <dt><a href="#mapString">mapString(str, toMap, mapTo)</a> ⇒ <code>string</code></dt>
 <dd><p>Map a string substring to a different string.</p>
 </dd>
-<dt><a href="#occurrencesInString">occurrencesInString(string, subString)</a> ⇒ <code>number</code></dt>
+<dt><a href="#occurrencesInString">occurrencesInString(str, subString)</a> ⇒ <code>number</code></dt>
 <dd><p>Function that count occurrences of a substring in a string.</p>
 </dd>
 <dt><a href="#fitArrayToSize">fitArrayToSize(arr, size)</a> ⇒ <code>Array</code></dt>
@@ -28,7 +31,21 @@ title: GeneralFunctions
 <dt><a href="#longestArray">longestArray(matrix)</a> ⇒ <code>Array</code></dt>
 <dd><p>Returns the longest array from an array of arrays.</p>
 </dd>
+<dt><a href="#isNumberAsString">isNumberAsString(str)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Returns true if string represents a number, else false.</p>
+</dd>
 </dl>
+
+<a name="firstToUpper"></a>
+
+## firstToUpper(str) ⇒ <code>String</code>
+Transforms the first letter of a string to upper case.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| str | <code>String</code> | String to transform |
 
 <a name="twoDigitFormat"></a>
 
@@ -44,7 +61,7 @@ Returns a number formatted to show only 2 digits after the decimal point.
 <a name="switchMembers"></a>
 
 ## switchMembers(arr, i1, i2) ⇒ <code>Array</code>
-Gets an array and 2 indexes and returns a new array with those members indexes switched.
+Switch the index of one member of an array with another member.
 
 **Kind**: global function  
 
@@ -81,14 +98,14 @@ Map a string substring to a different string.
 
 <a name="occurrencesInString"></a>
 
-## occurrencesInString(string, subString) ⇒ <code>number</code>
+## occurrencesInString(str, subString) ⇒ <code>number</code>
 Function that count occurrences of a substring in a string.
 
 **Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| string | <code>String</code> | The string |
+| str | <code>String</code> | The string |
 | subString | <code>String</code> | The sub string to search for |
 
 <a name="fitArrayToSize"></a>
@@ -113,4 +130,15 @@ Returns the longest array from an array of arrays.
 | Param | Description |
 | --- | --- |
 | matrix | Array of arrays |
+
+<a name="isNumberAsString"></a>
+
+## isNumberAsString(str) ⇒ <code>boolean</code>
+Returns true if string represents a number, else false.
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| str | <code>String</code> | 
 

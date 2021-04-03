@@ -35,9 +35,9 @@ describe('Score', () => {
       expect(score.length).to.equal('1:0:4')
     })
 
-    it('returns 0 when the score is empty', () => {
+    it('returns 0:0:0 when the score is empty', () => {
       score = new Score()
-      expect(score.length).to.equal(0)
+      expect(score.length).to.equal('0:0:0')
     })
   })
 
@@ -59,12 +59,6 @@ describe('Score', () => {
       expect(score.timeSignature).to.eql([3, 4])
     })
 
-    it('should throw an error when attempting to assign anything other than number to bpm', () => {
-      expect(() => {
-        score.bpm = 'NOT_NUMBER'
-      }).to.throw(InvalidInput)
-    })
-
     it('should initialize with no measures', () => {
       score.addVoice('v2')
       expect(score.getVoice('v2').length).to.equal(0)
@@ -75,11 +69,6 @@ describe('Score', () => {
         expect(score.name).to.equal('my_score')
         score.name = 'my score'
         expect(score.name).to.equal('my score')
-      })
-      it('should throw an error when name is not a string', () => {
-        expect(() => {
-          score.name = 12
-        }).to.throw(InvalidInput)
       })
     })
   })

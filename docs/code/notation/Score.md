@@ -4,114 +4,42 @@ title: Score
 
 # Score
 
-## Classes
-
-<dl>
-<dt><a href="#Score">Score</a></dt>
-<dd><p>Represents a full musical score consisting of a number of voices.</p>
-</dd>
-</dl>
-
-## Members
-
-<dl>
-<dt><a href="#duration">duration</a> ⇒ <code>string</code></dt>
-<dd><p>Returns the duration the score will use when adding a new member to a measure.</p>
-</dd>
-<dt><a href="#duration">duration</a></dt>
-<dd><p>Sets the duration for the score&#39;s current measure next data input.</p>
-</dd>
-<dt><a href="#name">name</a> ⇒ <code>string</code></dt>
-<dd><p>Returns the score name.</p>
-</dd>
-<dt><a href="#name">name</a></dt>
-<dd><p>Set the score&#39;s name.</p>
-</dd>
-<dt><a href="#bpm">bpm</a> ⇒ <code>number</code></dt>
-<dd><p>Get the score&#39;s BPM value.</p>
-</dd>
-<dt><a href="#bpm">bpm</a></dt>
-<dd><p>Set the score&#39;s BPM value.</p>
-</dd>
-<dt><a href="#voices">voices</a> ⇒ <code>Array</code></dt>
-<dd><p>Returns an object with the scores voices.</p>
-</dd>
-<dt><a href="#length">length</a> ⇒ <code>0</code> | <code>string</code></dt>
-<dd><p>Returns the length of the score as the length if it&#39;s longest voice.
-The format is &#39;MM:QQ:SS&#39; - Measures:Quarter-notes:Sixteenth-notes</p>
-</dd>
-</dl>
-
-## Functions
-
-<dl>
-<dt><a href="#getMeasureSize">getMeasureSize(timeSignature)</a> ⇒ <code>number</code></dt>
-<dd><p>Returns the maximum size a measure has, calculated using the time signature.</p>
-</dd>
-<dt><a href="#setTimeSignature">setTimeSignature(timeSignature)</a></dt>
-<dd><p>Set the score&#39;s time signature.</p>
-</dd>
-<dt><a href="#setMeasureDuration">setMeasureDuration(voiceName, measureIndex)</a></dt>
-<dd><p>Sets the duration for a measure.</p>
-</dd>
-<dt><a href="#getVoice">getVoice(name)</a> ⇒ <code>Array</code> | <code>undefined</code></dt>
-<dd><p>Returns the voice with name.
-If the voice doesn&#39;t exist it throws an error.</p>
-</dd>
-<dt><a href="#addVoice">addVoice(voiceName, data)</a></dt>
-<dd><p>Adds a voice to the score.</p>
-</dd>
-<dt><a href="#deleteVoice">deleteVoice(voiceName)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Deletes a voice from the score.</p>
-</dd>
-<dt><a href="#getMeasure">getMeasure(voiceName, measureIndex)</a></dt>
-<dd><p>Returns a measure from a voice</p>
-</dd>
-<dt><a href="#addMeasure">addMeasure(voiceName, data)</a></dt>
-<dd><p>Add measure to a voice at an index.
-If no data object is sent it simply adds an empty measure to the end of the voice.</p>
-</dd>
-<dt><a href="#addNote">addNote(voiceName, measureIndex, position, data)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Add note to measure.</p>
-</dd>
-<dt><a href="#addNotes">addNotes(voiceName, measureIndex, position, data)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Add notes to measure.</p>
-</dd>
-<dt><a href="#addChord">addChord(voiceName, measureIndex, position, data)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Add chord to measure.</p>
-</dd>
-<dt><a href="#deleteNote">deleteNote(voiceName, measureIndex, position, note)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Delete note from measure.</p>
-</dd>
-<dt><a href="#deleteNotes">deleteNotes(voiceName, measureIndex, position, notes)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Delete notes from measure.</p>
-</dd>
-<dt><a href="#deleteMember">deleteMember(voiceName, measureIndex, position)</a> ⇒ <code>*</code> | <code>boolean</code></dt>
-<dd><p>Deletes</p>
-</dd>
-<dt><a href="#clearMeasure">clearMeasure(voiceName, measureIndex)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Clears a measure.</p>
-</dd>
-<dt><a href="#deleteMeasure">deleteMeasure(voiceName, measureIndex)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Deletes a measure.</p>
-</dd>
-<dt><a href="#cloneMeasure">cloneMeasure(voiceName, measureIndex)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Clones a measure inside a voice and adds the clone next to the original measure.</p>
-</dd>
-<dt><a href="#transposeMeasure">transposeMeasure(voiceName, measureIndex, interval)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Transpose a measure in one of the voices.</p>
-</dd>
-<dt><a href="#transpose">transpose(voiceName, interval)</a></dt>
-<dd><p>Transposes a voice in the score.</p>
-</dd>
-</dl>
-
 <a name="Score"></a>
 
 ## Score
 Represents a full musical score consisting of a number of voices.
 
 **Kind**: global class  
+
+* [Score](#Score)
+    * [new Score(voiceNames)](#new_Score_new)
+    * _instance_
+        * [.name](#Score+name) ⇒ <code>string</code>
+        * [.name](#Score+name)
+        * [.bpm](#Score+bpm) ⇒ <code>number</code>
+        * [.bpm](#Score+bpm)
+        * [.voices](#Score+voices) ⇒ <code>Array</code>
+        * [.length](#Score+length) ⇒ <code>string</code>
+        * [.setTimeSignature(timeSignature)](#Score+setTimeSignature)
+        * [.getVoice(voiceName)](#Score+getVoice) ⇒ <code>Array</code> \| <code>undefined</code>
+        * [.addVoice(voiceName, voiceData)](#Score+addVoice)
+        * [.deleteVoice(voiceName)](#Score+deleteVoice) ⇒ <code>boolean</code>
+        * [.getMeasure(voiceName, measureIndex)](#Score+getMeasure)
+        * [.addMeasure(voiceName, data)](#Score+addMeasure)
+        * [.addNote(voiceName, measureIndex, position, data)](#Score+addNote) ⇒ <code>boolean</code>
+        * [.addNotes(voiceName, measureIndex, position, data)](#Score+addNotes) ⇒ <code>boolean</code>
+        * [.addChord(voiceName, measureIndex, position, data)](#Score+addChord) ⇒ <code>boolean</code>
+        * [.deleteNote(voiceName, measureIndex, position, note)](#Score+deleteNote) ⇒ <code>boolean</code>
+        * [.deleteNotes(voiceName, measureIndex, position, notes)](#Score+deleteNotes) ⇒ <code>boolean</code>
+        * [.deleteMember(voiceName, measureIndex, position)](#Score+deleteMember) ⇒ <code>\*</code> \| <code>boolean</code>
+        * [.clearMeasure(voiceName, measureIndex)](#Score+clearMeasure) ⇒ <code>boolean</code>
+        * [.deleteMeasure(voiceName, measureIndex)](#Score+deleteMeasure) ⇒ <code>boolean</code>
+        * [.cloneMeasure(voiceName, measureIndex)](#Score+cloneMeasure) ⇒ <code>boolean</code>
+        * [.transposeMeasure(voiceName, measureIndex, interval)](#Score+transposeMeasure) ⇒ <code>boolean</code>
+        * [.transpose(voiceName, interval)](#Score+transpose)
+    * _static_
+        * [.getMeasureSize(timeSignature)](#Score.getMeasureSize) ⇒ <code>number</code>
+
 <a name="new_Score_new"></a>
 
 ### new Score(voiceNames)
@@ -123,35 +51,18 @@ Represents a full musical score consisting of a number of voices.
 | attributes.name | <code>string</code> | <code>&quot;my_score&quot;</code> | Name for the score. |
 | voiceNames | <code>Array</code> | <code>[</code> | Array with the names of the voices in the score. |
 
-<a name="duration"></a>
+<a name="Score+name"></a>
 
-## duration ⇒ <code>string</code>
-Returns the duration the score will use when adding a new member to a measure.
-
-**Kind**: global variable  
-<a name="duration"></a>
-
-## duration
-Sets the duration for the score's current measure next data input.
-
-**Kind**: global variable  
-
-| Param | Type |
-| --- | --- |
-| duration | <code>string</code> | 
-
-<a name="name"></a>
-
-## name ⇒ <code>string</code>
+### score.name ⇒ <code>string</code>
 Returns the score name.
 
-**Kind**: global variable  
-<a name="name"></a>
+**Kind**: instance property of [<code>Score</code>](#Score)  
+<a name="Score+name"></a>
 
-## name
+### score.name
 Set the score's name.
 
-**Kind**: global variable  
+**Kind**: instance property of [<code>Score</code>](#Score)  
 **Throws**:
 
 - InvalidInput
@@ -161,18 +72,18 @@ Set the score's name.
 | --- | --- |
 | name | <code>string</code> | 
 
-<a name="bpm"></a>
+<a name="Score+bpm"></a>
 
-## bpm ⇒ <code>number</code>
+### score.bpm ⇒ <code>number</code>
 Get the score's BPM value.
 
-**Kind**: global variable  
-<a name="bpm"></a>
+**Kind**: instance property of [<code>Score</code>](#Score)  
+<a name="Score+bpm"></a>
 
-## bpm
+### score.bpm
 Set the score's BPM value.
 
-**Kind**: global variable  
+**Kind**: instance property of [<code>Score</code>](#Score)  
 **Throws**:
 
 - InvalidInput
@@ -182,91 +93,64 @@ Set the score's BPM value.
 | --- |
 | bpm | 
 
-<a name="voices"></a>
+<a name="Score+voices"></a>
 
-## voices ⇒ <code>Array</code>
+### score.voices ⇒ <code>Array</code>
 Returns an object with the scores voices.
 
-**Kind**: global variable  
-<a name="length"></a>
+**Kind**: instance property of [<code>Score</code>](#Score)  
+<a name="Score+length"></a>
 
-## length ⇒ <code>0</code> \| <code>string</code>
+### score.length ⇒ <code>string</code>
 Returns the length of the score as the length if it's longest voice.
 The format is 'MM:QQ:SS' - Measures:Quarter-notes:Sixteenth-notes
 
-**Kind**: global variable  
-<a name="getMeasureSize"></a>
+**Kind**: instance property of [<code>Score</code>](#Score)  
+<a name="Score+setTimeSignature"></a>
 
-## getMeasureSize(timeSignature) ⇒ <code>number</code>
-Returns the maximum size a measure has, calculated using the time signature.
-
-**Kind**: global function  
-**Throws**:
-
-- Error
-
-
-| Param | Type |
-| --- | --- |
-| timeSignature | <code>Array</code> | 
-
-<a name="setTimeSignature"></a>
-
-## setTimeSignature(timeSignature)
+### score.setTimeSignature(timeSignature)
 Set the score's time signature.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
 | Param |
 | --- |
 | timeSignature | 
 
-<a name="setMeasureDuration"></a>
+<a name="Score+getVoice"></a>
 
-## setMeasureDuration(voiceName, measureIndex)
-Sets the duration for a measure.
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| voiceName | <code>string</code> | The voice the measure belongs to. |
-| measureIndex | <code>number</code> | The measure index to set the duration to. |
-
-<a name="getVoice"></a>
-
-## getVoice(name) ⇒ <code>Array</code> \| <code>undefined</code>
+### score.getVoice(voiceName) ⇒ <code>Array</code> \| <code>undefined</code>
 Returns the voice with name.
 If the voice doesn't exist it throws an error.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 **Throws**:
 
 - InvalidInput
 
 
-| Param | Type | Description |
-| --- | --- | --- |
-| name | <code>string</code> | The voice name. |
+| Param |
+| --- |
+| voiceName | 
 
-<a name="addVoice"></a>
+<a name="Score+addVoice"></a>
 
-## addVoice(voiceName, data)
+### score.addVoice(voiceName, voiceData)
 Adds a voice to the score.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | voiceName | <code>string</code> |  | The voice's name. |
-| data | <code>data</code> | <code>[</code> | An array of measures. |
+| voiceData | <code>data</code> | <code>[</code> | An array of measures. |
 
-<a name="deleteVoice"></a>
+<a name="Score+deleteVoice"></a>
 
-## deleteVoice(voiceName) ⇒ <code>boolean</code>
+### score.deleteVoice(voiceName) ⇒ <code>boolean</code>
 Deletes a voice from the score.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 **Throws**:
 
 - Error
@@ -276,25 +160,25 @@ Deletes a voice from the score.
 | --- | --- | --- |
 | voiceName | <code>string</code> | The name of the voice to delete. |
 
-<a name="getMeasure"></a>
+<a name="Score+getMeasure"></a>
 
-## getMeasure(voiceName, measureIndex)
+### score.getMeasure(voiceName, measureIndex)
 Returns a measure from a voice
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | voiceName | <code>string</code> | The voice name. |
 | measureIndex | <code>number</code> | The index of the measure. |
 
-<a name="addMeasure"></a>
+<a name="Score+addMeasure"></a>
 
-## addMeasure(voiceName, data)
+### score.addMeasure(voiceName, data)
 Add measure to a voice at an index.
 If no data object is sent it simply adds an empty measure to the end of the voice.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -303,61 +187,61 @@ If no data object is sent it simply adds an empty measure to the end of the voic
 | data.measure | <code>Measure</code> | <code>new</code> | Measure() The measure to add. |
 | data.index | <code>Number</code> | <code>voice.length</code> | Index to add the measure at. |
 
-<a name="addNote"></a>
+<a name="Score+addNote"></a>
 
-## addNote(voiceName, measureIndex, position, data) ⇒ <code>boolean</code>
+### score.addNote(voiceName, measureIndex, position, data) ⇒ <code>boolean</code>
 Add note to measure.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| voiceName | <code>string</code> |  | The voice name. |
-| measureIndex | <code>number</code> |  | The measure's index. |
-| position | <code>number</code> |  | Position in the measure. |
-| data | <code>Object</code> |  |  |
-| data.note | <code>string</code> |  | Raw note. |
-| data.duration | <code>string</code> | <code>&quot;measure.duration&quot;</code> | Duration of the note. |
+| Param | Type | Description |
+| --- | --- | --- |
+| voiceName | <code>string</code> | The voice name. |
+| measureIndex | <code>number</code> | The measure's index. |
+| position | <code>number</code> | Position in the measure. |
+| data | <code>Object</code> |  |
+| data.note | <code>string</code> | Raw note. |
+| data.duration | <code>string</code> | Duration of the note. |
 
-<a name="addNotes"></a>
+<a name="Score+addNotes"></a>
 
-## addNotes(voiceName, measureIndex, position, data) ⇒ <code>boolean</code>
+### score.addNotes(voiceName, measureIndex, position, data) ⇒ <code>boolean</code>
 Add notes to measure.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| voiceName | <code>string</code> |  | The voice name. |
-| measureIndex | <code>number</code> |  | The measure's index. |
-| position | <code>number</code> |  | Position in the measure. |
-| data | <code>Object</code> |  |  |
-| data.notes | <code>Array</code> |  | An array of notes. |
-| data.duration | <code>string</code> | <code>&quot;measure.duration&quot;</code> | Duration of the note. |
+| Param | Type | Description |
+| --- | --- | --- |
+| voiceName | <code>string</code> | The voice name. |
+| measureIndex | <code>number</code> | The measure's index. |
+| position | <code>number</code> | Position in the measure. |
+| data | <code>Object</code> |  |
+| data.notes | <code>Array</code> | An array of notes. |
+| data.duration | <code>string</code> | Duration of the note. |
 
-<a name="addChord"></a>
+<a name="Score+addChord"></a>
 
-## addChord(voiceName, measureIndex, position, data) ⇒ <code>boolean</code>
+### score.addChord(voiceName, measureIndex, position, data) ⇒ <code>boolean</code>
 Add chord to measure.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| voiceName | <code>string</code> |  | The voice name. |
-| measureIndex | <code>number</code> |  | The measure's index. |
-| position | <code>number</code> |  | Position in the measure. |
-| data | <code>Object</code> |  |  |
-| data.notes | <code>Array</code> |  | An array of notes. |
-| data.duration | <code>string</code> | <code>&quot;measure.duration&quot;</code> | Duration of the note. |
-| data.name | [<code>name</code>](#name) |  | Name of the chord. |
+| Param | Type | Description |
+| --- | --- | --- |
+| voiceName | <code>string</code> | The voice name. |
+| measureIndex | <code>number</code> | The measure's index. |
+| position | <code>number</code> | Position in the measure. |
+| data | <code>Object</code> |  |
+| data.notes | <code>Array</code> | An array of notes. |
+| data.duration | <code>string</code> | Duration of the note. |
+| data.name | <code>name</code> | Name of the chord. |
 
-<a name="deleteNote"></a>
+<a name="Score+deleteNote"></a>
 
-## deleteNote(voiceName, measureIndex, position, note) ⇒ <code>boolean</code>
+### score.deleteNote(voiceName, measureIndex, position, note) ⇒ <code>boolean</code>
 Delete note from measure.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -366,12 +250,12 @@ Delete note from measure.
 | position | <code>number</code> | Position in the measure. |
 | note | <code>string</code> | Note to delete. |
 
-<a name="deleteNotes"></a>
+<a name="Score+deleteNotes"></a>
 
-## deleteNotes(voiceName, measureIndex, position, notes) ⇒ <code>boolean</code>
+### score.deleteNotes(voiceName, measureIndex, position, notes) ⇒ <code>boolean</code>
 Delete notes from measure.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -380,12 +264,12 @@ Delete notes from measure.
 | position | <code>number</code> | Position in the measure. |
 | notes | <code>Array</code> | Array of notes to delete. |
 
-<a name="deleteMember"></a>
+<a name="Score+deleteMember"></a>
 
-## deleteMember(voiceName, measureIndex, position) ⇒ <code>\*</code> \| <code>boolean</code>
+### score.deleteMember(voiceName, measureIndex, position) ⇒ <code>\*</code> \| <code>boolean</code>
 Deletes
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -393,36 +277,36 @@ Deletes
 | measureIndex | <code>number</code> | The measure index. |
 | position | <code>number</code> | Position in the measure. |
 
-<a name="clearMeasure"></a>
+<a name="Score+clearMeasure"></a>
 
-## clearMeasure(voiceName, measureIndex) ⇒ <code>boolean</code>
+### score.clearMeasure(voiceName, measureIndex) ⇒ <code>boolean</code>
 Clears a measure.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | voiceName | <code>string</code> | The voice name. |
 | measureIndex | <code>number</code> | The measure index. |
 
-<a name="deleteMeasure"></a>
+<a name="Score+deleteMeasure"></a>
 
-## deleteMeasure(voiceName, measureIndex) ⇒ <code>boolean</code>
+### score.deleteMeasure(voiceName, measureIndex) ⇒ <code>boolean</code>
 Deletes a measure.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | voiceName | <code>string</code> | The voice name. |
 | measureIndex | <code>number</code> | The measure index. |
 
-<a name="cloneMeasure"></a>
+<a name="Score+cloneMeasure"></a>
 
-## cloneMeasure(voiceName, measureIndex) ⇒ <code>boolean</code>
+### score.cloneMeasure(voiceName, measureIndex) ⇒ <code>boolean</code>
 Clones a measure inside a voice and adds the clone next to the original measure.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 **Returns**: <code>boolean</code> - `  
 
 | Param | Type | Description |
@@ -430,12 +314,12 @@ Clones a measure inside a voice and adds the clone next to the original measure.
 | voiceName | <code>string</code> | The voice name. |
 | measureIndex | <code>number</code> | The measure index. |
 
-<a name="transposeMeasure"></a>
+<a name="Score+transposeMeasure"></a>
 
-## transposeMeasure(voiceName, measureIndex, interval) ⇒ <code>boolean</code>
+### score.transposeMeasure(voiceName, measureIndex, interval) ⇒ <code>boolean</code>
 Transpose a measure in one of the voices.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -443,15 +327,30 @@ Transpose a measure in one of the voices.
 | measureIndex | <code>number</code> | The measure index. |
 | interval | <code>number</code> | The interval to transpose by. |
 
-<a name="transpose"></a>
+<a name="Score+transpose"></a>
 
-## transpose(voiceName, interval)
+### score.transpose(voiceName, interval)
 Transposes a voice in the score.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Score</code>](#Score)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | voiceName | <code>string</code> | The voice name. |
 | interval | <code>number</code> | The interval to transpose by. |
+
+<a name="Score.getMeasureSize"></a>
+
+### Score.getMeasureSize(timeSignature) ⇒ <code>number</code>
+Returns the maximum size a measure has, calculated using the time signature.
+
+**Kind**: static method of [<code>Score</code>](#Score)  
+**Throws**:
+
+- Error
+
+
+| Param | Type |
+| --- | --- |
+| timeSignature | <code>Array</code> | 
 

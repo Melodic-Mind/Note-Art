@@ -7,68 +7,19 @@ title: MusicFunctions
 ## Functions
 
 <dl>
-<dt><a href="#calculateInterval">calculateInterval(pitchClass1, pitchClass2)</a> ⇒ <code>Number</code></dt>
-<dd><p>Calculate the pure interval between 2 pitch classes.</p>
-</dd>
-<dt><a href="#noteToObject">noteToObject(pitch)</a> ⇒ <code>Object</code></dt>
-<dd><p>Turns a note into an object with pitch class and octave.</p>
-</dd>
-<dt><a href="#isRest">isRest(note)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Returns true if a note is a rest, else false.</p>
-</dd>
 <dt><a href="#isRawNote">isRawNote(str)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Checks if a string represents a raw musical note.</p>
 </dd>
-<dt><a href="#transpose">transpose(note, interval)</a> ⇒ <code>string</code> | <code>*</code></dt>
-<dd><p>Transpose a raw note by interval.</p>
+<dt><a href="#pitchClassesToNotes">pitchClassesToNotes(pitchClasses, octave)</a> ⇒ <code>Array</code></dt>
+<dd><p>Returns an array of notes with a specific octave.</p>
 </dd>
-<dt><a href="#notesInRange">notesInRange(baseNote, range)</a> ⇒ <code>Array</code></dt>
-<dd><p>Returns an object where the keys are raw notes and their value is an instance of that note.</p>
+<dt><a href="#pitchClassesToPianoChordNotes">pitchClassesToPianoChordNotes(pitchClasses, octave, inversion)</a> ⇒ <code>Array</code></dt>
+<dd><p>Returns an array of notes that represent a chord played on a piano in a certain octave.</p>
 </dd>
-<dt><a href="#spellScale">spellScale(scale)</a> ⇒ <code>Array</code></dt>
-<dd><p>Returns a correctly spelled scale where no pitch class appears more than once.</p>
-</dd>
-<dt><a href="#extractOctave">extractOctave(rawNote)</a> ⇒ <code>*</code></dt>
-<dd><p>Returns the octave from a raw note.</p>
-</dd>
-<dt><a href="#extractPitchClass">extractPitchClass(rawNote)</a> ⇒ <code>*</code></dt>
-<dd><p>Returns the pitch class from a raw note.</p>
+<dt><a href="#intervalsToNotes">intervalsToNotes(baseNote, intervals)</a> ⇒ <code>Array.&lt;String&gt;</code></dt>
+<dd><p>Returns an array of notes from a base note and array of intervals.</p>
 </dd>
 </dl>
-
-<a name="calculateInterval"></a>
-
-## calculateInterval(pitchClass1, pitchClass2) ⇒ <code>Number</code>
-Calculate the pure interval between 2 pitch classes.
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pitchClass1 | <code>PitchClass</code> | first note |
-| pitchClass2 | <code>PitchClass</code> | second note |
-
-<a name="noteToObject"></a>
-
-## noteToObject(pitch) ⇒ <code>Object</code>
-Turns a note into an object with pitch class and octave.
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pitch | <code>string</code> | Pitch as a string, e.g Ab3 |
-
-<a name="isRest"></a>
-
-## isRest(note) ⇒ <code>boolean</code>
-Returns true if a note is a rest, else false.
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| note | <code>string</code> | Raw note. |
 
 <a name="isRawNote"></a>
 
@@ -81,60 +32,40 @@ Checks if a string represents a raw musical note.
 | --- |
 | str | 
 
-<a name="transpose"></a>
+<a name="pitchClassesToNotes"></a>
 
-## transpose(note, interval) ⇒ <code>string</code> \| <code>\*</code>
-Transpose a raw note by interval.
+## pitchClassesToNotes(pitchClasses, octave) ⇒ <code>Array</code>
+Returns an array of notes with a specific octave.
 
 **Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| note | <code>string</code> | Either pitch class or note as string. |
-| interval | <code>number</code> | Interval to transpose by. |
+| pitchClasses | <code>Array</code> | Array of pitch classes. |
+| octave | <code>number</code> | Octave to assign to notes.. |
 
-<a name="notesInRange"></a>
+<a name="pitchClassesToPianoChordNotes"></a>
 
-## notesInRange(baseNote, range) ⇒ <code>Array</code>
-Returns an object where the keys are raw notes and their value is an instance of that note.
+## pitchClassesToPianoChordNotes(pitchClasses, octave, inversion) ⇒ <code>Array</code>
+Returns an array of notes that represent a chord played on a piano in a certain octave.
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| pitchClasses | <code>Array</code> |  |  |
+| octave | <code>number</code> |  | Octave for the chord root. |
+| inversion | <code>number</code> | <code>0</code> | Whether to invert the chord. 0 - root position, 1 - 1st inversion, 2 - 2nd inversion,     etc... |
+
+<a name="intervalsToNotes"></a>
+
+## intervalsToNotes(baseNote, intervals) ⇒ <code>Array.&lt;String&gt;</code>
+Returns an array of notes from a base note and array of intervals.
 
 **Kind**: global function  
 
 | Param | Type |
 | --- | --- |
-| baseNote | <code>string</code> | 
-| range | <code>number</code> | 
-
-<a name="spellScale"></a>
-
-## spellScale(scale) ⇒ <code>Array</code>
-Returns a correctly spelled scale where no pitch class appears more than once.
-
-**Kind**: global function  
-
-| Param |
-| --- |
-| scale | 
-
-<a name="extractOctave"></a>
-
-## extractOctave(rawNote) ⇒ <code>\*</code>
-Returns the octave from a raw note.
-
-**Kind**: global function  
-
-| Param |
-| --- |
-| rawNote | 
-
-<a name="extractPitchClass"></a>
-
-## extractPitchClass(rawNote) ⇒ <code>\*</code>
-Returns the pitch class from a raw note.
-
-**Kind**: global function  
-
-| Param |
-| --- |
-| rawNote | 
+| baseNote | <code>String</code> | 
+| intervals | <code>Array.&lt;Number&gt;</code> | 
 

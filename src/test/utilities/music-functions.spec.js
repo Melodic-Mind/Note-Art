@@ -2,7 +2,7 @@ import {
   getPitchClassesInterval,
   notesInRange,
   noteToObject,
-  extractOctave, extractPitchClass, pitchClassesToPianoChordNotes, pitchClassesToNotes, transposeNote
+  extractOctave, extractPitchClass, pitchClassesToPianoChordNotes, pitchClassesToNotes, transposeNote, intervalsToNotes
 } from '../../utilities'
 import { PitchClass, Chord } from '../../theory'
 
@@ -86,6 +86,13 @@ describe('Music addon functions', () => {
     it('should invert chords when called with inversion value', () => {
       const stub = ['B3', 'D4', 'G4']
       expect(pitchClassesToPianoChordNotes(gChord.raw, 3, 1)).to.eql(stub)
+    })
+  })
+
+  describe('#intervalsToNotes', () => {
+    it('should turn a note and array of intervals to a series of notes', () => {
+      expect(intervalsToNotes('C3', [0, 4, 7])).to.eql(['C3', 'E3', 'G3'])
+      expect(intervalsToNotes('C3', [0, -4, -7])).to.eql(['C3', 'Ab2', 'F2'])
     })
   })
 })

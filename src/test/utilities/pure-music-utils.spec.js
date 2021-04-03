@@ -1,4 +1,6 @@
-import { enharmonicPitchClass, getNotesInterval, normalizePitchClass, toFlat } from '../../utilities'
+import {
+  enharmonicPitchClass, getNotesInterval, getPatternFromNotes, getPatternFromPitchClasses, normalizePitchClass, toFlat
+} from '../../utilities'
 
 describe('#PureMusicUtils', () => {
   describe('#enharmonicPitchClass', () => {
@@ -121,12 +123,36 @@ describe('#PureMusicUtils', () => {
     })
   })
 
-  describe.only('#getNotesInterval', () => {
+  describe('#getNotesInterval', () => {
     it('should return the correct interval between 2 notes', () => {
       expect(getNotesInterval('C3', 'G3')).to.equal(7)
       expect(getNotesInterval('C3', 'G4')).to.equal(19)
       expect(getNotesInterval('C3', 'G2')).to.equal(-5)
       expect(getNotesInterval('F3', 'Bb3')).to.equal(5)
+    })
+  })
+
+  describe('#getPatternFromPitchClasses', () => {
+    it('should return the correct pattern for pitch classes', () => {
+      const pitchClasses = ['C', 'E', 'G', 'B']
+      expect(getPatternFromPitchClasses(pitchClasses)).to.eql([0, 4, 7, 11])
+    })
+
+    it('should return the correct pattern for pitch classes - multiple octaves', () => {
+      const pitchClasses = ['C', 'E', 'G', 'B', 'C', 'G', 'C']
+      expect(getPatternFromPitchClasses(pitchClasses)).to.eql([0, 4, 7, 11, 12, 19, 24])
+    })
+  })
+
+  describe('#getPatternFromNotes', () => {
+    it('should return the correct pattern for notes', () => {
+      const notes = ['C3', 'E3', 'G3', 'B2']
+      expect(getPatternFromNotes(notes)).to.eql([0, 4, 7, -1])
+    })
+
+    it('should return the correct pattern for notes - multiple octaves', () => {
+      const notes = ['C3', 'E3', 'G3', 'B2', 'C3', 'G4', 'C4']
+      expect(getPatternFromNotes(notes)).to.eql([0, 4, 7, -1, 0, 19, 12])
     })
   })
 })

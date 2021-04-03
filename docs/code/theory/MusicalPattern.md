@@ -4,51 +4,23 @@ title: MusicalPattern
 
 # MusicalPattern
 
-## Classes
-
-<dl>
-<dt><a href="#MusicalPattern">MusicalPattern</a></dt>
-<dd><p>Represents an abstract musical pattern made out of pitch classes with a certain interval relationship.</p>
-</dd>
-</dl>
-
-## Members
-
-<dl>
-<dt><a href="#pitchClasses">pitchClasses</a> ⇒ <code>Array</code></dt>
-<dd><p>Returns an array of the pitch classes.</p>
-</dd>
-<dt><a href="#root">root</a> ⇒ <code>*</code></dt>
-<dd><p>Returns the root pitch class.</p>
-</dd>
-<dt><a href="#info">info</a> ⇒ <code>Object</code></dt>
-<dd><p>Returns the information object the pattern was created with.</p>
-</dd>
-<dt><a href="#pattern">pattern</a> ⇒ <code>Array</code></dt>
-<dd><p>Returns the pattern it self.</p>
-</dd>
-<dt><a href="#raw">raw</a> ⇒ <code>Array</code></dt>
-<dd><p>Returns an array of the raw pitch classes.</p>
-</dd>
-</dl>
-
-## Functions
-
-<dl>
-<dt><a href="#toString">toString()</a> ⇒ <code>String</code></dt>
-<dd><p>Returns a string of the musical pattern&#39;s pitch classes.</p>
-</dd>
-<dt><a href="#transpose">transpose(interval)</a> ⇒ <code><a href="#MusicalPattern">MusicalPattern</a></code></dt>
-<dd><p>Generates a new chord with the interval applied</p>
-</dd>
-</dl>
-
 <a name="MusicalPattern"></a>
 
 ## MusicalPattern
 Represents an abstract musical pattern made out of pitch classes with a certain interval relationship.
 
 **Kind**: global class  
+
+* [MusicalPattern](#MusicalPattern)
+    * [new MusicalPattern(pitchClass, pattern, [info])](#new_MusicalPattern_new)
+    * [.pitchClasses](#MusicalPattern+pitchClasses) ⇒ <code>Array</code>
+    * [.root](#MusicalPattern+root) ⇒ <code>\*</code>
+    * [.info](#MusicalPattern+info) ⇒ <code>Object</code>
+    * [.pattern](#MusicalPattern+pattern) ⇒ <code>Array</code>
+    * [.raw](#MusicalPattern+raw) ⇒ <code>Array</code>
+    * [.toString()](#MusicalPattern+toString) ⇒ <code>String</code>
+    * [.transpose(interval)](#MusicalPattern+transpose) ⇒ [<code>MusicalPattern</code>](#MusicalPattern)
+
 <a name="new_MusicalPattern_new"></a>
 
 ### new MusicalPattern(pitchClass, pattern, [info])
@@ -59,48 +31,48 @@ Represents an abstract musical pattern made out of pitch classes with a certain 
 | pattern | <code>Array</code> |  | The pattern to use. |
 | [info] | <code>Object</code> | <code>{}</code> | Any additional information to save about the pattern. |
 
-<a name="pitchClasses"></a>
+<a name="MusicalPattern+pitchClasses"></a>
 
-## pitchClasses ⇒ <code>Array</code>
+### musicalPattern.pitchClasses ⇒ <code>Array</code>
 Returns an array of the pitch classes.
 
-**Kind**: global variable  
-<a name="root"></a>
+**Kind**: instance property of [<code>MusicalPattern</code>](#MusicalPattern)  
+<a name="MusicalPattern+root"></a>
 
-## root ⇒ <code>\*</code>
+### musicalPattern.root ⇒ <code>\*</code>
 Returns the root pitch class.
 
-**Kind**: global variable  
-<a name="info"></a>
+**Kind**: instance property of [<code>MusicalPattern</code>](#MusicalPattern)  
+<a name="MusicalPattern+info"></a>
 
-## info ⇒ <code>Object</code>
+### musicalPattern.info ⇒ <code>Object</code>
 Returns the information object the pattern was created with.
 
-**Kind**: global variable  
-<a name="pattern"></a>
+**Kind**: instance property of [<code>MusicalPattern</code>](#MusicalPattern)  
+<a name="MusicalPattern+pattern"></a>
 
-## pattern ⇒ <code>Array</code>
+### musicalPattern.pattern ⇒ <code>Array</code>
 Returns the pattern it self.
 
-**Kind**: global variable  
-<a name="raw"></a>
+**Kind**: instance property of [<code>MusicalPattern</code>](#MusicalPattern)  
+<a name="MusicalPattern+raw"></a>
 
-## raw ⇒ <code>Array</code>
+### musicalPattern.raw ⇒ <code>Array</code>
 Returns an array of the raw pitch classes.
 
-**Kind**: global variable  
-<a name="toString"></a>
+**Kind**: instance property of [<code>MusicalPattern</code>](#MusicalPattern)  
+<a name="MusicalPattern+toString"></a>
 
-## toString() ⇒ <code>String</code>
+### musicalPattern.toString() ⇒ <code>String</code>
 Returns a string of the musical pattern's pitch classes.
 
-**Kind**: global function  
-<a name="transpose"></a>
+**Kind**: instance method of [<code>MusicalPattern</code>](#MusicalPattern)  
+<a name="MusicalPattern+transpose"></a>
 
-## transpose(interval) ⇒ [<code>MusicalPattern</code>](#MusicalPattern)
-Generates a new chord with the interval applied
+### musicalPattern.transpose(interval) ⇒ [<code>MusicalPattern</code>](#MusicalPattern)
+Generates a new pattern with the interval applied
 
-**Kind**: global function  
+**Kind**: instance method of [<code>MusicalPattern</code>](#MusicalPattern)  
 
 | Param | Type | Description |
 | --- | --- | --- |

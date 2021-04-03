@@ -31,5 +31,5 @@
   },
   "compileOnSave": true,
   "exclude": ["node_modules", "dist", "src/test"],
-  "include": ["src"],
+  "include": ["src"]
 }

@@ -1,7 +1,14 @@
-import Measure          from './Measure'
-import { longestArray } from '../utilities/GeneralFunctions'
-import { InvalidInput } from '../Exceptions'
+import Measure, { MeasureData }              from './Measure'
+import { longestArray }                      from '../utilities/GeneralFunctions'
+import { InvalidInput }                      from '../Exceptions'
 import { NOTE_DURATIONS_AS_SIZE_IN_MEASURE } from '../Constants'
+
+interface ScoreProps {
+  name?: string;
+  voiceNames?: Array<string>;
+  bpm?: number;
+  timeSignature?: [number, number];
+}
 
 /**
  * @class Score
@@ -12,13 +19,24 @@ import { NOTE_DURATIONS_AS_SIZE_IN_MEASURE } from '../Constants'
  * @param {Array} voiceNames=[] Array with the names of the voices in the score.
  */
 export default class Score {
-  constructor ( { bpm = 100, timeSignature = [ 4, 4 ], name = 'my_score', voiceNames = [] } = {} ) {
-    this.setTimeSignature( timeSignature )
-    const voices = {}
-    for ( const name of voiceNames ) {
+  _name: string
+  _bpm: number
+  _voices: { [key: string]: Array<Measure> }
+  measureSize: number
+  timeSignature: [number, number]
+
+  constructor({ bpm, timeSignature, name, voiceNames = [] }: ScoreProps = {}) {
+    this._name = name || 'my_score'
+    this._bpm  = bpm || 100
+
+    const voices: { [key: string]: Array<Measure> } = {}
+    for(const name of voiceNames) {
       voices[name] = []
     }
-    this.attributes = { name, bpm, voices }
+    this._voices = voices
+
+    this.timeSignature = timeSignature || [4, 4]
+    this.measureSize   = Score.getMeasureSize(this.timeSignature)
   }
 
   /**
@@ -27,9 +45,9 @@ export default class Score {
    * @throws Error
    * @returns {number}
    */
-  static getMeasureSize ( timeSignature ) {
-    if ( !Array.isArray( timeSignature ) ) {
-      throw new Error( 'time signature must be an array, e.g [4, 4]' )
+  static getMeasureSize(timeSignature: [number, number]) {
+    if( !Array.isArray(timeSignature)) {
+      throw new Error('time signature must be an array, e.g [4, 4]')
     }
 
     const reducedTimeSig = (timeSignature[0] / timeSignature[1]) * 4
@@ -42,8 +60,8 @@ export default class Score {
    * Set the score's time signature.
    * @param timeSignature
    */
-  setTimeSignature ( timeSignature ) {
-    this.measureSize   = Score.getMeasureSize( timeSignature )
+  setTimeSignature(timeSignature: [number, number]) {
+    this.measureSize   = Score.getMeasureSize(timeSignature)
     this.timeSignature = timeSignature
   }
 
@@ -51,8 +69,8 @@ export default class Score {
    * Returns the score name.
    * @returns {string}
    */
-  get name () {
-    return this.attributes.name
+  get name() {
+    return this._name
   }
 
   /**
@@ -60,19 +78,16 @@ export default class Score {
    * @param {string} name
    * @throws InvalidInput
    */
-  set name ( name ) {
-    if ( typeof name != 'string' ) {
-      throw new InvalidInput( `Expected name to be a string but got ${ typeof name }` )
-    }
-    this.attributes.name = name
+  set name(name: string) {
+    this._name = name
   }
 
   /**
    * Get the score's BPM value.
    * @returns {number}
    */
-  get bpm () {
-    return this.attributes.bpm
+  get bpm() {
+    return this._bpm
   }
 
   /**
@@ -80,43 +95,43 @@ export default class Score {
    * @param bpm
    * @throws InvalidInput
    */
-  set bpm ( bpm ) {
-    if ( typeof bpm != 'number' ) {
-      throw new InvalidInput( `Expected bpm to be a number but got ${ typeof name }` )
-    }
-    this.attributes.bpm = bpm
+  set bpm(bpm) {
+    this._bpm = bpm
   }
 
   /**
    * Returns an object with the scores voices.
    * @returns {Array}
    */
-  get voices () {
-    return this.attributes.voices
+  get voices() {
+    return this._voices
   }
 
   /**
    * Returns the length of the score as the length if it's longest voice.
    * The format is 'MM:QQ:SS' - Measures:Quarter-notes:Sixteenth-notes
-   * @returns {0|string}
+   * @returns {string}
    */
-  get length () {
-    let longestVoice = longestArray( Object.values( this.voices ) )
-    return longestVoice.length ?
-           `${ longestVoice.length - 1 }:0:${ longestVoice[longestVoice.length - 1].length }` : 0
+  get length() {
+    const voicesData = Object.values(this.voices)
+    if(voicesData.length) {
+      const longestVoice = longestArray(voicesData)
+      return `${ longestVoice.length - 1 }:0:${ longestVoice[longestVoice.length - 1].length }`
+    }
+    return '0:0:0'
   }
 
   /**
    * Returns the voice with name.
    * If the voice doesn't exist it throws an error.
-   * @param {string} name The voice name.
    * @throws InvalidInput
    * @returns {Array|undefined}
+   * @param voiceName
    */
-  getVoice ( voiceName ) {
-    const voice = this.voices[voiceName]
-    if ( !voice ) {
-      throw new InvalidInput( `the voice name ${ voiceName } does not exist!` )
+  getVoice(voiceName: string) {
+    const voice: Array<Measure> = this.voices[voiceName]
+    if( !voice) {
+      throw new InvalidInput(`the voice name ${ voiceName } does not exist!`)
     }
     return voice
   }
@@ -125,9 +140,9 @@ export default class Score {
    * Adds a voice to the score.
    *
    * @param {string} voiceName The voice's name.
-   * @param {data} data=[] An array of measures.
+   * @param {data} voiceData=[] An array of measures.
    */
-  addVoice ( voiceName, voiceData = [] ) {
+  addVoice(voiceName: string, voiceData: Array<Measure> = []) {
     this.voices[voiceName] = voiceData
   }
 
@@ -137,7 +152,7 @@ export default class Score {
    * @param {string} voiceName The name of the voice to delete.
    * @returns {boolean}
    */
-  deleteVoice ( voiceName ) {
+  deleteVoice(voiceName: string) {
     return (delete this.voices[voiceName])
   }
 
@@ -146,8 +161,8 @@ export default class Score {
    * @param {string} voiceName The voice name.
    * @param {number} measureIndex The index of the measure.
    */
-  getMeasure ( voiceName, measureIndex ) {
-    return this.getVoice( voiceName )[measureIndex]
+  getMeasure(voiceName: string, measureIndex: number) {
+    return this.getVoice(voiceName)[measureIndex]
   }
 
   /**
@@ -158,11 +173,11 @@ export default class Score {
    * @param {Measure} data.measure=new Measure() The measure to add.
    * @param {Number} data.index=voice.length Index to add the measure at.
    */
-  addMeasure ( voiceName, { measure, index } = {} ) {
-    const voice = this.getVoice( voiceName )
+  addMeasure(voiceName: string, { measure, index }: { measure?: Measure, index?: number } = {}) {
+    const voice = this.getVoice(voiceName)
     index       = index || voice.length
-    measure     = measure instanceof Measure ? measure : new Measure( this.measureSize )
-    voice.splice( index, 0, measure )
+    measure     = measure instanceof Measure ? measure : new Measure(this.measureSize)
+    voice.splice(index, 0, measure)
   }
 
   /**
@@ -175,8 +190,8 @@ export default class Score {
    * @param {string} data.duration Duration of the note.
    * @returns {boolean}
    */
-  addNote ( voiceName, measureIndex, position, { note, duration } ) {
-    return this.addOperation( 'addNote', voiceName, measureIndex, position, { note, duration } )
+  addNote(voiceName: string, measureIndex: number, position: number, { note, duration }: { note: string, duration: string}) {
+    return this.addOperation('addNote', voiceName, measureIndex, position, { note, duration })
   }
 
   /**
@@ -189,8 +204,8 @@ export default class Score {
    * @param {string} data.duration Duration of the note.
    * @returns {boolean}
    */
-  addNotes ( voiceName, measureIndex, position, { notes, duration } ) {
-    return this.addOperation( 'addNotes', voiceName, measureIndex, position, { notes, duration } )
+  addNotes(voiceName: string, measureIndex: number, position: number, { notes, duration }: MeasureData) {
+    return this.addOperation('addNotes', voiceName, measureIndex, position, { notes, duration })
   }
 
   /**
@@ -204,8 +219,8 @@ export default class Score {
    * @param {name} data.name Name of the chord.
    * @returns {boolean}
    */
-  addChord ( voiceName, measureIndex, position, { notes, name, duration } ) {
-    return this.addOperation( 'addChord', voiceName, measureIndex, position, { notes, name, duration } )
+  addChord(voiceName: string, measureIndex: number, position: number, { notes, name, duration }: MeasureData) {
+    return this.addOperation('addChord', voiceName, measureIndex, position, { notes, name, duration })
   }
 
   /**
@@ -219,10 +234,10 @@ export default class Score {
    * @returns {boolean}
    * @private
    */
-  addOperation ( operation, voiceName, measureIndex, position, data ) {
-    const measure = this.getMeasure( voiceName, measureIndex )
+  addOperation(operation: string, voiceName: string, measureIndex: number, position: number, data: Object) {
+    const measure = this.getMeasure(voiceName, measureIndex)
 
-    return measure ? measure[operation]( data, position ) : false
+    return measure ? measure[operation](data, position) : false
   }
 
   /**
@@ -233,8 +248,8 @@ export default class Score {
    * @param {string} note Note to delete.
    * @returns {boolean}
    */
-  deleteNote ( voiceName, measureIndex, position, note ) {
-    return this.deleteOperation( 'deleteNote', voiceName, measureIndex, position, note )
+  deleteNote(voiceName: string, measureIndex: number, position: number, note: string) {
+    return this.deleteOperation('deleteNote', voiceName, measureIndex, position, note)
   }
 
   /**
@@ -245,8 +260,8 @@ export default class Score {
    * @param {Array} notes Array of notes to delete.
    * @returns {boolean}
    */
-  deleteNotes ( voiceName, measureIndex, position, notes ) {
-    return this.deleteOperation( 'deleteNotes', voiceName, measureIndex, position, notes )
+  deleteNotes(voiceName: string, measureIndex: number, position: number, notes: Array<string>) {
+    return this.deleteOperation('deleteNotes', voiceName, measureIndex, position, notes)
   }
 
   /**
@@ -260,9 +275,9 @@ export default class Score {
    * @returns {boolean}
    * @private
    */
-  deleteOperation ( operation, voiceName, measureIndex, position, data ) {
-    const m = this.getMeasure( voiceName, measureIndex )
-    return m ? m[operation]( data, position ) : false
+  deleteOperation(operation: string, voiceName: string, measureIndex: number, position: number, data: Object) {
+    const m = this.getMeasure(voiceName, measureIndex)
+    return m ? m[operation](data, position) : false
   }
 
   /**
@@ -272,9 +287,9 @@ export default class Score {
    * @param {number} position Position in the measure.
    * @returns {*|boolean}
    */
-  deleteMember ( voiceName, measureIndex, position ) {
-    const m = this.getMeasure( voiceName, measureIndex )
-    return m ? m.deleteMember( position ) : false
+  deleteMember(voiceName: string, measureIndex: number, position: number) {
+    const m = this.getMeasure(voiceName, measureIndex)
+    return m ? m.deleteMember(position) : false
   }
 
   /**
@@ -283,8 +298,8 @@ export default class Score {
    * @param {number} measureIndex The measure index.
    * @returns {boolean}
    */
-  clearMeasure ( voiceName, measureIndex ) {
-    const m = this.getMeasure( voiceName, measureIndex )
+  clearMeasure(voiceName: string, measureIndex: number) {
+    const m = this.getMeasure(voiceName, measureIndex)
     return m ? m.clear() : false
   }
 
@@ -294,9 +309,9 @@ export default class Score {
    * @param {number} measureIndex The measure index.
    * @returns {boolean}
    */
-  deleteMeasure ( voiceName, measureIndex ) {
-    if ( this.getMeasure( voiceName, measureIndex ) ) {
-      return this.voices[voiceName].splice( measureIndex, 1 )
+  deleteMeasure(voiceName: string, measureIndex: number) {
+    if(this.getMeasure(voiceName, measureIndex)) {
+      return this.voices[voiceName].splice(measureIndex, 1)
     }
     return false
   }
@@ -307,11 +322,11 @@ export default class Score {
    * @param {number} measureIndex The measure index.
    * @returns {boolean}`
    */
-  cloneMeasure ( voiceName, measureIndex ) {
-    const m = this.getMeasure( voiceName, measureIndex )
-    if ( m ) {
+  cloneMeasure(voiceName: string, measureIndex: number) {
+    const m = this.getMeasure(voiceName, measureIndex)
+    if(m) {
       const clone = m.clone()
-      this.voices[voiceName].splice( measureIndex, 0, clone )
+      this.voices[voiceName].splice(measureIndex, 0, clone)
       return true
     }
 
@@ -325,11 +340,11 @@ export default class Score {
    * @param {number} interval The interval to transpose by.
    * @returns {boolean}
    */
-  transposeMeasure ( voiceName, measureIndex, interval ) {
-    const m = this.getMeasure( voiceName, measureIndex )
-    if ( m ) {
-      const transposedMeasure = m.transpose( interval )
-      this.voices[voiceName].splice( measureIndex, 1, transposedMeasure )
+  transposeMeasure(voiceName: string, measureIndex: number, interval: number) {
+    const m = this.getMeasure(voiceName, measureIndex)
+    if(m) {
+      const transposedMeasure = m.transpose(interval)
+      this.voices[voiceName].splice(measureIndex, 1, transposedMeasure)
       return true
     }
 
@@ -341,7 +356,7 @@ export default class Score {
    * @param {string} voiceName The voice name.
    * @param {number} interval The interval to transpose by.
    */
-  transpose ( voiceName, interval ) {
-    this.voices[voiceName] = this.voices[voiceName].map( m => m.transpose( interval ) )
+  transpose(voiceName: string, interval: number) {
+    this.voices[voiceName] = this.voices[voiceName].map(m => m.transpose(interval))
   }
 }

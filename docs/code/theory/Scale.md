@@ -4,31 +4,6 @@ title: Scale
 
 # Scale
 
-## Classes
-
-<dl>
-<dt><a href="#Scale">Scale</a> ⇐ <code>MusicalPattern</code></dt>
-<dd><p>Represents a musical scale - a series of pitch classes following a specific pattern from a root(the
-    tonic) which forms chords and can be used to compose melodies.</p>
-</dd>
-</dl>
-
-## Functions
-
-<dl>
-<dt><a href="#chords">chords(seventh)</a> : <code>Array</code></dt>
-<dd><p>Returns an array of chords where each member is the chord at the degree where 0 is the root chord.</p>
-</dd>
-<dt><a href="#degree">degree(degree)</a> ⇒ <code>PitchClass</code></dt>
-<dd><p>Returns the degree inside the Scale.
-for example - if the Scale is a C Major,
-than interval(1) will return D.</p>
-</dd>
-<dt><a href="#chord">chord(degree, size)</a> ⇒ <code>*</code></dt>
-<dd><p>Returns the chord at the degree with size.</p>
-</dd>
-</dl>
-
 <a name="Scale"></a>
 
 ## Scale ⇐ <code>MusicalPattern</code>
@@ -37,6 +12,13 @@ Represents a musical scale - a series of pitch classes following a specific patt
 
 **Kind**: global class  
 **Extends**: <code>MusicalPattern</code>  
+
+* [Scale](#Scale) ⇐ <code>MusicalPattern</code>
+    * [new Scale(tonic, name, pattern)](#new_Scale_new)
+    * [.chords(seventh)](#Scale+chords) : <code>Array</code>
+    * [.degree(degree)](#Scale+degree) ⇒ <code>PitchClass</code>
+    * [.chord(degree, size)](#Scale+chord) ⇒ <code>\*</code>
+
 <a name="new_Scale_new"></a>
 
 ### new Scale(tonic, name, pattern)
@@ -52,36 +34,36 @@ Represents a musical scale - a series of pitch classes following a specific patt
 const c = new PitchClass('c')
 const C_Major_by_pattern = new Scale(c, [0, 2, 4, 5, 7, 9, 11]) // new C major scale.
 ```
-<a name="chords"></a>
+<a name="Scale+chords"></a>
 
-## chords(seventh) : <code>Array</code>
+### scale.chords(seventh) : <code>Array</code>
 Returns an array of chords where each member is the chord at the degree where 0 is the root chord.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Scale</code>](#Scale)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | seventh | <code>boolean</code> | <code>false</code> | Whether to return seventh chords or triads. |
 
-<a name="degree"></a>
+<a name="Scale+degree"></a>
 
-## degree(degree) ⇒ <code>PitchClass</code>
+### scale.degree(degree) ⇒ <code>PitchClass</code>
 Returns the degree inside the Scale.
 for example - if the Scale is a C Major,
 than interval(1) will return D.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Scale</code>](#Scale)  
 
 | Param | Type |
 | --- | --- |
 | degree | <code>Number</code> | 
 
-<a name="chord"></a>
+<a name="Scale+chord"></a>
 
-## chord(degree, size) ⇒ <code>\*</code>
+### scale.chord(degree, size) ⇒ <code>\*</code>
 Returns the chord at the degree with size.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Scale</code>](#Scale)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |

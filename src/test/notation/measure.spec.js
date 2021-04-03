@@ -5,7 +5,7 @@ import { InvalidInput } from '../../Exceptions'
 describe('Measure', () => {
   describe('creating a new measure', () => {
     it('has these properties', () => {
-      expect(measure.attributes).to.have.keys(['data', 'maxDuration', 'duration'])
+      expect(measure).to.have.keys(['_data', '_maxDuration', '_duration'])
     })
   })
 
@@ -127,7 +127,7 @@ describe('Measure', () => {
 
     it('chord name not set when not sent', () => {
       expect(measure.addChord({ notes: ['c3', 'e3', 'g3'], duration: '4n' }, 0)).to.be.true
-      expect(measure.data[0].name).to.equal(undefined)
+      expect(measure.data[0].name).to.equal('')
     })
 
     it('should return false when the measure if too full', () => {

@@ -22,21 +22,13 @@ const sidebarTree = (title = 'About') => ({
             ],
         },
         {
-            'title':       'resources',
-            'collapsable': true,
-            'children':    [
-                'resources/Constants',
-            ],
-        },
-        {
             'title':       'utilities',
             'collapsable': true,
             'children':    [
                 'utilities/ScientificFunctions',
                 'utilities/MusicFunctions',
                 'utilities/GeneralFunctions',
-                'utilities/ModelHelper',
-                'utilities/RawHelper',
+                'utilities/PureMusicUtils',
             ],
         },
     ],

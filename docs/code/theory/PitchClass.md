@@ -4,132 +4,69 @@ title: PitchClass
 
 # PitchClass
 
-## Classes
-
-<dl>
-<dt><a href="#PitchClass">PitchClass</a></dt>
-<dd><p>Represents a pitch class.</p>
-</dd>
-</dl>
-
-## Members
-
-<dl>
-<dt><a href="#pitchClass">pitchClass</a> : <code>String</code></dt>
-<dd><p>Returns the pitch class.</p>
-</dd>
-<dt><a href="#classSet">classSet</a> : <code>String</code></dt>
-<dd><p>Get the set of the pitch class - sharp or flat.</p>
-</dd>
-<dt><a href="#classIndex">classIndex</a> : <code>Number</code></dt>
-<dd><p>Get the index of the pitch class out of the 12 classes (C, Db, etc...).</p>
-</dd>
-<dt><a href="#raw">raw</a> ⇒ <code>String</code></dt>
-<dd><p>Returns the pitch class as a string.</p>
-</dd>
-</dl>
-
-## Functions
-
-<dl>
-<dt><a href="#isFlat">isFlat(pitchClass)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Returns true if pitch class has a flat in it, else false.</p>
-</dd>
-<dt><a href="#isSharp">isSharp(pitchClass)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Returns true if pitch class has a sharp in it, else false.</p>
-</dd>
-<dt><a href="#isPitchClass">isPitchClass(obj)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Returns true if obj is an instance of PitchClass, else false.</p>
-</dd>
-<dt><a href="#interval">interval(interval)</a> ⇒ <code><a href="#PitchClass">PitchClass</a></code></dt>
-<dd><p>Returns the pure pitch class at interval as a new instance.</p>
-</dd>
-<dt><a href="#toString">toString()</a> ⇒ <code>String</code></dt>
-<dd><p>Returns string of the pitch class.</p>
-</dd>
-</dl>
-
 <a name="PitchClass"></a>
 
 ## PitchClass
 Represents a pitch class.
 
 **Kind**: global class  
+
+* [PitchClass](#PitchClass)
+    * [new PitchClass(pitchClass)](#new_PitchClass_new)
+    * _instance_
+        * [.pitchClass](#PitchClass+pitchClass) : <code>String</code>
+        * [.classSet](#PitchClass+classSet) : <code>String</code>
+        * [.classIndex](#PitchClass+classIndex) : <code>Number</code>
+        * [.raw](#PitchClass+raw) ⇒ <code>String</code>
+        * [.interval(interval)](#PitchClass+interval) ⇒ [<code>PitchClass</code>](#PitchClass)
+        * [.toString()](#PitchClass+toString) ⇒ <code>String</code>
+    * _static_
+        * [.isFlat(pitchClass)](#PitchClass.isFlat) ⇒ <code>boolean</code>
+        * [.isSharp(pitchClass)](#PitchClass.isSharp) ⇒ <code>boolean</code>
+        * [.isPitchClass(obj)](#PitchClass.isPitchClass) ⇒ <code>boolean</code>
+
 <a name="new_PitchClass_new"></a>
 
 ### new PitchClass(pitchClass)
 
 | Param | Type |
 | --- | --- |
-| pitchClass | <code>string</code> | 
+| pitchClass | <code>String</code> | 
 
 **Example**  
 ```js
 const c = new PitchClass('d')
 ```
-<a name="pitchClass"></a>
+<a name="PitchClass+pitchClass"></a>
 
-## pitchClass : <code>String</code>
+### pitchClass.pitchClass : <code>String</code>
 Returns the pitch class.
 
-**Kind**: global variable  
-<a name="classSet"></a>
+**Kind**: instance property of [<code>PitchClass</code>](#PitchClass)  
+<a name="PitchClass+classSet"></a>
 
-## classSet : <code>String</code>
+### pitchClass.classSet : <code>String</code>
 Get the set of the pitch class - sharp or flat.
 
-**Kind**: global variable  
-<a name="classIndex"></a>
+**Kind**: instance property of [<code>PitchClass</code>](#PitchClass)  
+<a name="PitchClass+classIndex"></a>
 
-## classIndex : <code>Number</code>
+### pitchClass.classIndex : <code>Number</code>
 Get the index of the pitch class out of the 12 classes (C, Db, etc...).
 
-**Kind**: global variable  
-<a name="raw"></a>
+**Kind**: instance property of [<code>PitchClass</code>](#PitchClass)  
+<a name="PitchClass+raw"></a>
 
-## raw ⇒ <code>String</code>
+### pitchClass.raw ⇒ <code>String</code>
 Returns the pitch class as a string.
 
-**Kind**: global variable  
-<a name="isFlat"></a>
+**Kind**: instance property of [<code>PitchClass</code>](#PitchClass)  
+<a name="PitchClass+interval"></a>
 
-## isFlat(pitchClass) ⇒ <code>boolean</code>
-Returns true if pitch class has a flat in it, else false.
-
-**Kind**: global function  
-
-| Param |
-| --- |
-| pitchClass | 
-
-<a name="isSharp"></a>
-
-## isSharp(pitchClass) ⇒ <code>boolean</code>
-Returns true if pitch class has a sharp in it, else false.
-
-**Kind**: global function  
-
-| Param |
-| --- |
-| pitchClass | 
-
-<a name="isPitchClass"></a>
-
-## isPitchClass(obj) ⇒ <code>boolean</code>
-Returns true if obj is an instance of PitchClass, else false.
-
-**Kind**: global function  
-
-| Param |
-| --- |
-| obj | 
-
-<a name="interval"></a>
-
-## interval(interval) ⇒ [<code>PitchClass</code>](#PitchClass)
+### pitchClass.interval(interval) ⇒ [<code>PitchClass</code>](#PitchClass)
 Returns the pure pitch class at interval as a new instance.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>PitchClass</code>](#PitchClass)  
 **Throws**:
 
 - InvalidInput
@@ -144,9 +81,42 @@ Returns the pure pitch class at interval as a new instance.
 const c = new PitchClass('c')
 console.log(c.interval(5)) // F
 ```
-<a name="toString"></a>
+<a name="PitchClass+toString"></a>
 
-## toString() ⇒ <code>String</code>
+### pitchClass.toString() ⇒ <code>String</code>
 Returns string of the pitch class.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>PitchClass</code>](#PitchClass)  
+<a name="PitchClass.isFlat"></a>
+
+### PitchClass.isFlat(pitchClass) ⇒ <code>boolean</code>
+Returns true if pitch class has a flat in it, else false.
+
+**Kind**: static method of [<code>PitchClass</code>](#PitchClass)  
+
+| Param | Type |
+| --- | --- |
+| pitchClass | <code>String</code> | 
+
+<a name="PitchClass.isSharp"></a>
+
+### PitchClass.isSharp(pitchClass) ⇒ <code>boolean</code>
+Returns true if pitch class has a sharp in it, else false.
+
+**Kind**: static method of [<code>PitchClass</code>](#PitchClass)  
+
+| Param |
+| --- |
+| pitchClass | 
+
+<a name="PitchClass.isPitchClass"></a>
+
+### PitchClass.isPitchClass(obj) ⇒ <code>boolean</code>
+Returns true if obj is an instance of PitchClass, else false.
+
+**Kind**: static method of [<code>PitchClass</code>](#PitchClass)  
+
+| Param |
+| --- |
+| obj | 
+

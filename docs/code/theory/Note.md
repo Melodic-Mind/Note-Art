@@ -4,49 +4,25 @@ title: Note
 
 # Note
 
-## Classes
-
-<dl>
-<dt><a href="#Note">Note</a></dt>
-<dd><p>Represents an abstract musical note.</p>
-</dd>
-</dl>
-
-## Members
-
-<dl>
-<dt><a href="#octave">octave</a> : <code>String</code></dt>
-<dd><p>Returns the octave of the note.</p>
-</dd>
-</dl>
-
-## Functions
-
-<dl>
-<dt><a href="#builder">builder(noteString)</a> ⇒ <code><a href="#Note">Note</a></code></dt>
-<dd><p>Builds a Note instance from string representing a note.</p>
-</dd>
-<dt><a href="#fromFrequency">fromFrequency(frequency)</a> ⇒ <code><a href="#Note">Note</a></code></dt>
-<dd><p>Generates a new pitch from frequency.</p>
-</dd>
-<dt><a href="#interval">interval(interval)</a></dt>
-<dd><p>Gets interval size (Number) and returns a new instance of a note
-which is calculated by the musical interval formula.</p>
-</dd>
-<dt><a href="#transpose">transpose(interval)</a></dt>
-<dd><p>Alias for interval()</p>
-</dd>
-<dt><a href="#toString">toString()</a> ⇒ <code>string</code></dt>
-<dd><p>Returns a string of the pitch class and octave of the Note.</p>
-</dd>
-</dl>
-
 <a name="Note"></a>
 
-## Note
+## Note ⇐ <code>PitchClass</code>
 Represents an abstract musical note.
 
 **Kind**: global class  
+**Extends**: <code>PitchClass</code>  
+
+* [Note](#Note) ⇐ <code>PitchClass</code>
+    * [new Note(pitchClass, octave)](#new_Note_new)
+    * _instance_
+        * [.octave](#Note+octave) : <code>String</code>
+        * [.interval(interval)](#Note+interval)
+        * [.transpose(interval)](#Note+transpose)
+        * [.toString()](#Note+toString) ⇒ <code>string</code>
+    * _static_
+        * [.builder(note)](#Note.builder) ⇒ [<code>Note</code>](#Note)
+        * [.fromFrequency(frequency)](#Note.fromFrequency) ⇒ [<code>Note</code>](#Note)
+
 <a name="new_Note_new"></a>
 
 ### new Note(pitchClass, octave)
@@ -78,41 +54,19 @@ console.log(f) //F4
 const a = Note.fromFrequency(440)
 console.log(a) //A4
 ```
-<a name="octave"></a>
+<a name="Note+octave"></a>
 
-## octave : <code>String</code>
+### note.octave : <code>String</code>
 Returns the octave of the note.
 
-**Kind**: global variable  
-<a name="builder"></a>
+**Kind**: instance property of [<code>Note</code>](#Note)  
+<a name="Note+interval"></a>
 
-## builder(noteString) ⇒ [<code>Note</code>](#Note)
-Builds a Note instance from string representing a note.
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| noteString | <code>string</code> | 
-
-<a name="fromFrequency"></a>
-
-## fromFrequency(frequency) ⇒ [<code>Note</code>](#Note)
-Generates a new pitch from frequency.
-
-**Kind**: global function  
-
-| Param |
-| --- |
-| frequency | 
-
-<a name="interval"></a>
-
-## interval(interval)
+### note.interval(interval)
 Gets interval size (Number) and returns a new instance of a note
 which is calculated by the musical interval formula.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Note</code>](#Note)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -125,20 +79,42 @@ let interval = c.interval(4) //calling the function with the number 4(which is a
 console.log(interval.toStrring()) //should output 'E3'.
 console.log(interval.constructor.name) //should output Note.
 ```
-<a name="transpose"></a>
+<a name="Note+transpose"></a>
 
-## transpose(interval)
+### note.transpose(interval)
 Alias for interval()
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Note</code>](#Note)  
 
 | Param | Type |
 | --- | --- |
 | interval | <code>Number</code> | 
 
-<a name="toString"></a>
+<a name="Note+toString"></a>
 
-## toString() ⇒ <code>string</code>
+### note.toString() ⇒ <code>string</code>
 Returns a string of the pitch class and octave of the Note.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>Note</code>](#Note)  
+<a name="Note.builder"></a>
+
+### Note.builder(note) ⇒ [<code>Note</code>](#Note)
+Builds a Note instance from string representing a note.
+
+**Kind**: static method of [<code>Note</code>](#Note)  
+
+| Param |
+| --- |
+| note | 
+
+<a name="Note.fromFrequency"></a>
+
+### Note.fromFrequency(frequency) ⇒ [<code>Note</code>](#Note)
+Generates a new pitch from frequency.
+
+**Kind**: static method of [<code>Note</code>](#Note)  
+
+| Param |
+| --- |
+| frequency | 
+
