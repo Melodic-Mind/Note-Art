@@ -1,4 +1,4 @@
-import { PitchClass, Chord } from '../..'
+import { Chord, PitchClass } from '../..'
 import { InvalidInput }      from '../../Exceptions'
 
 const c = new PitchClass('c')

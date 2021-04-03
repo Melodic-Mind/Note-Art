@@ -1,6 +1,5 @@
 import {
-  firstToUpper, twoDigitFormat, switchMembers, rearrangeArray, mapString, fitArrayToSize,
-  longestArray
+  firstToUpper, fitArrayToSize, longestArray, mapString, rearrangeArray, switchMembers, twoDigitFormat
 } from '../../utilities'
 
 describe('general-functions', () => {

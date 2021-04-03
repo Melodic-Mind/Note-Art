@@ -1,4 +1,4 @@
-import { Scale, PitchClass, Chord, spellScale } from '../../'
+import { Chord, PitchClass, Scale } from '../../'
 
 describe('Scale', () => {
 

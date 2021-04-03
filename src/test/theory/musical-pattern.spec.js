@@ -1,5 +1,4 @@
-import { PitchClass, MusicalPattern } from '../../'
-import { InvalidInput }               from 'src/Exceptions'
+import { MusicalPattern, PitchClass } from '../../'
 
 describe('Musical Pattern', () => {
   describe('#constructor', () => {

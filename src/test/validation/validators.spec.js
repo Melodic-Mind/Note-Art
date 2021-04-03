@@ -1,5 +1,5 @@
-import { Note, PitchClass, validateDuration, validateInstance, validateRawNote } from '../../'
-import { InvalidInput }                                                          from '../../Exceptions'
+import { PitchClass, validateDuration, validateInstance, validateRawNote } from '../../'
+import { InvalidInput }                                                    from '../../Exceptions'
 
 describe('#Validators', () => {
   describe('#validateInstance', () => {

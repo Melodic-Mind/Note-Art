@@ -1,5 +1,4 @@
-import { PitchClass, GuitarChordPattern } from '../..'
-import { InvalidInput }                   from '../../Exceptions'
+import { GuitarChordPattern, PitchClass } from '../..'
 
 describe('Guitar Chord Pattern', () => {
   let c, g, gcp
