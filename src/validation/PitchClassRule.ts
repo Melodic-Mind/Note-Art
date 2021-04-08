@@ -1,12 +1,11 @@
 import { InvalidInput } from '../Exceptions'
-import PitchClass from '../theory/PitchClass'
 import { PITCH_CLASS_LETTERS } from '../Constants'
 
 /**
  * @classdesc Rules for validating a pitchClass
  * @class
  */
-export default class PitchClassRule {
+export class PitchClassRule {
   static get validLetters() {
     return PITCH_CLASS_LETTERS.concat(PITCH_CLASS_LETTERS.map(letter => letter.toLowerCase()))
   }

@@ -9,7 +9,7 @@ import { getPitchClassesInterval } from '../utilities/PureMusicUtils'
  * @param {PitchClass} pitchClass The chord's root pitch class.
  * @param {string} name The chords name.
  */
-export default class GuitarChordPattern {
+export class GuitarChordPattern {
   constructor(pattern: Array<number | string>, pitchClass: string, name: string) {
     this._pitchClass = firstToUpper(pitchClass)
     this._pattern    = pattern

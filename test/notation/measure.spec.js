@@ -1,4 +1,4 @@
-import Measure from '../../src/notation/Measure'
+import { Measure } from '../../src'
 import { InvalidInput } from '../../src/Exceptions'
 
 

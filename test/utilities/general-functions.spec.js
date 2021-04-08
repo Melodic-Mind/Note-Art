@@ -1,6 +1,6 @@
 import {
   firstToUpper, fitArrayToSize, longestArray, mapString, rearrangeArray, switchMembers, twoDigitFormat
-} from '../../src/utilities'
+} from '../../src'
 
 describe('general-functions', () => {
   it('#firstToUpper', () => {

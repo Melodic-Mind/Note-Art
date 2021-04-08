@@ -1,4 +1,4 @@
-import Measure, { MeasureData } from './Measure'
+import { Measure, MeasureData } from './Measure'
 import { longestArray } from '../utilities/GeneralFunctions'
 import { InvalidInput } from '../Exceptions'
 import { NOTE_DURATIONS_AS_SIZE_IN_MEASURE } from '../Constants'
@@ -18,7 +18,7 @@ interface ScoreProps {
  * @param {string} attributes.name=my_score Name for the score.
  * @param {Array} voiceNames=[] Array with the names of the voices in the score.
  */
-export default class Score {
+export class Score {
   measureSize: number
   timeSignature: Array<number>
 

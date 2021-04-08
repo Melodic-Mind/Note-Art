@@ -1,4 +1,4 @@
-import MusicalPattern from './MusicalPattern'
+import { MusicalPattern } from './MusicalPattern'
 import { rearrangeArray } from '../utilities/GeneralFunctions'
 import { InvalidInput } from '../Exceptions'
 
@@ -13,7 +13,7 @@ import { InvalidInput } from '../Exceptions'
  * const c = new PitchClass('c')
  * const C_Maj = new Chord(c, [4, 7]) // new C major chord.
  */
-export default class Chord extends MusicalPattern {
+export class Chord extends MusicalPattern {
   /**
    * Applies an inversion to a chord.
    * @param {number} type

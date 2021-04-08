@@ -1,7 +1,7 @@
 import { enharmonicPitchClass, getPitchClassesInterval } from '../utilities/PureMusicUtils'
 import { rearrangeArray } from '../utilities/GeneralFunctions'
-import Chord from './Chord'
-import MusicalPattern from './MusicalPattern'
+import { Chord } from './Chord'
+import { MusicalPattern } from './MusicalPattern'
 import { PITCH_CLASS_LETTERS } from '../Constants'
 
 /**
@@ -16,7 +16,7 @@ import { PITCH_CLASS_LETTERS } from '../Constants'
  * const c = new PitchClass('c')
  * const C_Major_by_pattern = new Scale(c, [0, 2, 4, 5, 7, 9, 11]) // new C major scale.
  */
-export default class Scale extends MusicalPattern {
+export class Scale extends MusicalPattern {
   get raw() {
     if(this.pattern.length === 6) {
       return this.spellScale()

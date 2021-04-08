@@ -1,9 +1,9 @@
 import { firstToUpper } from '../utilities/GeneralFunctions'
 import { isRawNote } from '../utilities/MusicFunctions'
+import { Note } from '../theory/Note'
 import { validateArray, validateDuration } from '../validation/Validators'
 import { NOTE_DURATIONS_AS_SIZE_IN_MEASURE } from '../Constants'
 import { isRest } from '../utilities/PureMusicUtils'
-import Note from '../theory/Note'
 
 export interface MeasureData {
   notes: Array<string>;
@@ -22,7 +22,7 @@ export interface NormalizedMeasureData {
  * @classdesc Represents a single measure as part of a musical score in musical notation.ds
  * @param {Number} maxDuration=0 Max duration of the measure(determined by time signature)
  */
-export default class Measure {
+export class Measure {
   _duration: string
 
   constructor(maxDuration = 64) {

@@ -1,5 +1,5 @@
 import { firstToUpper } from '../utilities/GeneralFunctions'
-import PitchClassRule from '../validation/PitchClassRule'
+import { PitchClassRule } from '../validation/PitchClassRule'
 import { InvalidInput } from '../Exceptions'
 import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES } from '../Constants'
 import { enharmonicPitchClass, getPitchClassSet, normalizePitchClass } from '../utilities/PureMusicUtils'
@@ -11,7 +11,7 @@ import { enharmonicPitchClass, getPitchClassSet, normalizePitchClass } from '../
  * const c = new PitchClass('d')
  * @param {String} pitchClass
  */
-export default class PitchClass {
+export class PitchClass {
   constructor(pitchClass: string) {
     if( !PitchClassRule.exists(pitchClass)) {
       throw new InvalidInput(`${ pitchClass } should be a string representing a pitch class.`)

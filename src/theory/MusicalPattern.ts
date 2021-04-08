@@ -1,4 +1,4 @@
-import PitchClass from './PitchClass'
+import { PitchClass } from './PitchClass'
 
 /**
  * @class MusicalPattern
@@ -7,7 +7,7 @@ import PitchClass from './PitchClass'
  * @param {Array} pattern The pattern to use.
  * @param {Object} [info={}] Any additional information to save about the pattern.
  */
-export default class MusicalPattern {
+export class MusicalPattern {
   constructor(pitchClass: string | PitchClass, pattern: Array<number>, info: Object = {}) {
     const pc: PitchClass = typeof pitchClass === 'string' ? new PitchClass(pitchClass) : pitchClass
     this._pitchClasses   = [pc]

@@ -1,8 +1,8 @@
 import {
+  Chord, PitchClass,
   extractOctave, extractPitchClass, getPitchClassesInterval, intervalsToNotes, notesInRange, noteToObject,
   pitchClassesToNotes, pitchClassesToPianoChordNotes, transposeNote
-} from '../../src/utilities'
-import { Chord, PitchClass } from '../../src/theory'
+} from '../../src'
 
 describe('Music addon functions', () => {
   describe('#getPitchClassesInterval', () => {
