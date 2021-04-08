@@ -1,5 +1,5 @@
 import Measure, { MeasureData, NormalizedMeasureData } from './Measure'
-import Score                                           from './Score'
+import Score from './Score'
 
 /**
  * @class ScoreHandler

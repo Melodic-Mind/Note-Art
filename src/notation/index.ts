@@ -1,5 +1,5 @@
-import Measure      from './Measure'
-import Score        from './Score'
+import Measure from './Measure'
+import Score from './Score'
 import ScoreHandler from './ScoreHandler'
 
 export {

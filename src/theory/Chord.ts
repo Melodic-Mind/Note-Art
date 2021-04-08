@@ -1,6 +1,6 @@
-import MusicalPattern     from './MusicalPattern'
+import MusicalPattern from './MusicalPattern'
 import { rearrangeArray } from '../utilities/GeneralFunctions'
-import { InvalidInput }   from '../Exceptions'
+import { InvalidInput } from '../Exceptions'
 
 /**
  * @class Chord

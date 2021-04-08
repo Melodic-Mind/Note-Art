@@ -1,8 +1,8 @@
 import { enharmonicPitchClass, getPitchClassesInterval } from '../utilities/PureMusicUtils'
-import { rearrangeArray }                                from '../utilities/GeneralFunctions'
-import Chord                                             from './Chord'
-import MusicalPattern                                    from './MusicalPattern'
-import { PITCH_CLASS_LETTERS }                           from '../Constants'
+import { rearrangeArray } from '../utilities/GeneralFunctions'
+import Chord from './Chord'
+import MusicalPattern from './MusicalPattern'
+import { PITCH_CLASS_LETTERS } from '../Constants'
 
 /**
  * @class Scale

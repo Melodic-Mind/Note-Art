@@ -10,16 +10,23 @@ import { getPitchClassesInterval } from '../utilities/PureMusicUtils'
  * @param {string} name The chords name.
  */
 export default class GuitarChordPattern {
-  _pitchClass: string
-  _pattern: Array<number | string>
-  _name: string
-
   constructor(pattern: Array<number | string>, pitchClass: string, name: string) {
     this._pitchClass = firstToUpper(pitchClass)
     this._pattern    = pattern
     this._name       = name
   }
 
+  _pitchClass: string
+
+  /**
+   * Returns the chord's pitch class.
+   * @returns {PitchClass}
+   */
+  get pitchClass() {
+    return this._pitchClass
+  }
+
+  _pattern: Array<number | string>
 
   /**
    * Returns the chord pattern.
@@ -29,13 +36,7 @@ export default class GuitarChordPattern {
     return this._pattern
   }
 
-  /**
-   * Returns the chord's pitch class.
-   * @returns {PitchClass}
-   */
-  get pitchClass() {
-    return this._pitchClass
-  }
+  _name: string
 
   /**
    * Returns the chord name.

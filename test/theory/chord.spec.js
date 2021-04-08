@@ -1,5 +1,5 @@
-import PitchClass       from '../../src/theory/PitchClass'
-import Chord            from '../../src/theory/Chord'
+import PitchClass from '../../src/theory/PitchClass'
+import Chord from '../../src/theory/Chord'
 import { InvalidInput } from '../../src/Exceptions'
 
 const c = new PitchClass('c')

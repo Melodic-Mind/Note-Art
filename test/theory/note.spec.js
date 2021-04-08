@@ -1,5 +1,5 @@
-import { Note }          from '../../src'
-import { InvalidInput }  from '../../src/Exceptions'
+import { Note } from '../../src'
+import { InvalidInput } from '../../src/Exceptions'
 import { testIntervals } from '../Helpers'
 
 let c

@@ -1,5 +1,5 @@
 import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_STANDARD, SEMITONE } from '../Constants'
-import { getPitchClassIndex, noteToObject }                                    from './PureMusicUtils'
+import { getPitchClassIndex, noteToObject } from './PureMusicUtils'
 
 /**
  * Calculate the frequency of a note by its octave and index out of all notes(c, c#, etc...).

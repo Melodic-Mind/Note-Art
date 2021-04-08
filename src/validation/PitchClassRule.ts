@@ -1,5 +1,5 @@
-import { InvalidInput }        from '../Exceptions'
-import PitchClass              from '../theory/PitchClass'
+import { InvalidInput } from '../Exceptions'
+import PitchClass from '../theory/PitchClass'
 import { PITCH_CLASS_LETTERS } from '../Constants'
 
 /**

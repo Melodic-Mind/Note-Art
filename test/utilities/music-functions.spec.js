@@ -1,7 +1,7 @@
 import {
   extractOctave, extractPitchClass, getPitchClassesInterval, intervalsToNotes, notesInRange, noteToObject,
   pitchClassesToNotes, pitchClassesToPianoChordNotes, transposeNote
-}                            from '../../src/utilities'
+} from '../../src/utilities'
 import { Chord, PitchClass } from '../../src/theory'
 
 describe('Music addon functions', () => {

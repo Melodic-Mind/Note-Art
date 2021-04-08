@@ -1,6 +1,6 @@
-import Measure, { MeasureData }              from './Measure'
-import { longestArray }                      from '../utilities/GeneralFunctions'
-import { InvalidInput }                      from '../Exceptions'
+import Measure, { MeasureData } from './Measure'
+import { longestArray } from '../utilities/GeneralFunctions'
+import { InvalidInput } from '../Exceptions'
 import { NOTE_DURATIONS_AS_SIZE_IN_MEASURE } from '../Constants'
 
 interface ScoreProps {
@@ -113,6 +113,31 @@ export default class Score {
     const beatLength     = NOTE_DURATIONS_AS_SIZE_IN_MEASURE[`${ timeSignature[1] }n`]
 
     return reducedTimeSig * beatLength * timeSignature[1] / 4
+  }
+
+  static stringToScore(str: string) {
+    const [name, bpm, timeSig, voiceNames] = str.split('___')
+
+    const timeSignature = timeSig.split(',').map(num => parseInt(num))
+
+    const score = new Score({
+      name,
+      timeSignature,
+      bpm: parseFloat(bpm)
+    })
+
+    const voices              = voiceNames.split('_v_').map(voice => voice.split('_d_'))
+    const maxDuration: number = Score.getMeasureSize(timeSignature)
+
+    voices.forEach(([voiceName, voiceData]) => {
+      score.addVoice(voiceName)
+      voiceData.split('_m_').forEach((str: string, measureIndex: number) => {
+        const measure = Measure.stringToMeasure({ str, maxDuration })
+        score.addMeasure(voiceName, { index: measureIndex, measure })
+      })
+    })
+
+    return score
   }
 
   /**
@@ -368,37 +393,12 @@ export default class Score {
 
   toString() {
     const voices = Object.entries(this.voices)
-                         .map(([voiceName, voiceData]) =>
-                           `${ voiceName }_d_${ voiceData.map(measure => measure.toString()).join('_m_') }`
-                         )
-                         .filter(el => el !== '')
-                         .join('_v_')
+      .map(([voiceName, voiceData]) =>
+        `${ voiceName }_d_${ voiceData.map(measure => measure.toString()).join('_m_') }`
+      )
+      .filter(el => el !== '')
+      .join('_v_')
 
     return `${ this.name }___${ this.timeSignature }___${ this.bpm }___${ voices }`
-  }
-
-  static stringToScore(str: string) {
-    const [name, bpm, timeSig, voiceNames] = str.split('___')
-
-    const timeSignature = timeSig.split(',').map(num => parseInt(num))
-
-    const score = new Score({
-      name,
-      timeSignature,
-      bpm:           parseFloat(bpm)
-    })
-
-    const voices = voiceNames.split('_v_').map(voice => voice.split('_d_'))
-    const maxDuration: number = Score.getMeasureSize(timeSignature)
-
-    voices.forEach(([voiceName, voiceData]) => {
-      score.addVoice(voiceName)
-      voiceData.split('_m_').forEach((str: string, measureIndex: number) => {
-        const measure = Measure.stringToMeasure({ str, maxDuration })
-        score.addMeasure(voiceName, { index: measureIndex, measure })
-      })
-    })
-
-    return score
   }
 }

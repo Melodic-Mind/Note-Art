@@ -1,9 +1,9 @@
-import { firstToUpper }                      from '../utilities/GeneralFunctions'
-import { isRawNote }                         from '../utilities/MusicFunctions'
-import { validateArray, validateDuration }   from '../validation/Validators'
+import { firstToUpper } from '../utilities/GeneralFunctions'
+import { isRawNote } from '../utilities/MusicFunctions'
+import { validateArray, validateDuration } from '../validation/Validators'
 import { NOTE_DURATIONS_AS_SIZE_IN_MEASURE } from '../Constants'
-import { isRest }                            from '../utilities/PureMusicUtils'
-import Note                                  from '../theory/Note'
+import { isRest } from '../utilities/PureMusicUtils'
+import Note from '../theory/Note'
 
 export interface MeasureData {
   notes: Array<string>;
@@ -64,6 +64,36 @@ export default class Measure {
     return this.data.reduce((acc, { duration }) => acc + NOTE_DURATIONS_AS_SIZE_IN_MEASURE[duration], 0) / 4
   }
 
+  static measureDataToString(notesMember: NormalizedMeasureData) {
+    const notes = Array.from(notesMember.notes).join('-')
+    if(notes) {
+      const duration = notesMember.duration
+      const name     = notesMember.name
+
+      return `${ notes }_${ duration }${ name ? `_${ name }` : '' }`
+    }
+    return ''
+  }
+
+  static parseMeasureNoteMemberString(str: string) {
+    const [notes, duration, name] = str.split('_')
+    return {
+      notes: notes.split('-'),
+      duration,
+      name
+    }
+  }
+
+  static stringToMeasure({ str, maxDuration }: { str: string, maxDuration: number }) {
+    const measure     = new Measure(maxDuration)
+    const noteMembers = str.split('__')
+      .map(el => Measure.parseMeasureNoteMemberString(el))
+
+    noteMembers.forEach((noteMember, i) => measure.addChord(noteMember, i))
+
+    return measure
+  }
+
   /**
    * Returns a deep clone of the measure.
    * @returns {Measure}
@@ -79,10 +109,10 @@ export default class Measure {
    */
   durationLeft(position = this.data.length): number {
     return this.maxDuration - this.data.slice(0, position)
-                                  .reduce((prev, curr) => {
-                                    return curr.notes.size ?
-                                           prev + NOTE_DURATIONS_AS_SIZE_IN_MEASURE[curr.duration] : prev
-                                  }, 0)
+      .reduce((prev, curr) => {
+        return curr.notes.size ?
+               prev + NOTE_DURATIONS_AS_SIZE_IN_MEASURE[curr.duration] : prev
+      }, 0)
   }
 
   /**
@@ -225,6 +255,12 @@ export default class Measure {
     return true
   }
 
+  toString() {
+    return this.data.map(notesMember => Measure.measureDataToString(notesMember))
+      .filter(el => el !== '')
+      .join('__')
+  }
+
   /**
    * Creates a slot for the next notes that will be added in the measure if there is space.
    * Should not be called as it's called automatically when needed.
@@ -252,41 +288,5 @@ export default class Measure {
     const enoughDurationAvailable = durationSize > this.durationLeft(position) + durationSize
 
     return !(isPositionValid || enoughDurationAvailable)
-  }
-
-  static measureDataToString(notesMember: NormalizedMeasureData) {
-    const notes = Array.from(notesMember.notes).join('-')
-    if(notes) {
-      const duration = notesMember.duration
-      const name     = notesMember.name
-
-      return `${ notes }_${ duration }${ name ? `_${ name }` : '' }`
-    }
-    return ''
-  }
-
-  toString() {
-    return this.data.map(notesMember => Measure.measureDataToString(notesMember))
-               .filter(el => el !== '')
-               .join('__')
-  }
-
-  static parseMeasureNoteMemberString(str: string) {
-    const [notes, duration, name] = str.split('_')
-    return {
-      notes: notes.split('-'),
-      duration,
-      name
-    }
-  }
-
-  static stringToMeasure({ str, maxDuration }: { str: string, maxDuration: number }) {
-    const measure     = new Measure(maxDuration)
-    const noteMembers = str.split('__')
-                           .map(el => Measure.parseMeasureNoteMemberString(el))
-
-    noteMembers.forEach((noteMember, i) => measure.addChord(noteMember, i))
-
-    return measure
   }
 }
