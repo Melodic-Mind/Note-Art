@@ -114,7 +114,7 @@ export class PitchClass {
       let [letter, acc] = getPitchClassSet(this.classSet)[index]
       const accidentals = this.raw.slice(1)
       if(acc === 'b' && !accidentals.includes('b')) {
-        const pc2        = FLAT_CLASS_NOTES[(FLAT_CLASS_NOTES.indexOf(`${ letter }${ acc }`) - 1) % 12]
+        const pc2        = FLAT_CLASS_NOTES[(FLAT_CLASS_NOTES.indexOf(`${ letter }${ acc }`) - 1) % NUMBER_OF_PITCH_CLASSES]
         const enharmonic = enharmonicPitchClass(`${ letter }${ acc }`, pc2)
         letter           = enharmonic[0]
         acc              = enharmonic[1]

@@ -1,9 +1,9 @@
 import { firstToUpper } from '../utilities/GeneralFunctions'
 import { isRawNote } from '../utilities/MusicFunctions'
-import { Note } from '../theory/Note'
 import { validateArray, validateDuration } from '../validation/Validators'
 import { NOTE_DURATIONS_AS_SIZE_IN_MEASURE } from '../Constants'
 import { isRest } from '../utilities/PureMusicUtils'
+import { Note } from '../theory'
 
 export interface MeasureData {
   notes: Array<string>;
