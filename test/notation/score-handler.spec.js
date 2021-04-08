@@ -14,8 +14,8 @@ describe('Score Handler', () => {
     chordMeasure = new Measure()
     chordMeasure.addChord({ name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4n' }, 0)
 
-    score.addMeasure('v1', measure, 0)
-    score.addMeasure('v1', chordMeasure, 0)
+    score.addMeasure('v1', { measure })
+    score.addMeasure('v1', { measure: chordMeasure })
   })
 
   describe('#measureToObject', () => {
@@ -72,7 +72,7 @@ describe('Score Handler', () => {
     })
   })
 
-  describe('#objectFromScore', () => {
+  describe('#scoreToObject', () => {
     it('creates a object from a score', () => {
       const scoreString  = ScoreHandler.scoreToObject(score)
       const sameOldScore = ScoreHandler.objectToScore(scoreString)

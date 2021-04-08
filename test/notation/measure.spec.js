@@ -127,7 +127,7 @@ describe('Measure', () => {
 
     it('chord name not set when not sent', () => {
       expect(measure.addChord({ notes: ['c3', 'e3', 'g3'], duration: '4n' }, 0)).to.be.true
-      expect(measure.data[0].name).to.equal('')
+      expect(measure.data[0].name).to.equal(undefined)
     })
 
     it('should return false when the measure if too full', () => {
@@ -220,6 +220,46 @@ describe('Measure', () => {
       expect(measure.length).to.eql(4)
       measure.addNote({ note: 'c3', duration: '4n' }, 0)
       expect(measure.length).to.eql(8)
+    })
+  })
+
+  describe('#toString', () => {
+    it('Empty measure should be an empty string', () => {
+      expect(measure.toString()).to.equal('')
+    })
+
+    it('Measure with regular notes', () => {
+      measure.addNotes({ notes: ['c3', 'g3'], duration: '4n' }, 0)
+      measure.addNotes({ notes: ['d3', 'a3'], duration: '4n' }, 1)
+      measure.addNotes({ notes: ['r'], duration: '8n' }, 2)
+      measure.addNotes({ notes: ['e4'], duration: '8n' }, 3)
+      measure.addNotes({ notes: ['f#3', 'c#4'], duration: '4n' }, 4)
+      expect(measure.toString()).to.equal('C3-G3_4n__D3-A3_4n__R_8n__E4_8n__F#3-C#4_4n')
+    })
+
+    it('Measure with chords', () => {
+      measure.addChord({ notes: ['c3', 'g3'], duration: '4n', name: 'Chord!' }, 0)
+      expect(measure.toString()).to.equal('C3-G3_4n_Chord!')
+    })
+  })
+
+  describe('#stringToMeasure', () => {
+    it('Should turn a string representing a measure to a measure instance', () => {
+      const str     = 'C3-G3_4n__D3-A3_4n__R_8n__E4_8n__F#3-C#4_4n'
+      const stub    = [
+        { notes: ['C3', 'G3'], duration: '4n' },
+        { notes: ['D3', 'A3'], duration: '4n' },
+        { notes: ['R'], duration: '8n' },
+        { notes: ['E4'], duration: '8n' },
+        { notes: ['F#3', 'C#4'], duration: '4n' }
+      ]
+      const measure = Measure.stringToMeasure({ str, maxDuration: 64 })
+      expect(measure._maxDuration).to.equal(64)
+      measure.data.forEach((member, i) => {
+        expect([...member.notes]).to.eql(stub[i].notes)
+        expect(member.duration).to.equal(stub[i].duration)
+        expect(member.name).to.equal(stub[i].name)
+      })
     })
   })
 })

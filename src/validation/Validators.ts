@@ -8,7 +8,7 @@ import { isDuration }   from '../utilities/PureMusicUtils'
  * @param arg
  * @returns {boolean}
  */
-export function validateArray(arg) {
+export function validateArray(arg: any) {
   if( !Array.isArray(arg)) {
     throw new InvalidInput(`expected ${ arg } to be an array`)
   }
@@ -16,15 +16,7 @@ export function validateArray(arg) {
   return true
 }
 
-export function validateInstance(instance, classToCheckFor) {
-  if( !(instance instanceof classToCheckFor)) {
-    throw new InvalidInput(`expected ${ instance } to be an instance of ${ classToCheckFor.name }`)
-  }
-
-  return true
-}
-
-export function validateNumber(val) {
+export function validateNumber(val: any) {
   if(typeof val !== 'number') {
     throw new InvalidInput(`expected ${ val } to be a number`)
   }
@@ -37,7 +29,7 @@ export function validateNumber(val) {
  * @param str
  * @returns {boolean}
  */
-export function validateRawNote(str) {
+export function validateRawNote(str: string) {
   if( !isRawNote(str)) {
     throw new InvalidInput(`Expected ${ str } to be a string representing a note`)
   }
@@ -45,12 +37,7 @@ export function validateRawNote(str) {
   return true
 }
 
-export function validatePitchClasses(pitchClasses) {
-  validateArray(pitchClasses)
-  // pitchClasses.forEach( pitchClass => validateInstance( pitchClass, PitchClass ) )
-}
-
-export function validateDuration(str) {
+export function validateDuration(str: string) {
   if( !isDuration(str)) {
     throw new InvalidInput(`Expected ${ str } to be a string representing note duration.`)
   }

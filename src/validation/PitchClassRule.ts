@@ -17,7 +17,7 @@ export default class PitchClassRule {
    * @throws InvalidInput
    * @returns {boolean}
    */
-  static exists(str) {
+  static exists(str: string) {
     const [letter, accidental] = str
     if( !PitchClassRule.validLetters.includes(letter)) {
       return false
@@ -44,14 +44,6 @@ export default class PitchClassRule {
           return false
         }
         break
-    }
-
-    return true
-  }
-
-  static isPitchClass(obj) {
-    if( !PitchClass.isPitchClass(obj)) {
-      throw new InvalidInput(`expected ${ obj } to be an instance of PitchClass`)
     }
 
     return true

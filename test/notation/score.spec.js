@@ -288,4 +288,48 @@ describe('Score', () => {
       spy2.restore()
     })
   })
+
+  describe('#toString', () => {
+    it('Properly turns a score to a string', () => {
+      const score   = new Score({ bpm: 80, timeSignature: [2, 4], name: 'my score', voiceNames: ['v1'] })
+      const measure = new Measure()
+
+      measure.addNotes({ notes: ['c3', 'c4'], duration: '4n' }, 0)
+      measure.addNotes({ notes: ['d3', 'd4'], duration: '4n' }, 1)
+      measure.addNotes({ notes: ['c3', 'c4'], duration: '4n' }, 2)
+      measure.addNotes({ notes: ['d3', 'd4'], duration: '4n' }, 3)
+
+      const chordMeasure = new Measure()
+      chordMeasure.addChord({ name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4n' }, 0)
+
+      score.addMeasure('v1', { measure })
+      score.addMeasure('v1', { measure: chordMeasure })
+
+      const scoreString = score.toString()
+
+      expect(scoreString).to.equal('my score___2,4___80___v1_d_C3-C4_4n__D3-D4_4n__C3-C4_4n__D3-D4_4n_m_C3-E3-G3_4n_C M')
+    })
+  })
+
+  describe('#stringToScore', () => {
+    it('Properly turns a string to a score', () => {
+      const score   = new Score({ bpm: 80, timeSignature: [2, 4], name: 'my score', voiceNames: ['v1'] })
+      const measure = new Measure()
+
+      measure.addNotes({ notes: ['c3', 'c4'], duration: '4n' }, 0)
+      measure.addNotes({ notes: ['d3', 'd4'], duration: '4n' }, 1)
+      measure.addNotes({ notes: ['c3', 'c4'], duration: '4n' }, 2)
+      measure.addNotes({ notes: ['d3', 'd4'], duration: '4n' }, 3)
+
+      const chordMeasure = new Measure()
+      chordMeasure.addChord({ name: 'C M', notes: ['C3', 'E3', 'G3'], duration: '4n' }, 0)
+
+      score.addMeasure('v1', { measure })
+      score.addMeasure('v1', { measure: chordMeasure })
+
+      const scoreString = score.toString()
+
+      expect(scoreString).to.equal('my score___2,4___80___v1_d_C3-C4_4n__D3-D4_4n__C3-C4_4n__D3-D4_4n_m_C3-E3-G3_4n_C M')
+    })
+  })
 })

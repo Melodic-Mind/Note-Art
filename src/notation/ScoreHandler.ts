@@ -1,5 +1,5 @@
-import Measure from './Measure'
-import Score   from './Score'
+import Measure, { MeasureData, NormalizedMeasureData } from './Measure'
+import Score                                           from './Score'
 
 /**
  * @class ScoreHandler
@@ -11,7 +11,7 @@ export default class ScoreHandler {
    * @param {Measure} measure
    * @return {{duration: string, data: {}, maxDuration: (number)}}
    */
-  static measureToObject(measure) {
+  static measureToObject(measure: Measure) {
     const notes = measure.data.map(notesMember => this.notesToObject(notesMember))
 
     return {
@@ -25,8 +25,8 @@ export default class ScoreHandler {
    * @param notesMember
    * @return {{duration: *, notes: any[]}}
    */
-  static notesToObject(notesMember) {
-    const notes = {
+  static notesToObject(notesMember: NormalizedMeasureData) {
+    const notes: MeasureData = {
       notes:    Array.from(notesMember.notes),
       duration: notesMember.duration
     }
@@ -43,9 +43,9 @@ export default class ScoreHandler {
    * @param {object} measureObject
    * @return {Measure}
    */
-  static objectToMeasure(measureObject) {
+  static objectToMeasure(measureObject: any) {
     const measure = new Measure(measureObject.maxDuration)
-    measureObject.data.forEach((notesMember, position) => {
+    measureObject.data.forEach((notesMember: MeasureData, position: number) => {
       if(notesMember.name) {
         measure.addChord({ ...notesMember }, position)
       } else {
@@ -61,8 +61,8 @@ export default class ScoreHandler {
    * @param {Score} score
    * @return {{duration: string, voices: array, timeSignature: array, bpm: number}}
    */
-  static scoreToObject(score) {
-    const voices = {}
+  static scoreToObject(score: Score) {
+    const voices: { [key: string]: Array<any> } = {}
     Object.entries(score.voices).map(([voiceName, voiceData]) =>
       voices[voiceName] = voiceData.map(measure => this.measureToObject(measure))
     )
@@ -80,16 +80,16 @@ export default class ScoreHandler {
    * @param {object} scoreObject
    * @return {Score}
    */
-  static objectToScore(scoreObject) {
+  static objectToScore(scoreObject: any) {
     const score = new Score({
       timeSignature: scoreObject.timeSignature,
       bpm:           scoreObject.bpm,
       name:          scoreObject.name
     })
 
-    Object.entries(scoreObject.voices).forEach(([voiceName, voiceData]) => {
+    Object.entries(scoreObject.voices).forEach(([voiceName, voiceData]: [string, any]) => {
       score.addVoice(voiceName)
-      voiceData.forEach((measureObject, measureIndex) => {
+      voiceData.forEach((measureObject: MeasureData, measureIndex: number) => {
         score.addMeasure(voiceName, { index: measureIndex, measure: this.objectToMeasure(measureObject) })
       })
     })
@@ -97,7 +97,7 @@ export default class ScoreHandler {
     return score
   }
 
-  static cloneScore(score) {
+  static cloneScore(score: Score) {
     return this.objectToScore(this.scoreToObject(score))
   }
 }

@@ -28,7 +28,7 @@ export default class Measure {
   constructor(maxDuration = 64) {
     this._maxDuration = maxDuration
     this._duration    = '4n'
-    this._data        = [{ notes: new Set(), duration: '4n', name: '' }]
+    this._data        = [{ notes: new Set(), duration: '4n' }]
   }
 
   _maxDuration: number
@@ -116,8 +116,7 @@ export default class Measure {
    */
   addNotes({ notes, duration }: MeasureData, position: number) {
     validateArray(notes)
-    const addedAllNotes = notes.every(note => this.addNote({ note, duration }, position))
-    return addedAllNotes
+    return notes.every(note => this.addNote({ note, duration }, position))
   }
 
   /**
@@ -236,7 +235,7 @@ export default class Measure {
   private initNext(position: number, duration: string = '4n') {
     const durationLeft = this.durationLeft(this.data.length)
     if(durationLeft > 0) {
-      this.data[position] = { notes: new Set(), duration, name: '' }
+      this.data[position] = { notes: new Set(), duration }
     }
   }
 
@@ -253,5 +252,41 @@ export default class Measure {
     const enoughDurationAvailable = durationSize > this.durationLeft(position) + durationSize
 
     return !(isPositionValid || enoughDurationAvailable)
+  }
+
+  static measureDataToString(notesMember: NormalizedMeasureData) {
+    const notes = Array.from(notesMember.notes).join('-')
+    if(notes) {
+      const duration = notesMember.duration
+      const name     = notesMember.name
+
+      return `${ notes }_${ duration }${ name ? `_${ name }` : '' }`
+    }
+    return ''
+  }
+
+  toString() {
+    return this.data.map(notesMember => Measure.measureDataToString(notesMember))
+               .filter(el => el !== '')
+               .join('__')
+  }
+
+  static parseMeasureNoteMemberString(str: string) {
+    const [notes, duration, name] = str.split('_')
+    return {
+      notes: notes.split('-'),
+      duration,
+      name
+    }
+  }
+
+  static stringToMeasure({ str, maxDuration }: { str: string, maxDuration: number }) {
+    const measure     = new Measure(maxDuration)
+    const noteMembers = str.split('__')
+                           .map(el => Measure.parseMeasureNoteMemberString(el))
+
+    noteMembers.forEach((noteMember, i) => measure.addChord(noteMember, i))
+
+    return measure
   }
 }
