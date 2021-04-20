@@ -1,8 +1,9 @@
-import { firstToUpper } from '../utilities/GeneralFunctions'
-import { PitchClassRule } from '../validation/PitchClassRule'
-import { InvalidInput } from '../Exceptions'
-import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES } from '../Constants'
-import { enharmonicPitchClass, getPitchClassSet, normalizePitchClass } from '../utilities/PureMusicUtils'
+import { firstToUpper } from '../utilities/GeneralFunctions';
+import { PitchClassRule } from '../validation/PitchClassRule';
+import { InvalidInput } from '../Exceptions';
+import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES } from '../Constants';
+import { enharmonicPitchClass, getPitchClassSet, normalizePitchClass } from '../utilities/PureMusicUtils';
+import { PitchClass as PitchClassType } from '../types';
 
 /**
  * @class PitchClass
@@ -12,55 +13,55 @@ import { enharmonicPitchClass, getPitchClassSet, normalizePitchClass } from '../
  * @param {String} pitchClass
  */
 export class PitchClass {
-  constructor(pitchClass: string) {
+  constructor(pitchClass: PitchClassType) {
     if( !PitchClassRule.exists(pitchClass)) {
-      throw new InvalidInput(`${ pitchClass } should be a string representing a pitch class.`)
+      throw new InvalidInput(`${ pitchClass } should be a string representing a pitch class.`);
     }
 
-    this._raw        = firstToUpper(pitchClass)
-    this._classSet   = pitchClass.includes('#') ? '#' : 'b'
-    this._pitchClass = normalizePitchClass(this._raw)
-    this._classIndex = getPitchClassSet(this._classSet).indexOf(this._pitchClass)
+    this._raw = firstToUpper(pitchClass as string) as PitchClassType;
+    this._classSet = pitchClass.includes('#') ? '#' : 'b';
+    this._pitchClass = normalizePitchClass(this._raw);
+    this._classIndex = getPitchClassSet(this._classSet).indexOf(this._pitchClass);
   }
 
-  _raw: string
+  _raw: PitchClassType;
 
   /**
    * Returns the pitch class as a string.
-   * @returns {String}
+   * @returns {PitchClassType}
    */
   get raw() {
-    return this._raw
+    return this._raw;
   }
 
-  _classSet: '#' | 'b'
+  _classSet: '#' | 'b';
 
   /**
    * Get the set of the pitch class - sharp or flat.
    * @type {String}
    */
   get classSet() {
-    return this._classSet
+    return this._classSet;
   }
 
-  _pitchClass: string
+  _pitchClass: PitchClassType;
 
   /**
    * Returns the pitch class.
    * @type {String}
    */
   get pitchClass() {
-    return this._pitchClass
+    return this._pitchClass;
   }
 
-  _classIndex: number
+  _classIndex: number;
 
   /**
    * Get the index of the pitch class out of the 12 classes (C, Db, etc...).
    * @type {Number}
    */
   get classIndex(): number {
-    return this._classIndex
+    return this._classIndex;
   }
 
   /**
@@ -70,7 +71,7 @@ export class PitchClass {
    * @returns {boolean}
    */
   static isFlat(pitchClass: string) {
-    return pitchClass.includes('b')
+    return pitchClass.includes('b');
   }
 
   /**
@@ -80,7 +81,7 @@ export class PitchClass {
    * @returns {boolean}
    */
   static isSharp(pitchClass: string) {
-    return ['#', 'x'].includes(pitchClass[1])
+    return ['#', 'x'].includes(pitchClass[1]);
   }
 
   /**
@@ -90,7 +91,7 @@ export class PitchClass {
    * @returns {boolean}
    */
   static isPitchClass(obj: any): boolean {
-    return obj instanceof PitchClass
+    return obj instanceof PitchClass;
   }
 
   /**
@@ -103,26 +104,26 @@ export class PitchClass {
    * console.log(c.interval(5)) // F
    */
   interval(interval: number): PitchClass {
-    const normalizedInterval = interval % NUMBER_OF_PITCH_CLASSES
+    const normalizedInterval = interval % NUMBER_OF_PITCH_CLASSES;
     if(PITCH_CLASSES.includes(this.raw)) {
-      const index      = Math.abs((this.classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES)
-      const pitchClass = getPitchClassSet(this.classSet)[index]
-      return new PitchClass(pitchClass)
+      const index = Math.abs((this.classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES);
+      const pitchClass = getPitchClassSet(this.classSet)[index];
+      return new PitchClass(pitchClass);
     } else {
-      const classIndex  = getPitchClassSet(this.classSet).indexOf(this.raw[0])
-      const index       = Math.abs((classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES)
-      let [letter, acc] = getPitchClassSet(this.classSet)[index]
-      const accidentals = this.raw.slice(1)
+      const classIndex = getPitchClassSet(this.classSet).indexOf(this.raw[0]);
+      const index = Math.abs((classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES);
+      let [letter, acc] = getPitchClassSet(this.classSet)[index];
+      const accidentals = this.raw.slice(1);
       if(acc === 'b' && !accidentals.includes('b')) {
-        const pc2        = FLAT_CLASS_NOTES[(FLAT_CLASS_NOTES.indexOf(`${ letter }${ acc }`) - 1) % NUMBER_OF_PITCH_CLASSES]
-        const enharmonic = enharmonicPitchClass(`${ letter }${ acc }`, pc2)
-        letter           = enharmonic[0]
-        acc              = enharmonic[1]
+        const pc2 = FLAT_CLASS_NOTES[(FLAT_CLASS_NOTES.indexOf(`${ letter }${ acc }`) - 1) % NUMBER_OF_PITCH_CLASSES];
+        const enharmonic = enharmonicPitchClass(`${ letter }${ acc }`, pc2);
+        letter = enharmonic[0];
+        acc = enharmonic[1];
       }
       if(accidentals[accidentals.length - 1] === '#' && acc) {
-        return new PitchClass(`${ letter }${ accidentals.slice(0, accidentals.length - 1) }x`)
+        return new PitchClass(`${ letter }${ accidentals.slice(0, accidentals.length - 1) }x`);
       }
-      return new PitchClass(`${ letter }${ accidentals }${ acc ? acc : '' }`)
+      return new PitchClass(`${ letter }${ accidentals }${ acc ? acc : '' }`);
     }
   }
 
@@ -131,6 +132,6 @@ export class PitchClass {
    * @returns {String}
    */
   toString() {
-    return this._raw
+    return this._raw;
   }
 }

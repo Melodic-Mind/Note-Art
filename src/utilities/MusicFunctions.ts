@@ -1,8 +1,14 @@
-import { rearrangeArray } from '../utilities/GeneralFunctions'
-import { PitchClassRule } from '../validation/PitchClassRule'
+import { rearrangeArray } from './GeneralFunctions'
+import { PitchClassRule } from '../validation'
 import { getPitchClassIndex, isRest, noteToObject, toSemitones } from './PureMusicUtils'
-import { Note } from '../theory/Note'
+import { Note } from '../theory'
 
+/**
+ * Transpose a note by an interval
+ * @example transposeNote('C3', 7) // G3
+ * @param note
+ * @param interval
+ */
 export function transposeNote(note: string, interval: number): string {
   return Note.builder(note).interval(interval).toString()
 }
