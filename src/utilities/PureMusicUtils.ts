@@ -3,7 +3,10 @@ import {
   SHARP_CLASS_NOTES,
 } from '../Constants';
 import { firstToUpper, isNumberAsString, mapString, occurrencesInString } from './GeneralFunctions';
-import { NoteAsObject, PitchClass, Note, PitchClassLetter, Accidental, FlatPitchClass } from '../types';
+import {
+  NoteAsObject, PitchClass, Note, PitchClassLetter, Accidental, FlatPitchClass, PurePitchClass, PureNote,
+  PureFlatPitchClass, Octave,
+} from '../types';
 
 /**
  * Returns the interval from one note to another.
@@ -11,7 +14,7 @@ import { NoteAsObject, PitchClass, Note, PitchClassLetter, Accidental, FlatPitch
  * @param note1
  * @param note2
  */
-export function getNotesInterval(note1: Note, note2: Note): number {
+export function getNotesInterval(note1: PureNote, note2: PureNote): number {
   const {
     pitchClass: pc1,
     octave: octave1,
@@ -36,14 +39,14 @@ export function getNotesInterval(note1: Note, note2: Note): number {
  * Returns an array of all natural music notes from set.
  * @param set
  */
-export function getPitchClassSet(set: string) {
+export function getPitchClassSet(set: 'b' | '#' | '') {
   if(set === '#') {
     return SHARP_CLASS_NOTES;
   }
-  if(set === 'b') {
+  else if(set === 'b') {
     return FLAT_CLASS_NOTES;
   }
-  return PITCH_CLASSES;
+  else return PITCH_CLASSES;
 }
 
 /**
@@ -106,10 +109,10 @@ export function normalizePitchClass(pc: PitchClass): string {
  * @param {string} note Pitch as a string, e.g Ab3
  * @returns {{octave: number, pitchClass: PitchClass}}
  */
-export function noteToObject(note: string): NoteAsObject {
+export function noteToObject(note: PureNote): NoteAsObject {
   // @todo octaves might be more than 1 character, dont ignore that :o
-  const pitchClass = firstToUpper(note.slice(0, note.length - 1)) as PitchClass;
-  const octave = parseInt(note[note.length - 1]);
+  const pitchClass = firstToUpper(note.slice(0, note.length - 1)) as PurePitchClass;
+  const octave = parseInt(note[note.length - 1]) as Octave;
 
   return { pitchClass, octave };
 }
@@ -133,13 +136,13 @@ export function isDuration(dur: string): boolean {
  * @param {number} range
  * @returns {Array}
  */
-export function notesInRange(baseNote: Note, range: number): any {
+export function notesInRange(baseNote: PureNote, range: number): any {
   let { pitchClass, octave } = noteToObject(baseNote);
   const notes: any = {};
   let tmpPitchClass;
 
   for(let i = 0; i <= range; ++i) {
-    tmpPitchClass = FLAT_CLASS_NOTES[(FLAT_CLASS_NOTES.indexOf(pitchClass as FlatPitchClass) + i) % 12];
+    tmpPitchClass = FLAT_CLASS_NOTES[(FLAT_CLASS_NOTES.indexOf(pitchClass as PureFlatPitchClass) + i) % 12];
 
     notes[tmpPitchClass + octave] = { pitchClass: tmpPitchClass, octave };
 
@@ -156,18 +159,18 @@ export function notesInRange(baseNote: Note, range: number): any {
  * @param pc
  * @returns {number}
  */
-export function getPitchClassIndex(pc: string): number {
+export function getPitchClassIndex(pc: PurePitchClass): number {
   const classSet = pc.includes('#') ? '#' : 'b';
   return getPitchClassSet(classSet).indexOf(pc);
 }
 
 /**
  * Calculate the pure interval between 2 pitch classes.
- * @param {String} pitchClass1 first note
- * @param {String} pitchClass2 second note
+ * @param {PurePitchClass} pitchClass1 first note
+ * @param {PurePitchClass} pitchClass2 second note
  * @returns {Number}
  */
-export function getPitchClassesInterval(pitchClass1: string, pitchClass2: string): number {
+export function getPitchClassesInterval(pitchClass1: PurePitchClass, pitchClass2: PurePitchClass): number {
   const i1 = getPitchClassIndex(pitchClass1),
     i2 = getPitchClassIndex(pitchClass2);
   return i1 - i2 <= 0 ? Math.abs(i1 - i2) : 12 - (i1 - i2);
@@ -179,7 +182,7 @@ export function getPitchClassesInterval(pitchClass1: string, pitchClass2: string
  * @param from
  * @param to
  */
-export function enharmonicPitchClass(from: string, to: string): string {
+export function enharmonicPitchClass(from: PurePitchClass, to: PurePitchClass): string {
   const interval = getPitchClassesInterval(from, to);
 
   const type = interval >= 7 ? '#' : 'b';
@@ -203,7 +206,7 @@ export function enharmonicPitchClass(from: string, to: string): string {
  * @returns {String}
  * @param str
  */
-export function toFlat(str: string): string {
+export function toFlat(str: PureNote | PurePitchClass): PureNote | PurePitchClass {
   if(str.includes('#')) {
     const { pitchClass, octave } = noteToObject(str);
     if(isNaN(octave)) {
@@ -222,13 +225,13 @@ export function toFlat(str: string): string {
  * @param {Number | String} interval
  * @returns {number}
  */
-export function toSemitones(interval: number | string): number {
+export function toSemitones(interval: number | keyof INTERVALS): number {
   let semitones: number;
   if(typeof interval === 'number') {
     semitones = interval;
   } else {
     if(isNumberAsString(interval)) {
-      semitones = INTERVALS[interval];
+      semitones = INTERVALS[interval] as number;
     } else {
       semitones = parseInt(interval);
     }
