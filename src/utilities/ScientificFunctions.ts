@@ -1,19 +1,20 @@
-import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_STANDARD, SEMITONE } from '../Constants'
-import { getPitchClassIndex, noteToObject } from './PureMusicUtils'
+import { PureFlatPitchClass, PureNote, PurePitchClass } from 'types';
+import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_STANDARD, SEMITONE } from '../Constants.js';
+import { getPitchClassIndex, noteToObject } from './PureMusicUtils.js';
 
 /**
  * Calculate the frequency of a note by its octave and index out of all notes(c, c#, etc...).
  * @param {String} note
  * @returns {Number}
  */
-export function freqFromPitch(note: string): number {
-  const { pitchClass, octave } = noteToObject(note)
-  const oct                    = octave - PITCH_STANDARD.octave // calculate octave difference
-  const pitchClassIndex        = getPitchClassIndex(pitchClass)
+export function freqFromPitch(note: PureNote): number {
+  const { pitchClass, octave } = noteToObject(note);
+  const oct = octave - PITCH_STANDARD.octave; // calculate octave difference
+  const pitchClassIndex = getPitchClassIndex(pitchClass as PurePitchClass);
   return Math.pow(
     SEMITONE,
-    pitchClassIndex - FLAT_CLASS_NOTES.indexOf(PITCH_STANDARD.pitchClass) + oct * NUMBER_OF_PITCH_CLASSES
-  ) * PITCH_STANDARD.frequency
+    pitchClassIndex - FLAT_CLASS_NOTES.indexOf(PITCH_STANDARD.pitchClass as PureFlatPitchClass) + oct * NUMBER_OF_PITCH_CLASSES,
+  ) * PITCH_STANDARD.frequency;
 }
 
 /**
@@ -22,7 +23,7 @@ export function freqFromPitch(note: string): number {
  * @returns {number}
  */
 export function freqFromMidi(midi: number): number {
-  return PITCH_STANDARD.frequency * Math.pow(2, (midi - PITCH_STANDARD.midi) / NUMBER_OF_PITCH_CLASSES)
+  return PITCH_STANDARD.frequency * Math.pow(2, (midi - PITCH_STANDARD.midi) / NUMBER_OF_PITCH_CLASSES);
 }
 
 /**
@@ -31,7 +32,7 @@ export function freqFromMidi(midi: number): number {
  * @returns {number}
  */
 export function freqToFloatMidi(frequency: number): number {
-  return PITCH_STANDARD.midi + NUMBER_OF_PITCH_CLASSES * Math.log2(frequency / PITCH_STANDARD.frequency)
+  return PITCH_STANDARD.midi + NUMBER_OF_PITCH_CLASSES * Math.log2(frequency / PITCH_STANDARD.frequency);
 }
 
 /**
@@ -40,7 +41,7 @@ export function freqToFloatMidi(frequency: number): number {
  * @returns {number}
  */
 export function freqToMidi(frequency: number): number {
-  return Math.round(freqToFloatMidi(frequency))
+  return Math.round(freqToFloatMidi(frequency));
 }
 
 /**
@@ -50,7 +51,7 @@ export function freqToMidi(frequency: number): number {
  * @returns {number}
  */
 export function centsOffFromFreq(frequency: number, midi: number): number {
-  return Math.floor(1200 * Math.log(frequency / freqFromMidi(midi)) / Math.log(2))
+  return Math.floor(1200 * Math.log(frequency / freqFromMidi(midi)) / Math.log(2));
 }
 
 /**
@@ -59,5 +60,5 @@ export function centsOffFromFreq(frequency: number, midi: number): number {
  * @returns {Number}
  */
 export function midiToFreq(realNumber: number): number {
-  return PITCH_STANDARD.frequency * (Math.pow(2, (realNumber - PITCH_STANDARD.midi) / NUMBER_OF_PITCH_CLASSES))
+  return PITCH_STANDARD.frequency * (Math.pow(2, (realNumber - PITCH_STANDARD.midi) / NUMBER_OF_PITCH_CLASSES));
 }

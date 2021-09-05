@@ -3,8 +3,8 @@
  * @param {String} str String to transform
  * @returns {String}
  */
-export function firstToUpper(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1)
+export function firstToUpper(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 /**
@@ -12,8 +12,8 @@ export function firstToUpper(str: string) {
  * @param {number} num
  * @returns {Number}
  */
-export function twoDigitFormat(num: number) {
-  return Number(Number.parseFloat(String(num)).toFixed(2))
+export function twoDigitFormat(num: number): number {
+  return Number(Number.parseFloat(String(num)).toFixed(2));
 }
 
 /**
@@ -24,10 +24,10 @@ export function twoDigitFormat(num: number) {
  * @returns {Array}
  */
 export function switchMembers([...arr]: [], i1: number, i2: number): [] {
-  const tmp = arr[i1]
-  arr[i1]   = arr[i2]
-  arr[i2]   = tmp
-  return arr
+  const tmp = arr[i1];
+  arr[i1] = arr[i2];
+  arr[i2] = tmp;
+  return arr;
 }
 
 /**
@@ -36,16 +36,16 @@ export function switchMembers([...arr]: [], i1: number, i2: number): [] {
  * @param {number} index to arrange from.
  * @returns {Array}
  */
-export function rearrangeArray([...array]: Array<any>, index: number): Array<any> {
-  const tmp = []
-  let i     = 0
+export function rearrangeArray([...array]: Array<unknown>, index: number): Array<unknown> {
+  const tmp = [];
+  let i = 0;
 
-  while(i < index) {
-    tmp.push(array.shift())
-    ++i
+  while (i < index) {
+    tmp.push(array.shift());
+    ++i;
   }
 
-  return [...array, ...tmp]
+  return [...array, ...tmp];
 }
 
 /**
@@ -56,19 +56,18 @@ export function rearrangeArray([...array]: Array<any>, index: number): Array<any
  * @returns {string}
  */
 export function mapString(str: string, toMap: string, mapTo: string): string {
-  while(str.includes(toMap)) {
-    const length = str.length
+  while (str.includes(toMap)) {
+    const length = str.length;
     for(let i = 0; i < length; ++i) {
       if(str.substr(i, toMap.length) === toMap) {
-        str = `${ str.slice(0, i) }${ mapTo }${ str.slice(i + toMap.length) }`
-        break
+        str = `${str.slice(0, i)}${mapTo}${str.slice(i + toMap.length)}`;
+        break;
       }
     }
   }
 
-  return str
+  return str;
 }
-
 
 /** Function that count occurrences of a substring in a string.
  * @param {String} str               The string
@@ -76,7 +75,7 @@ export function mapString(str: string, toMap: string, mapTo: string): string {
  * @returns {number}
  */
 export function occurrencesInString(str: string, subString: string): number {
-  return str.split(subString).length - 1
+  return str.split(subString).length - 1;
 }
 
 /**
@@ -85,11 +84,11 @@ export function occurrencesInString(str: string, subString: string): number {
  * @param size The new size.
  * @returns {Array}
  */
-export function fitArrayToSize([...arr]: Array<any>, size: number): Array<any> {
-  while(arr.length < size) {
-    arr = arr.concat([...arr])
+export function fitArrayToSize([...arr]: Array<unknown>, size: number): Array<unknown> {
+  while (arr.length < size) {
+    arr = arr.concat([...arr]);
   }
-  return arr.slice(0, size)
+  return arr.slice(0, size);
 }
 
 /**
@@ -97,11 +96,11 @@ export function fitArrayToSize([...arr]: Array<any>, size: number): Array<any> {
  * @param matrix Array of arrays
  * @returns {Array}
  */
-export function longestArray(matrix: Array<Array<any>>): Array<any> {
-  if( !Array.isArray(matrix) || !matrix.every(arr => Array.isArray(arr))) {
-    throw new Error(`Expected ${ matrix } and each of it's elements to be an array`)
+export function longestArray(matrix: Array<Array<unknown>>): Array<unknown> {
+  if(!Array.isArray(matrix) || !matrix.every(arr => Array.isArray(arr))) {
+    throw new Error(`Expected ${matrix} and each of it's elements to be an array`);
   }
-  return matrix.reduce((a, b) => (a.length > b.length ? a : b), [])
+  return matrix.reduce((a, b) => (a.length > b.length ? a : b), []);
 }
 
 /**
@@ -109,6 +108,6 @@ export function longestArray(matrix: Array<Array<any>>): Array<any> {
  * @param {String} str
  * @returns {boolean}
  */
-export function isNumberAsString(str: string) {
-  return isNaN(parseInt(str))
+export function isNumberAsString(str: string): boolean {
+  return !isNaN(parseInt(str));
 }

@@ -1,5 +1,5 @@
 export type NoteAsObject = {
-  pitchClass: PurePitchClass;
+  pitchClass: PitchClass;
   octave: Octave;
 }
 
@@ -13,8 +13,8 @@ export type Accidental = '' | FlatAccidental | SharpAccidental;
 
 export type Octave = number;
 
-export type FlatPitchClass = `${ PitchClassLetter }${ FlatAccidental }`;
-export type SharpPitchClass = `${ PitchClassLetter }${ SharpAccidental }`;
+export type FlatPitchClass = `${PitchClassLetter}${FlatAccidental}`;
+export type SharpPitchClass = `${PitchClassLetter}${SharpAccidental}`;
 
 export type PitchClass = PitchClassLetter | FlatPitchClass | SharpPitchClass;
 
@@ -22,7 +22,10 @@ export type PureFlatPitchClass = 'C' | 'Db' | 'D' | 'Eb' | 'E' | 'F' | 'Gb' | 'G
 export type PureSharpPitchClass = 'C' | 'C#' | 'D' | 'D#' | 'E' | 'F' | 'F#' | 'G' | 'G#' | 'A' | 'A#' | 'B';
 export type PurePitchClass = PureFlatPitchClass | PureSharpPitchClass;
 
-export type Note = `${ PitchClass }${ Octave }`;
-export type PureNote = `${ PurePitchClass }${ Octave }`;
+export type Note = `${PitchClass}${Octave}`;
+export type PureNote = `${PurePitchClass}${Octave}`;
 
-export type NoteDuration = ''
+export type Chord = Array<PitchClass | Note>;
+export type Scale = Array<PitchClass | Note>;
+
+export type NoteDuration = '';

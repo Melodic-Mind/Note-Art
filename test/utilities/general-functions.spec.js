@@ -1,62 +1,71 @@
 import {
-  firstToUpper, fitArrayToSize, longestArray, mapString, rearrangeArray, switchMembers, twoDigitFormat
-} from '../../src'
+  firstToUpper, fitArrayToSize, longestArray, mapString, rearrangeArray, switchMembers, twoDigitFormat, isNumberAsString,
+} from '../../lib/index.js';
 
 describe('general-functions', () => {
   it('#firstToUpper', () => {
-    const stub = 'Major'
-    expect(firstToUpper('major')).to.eql(stub)
-  })
+    const stub = 'Major';
+    expect(firstToUpper('major')).to.eql(stub);
+  });
 
   it('#twoDigitFormat', () => {
-    expect(twoDigitFormat(1.213)).to.eql(1.21)
-  })
+    expect(twoDigitFormat(1.213)).to.eql(1.21);
+  });
 
   describe('#switchMember', () => {
     it('should return a new array with the members at the indexes switched', () => {
-      expect(switchMembers([1, 2], 0, 1)).to.eql([2, 1])
-    })
-  })
+      expect(switchMembers([1, 2], 0, 1)).to.eql([2, 1]);
+    });
+  });
 
   describe('#rearrangeArray', () => {
     it('should re-arrange an array', () => {
-      expect(rearrangeArray([1, 2, 3, 4], 1)).to.eql([2, 3, 4, 1])
-      expect(rearrangeArray([1, 2, 3, 4, 5, 6], 3)).to.eql([4, 5, 6, 1, 2, 3])
-    })
-  })
+      expect(rearrangeArray([1, 2, 3, 4], 1)).to.eql([2, 3, 4, 1]);
+      expect(rearrangeArray([1, 2, 3, 4, 5, 6], 3)).to.eql([4, 5, 6, 1, 2, 3]);
+    });
+  });
 
   describe('#mapString', () => {
     it('reduces a string', () => {
-      expect(mapString('A###', '##', 'x')).to.equal('Ax#')
-    })
-  })
+      expect(mapString('A###', '##', 'x')).to.equal('Ax#');
+    });
+  });
 
   describe('#fitArrayToSize', () => {
     it('should fit the array to the size with the elements', () => {
-      expect(fitArrayToSize(['a', 'b'], 3)).to.eql(['a', 'b', 'a'])
-    })
+      expect(fitArrayToSize(['a', 'b'], 3)).to.eql(['a', 'b', 'a']);
+    });
 
     it('should simply return the array when the size is the same as the array length', () => {
-      expect(fitArrayToSize(['a', 'b'], 2)).to.eql(['a', 'b'])
-    })
+      expect(fitArrayToSize(['a', 'b'], 2)).to.eql(['a', 'b']);
+    });
 
     it('should cut the array length when the size is smaller', () => {
-      expect(fitArrayToSize(['a', 'b'], 1)).to.eql(['a'])
-    })
-  })
+      expect(fitArrayToSize(['a', 'b'], 1)).to.eql(['a']);
+    });
+  });
 
   describe('#longestArray', () => {
     it('returns the longest array out of a matrix', () => {
-      const stub = [[1, 2, 3], [1, 2], [1, 2, 3, 4, 5]]
-      expect(longestArray(stub)).to.eql(stub[2])
-    })
+      const stub = [[1, 2, 3], [1, 2], [1, 2, 3, 4, 5]];
+      expect(longestArray(stub)).to.eql(stub[2]);
+    });
 
     it('throws an error when input is not matrix', () => {
-      expect(() => longestArray('NOT MATRIX')).to.throw(Error)
-    })
+      expect(() => longestArray('NOT MATRIX')).to.throw(Error);
+    });
 
     it('throws an error when one of the matrix elements is not an array', () => {
-      expect(() => longestArray([[1, 2]['omg']])).to.throw(Error)
-    })
-  })
-})
+      expect(() => longestArray([[1, 2]['omg']])).to.throw(Error);
+    });
+  });
+
+  describe('#isNumberAsString', () => {
+    it('should return true when string represents number', () => {
+      expect(isNumberAsString('1')).to.be.true;
+    });
+    it('should return false when string is not a number', () =>{
+      expect(isNumberAsString('a')).to.be.false;
+    });
+  });
+});

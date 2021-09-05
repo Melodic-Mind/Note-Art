@@ -1,11 +1,11 @@
-function assertInterval(obj, interval, expectedInstance) {
-  it(`${ obj.raw } with interval ${ interval } to ${ expectedInstance }`, () => {
-    expect(obj.interval(Number(interval))).to.eql(expectedInstance)
-  })
-}
+import { firstToUpper } from '../lib/index.js';
 
-export function testIntervals(instance, stub) {
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+export function testFn(fn, baseNote, stub) {
   Object.entries(stub).forEach(([interval, note]) => {
-    assertInterval(instance, interval, note)
-  })
+    note = firstToUpper(note);
+    it(`${baseNote} with interval ${interval} to be ${note}`, () => {
+      expect(fn(baseNote, interval)).to.equal(note);
+    });
+  });
 }

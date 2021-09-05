@@ -6,7 +6,7 @@
     "extension": [".js", ".ts"],
     "reporter": ["lcov", "text", "html"],
     "require": ["@babel/register","ts-node/register"],
-    "sourceMap": false,
+    "sourceMap": true,
     "instrument": false,
     "cache": false,
     "all": true,

@@ -1,8 +1,7 @@
-export * from './utilities'
-export * from './theory'
-export * from './notation'
-export * from './validation'
-export * from './Constants'
+export * from './utilities/index.js';
+export * from './Theory.js';
+export * from './Constants.js';
+export * from './types.js';
 
 //@todo add good docs using vuepress - like this:
 /*
