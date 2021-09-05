@@ -1,34 +1,27 @@
 {
   "compilerOptions": {
-    "outDir": "dist/esm",
-    "target": "esnext",
-    "module": "ES2015",
+    "outDir": "lib",
+    "noImplicitAny": true,
+    "module": "ES2020",
+    "target": "ES6",
     "allowJs": true,
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
     "declaration": true,
-    "esModuleInterop": true,
-    "inlineSourceMap": false,
-    "lib": ["esnext"],
+    "lib": ["ES2016"],
     "listEmittedFiles": false,
     "listFiles": false,
-    "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "pretty": true,
     "resolveJsonModule": true,
-    "paths": {
-      "src": ["./src"],
-      "tone": ["node_modules/tone"]
-    },
+    "experimentalDecorators": true,
+    "noEmit": false,
     "skipLibCheck": true,
     "strict": true,
-    "traceResolution": false,
-    "types": ["node"],
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "noEmit": false
+    "sourceMap": true
   },
   "compileOnSave": true,
-  "exclude": ["node_modules", "dist", "src/test"],
+  "exclude": ["node_modules", "dist", "test", "src/notation"],
   "include": ["src"]
 }

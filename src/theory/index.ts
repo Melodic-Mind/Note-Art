@@ -1,6 +1,0 @@
-export * from './PitchClass'
-export * from './Note'
-export * from './MusicalPattern'
-export * from './Chord'
-export * from './Scale'
-export * from './GuitarChordPattern'

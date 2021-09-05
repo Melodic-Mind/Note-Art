@@ -1,25 +1,6 @@
-import { rearrangeArray } from '../utilities/GeneralFunctions'
-import { PitchClassRule } from '../validation/PitchClassRule'
-import { getPitchClassIndex, isRest, noteToObject, toSemitones } from './PureMusicUtils'
-import { Note } from '../theory/Note'
-
-export function transposeNote(note: string, interval: number): string {
-  return Note.builder(note).interval(interval).toString()
-}
-
-/**
- * Checks if a string represents a raw musical note.
- * @param str
- * @returns {boolean}
- */
-export function isRawNote(str: string): boolean {
-  if(isRest(str)) {
-    return true
-  }
-  const { pitchClass, octave } = noteToObject(str)
-
-  return PitchClassRule.exists(pitchClass) && !isNaN(octave)
-}
+import { PureNote, PurePitchClass } from '../types.js';
+import { rearrangeArray } from './GeneralFunctions.js';
+import { getPitchClassIndex } from './PureMusicUtils.js';
 
 /**
  * Returns an array of notes with a specific octave.
@@ -28,7 +9,7 @@ export function isRawNote(str: string): boolean {
  * @returns {Array}
  */
 export function pitchClassesToNotes(pitchClasses: Array<string>, octave: number): Array<string> {
-  return pitchClasses.map(pitchClass => `${ pitchClass }${ octave }`)
+  return pitchClasses.map(pitchClass => `${pitchClass}${octave}`);
 }
 
 /**
@@ -39,34 +20,21 @@ export function pitchClassesToNotes(pitchClasses: Array<string>, octave: number)
  *     etc...
  * @returns {Array}
  */
-export function pitchClassesToPianoChordNotes(pitchClasses: Array<string>, octave: number, inversion: number = 0): Array<string> {
+export function pitchClassesToPianoChordNotes(pitchClasses: Array<PurePitchClass>, octave: number, inversion = 0): Array<PureNote> {
   if(inversion) {
-    pitchClasses = rearrangeArray(pitchClasses, inversion)
+    pitchClasses = rearrangeArray(pitchClasses, inversion) as Array<PurePitchClass>;
   }
 
-  let currentOctave = octave
+  let currentOctave = octave;
 
   return pitchClasses.map((pitchClass, i) => {
     if(i !== 0) {
-      const pcIndex     = getPitchClassIndex(pitchClass)
-      const prevPcIndex = getPitchClassIndex(pitchClasses[i - 1])
+      const pcIndex = getPitchClassIndex(pitchClass);
+      const prevPcIndex = getPitchClassIndex(pitchClasses[i - 1]);
       if((i - 1) >= 0 && pcIndex < prevPcIndex) {
-        currentOctave++
+        currentOctave++;
       }
     }
-    return `${ pitchClass }${ currentOctave }`
-  })
-}
-
-/**
- * Returns an array of notes from a base note and array of intervals.
- * @param {String} baseNote
- * @param {Array<Number>} intervals
- * @returns {Array<String>}
- */
-export function intervalsToNotes(baseNote: string, intervals: Array<number | string>) {
-  return intervals.map(interval => {
-    const semitones = toSemitones(interval)
-    return transposeNote(baseNote, semitones)
-  })
+    return `${pitchClass}${currentOctave}`;
+  }) as Array<PureNote>;
 }
