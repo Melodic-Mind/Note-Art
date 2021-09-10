@@ -4,10 +4,9 @@ import {
 } from '../Constants.js';
 import { firstToUpper, isNumberAsString, mapString, occurrencesInString } from './GeneralFunctions.js';
 import {
-  NoteAsObject, PitchClass, PitchClassLetter, Accidental, PurePitchClass, PureNote, PureSharpPitchClass,
+  NoteAsObject, PitchClass, PitchClassLetter, Accidental, PurePitchClass, PureNote,  Note, PureSharpPitchClass,
   PureFlatPitchClass, Octave,
 } from '../types';
-import { Note } from 'index.js';
 
 /**
  * Calculate the pure interval between 2 pitch classes.
