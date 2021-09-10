@@ -138,7 +138,7 @@ export function normalizePitchClass(pc: PitchClass): PurePitchClass {
 
 export function normalizeNote(note: Note): Note {
   const { pitchClass, octave } = noteToObject(note);
-  return `${normalizePitchClass(pitchClass)}${octave}`;
+  return `${normalizePitchClass(pitchClass)}${octave}` as Note;
 }
 
 /**
@@ -147,7 +147,6 @@ export function normalizeNote(note: Note): Note {
  * @returns {{octave: number, pitchClass: PitchClass}}
  */
 export function noteToObject(note: Note): NoteAsObject {
-  // @todo octaves might be more than 1 character, dont ignore that :o
   const pitchClass = firstToUpper(note.slice(0, note.length - 1)) as PurePitchClass;
   const octave = parseInt(note[note.length - 1]) as Octave;
 
@@ -193,9 +192,12 @@ export function notesInRange(baseNote: PureNote, range: number): Record<PureNote
   let tmpPitchClass;
 
   for(let i = 0; i <= range; ++i) {
-    tmpPitchClass = FLAT_CLASS_NOTES[(FLAT_CLASS_NOTES.indexOf(pitchClass as PureFlatPitchClass) + i) % 12];
+    const currentIndex = (FLAT_CLASS_NOTES.indexOf(pitchClass as PureFlatPitchClass) + i) % 12;
+    tmpPitchClass = FLAT_CLASS_NOTES[currentIndex];
 
-    notes[`${tmpPitchClass}${octave}`] = { pitchClass: tmpPitchClass, octave };
+    const key = `${tmpPitchClass}${octave}` as PureNote;
+    const value = { pitchClass: tmpPitchClass, octave } as NoteAsObject
+    notes[key] = value;
 
     if(tmpPitchClass === 'B') {
       octave++;
@@ -252,7 +254,7 @@ export function toFlat(str: PurePitchClass | PureNote): PurePitchClass | PureNot
       return FLAT_CLASS_NOTES[SHARP_CLASS_NOTES.indexOf(str as PureSharpPitchClass)];
     } else {
       const pc = FLAT_CLASS_NOTES[SHARP_CLASS_NOTES.indexOf(pitchClass as PureSharpPitchClass)];
-      return `${pc}${octave}`;
+      return `${pc}${octave}` as PureNote;
     }
   }
 
