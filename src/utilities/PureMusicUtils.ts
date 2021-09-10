@@ -12,7 +12,9 @@ import {
  * Calculate the pure interval between 2 pitch classes.
  * @param {PurePitchClass} pitchClass1 first note
  * @param {PurePitchClass} pitchClass2 second note
- * @returns {Number}
+ * @returns {number}
+ * @example
+ * getPitchClassesInterval('C', 'E') //  4
  */
 export function getPitchClassesInterval(pitchClass1: PitchClass, pitchClass2: PitchClass): number {
   const normalizedPC1 = normalizePitchClass(pitchClass1);
@@ -24,9 +26,10 @@ export function getPitchClassesInterval(pitchClass1: PitchClass, pitchClass2: Pi
 
 /**
  * Returns the interval from one note to another.
- * @example getNotesInterval('C3', 'G3'); // 7
  * @param note1
  * @param note2
+ * @returns {number}
+ * @example getNotesInterval('C3', 'G3'); // 7
  */
 export function getNotesInterval(note1: Note, note2: Note): number {
   const {
@@ -52,6 +55,14 @@ export function getNotesInterval(note1: Note, note2: Note): number {
   return normalizedOctaveDistance * 12 + pitchClassDistance;
 }
 
+/**
+ * Returns the interval from one note to another.
+ * Accepts both pitch classes and notes.
+ * @param {PitchClass | Note} note1
+ * @param {PitchClass | Note} note2
+ * @returns {number}
+ * @example getNotesInterval('C3', 'G3'); // 7
+ */
 export function getInterval(note1: PitchClass | Note, note2: PitchClass | Note): number {
   return isNote(note1) ? 
     getNotesInterval(note1 as PureNote, note2 as PureNote) : 
@@ -59,9 +70,12 @@ export function getInterval(note1: PitchClass | Note, note2: PitchClass | Note):
 }
 
 /**
- * Returns the class set of pitch class, defaults to flat.
+ * Returns sharp if a pitch class has a sharp, otherwise returns flat.
  * @param pitchClass
  * @returns
+ * @example
+ * getClassSet('C#') // '#'
+ * getClassSet('C') // 'b'
  */
 export function getClassSet(pitchClass: PitchClass): '#' | 'b' {
   return pitchClass.includes('#') ? '#' : 'b';
@@ -81,7 +95,7 @@ export function getPitchClassSet(set: 'b' | '#' | ''): any {
 }
 
 /**
- * Returns the octave from a raw note.
+ * Returns the octave from a note.
  * @returns {*}
  * @param note
  */
@@ -90,7 +104,7 @@ export function extractOctave(note: string): string {
 }
 
 /**
- * Returns the pitch class from a raw note.
+ * Returns the pitch class from a note.
  * @param note
  * @returns {*}
  */
@@ -101,6 +115,9 @@ export function extractPitchClass(note: string): string {
 /**
  * Transform a pitch class to it's basic form.
  * @param {String} pc
+ * @returns {PurePitchClass}
+ * @example
+ * normalizePitchClass('CX') // 'A#'
  */
 export function normalizePitchClass(pc: PitchClass): PurePitchClass {
   const pitchLetter: PitchClassLetter = firstToUpper(pc[0]) as PitchClassLetter;
