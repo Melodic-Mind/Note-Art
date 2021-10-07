@@ -39,15 +39,19 @@
 
 ## Features
 
-1. Use music theory in code.
-* You can use awesome libraries like ToneJS to play audio and schedule music in the browser.
+1. Transpose, generate chords and scales easily, invert chords.
+2. Tons of music theory utilities, e.g getting the interval between 2 notes, normalizing notes, getting the enharmonic pitch class, converting sharps to flats and a lot more.
 
 ## Getting Started
 
 Installation:
 
 ``` bash
+# Using npm
 npm install note-art
+
+# Using yarn
+yarn add note-art
 ```
 
 ### Usage
