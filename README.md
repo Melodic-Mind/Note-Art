@@ -32,27 +32,17 @@
 
 * Create Notes, Chords, Scales and more easily.
 * Designed to be simple and intuitive.
-* Create scores using music composition logic Note-Art has a music notation api that works like writing music sheets.
-* Easily integrate with other music libraries to play music in the browser You can use libraries like ToneJS to easily
+* Easily integrate with other music libraries to play music in the browser - You can use libraries like ToneJS to easily
   play scales, chords and even scores you create with Note-Art.
 * Use this library to create tools for musicians, research music theory, just create some fun music with programming and
   much more!
 
 ## Features
 
-1. Create Notes, Chords, Scales and more, manipulate and extract information from them.
-2. Create full musical scores with multiple instruments.(Only theoretically)
-
+1. Use music theory in code.
 * You can use awesome libraries like ToneJS to play audio and schedule music in the browser.
 
 ## Getting Started
-
-One of the things that make note-art so awesome & easy to use is the way it was designed, musical models, and the
-notation system are not tightly coupled and do not rely on each other to work.<br>
-That means you can easily create music scores without ever needing to understand how the musical models work, or you can
-even create your own way of interacting with the notation API which is super intuitive and simple.
-<br>
-<br>
 
 Installation:
 
@@ -62,51 +52,44 @@ npm install note-art
 
 ### Usage
 
-#### Music Models
+Note-art is fully written in TS and offers functions that can achieve any music theory related task you desire.
 
-The music models are pure music theory concepts that are translated to code.
+#### Theory Functions
 
 * patterns are in semi-tones.
 
-```
-import {PitchClass, Note, Chord, Scale} from 'note-art'
+##### Transpose any pitch class, note or group of notes easily
+
+```js
+import { transpose } from 'note-art'
 
 // PitchClass
 
-const a = new PitchClass('a')
-
-console.log(a.interval(5))  // Returns a new pitch class instance with 'D' as the pitch.
+transpose('A', 5)  // 'D'
 
 // Note
 
-const A = new Note('a', 4)
+transpose('A3', 5)  // 'D4'
 
-console.log(A)      // A4
+// Group of notes(can represent a chord, scale or anything else)
 
-console.log(A.frequency) // outputs 440
+const notes = ['C3', 'E3', 'G3']
 
-const fourth = A.interval(5) // calculate 5 semitones up - fourth is the note E with octave 5
-
-console.log(fourth) // E4
-
-//Chord
-
-const A_M = new Chord(a, [4, 7]})
-
-console.log(A_M.pitchClasses) // A, C, E(returns pitch class instances)
-
-//Scale
-
-const C_Major = new Scale(new PitchClass('c'), [0, 2, 4, 5, 7, 9, 11]})
-
-console.log(A_Major.pitchClasses) // C, D, E, F, G, A, B
+notes.map(note => transpose(note, 7)) // ['G3', 'B3', 'D4'] 
 ```
 
-<br>
+##### Other functions
 
-#### Notation
+```js
+import { noteFromFrequency, intervalsToNotes, invertChord };
 
-The notation api is more complex so check out the api, or the demo source code to see an example of using it.
+noteFromFrequency(440) // A4
+
+const majorChordPattern = [0, 4, 7];
+const cMajorChord = intervalsToNotes('C3', majorChordPattern) // ['C3', 'E3', 'G3']
+
+const cMajorFirstInversion = invertChord(cMajorChord, 1); // ['E3', 'G3', 'C4']
+```
 
 <br>
 
@@ -126,14 +109,14 @@ Check out the [API](https://note-art-docs.netlify.com/) for more.
 
 * Support me on [patreon](https://www.patreon.com/Seanitzel).
 * Download my app on the google play store
-    - [Scale Heaven](https://play.google.com/store/apps/details?id=com.scales.scaleheaven) - **which can generate and
-      play any scale in the history of mankind** on google play (and press the banner once in a while ;)).
+    - [Music Guru](https://play.google.com/store/apps/details?id=com.scales.scaleheaven) - **which can generate and
+      play any scale in the history of mankind** on google play.
 
 ## Todo:
 
-* Create base music models - pitch class, note, chord, etc... :heavy_check_mark:
+* Create music theory functions - pitch class, note, chord, etc... :heavy_check_mark:
 
-* Implement Music notation. :heavy_check_mark:
+* Re-implement Music notation.
 
 ## Contact
 

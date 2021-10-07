@@ -212,7 +212,7 @@ export function notesInRange(baseNote: PureNote, range: number): Record<PureNote
     tmpPitchClass = FLAT_CLASS_NOTES[currentIndex];
 
     const key = `${tmpPitchClass}${octave}` as PureNote;
-    const value = { pitchClass: tmpPitchClass, octave } as NoteAsObject
+    const value = { pitchClass: tmpPitchClass, octave } as NoteAsObject;
     notes[key] = value;
 
     if(tmpPitchClass === 'B') {
