@@ -3,7 +3,7 @@ import {
   FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES, SHARP_CLASS_NOTES,
 } from './Constants.js';
 import { freqToMidi } from './utilities/ScientificFunctions.js';
-import { Chord, PitchClassLetter, PureFlatPitchClass, Note, PitchClass, Scale, PurePitchClass } from 'types.js';
+import { Chord, PitchClassLetter, Note, Scale, PitchClass, RawPitchClass, RawFlatPitchClass } from 'types.js';
 import { rearrangeArray } from './utilities/GeneralFunctions.js';
 
 /**
@@ -19,7 +19,7 @@ export function transposePitchClass(pitchClass: PitchClass, interval: number): P
   const normalizedPitchClass: PitchClass = normalizePitchClass(pitchClass);
   const classSet = getClassSet(pitchClass);
   const classIndex = getPitchClassSet(classSet).indexOf(normalizedPitchClass);
-  if(PITCH_CLASSES.includes(pitchClass as PurePitchClass)) {
+  if(PITCH_CLASSES.includes(pitchClass as RawPitchClass)) {
     const index = Math.abs((classIndex + NUMBER_OF_PITCH_CLASSES + normalizedInterval) % NUMBER_OF_PITCH_CLASSES);
     return getPitchClassSet(classSet)[index];
   } else {
@@ -28,7 +28,7 @@ export function transposePitchClass(pitchClass: PitchClass, interval: number): P
     let [letter, acc] = getPitchClassSet(classSet)[index];
     const accidentals = pitchClass.slice(1);
     if(acc === 'b' && !accidentals.includes('b')) {
-      const pc2 = FLAT_CLASS_NOTES[(FLAT_CLASS_NOTES.indexOf(`${letter}${acc}` as PureFlatPitchClass) - 1) % NUMBER_OF_PITCH_CLASSES];
+      const pc2 = FLAT_CLASS_NOTES[(FLAT_CLASS_NOTES.indexOf(`${letter}${acc}` as RawFlatPitchClass) - 1) % NUMBER_OF_PITCH_CLASSES];
       const enharmonic = enharmonicPitchClass(`${letter}${acc}` as PitchClass, pc2);
       letter = enharmonic[0];
       acc = enharmonic[1];

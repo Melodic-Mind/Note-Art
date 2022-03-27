@@ -4,14 +4,13 @@ import {
 } from '../Constants.js';
 import { firstToUpper, isNumberAsString, mapString, occurrencesInString } from './GeneralFunctions.js';
 import {
-  NoteAsObject, PitchClass, PitchClassLetter, Accidental, PurePitchClass, PureNote,  Note, PureSharpPitchClass,
-  PureFlatPitchClass, Octave,
+  NoteAsObject, PitchClass, PitchClassLetter, Accidental, PureNote,  Note, Octave, RawPitchClass, RawFlatPitchClass, RawSharpPitchClass,
 } from '../types';
 
 /**
  * Calculate the pure interval between 2 pitch classes.
- * @param {PurePitchClass} pitchClass1 first note
- * @param {PurePitchClass} pitchClass2 second note
+ * @param {PitchClass} pitchClass1 first note
+ * @param {PitchClass} pitchClass2 second note
  * @returns {number}
  * @example
  * getPitchClassesInterval('C', 'E') //  4
@@ -66,7 +65,7 @@ export function getNotesInterval(note1: Note, note2: Note): number {
 export function getInterval(note1: PitchClass | Note, note2: PitchClass | Note): number {
   return isNote(note1) ? 
     getNotesInterval(note1 as PureNote, note2 as PureNote) : 
-    getPitchClassesInterval(note1 as PurePitchClass, note2 as PurePitchClass);
+    getPitchClassesInterval(note1 as PitchClass, note2 as PitchClass);
 }
 
 /**
@@ -115,11 +114,11 @@ export function extractPitchClass(note: string): string {
 /**
  * Transform a pitch class to it's basic form.
  * @param {String} pc
- * @returns {PurePitchClass}
+ * @returns {PitchClass}
  * @example
  * normalizePitchClass('CX') // 'A#'
  */
-export function normalizePitchClass(pc: PitchClass): PurePitchClass {
+export function normalizePitchClass(pc: PitchClass): PitchClass {
   const pitchLetter: PitchClassLetter = firstToUpper(pc[0]) as PitchClassLetter;
   const accidental: Accidental = pc[1] as Accidental;
 
@@ -127,7 +126,7 @@ export function normalizePitchClass(pc: PitchClass): PurePitchClass {
   switch (accidental) {
   case '#':
     return !['E', 'B'].includes(pitchLetter)
-      ? `${pitchLetter}${accidental}` as PurePitchClass
+      ? `${pitchLetter}${accidental}` as PitchClass
       : SHARP_CLASS_NOTES[(SHARP_CLASS_NOTES.indexOf(pitchLetter) + 1) % 12];
 
   case 'x':
@@ -139,7 +138,7 @@ export function normalizePitchClass(pc: PitchClass): PurePitchClass {
 
   case 'b':
     if(!['C', 'F'].includes(pitchLetter) && pc.length === 2) {
-      return `${pitchLetter}${accidental}` as PurePitchClass;
+      return `${pitchLetter}${accidental}` as PitchClass;
     }
 
     times = occurrencesInString(pc, 'b');
@@ -163,7 +162,7 @@ export function normalizeNote(note: Note): Note {
  * @returns {{octave: number, pitchClass: PitchClass}}
  */
 export function noteToObject(note: Note): NoteAsObject {
-  const pitchClass = firstToUpper(note.slice(0, note.length - 1)) as PurePitchClass;
+  const pitchClass = firstToUpper(note.slice(0, note.length - 1)) as PitchClass;
   const octave = parseInt(note[note.length - 1]) as Octave;
 
   return { pitchClass, octave };
@@ -175,7 +174,7 @@ export function noteToObject(note: Note): NoteAsObject {
  * @returns {boolean}
  */
 export function isPitchClass(str: string): boolean {
-  return PITCH_CLASSES.includes(str as PurePitchClass);
+  return PITCH_CLASSES.includes(str as RawPitchClass);
 }
 
 export function isNote(str: string): boolean {
@@ -208,7 +207,7 @@ export function notesInRange(baseNote: PureNote, range: number): Record<PureNote
   let tmpPitchClass;
 
   for(let i = 0; i <= range; ++i) {
-    const currentIndex = (FLAT_CLASS_NOTES.indexOf(pitchClass as PureFlatPitchClass) + i) % 12;
+    const currentIndex = (FLAT_CLASS_NOTES.indexOf(pitchClass as RawFlatPitchClass) + i) % 12;
     tmpPitchClass = FLAT_CLASS_NOTES[currentIndex];
 
     const key = `${tmpPitchClass}${octave}` as PureNote;
@@ -228,7 +227,7 @@ export function notesInRange(baseNote: PureNote, range: number): Record<PureNote
  * @param pc
  * @returns {number}
  */
-export function getPitchClassIndex(pc: PurePitchClass): number {
+export function getPitchClassIndex(pc: PitchClass): number {
   const classSet = pc.includes('#') ? '#' : 'b';
   return getPitchClassSet(classSet).indexOf(pc as PitchClassLetter);
 }
@@ -263,13 +262,13 @@ export function enharmonicPitchClass(from: PitchClass, to: PitchClass): string {
  * @returns {String}
  * @param str
  */
-export function toFlat(str: PurePitchClass | PureNote): PurePitchClass | PureNote {
+export function toFlat(str: PitchClass | PureNote): PitchClass | PureNote {
   if(str.includes('#')) {
     const { pitchClass, octave } = noteToObject(str as PureNote);
     if(isNaN(octave)) {
-      return FLAT_CLASS_NOTES[SHARP_CLASS_NOTES.indexOf(str as PureSharpPitchClass)];
+      return FLAT_CLASS_NOTES[SHARP_CLASS_NOTES.indexOf(str as RawSharpPitchClass)];
     } else {
-      const pc = FLAT_CLASS_NOTES[SHARP_CLASS_NOTES.indexOf(pitchClass as PureSharpPitchClass)];
+      const pc = FLAT_CLASS_NOTES[SHARP_CLASS_NOTES.indexOf(pitchClass as RawSharpPitchClass)];
       return `${pc}${octave}` as PureNote;
     }
   }
@@ -348,7 +347,7 @@ export function lowestNote(note1: Note, note2: Note): Note {
 export function lowestPitch(pc1: PitchClass, pc2: PitchClass): PitchClass {
   const normalizedPc1 = normalizePitchClass(pc1);
   const normalizedPc2 = normalizePitchClass(pc2);
-  return PITCH_CLASSES.indexOf(normalizedPc1) <= PITCH_CLASSES.indexOf(normalizedPc2) ? pc1 : pc2;
+  return PITCH_CLASSES.indexOf(normalizedPc1 as RawPitchClass) <= PITCH_CLASSES.indexOf(normalizedPc2 as RawPitchClass) ? pc1 : pc2;
 }
 
 /**
@@ -369,7 +368,7 @@ export function highestNoteFromArray(notes: Array<PureNote>): PureNote {
   return notes.reduce((acc: PureNote, curr: PureNote) => highestNote(acc, curr) as PureNote, notes[0]);
 }
 
-export function getPatternFromPitchClasses(pitchClasses: Array<PurePitchClass>): Array<number> {
+export function getPatternFromPitchClasses(pitchClasses: Array<PitchClass>): Array<number> {
   const base = pitchClasses[0];
   // for cases when it croses an octave, e.g C E G C E B
   let octaveMultiplier = 0;

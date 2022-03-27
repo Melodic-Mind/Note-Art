@@ -1,7 +1,7 @@
-import { Octave, PurePitchClass } from 'types.js';
+import { Octave, PitchClass } from 'types.js';
 
 export const PITCH_STANDARD: {
-  pitchClass: PurePitchClass;
+  pitchClass: PitchClass;
   octave: Octave;
   midi: number;
   frequency: number;
