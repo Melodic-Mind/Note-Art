@@ -1,4 +1,4 @@
-import { PureNote, PitchClass } from '../types.js';
+import { Note, PitchClass } from '../types.js';
 import { rearrangeArray } from './GeneralFunctions.js';
 import { getPitchClassIndex } from './PureMusicUtils.js';
 
@@ -20,7 +20,7 @@ export function pitchClassesToNotes(pitchClasses: Array<string>, octave: number)
  *     etc...
  * @returns {Array}
  */
-export function pitchClassesToPianoChordNotes(pitchClasses: Array<PitchClass>, octave: number, inversion = 0): Array<PureNote> {
+export function pitchClassesToPianoChordNotes(pitchClasses: Array<PitchClass>, octave: number, inversion = 0): Array<Note> {
   if(inversion) {
     pitchClasses = rearrangeArray(pitchClasses, inversion) as Array<PitchClass>;
   }
@@ -36,5 +36,5 @@ export function pitchClassesToPianoChordNotes(pitchClasses: Array<PitchClass>, o
       }
     }
     return `${pitchClass}${currentOctave}`;
-  }) as Array<PureNote>;
+  }) as Array<Note>;
 }

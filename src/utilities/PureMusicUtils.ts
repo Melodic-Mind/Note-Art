@@ -4,7 +4,7 @@ import {
 } from '../Constants.js';
 import { firstToUpper, isNumberAsString, mapString, occurrencesInString } from './GeneralFunctions.js';
 import {
-  NoteAsObject, PitchClass, PitchClassLetter, Accidental, PureNote,  Note, Octave, RawPitchClass, RawFlatPitchClass, RawSharpPitchClass,
+  NoteAsObject, PitchClass, PitchClassLetter, Accidental, Note, Octave, RawPitchClass, RawFlatPitchClass, RawSharpPitchClass,
 } from '../types';
 
 /**
@@ -64,7 +64,7 @@ export function getNotesInterval(note1: Note, note2: Note): number {
  */
 export function getInterval(note1: PitchClass | Note, note2: PitchClass | Note): number {
   return isNote(note1) ? 
-    getNotesInterval(note1 as PureNote, note2 as PureNote) : 
+    getNotesInterval(note1 as Note, note2 as Note) : 
     getPitchClassesInterval(note1 as PitchClass, note2 as PitchClass);
 }
 
@@ -200,17 +200,17 @@ export function isDuration(dur: string): boolean {
  * @param {number} range
  * @returns {Array}
  */
-export function notesInRange(baseNote: PureNote, range: number): Record<PureNote, NoteAsObject> {
+export function notesInRange(baseNote: Note, range: number): Record<Note, NoteAsObject> {
   // eslint-disable-next-line prefer-const
   let { pitchClass, octave } = noteToObject(baseNote);
-  const notes: Record<PureNote, NoteAsObject> = {};
+  const notes: Record<Note, NoteAsObject> = {};
   let tmpPitchClass;
 
   for(let i = 0; i <= range; ++i) {
     const currentIndex = (FLAT_CLASS_NOTES.indexOf(pitchClass as RawFlatPitchClass) + i) % 12;
     tmpPitchClass = FLAT_CLASS_NOTES[currentIndex];
 
-    const key = `${tmpPitchClass}${octave}` as PureNote;
+    const key = `${tmpPitchClass}${octave}` as Note;
     const value = { pitchClass: tmpPitchClass, octave } as NoteAsObject;
     notes[key] = value;
 
@@ -262,14 +262,14 @@ export function enharmonicPitchClass(from: PitchClass, to: PitchClass): string {
  * @returns {String}
  * @param str
  */
-export function toFlat(str: PitchClass | PureNote): PitchClass | PureNote {
+export function toFlat(str: PitchClass | Note): PitchClass | Note {
   if(str.includes('#')) {
-    const { pitchClass, octave } = noteToObject(str as PureNote);
+    const { pitchClass, octave } = noteToObject(str as Note);
     if(isNaN(octave)) {
       return FLAT_CLASS_NOTES[SHARP_CLASS_NOTES.indexOf(str as RawSharpPitchClass)];
     } else {
       const pc = FLAT_CLASS_NOTES[SHARP_CLASS_NOTES.indexOf(pitchClass as RawSharpPitchClass)];
-      return `${pc}${octave}` as PureNote;
+      return `${pc}${octave}` as Note;
     }
   }
 
@@ -315,7 +315,7 @@ export function maxInterval(intervals: Array<number>): number {
  * @param {String} note2
  * @returns {String}
  */
-export function highestNote(note1: PureNote, note2: PureNote): string {
+export function highestNote(note1: Note, note2: Note): string {
   return lowestNote(note1, note2) === note1 ? note2 : note1;
 }
 
@@ -362,10 +362,10 @@ export function lowestNoteFromArray(notes: Array<Note>): string {
 /**
  * Returns the highest note from an array of notes.
  * @param {Array} notes
- * @returns {PureNote}
+ * @returns {Note}
  */
-export function highestNoteFromArray(notes: Array<PureNote>): PureNote {
-  return notes.reduce((acc: PureNote, curr: PureNote) => highestNote(acc, curr) as PureNote, notes[0]);
+export function highestNoteFromArray(notes: Array<Note>): Note {
+  return notes.reduce((acc: Note, curr: Note) => highestNote(acc, curr) as Note, notes[0]);
 }
 
 export function getPatternFromPitchClasses(pitchClasses: Array<PitchClass>): Array<number> {
@@ -380,7 +380,7 @@ export function getPatternFromPitchClasses(pitchClasses: Array<PitchClass>): Arr
   });
 }
 
-export function getPatternFromNotes(notes: Array<PureNote>): Array<number> {
+export function getPatternFromNotes(notes: Array<Note>): Array<number> {
   const base = notes[0];
   return notes.map((pc) => {
     return getNotesInterval(base, pc);

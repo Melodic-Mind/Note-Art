@@ -1,4 +1,4 @@
-import { PureNote, PitchClass, RawFlatPitchClass } from 'types';
+import { Note, PitchClass, RawFlatPitchClass } from 'types';
 import { FLAT_CLASS_NOTES, NUMBER_OF_PITCH_CLASSES, PITCH_STANDARD, SEMITONE } from '../Constants.js';
 import { getPitchClassIndex, noteToObject } from './PureMusicUtils.js';
 
@@ -7,7 +7,7 @@ import { getPitchClassIndex, noteToObject } from './PureMusicUtils.js';
  * @param {String} note
  * @returns {Number}
  */
-export function freqFromPitch(note: PureNote): number {
+export function freqFromPitch(note: Note): number {
   const { pitchClass, octave } = noteToObject(note);
   const oct = octave - PITCH_STANDARD.octave; // calculate octave difference
   const pitchClassIndex = getPitchClassIndex(pitchClass as PitchClass);
