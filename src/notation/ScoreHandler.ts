@@ -1,103 +1,115 @@
-// import { Measure, MeasureData, NormalizedMeasureData } from './Measure';
-// import { Score } from './Score';
+import { Measure, MeasureData, NormalizedMeasureData } from './Measure.js';
+import { Score } from './Score.js';
 
-// /**
-//  * @class ScoreHandler
-//  * Static class that can convert scores to objects and back.
-//  */
-// export class ScoreHandler {
-//   /**
-//    * Convert a measure to object literal.
-//    * @param {Measure} measure
-//    * @return {{duration: string, data: {}, maxDuration: (number)}}
-//    */
-//   static measureToObject(measure: Measure) {
-//     const notes = measure.data.map(notesMember => this.notesToObject(notesMember));
+interface MeasureAsObject {
+  maxDuration: number;
+  data: Array<MeasureData>;
+}
 
-//     return {
-//       maxDuration: measure.maxDuration,
-//       data:        notes,
-//     };
-//   }
+interface ScoreAsObject {
+  name: string, 
+  voices: Record <string, MeasureAsObject[]>, 
+  timeSignature: [number, number], 
+  bpm: number 
+}
 
-//   /**
-//    * Convert a measure's notes member to object literal.
-//    * @param notesMember
-//    * @return {{duration: *, notes: any[]}}
-//    */
-//   static notesToObject(notesMember: NormalizedMeasureData) {
-//     const notes: MeasureData = {
-//       notes:    Array.from(notesMember.notes),
-//       duration: notesMember.duration,
-//     };
+/**
+ * @class ScoreHandler
+ * Static class that can convert scores to objects and back.
+ */
+export class ScoreHandler {
+  /**
+   * Convert a measure to object literal.
+   * @param {Measure} measure
+   * @return {{duration: string, data: {}, maxDuration: (number)}}
+   */
+  static measureToObject(measure: Measure): MeasureAsObject {
+    const notes = measure.data.map(notesMember => this.notesToObject(notesMember));
 
-//     if(notesMember.name) {
-//       notes.name = notesMember.name;
-//     }
+    return {
+      maxDuration: measure.maxDuration,
+      data:        notes,
+    };
+  }
 
-//     return notes;
-//   }
+  /**
+   * Convert a measure's notes member to object literal.
+   * @param notesMember
+   * @return {{duration: *, notes: any[]}}
+   */
+  static notesToObject(notesMember: NormalizedMeasureData): MeasureData {
+    const notes: MeasureData = {
+      notes:    Array.from(notesMember.notes),
+      duration: notesMember.duration,
+    };
 
-//   /**
-//    * Convert object literal representing a measure to an instance of Measure.
-//    * @param {object} measureObject
-//    * @return {Measure}
-//    */
-//   static objectToMeasure(measureObject: any) {
-//     const measure = new Measure(measureObject.maxDuration);
-//     measureObject.data.forEach((notesMember: MeasureData, position: number) => {
-//       if(notesMember.name) {
-//         measure.addChord({ ...notesMember }, position);
-//       } else {
-//         measure.addNotes({ ...notesMember }, position);
-//       }
-//     });
+    if(notesMember.name) {
+      notes.name = notesMember.name;
+    }
 
-//     return measure;
-//   }
+    return notes;
+  }
 
-//   /**
-//    * Convert a measure to object literal.
-//    * @param {Score} score
-//    * @return {{duration: string, voices: array, timeSignature: array, bpm: number}}
-//    */
-//   static scoreToObject(score: Score) {
-//     const voices: { [key: string]: Array<any> } = {};
-//     Object.entries(score.voices).map(([voiceName, voiceData]) =>
-//       voices[voiceName] = voiceData.map(measure => this.measureToObject(measure)),
-//     );
+  /**
+   * Convert object literal representing a measure to an instance of Measure.
+   * @param {object} measureObject
+   * @return {Measure}
+   */
+  static objectToMeasure(measureObject: MeasureAsObject): Measure {
+    const measure = new Measure(measureObject.maxDuration);
+    measureObject.data.forEach((notesMember: MeasureData, position: number) => {
+      if(notesMember.name) {
+        measure.addChord({ ...notesMember }, position);
+      } else {
+        measure.addNotes({ ...notesMember }, position);
+      }
+    });
 
-//     return {
-//       name:          score.name,
-//       timeSignature: score.timeSignature,
-//       bpm:           score.bpm,
-//       voices,
-//     };
-//   }
+    return measure;
+  }
 
-//   /**
-//    * Convert object literal representing a Score to an instance of Score.
-//    * @param {object} scoreObject
-//    * @return {Score}
-//    */
-//   static objectToScore(scoreObject: any) {
-//     const score = new Score({
-//       timeSignature: scoreObject.timeSignature,
-//       bpm:           scoreObject.bpm,
-//       name:          scoreObject.name,
-//     });
+  /**
+   * Convert a measure to object literal.
+   * @param {Score} score
+   * @return {{duration: string, voices: array, timeSignature: array, bpm: number}}
+   */
+  static scoreToObject(score: Score): ScoreAsObject {
+    const voices: Record<string, MeasureAsObject[]> = {};
+    Object.entries(score.voices).map(([voiceName, voiceData]) =>
+      voices[voiceName] = voiceData.map(measure => this.measureToObject(measure)),
+    );
 
-//     Object.entries(scoreObject.voices).forEach(([voiceName, voiceData]: [string, any]) => {
-//       score.addVoice(voiceName);
-//       voiceData.forEach((measureObject: MeasureData, measureIndex: number) => {
-//         score.addMeasure(voiceName, { index: measureIndex, measure: this.objectToMeasure(measureObject) });
-//       });
-//     });
+    return {
+      name:          score.name,
+      timeSignature: score.timeSignature,
+      bpm:           score.bpm,
+      voices,
+    };
+  }
 
-//     return score;
-//   }
+  /**
+   * Convert object literal representing a Score to an instance of Score.
+   * @param {object} scoreObject
+   * @return {Score}
+   */
+  static objectToScore(scoreObject: ScoreAsObject): Score {
+    const score = new Score({
+      timeSignature: scoreObject.timeSignature,
+      bpm:           scoreObject.bpm,
+      name:          scoreObject.name,
+    });
 
-//   static cloneScore(score: Score) {
-//     return this.objectToScore(this.scoreToObject(score));
-//   }
-// }
+    Object.entries(scoreObject.voices).forEach(([voiceName, voiceData]: [string, MeasureAsObject[]]) => {
+      score.addVoice(voiceName);
+      voiceData.forEach((measureObject: MeasureAsObject, measureIndex: number) => {
+        score.addMeasure(voiceName, { index: measureIndex, measure: this.objectToMeasure(measureObject) });
+      });
+    });
+
+    return score;
+  }
+
+  static cloneScore(score: Score): Score {
+    return this.objectToScore(this.scoreToObject(score));
+  }
+}

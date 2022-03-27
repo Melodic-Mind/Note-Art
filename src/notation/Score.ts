@@ -7,7 +7,7 @@ interface ScoreProps {
   name?: string;
   voiceNames?: Array<string>;
   bpm?: number;
-  timeSignature?: Array<number>;
+  timeSignature?: [number, number];
 }
 
 /**
@@ -20,13 +20,13 @@ interface ScoreProps {
  */
 export class Score {
   measureSize: number
-  timeSignature: Array<number>
+  timeSignature: [number, number]
 
   constructor({ bpm, timeSignature, name, voiceNames = [] }: ScoreProps = {}) {
     this._name = name || 'my_score';
     this._bpm  = bpm || 100;
 
-    const voices: { [key: string]: Array<Measure> } = {};
+    const voices: Record<string, Measure[]> = {};
     for(const name of voiceNames) {
       voices[name] = [];
     }
@@ -120,7 +120,7 @@ export class Score {
   static stringToScore(str: string): Score {
     const [name, bpm, timeSig, voiceNames] = str.split('___');
 
-    const timeSignature = timeSig.split(',').map(num => parseInt(num));
+    const timeSignature = timeSig.split(',').map(num => parseInt(num)) as [number, number];
 
     const score = new Score({
       name,
@@ -146,7 +146,7 @@ export class Score {
    * Set the score's time signature.
    * @param timeSignature
    */
-  setTimeSignature(timeSignature: Array<number>): void {
+  setTimeSignature(timeSignature: [number, number]): void {
     this.measureSize   = Score.getMeasureSize(timeSignature);
     this.timeSignature = timeSignature;
   }
