@@ -95,6 +95,7 @@ export function getPitchClassSet(set: 'b' | '#' | ''): any {
 
 /**
  * Returns the octave from a note.
+ * Assuming the octave is between -9 - 9.
  * @returns {*}
  * @param note
  */
@@ -368,6 +369,11 @@ export function highestNoteFromArray(notes: Array<Note>): Note {
   return notes.reduce((acc: Note, curr: Note) => highestNote(acc, curr) as Note, notes[0]);
 }
 
+/**
+ * Turns an array of pitch classes to an array containing the interval between each 2 pitch classes.
+ * @param pitchClasses 
+ * @returns 
+ */
 export function getPatternFromPitchClasses(pitchClasses: Array<PitchClass>): Array<number> {
   const base = pitchClasses[0];
   // for cases when it croses an octave, e.g C E G C E B
@@ -380,6 +386,11 @@ export function getPatternFromPitchClasses(pitchClasses: Array<PitchClass>): Arr
   });
 }
 
+/**
+ * Turns an array of notes to an array containing the interval between each 2 notes.
+ * @param notes 
+ * @returns 
+ */
 export function getPatternFromNotes(notes: Array<Note>): Array<number> {
   const base = notes[0];
   return notes.map((pc) => {

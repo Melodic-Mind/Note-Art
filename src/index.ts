@@ -3,7 +3,6 @@ export * from './notation/index.js';
 export * from './Theory.js';
 export * from './Constants.js';
 export * from './types.js';
-export * from './Exceptions.js';
 
 //@todo add good docs using vuepress - like this:
 /*

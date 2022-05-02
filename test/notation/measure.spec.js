@@ -61,16 +61,15 @@ describe('Measure', () => {
 
     it('doesnt add notes when the measure is full', () => {
       const qNotes = { note: 'E4', duration: '4n' };
-      const eNotes = { note: 'E4', duration: '8n' };
+      const eNotes = { note: 'G4', duration: '8n' };
       measure.addNote(qNotes, 0);
       measure.addNote(qNotes, 1);
       measure.addNote(qNotes, 2);
       measure.addNote(eNotes, 3);
-      measure.addNote(qNotes, 4);
-      measure.addNote(qNotes, 5);
-      measure.addNote(qNotes, 6);
-      measure.addNote(eNotes, 5);
+      expect(measure.addNote(qNotes, 4)).to.be.true;
+      expect(measure.addNote(eNotes, 4)).to.be.false;
       expect(measure.data.length).to.be.equal(5);
+      expect(measure.data[4].notes.has('E4')).to.be.true;
     });
   });
 

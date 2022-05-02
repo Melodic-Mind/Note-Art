@@ -18,11 +18,11 @@ export interface NormalizedMeasureData {
 
 /**
  * @class Measure
- * @classdesc Represents a single measure as part of a musical score in musical notation.ds
+ * @description Represents a single measure as part of a musical score in musical notation.ds
  * @param {Number} maxDuration=0 Max duration of the measure(determined by time signature)
  */
 export class Measure {
-  _duration: string
+  _duration: string;
 
   constructor(maxDuration = 64) {
     this._maxDuration = maxDuration;
@@ -42,7 +42,7 @@ export class Measure {
     return this._maxDuration;
   }
 
-  _data: Array<NormalizedMeasureData>
+  _data: Array<NormalizedMeasureData>;
 
   /**
    * Returns the data of the measure - an array of objects where each

@@ -59,7 +59,7 @@ export function mapString(str: string, toMap: string, mapTo: string): string {
   while (str.includes(toMap)) {
     const length = str.length;
     for(let i = 0; i < length; ++i) {
-      if(str.substr(i, toMap.length) === toMap) {
+      if(str.substring(i, i + toMap.length) === toMap) {
         str = `${str.slice(0, i)}${mapTo}${str.slice(i + toMap.length)}`;
         break;
       }
