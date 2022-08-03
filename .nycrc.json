@@ -1,15 +1,13 @@
 {
-    "include": ["src/**/*.js", "src/**/*.ts"],
-    "exclude": [
-        "src/**/index.js"
+    "extension": [
+        ".ts",
+        ".tsx"
     ],
-    "extension": [".js", ".ts"],
-    "reporter": ["lcov", "text", "html"],
-    "require": ["@babel/register","ts-node/register"],
-    "sourceMap": true,
-    "instrument": false,
-    "cache": false,
-    "all": true,
-    "extends": "@istanbuljs/nyc-config-typescript",
-    "check-coverage": true
+    "exclude": [
+        "**/*.d.ts"
+    ],
+    "reporter": [
+        "html"
+    ],
+    "all": true
 }
