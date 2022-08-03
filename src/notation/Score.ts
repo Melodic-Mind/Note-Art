@@ -19,8 +19,8 @@ interface ScoreProps {
  * @param {Array} voiceNames=[] Array with the names of the voices in the score.
  */
 export class Score {
-  measureSize: number
-  timeSignature: [number, number]
+  measureSize: number;
+  timeSignature: [number, number];
 
   constructor({ bpm, timeSignature, name, voiceNames = [] }: ScoreProps = {}) {
     this._name = name || 'my_score';
@@ -36,7 +36,7 @@ export class Score {
     this.measureSize   = Score.getMeasureSize(this.timeSignature);
   }
 
-  _name: string
+  _name: string;
 
   /**
    * Returns the score name.
@@ -55,7 +55,7 @@ export class Score {
     this._name = name;
   }
 
-  _bpm: number
+  _bpm: number;
 
   /**
    * Get the score's BPM value.
@@ -74,7 +74,7 @@ export class Score {
     this._bpm = bpm;
   }
 
-  _voices: { [key: string]: Array<Measure> }
+  _voices: { [key: string]: Array<Measure> };
 
   /**
    * Returns an object with the scores voices.
