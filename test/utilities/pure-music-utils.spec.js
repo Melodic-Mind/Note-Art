@@ -156,12 +156,23 @@ describe('#PureMusicUtils', () => {
     });
   });
 
-  describe('#isPitchClass', () => {
+  describe.only('#isPitchClass', () => {
     it('should return true when string is a pitch class', () => {
       expect(isPitchClass('C')).to.equal(true);
     });
+    it('should return true when containing flats', () => {
+      expect(isPitchClass('Cb')).to.equal(true);
+      expect(isPitchClass('Cbb')).to.equal(true);
+    });
+    it('should return true when containing sharps', () => {
+      expect(isPitchClass('C#')).to.equal(true);
+      expect(isPitchClass('Cx')).to.equal(true);
+      expect(isPitchClass('Cx#')).to.equal(true);
+    });
     it('should return false when string is note a pitch class', () => {
       expect(isPitchClass('NOT PITCH CLASS')).to.equal(false);
+      expect(isPitchClass('Ce5')).to.equal(false);
+      expect(isPitchClass('Bbbk')).to.equal(false);
     });
   });
 

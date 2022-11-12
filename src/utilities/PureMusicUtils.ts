@@ -1,5 +1,6 @@
 import {
   FLAT_CLASS_NOTES, INTERVALS, NOTE_DURATIONS_AS_SIZE_IN_MEASURE, NUMBER_OF_PITCH_CLASSES, PITCH_CLASSES,
+  PITCH_CLASS_LETTERS,
   SHARP_CLASS_NOTES,
 } from '../Constants.js';
 import { firstToUpper, isNumberAsString, mapString, occurrencesInString } from './GeneralFunctions.js';
@@ -175,7 +176,10 @@ export function noteToObject(note: Note): NoteAsObject {
  * @returns {boolean}
  */
 export function isPitchClass(str: string): boolean {
-  return PITCH_CLASSES.includes(str as RawPitchClass);
+  const letter = str[0];
+  if(!PITCH_CLASS_LETTERS.includes(letter as PitchClassLetter)) { return false; }
+  const accidentals = str.slice(1);
+  return accidentals.split('').every(accidental => ['b', '#', 'x'].includes(accidental));
 }
 
 export function isNote(str: string): boolean {
