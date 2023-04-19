@@ -156,7 +156,7 @@ describe('#PureMusicUtils', () => {
     });
   });
 
-  describe.only('#isPitchClass', () => {
+  describe('#isPitchClass', () => {
     it('should return true when string is a pitch class', () => {
       expect(isPitchClass('C')).to.equal(true);
     });

@@ -1,6 +1,7 @@
 import {
   extractOctave, extractPitchClass, getPitchClassesInterval, notesInRange, noteToObject,
   pitchClassesToNotes, pitchClassesToPianoChordNotes, transposeNote, intervalsToNotes,
+  spellScale,
 } from '../../lib/index.js';
 
 describe('Music addon functions', () => {
@@ -85,4 +86,76 @@ describe('Music addon functions', () => {
       expect(pitchClassesToPianoChordNotes(gChord, 3, 1)).to.eql(stub);
     });
   });
+
+  describe('#spellScale', () => {
+    describe('should return an array of correctly spelled scales', () => {
+      describe('major scales', () => {
+        const majorScaleTests = [
+          {
+            scale: ['C', 'D', 'E', 'F', 'G', 'A', 'B'],
+            stub: ['C', 'D', 'E', 'F', 'G', 'A', 'B'],
+          }, {
+            scale: ['C#', 'D#', 'F', 'F#', 'G#', 'A#', 'C'],
+            stub: ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#'],
+          }, {
+            scale: ['D', 'E', 'Gb', 'G', 'A', 'B', 'Db'],
+            stub: ['D', 'E', 'F#', 'G', 'A', 'B', 'C#'],
+          }, {
+            scale: ['D#', 'F', 'G', 'G#', 'A#', 'C', 'D'],
+            stub: ['D#', 'E#', 'Fx', 'G#', 'A#', 'B#', 'Cx'],
+          }, {
+            scale: ['E', 'Gb', 'Ab', 'A', 'B', 'Db', 'Eb'],
+            stub: ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#'],
+          }, {
+            scale: ['F', 'G', 'A', 'Bb', 'C', 'D', 'E'],
+            stub: ['F', 'G', 'A', 'Bb', 'C', 'D', 'E'],
+          }, {
+            scale: ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'F'],
+            stub: ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'E#'],
+          }, {
+            scale: ['G', 'A', 'B', 'C', 'D', 'E', 'Gb'],
+            stub: ['G', 'A', 'B', 'C', 'D', 'E', 'F#'],
+          }, {
+            scale: ['G#', 'A#', 'C', 'C#', 'D#', 'F', 'G'],
+            stub: ['G#', 'A#', 'B#', 'C#', 'D#', 'E#', 'Fx'],
+          }, {
+            scale: ['A', 'B', 'Db', 'D', 'E', 'Gb', 'Ab'],
+            stub: ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#'],
+          }, {
+            scale: ['A#', 'C', 'D', 'D#', 'F', 'G', 'A'],
+            stub: ['A#', 'B#', 'Cx', 'D#', 'E#', 'Fx', 'Gx'],
+          }, {
+            scale: ['B', 'Db', 'Eb', 'E', 'Gb', 'Ab', 'Bb'],
+            stub: ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#'],
+          },
+        ];
+        majorScaleTests.forEach(({ scale, stub }, index) => {
+          isScalesEqual({ scale, stub, index });
+        });
+      });
+      describe('non diatonic scales', () => {
+        const testCases = [
+          {
+            scale: ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'],
+            stub: ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'],
+          }, {
+            scale: ['C#', 'D#', 'F', 'F#', 'G#', 'A#', 'C', 'C#', 'Eb'],
+            stub: ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#', 'C#', 'D#'],
+          },
+        ];
+        testCases.forEach(({ scale, stub }, index) => {
+          isScalesEqual({ scale, stub, index });
+        });
+      });
+
+    });
+  });
 });
+
+function isScalesEqual({
+  scale, stub, index,
+}) {
+  it(`${index}: should return true if scales are equal`, () => {
+    expect(spellScale(scale)).to.eql(stub);
+  }); 
+}

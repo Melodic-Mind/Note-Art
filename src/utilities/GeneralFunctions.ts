@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Transforms the first letter of a string to upper case.
  * @param {String} str String to transform
@@ -36,7 +37,7 @@ export function switchMembers([...arr]: [], i1: number, i2: number): [] {
  * @param {number} index to arrange from.
  * @returns {Array}
  */
-export function rearrangeArray([...array]: Array<unknown>, index: number): Array<unknown> {
+export function rearrangeArray([...array]: Array<any>, index: number): Array<any> {
   const tmp = [];
   let i = 0;
 

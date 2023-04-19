@@ -1,6 +1,7 @@
-import { Note, PitchClass } from '../types.js';
+import { PITCH_CLASS_LETTERS } from '../Constants.js';
+import { Note, PitchClass, Scale } from '../types.js';
 import { rearrangeArray } from './GeneralFunctions.js';
-import { getPitchClassIndex } from './PureMusicUtils.js';
+import { enharmonicPitchClass, getPitchClassIndex } from './PureMusicUtils.js';
 
 /**
  * Returns an array of notes with a specific octave.
@@ -37,4 +38,21 @@ export function pitchClassesToPianoChordNotes(pitchClasses: Array<PitchClass>, o
     }
     return `${pitchClass}${currentOctave}`;
   }) as Array<Note>;
+}
+
+/**
+ * 
+ * @param pitchClasses Array of pitch classes that represent a scale.
+ * @returns {PitchClass[]}
+ * @example
+ * const EMajorScale = ['E', 'Gb', 'Ab', 'A', 'B', 'Db', 'Eb'];
+ * spellScale(EMajorScale) // => ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#']
+ */
+export function spellScale(pitchClasses: any): Scale {
+  const letters = rearrangeArray([...PITCH_CLASS_LETTERS], PITCH_CLASS_LETTERS.indexOf(pitchClasses[0][0]));
+  const res = [pitchClasses[0]];
+  [...pitchClasses].slice(1).forEach((pc, i) => {
+    res.push(enharmonicPitchClass(pc, letters[(i + 1) % letters.length]));
+  });
+  return res;
 }
