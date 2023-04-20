@@ -1,7 +1,7 @@
 import { PITCH_CLASS_LETTERS } from '../Constants.js';
 import { Note, PitchClass, Scale } from '../types.js';
 import { rearrangeArray } from './GeneralFunctions.js';
-import { enharmonicPitchClass, getPitchClassIndex } from './PureMusicUtils.js';
+import { enharmonicPitchClass, getPitchClassIndex, normalizePitchClass } from './PureMusicUtils.js';
 
 /**
  * Returns an array of notes with a specific octave.
@@ -30,9 +30,12 @@ export function pitchClassesToPianoChordNotes(pitchClasses: Array<PitchClass>, o
 
   return pitchClasses.map((pitchClass, i) => {
     if(i !== 0) {
-      const pcIndex = getPitchClassIndex(pitchClass);
-      const prevPcIndex = getPitchClassIndex(pitchClasses[i - 1]);
-      if((i - 1) >= 0 && pcIndex < prevPcIndex) {
+      const pcIndex = getPitchClassIndex(normalizePitchClass(pitchClass));
+      const prevPcIndex = getPitchClassIndex(normalizePitchClass(pitchClasses[i - 1]));
+      // Checking if the octave needs to be incremented:
+      // We can know it definitely needs to be incremented if the current pitch class is C.
+      // Otherwise, we need to check if the current pitch class pitch class index is smaller than the previous one, as that would indicate that weve passed the B pitch class.
+      if((pcIndex < prevPcIndex && pitchClass[0] !== 'B') || pitchClass[0] === 'C') {
         currentOctave++;
       }
     }

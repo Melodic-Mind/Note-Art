@@ -155,7 +155,14 @@ export function normalizePitchClass(pc: PitchClass): PitchClass {
 
 export function normalizeNote(note: Note): Note {
   const { pitchClass, octave } = noteToObject(note);
-  return `${normalizePitchClass(pitchClass)}${octave}` as Note;
+  const normalizedPitchClass = normalizePitchClass(pitchClass);
+  let octaveDifference = 0;
+  if(pitchClass[0] === 'B' && pitchClass.includes('#' || 'x')) {
+    octaveDifference = 1;
+  } else if(pitchClass[0] === 'C' && pitchClass.includes('b')) {
+    octaveDifference = -1;
+  }
+  return `${normalizedPitchClass}${octave + octaveDifference}` as Note;
 }
 
 /**

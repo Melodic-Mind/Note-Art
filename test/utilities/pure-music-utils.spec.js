@@ -1,5 +1,5 @@
 import {
-  enharmonicPitchClass, getNotesInterval, getPatternFromNotes, getPatternFromPitchClasses, isPitchClass, isNote, normalizePitchClass, toFlat,
+  enharmonicPitchClass, getNotesInterval, getPatternFromNotes, getPatternFromPitchClasses, isPitchClass, isNote, normalizePitchClass, toFlat, normalizeNote,
 } from '../../lib/index.js';
 
 describe('#PureMusicUtils', () => {
@@ -101,6 +101,16 @@ describe('#PureMusicUtils', () => {
     });
   });
 
+  describe('#normalizeNote', () => {
+    it('should normalize a note', () => {
+      expect(normalizeNote('C#3')).to.equal('C#3');
+      expect(normalizeNote('Gx3')).to.equal('A3');
+      expect(normalizeNote('B#3')).to.equal('C4');
+      expect(normalizeNote('Ab3')).to.equal('Ab3');
+      expect(normalizeNote('Bbb4')).to.equal('A4');
+      expect(normalizeNote('Cbb3')).to.equal('Bb2');
+    });
+  });
   describe('#toFlat', () => {
     it('should turn sharp pitch classes flat', () => {
       expect(toFlat('C#')).to.equal('Db');

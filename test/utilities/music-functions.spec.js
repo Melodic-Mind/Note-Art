@@ -79,6 +79,13 @@ describe('Music addon functions', () => {
 
         expect(pitchClassesToPianoChordNotes(bigChord, 3)).to.eql(stub);
       });
+
+      it('with a scale', () => {
+        const bigChord = spellScale(intervalsToNotes('E', [0, 3, 4, 6, 8, 9, 11]));
+        const stub    = ['E3', 'Fx3', 'G#3', 'A#3', 'B#3', 'C#4', 'D#4'];
+
+        expect(pitchClassesToPianoChordNotes(bigChord, 3)).to.eql(stub);
+      });
     });
 
     it('should invert chords when called with inversion value', () => {
