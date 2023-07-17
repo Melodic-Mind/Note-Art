@@ -1,17 +1,7 @@
 import { PITCH_CLASS_LETTERS } from '../Constants.js';
-import { Note, PitchClass, Scale } from '../types.js';
+import { Note, PitchClass } from '../types.js';
 import { rearrangeArray } from './GeneralFunctions.js';
 import { enharmonicPitchClass, getPitchClassIndex, normalizePitchClass } from './PureMusicUtils.js';
-
-/**
- * Returns an array of notes with a specific octave.
- * @param {Array} pitchClasses Array of pitch classes.
- * @param {number} octave Octave to assign to notes..
- * @returns {Array}
- */
-export function pitchClassesToNotes(pitchClasses: Array<string>, octave: number): Array<string> {
-  return pitchClasses.map(pitchClass => `${pitchClass}${octave}`);
-}
 
 /**
  * Returns an array of notes that represent a chord played on a piano in a certain octave.
@@ -25,22 +15,48 @@ export function pitchClassesToPianoChordNotes(pitchClasses: Array<PitchClass>, o
   if(inversion) {
     pitchClasses = rearrangeArray(pitchClasses, inversion) as Array<PitchClass>;
   }
-
+  // const notes = pitchClassesToNotes(pitchClasses, octave);
+  // for(let i=1; i< notes.length; ++i) {
+  //   const prevNote = notes[i-1];
+  //   const normalizedPrevNote = normalizeNote(prevNote);
+  //   const note = notes[i];
+  //   const normalizedNote = normalizeNote(note);
+  //   const { pitchClass, octave } = noteToObject(note);
+  //   const { pitchClass: prevPitchClass, octave: prevOctave } = noteToObject(prevNote);
+  //   const pcIndex = getPitchClassIndex(normalizePitchClass(pitchClass));
+  //   const prevPcIndex = getPitchClassIndex(normalizePitchClass(pitchClasses[i - 1]));
+  //   if(pitchClass[0] === 'C' && prevPitchClass[0] === 'B') {
+  //     notes[i] = `${pitchClass}${octave + 1}` as Note;
+  //   }
+  // }
+  // return notes;
   let currentOctave = octave;
+  let wasNextOctave = false;
 
-  return pitchClasses.map((pitchClass, i) => {
+  const notes = pitchClasses.map((pitchClass, i) => {
     if(i !== 0) {
       const pcIndex = getPitchClassIndex(normalizePitchClass(pitchClass));
       const prevPcIndex = getPitchClassIndex(normalizePitchClass(pitchClasses[i - 1]));
       // Checking if the octave needs to be incremented:
-      // We can know it definitely needs to be incremented if the current pitch class is C.
-      // Otherwise, we need to check if the current pitch class pitch class index is smaller than the previous one, as that would indicate that weve passed the B pitch class.
-      if((pcIndex < prevPcIndex && pitchClass[0] !== 'B') || pitchClass[0] === 'C') {
+      // We can know it definitely needs to be incremented if the current *ABSOLUTE* pitch class is C and the raw pitch class is not B.
+      const isC = normalizePitchClass(pitchClass) === 'C' && pitchClass[0] !== 'B';
+      // Otherwise, we need to check if the current pitch class index is smaller than the previous one, as that would indicate that we've passed the B pitch class.
+      const isPassedB = pcIndex < prevPcIndex && pitchClass[0] !== 'B';
+      // It should also be incremented if the raw pitch class is from the next octave regardless of the pitch class.
+      const isNextOctave = ['C', 'D'].includes(pitchClass[0]) && ['A', 'B'].includes(pitchClasses[i - 1][0]);
+      if((isPassedB || (isC) || isNextOctave) && !wasNextOctave) {
         currentOctave++;
+      } 
+      if(wasNextOctave) {
+        wasNextOctave = false;
+      }
+      if(isNextOctave) {
+        wasNextOctave = true;
       }
     }
     return `${pitchClass}${currentOctave}`;
   }) as Array<Note>;
+  return notes;
 }
 
 /**

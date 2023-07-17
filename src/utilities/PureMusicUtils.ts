@@ -9,6 +9,34 @@ import {
 } from '../types';
 
 /**
+ * Returns an array with numbers that represent the index of each pitch class as a number.
+ * @param pitchClasses 
+ * @returns 
+ */
+export function pitchClassesToNumbers(pitchClasses: Array<PitchClass>) {
+  return pitchClasses.map(pc => getPitchClassIndex(pc));
+}
+
+/**
+ * Returns an array of notes with a specific octave.
+ * @param {Array} pitchClasses Array of pitch classes.
+ * @param {number} octave Octave to assign to notes..
+ * @returns {Array}
+ */
+export function pitchClassesToNotes(pitchClasses: Array<PitchClass>, octave: number): Array<Note> {
+  return pitchClasses.map(pitchClass => `${pitchClass}${octave}` as Note);
+}
+
+/**
+ * 
+ * @param notes 
+ * @returns 
+ */
+export function notesToPitchClasses(notes: Array<Note>) {
+  return notes.map(note => noteToObject(note as Note).pitchClass);
+}
+
+/**
  * Calculate the pure interval between 2 pitch classes.
  * @param {PitchClass} pitchClass1 first note
  * @param {PitchClass} pitchClass2 second note
@@ -157,9 +185,13 @@ export function normalizeNote(note: Note): Note {
   const { pitchClass, octave } = noteToObject(note);
   const normalizedPitchClass = normalizePitchClass(pitchClass);
   let octaveDifference = 0;
-  if(pitchClass[0] === 'B' && pitchClass.includes('#' || 'x')) {
+  const bWithSharps = pitchClass[0] === 'B' && pitchClass.includes('#' || 'x');
+  const aWithSharps = pitchClass === 'A#x';
+  const cWithFlats = pitchClass[0] === 'C' && pitchClass.includes('b');
+  const dWithFlats = pitchClass === 'Dbbb';
+  if(bWithSharps || aWithSharps) {
     octaveDifference = 1;
-  } else if(pitchClass[0] === 'C' && pitchClass.includes('b')) {
+  } else if(cWithFlats || dWithFlats) {
     octaveDifference = -1;
   }
   return `${normalizedPitchClass}${octave + octaveDifference}` as Note;

@@ -1,6 +1,6 @@
 import {
   extractOctave, extractPitchClass, getPitchClassesInterval, notesInRange, noteToObject,
-  pitchClassesToNotes, pitchClassesToPianoChordNotes, transposeNote, intervalsToNotes,
+  pitchClassesToPianoChordNotes, transposeNote, intervalsToNotes,
   spellScale,
 } from '../../lib/index.js';
 
@@ -46,14 +46,6 @@ describe('Music addon functions', () => {
     });
   });
 
-  describe('#pitchClassesToNotes', () => {
-    it('should return an array of notes when input is valid', () => {
-      const pitchClasses = ['C', 'E'];
-      const stub         = ['C3', 'E3'];
-      expect(pitchClassesToNotes(pitchClasses, 3)).to.eql(stub);
-    });
-  });
-
   describe('#pitchClassesToPianoChordNotes', () => {
     let g, gChord;
     beforeEach(() => {
@@ -80,7 +72,14 @@ describe('Music addon functions', () => {
         expect(pitchClassesToPianoChordNotes(bigChord, 3)).to.eql(stub);
       });
 
-      it('with a scale', () => {
+      it('with a flats scale', () => {
+        const bigChord = spellScale(intervalsToNotes('E', [0, 1, 2, 3, 5, 7, 9, 10]));
+        const stub    = ['E3', 'F3', 'Gb3', 'Abb3', 'Bbb3', 'Cb4', 'Db4', 'Ebb4'];
+
+        expect(pitchClassesToPianoChordNotes(bigChord, 3)).to.eql(stub);
+      });
+
+      it('with a sharps scale', () => {
         const bigChord = spellScale(intervalsToNotes('E', [0, 3, 4, 6, 8, 9, 11]));
         const stub    = ['E3', 'Fx3', 'G#3', 'A#3', 'B#3', 'C#4', 'D#4'];
 

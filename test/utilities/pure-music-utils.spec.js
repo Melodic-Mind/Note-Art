@@ -1,5 +1,5 @@
 import {
-  enharmonicPitchClass, getNotesInterval, getPatternFromNotes, getPatternFromPitchClasses, isPitchClass, isNote, normalizePitchClass, toFlat, normalizeNote,
+  enharmonicPitchClass, getNotesInterval, getPatternFromNotes, getPatternFromPitchClasses, isPitchClass, isNote, normalizePitchClass, toFlat, normalizeNote, pitchClassesToNotes,
 } from '../../lib/index.js';
 
 describe('#PureMusicUtils', () => {
@@ -192,6 +192,14 @@ describe('#PureMusicUtils', () => {
     });
     it('should return false when string is note a note', () => {
       expect(isNote('C')).to.equal(false);
+    });
+  });
+
+  describe('#pitchClassesToNotes', () => {
+    it('should return an array of notes when input is valid', () => {
+      const pitchClasses = ['C', 'E'];
+      const stub         = ['C3', 'E3'];
+      expect(pitchClassesToNotes(pitchClasses, 3)).to.eql(stub);
     });
   });
 });
