@@ -15,24 +15,10 @@ export function pitchClassesToPianoChordNotes(pitchClasses: Array<PitchClass>, o
   if(inversion) {
     pitchClasses = rearrangeArray(pitchClasses, inversion) as Array<PitchClass>;
   }
-  // const notes = pitchClassesToNotes(pitchClasses, octave);
-  // for(let i=1; i< notes.length; ++i) {
-  //   const prevNote = notes[i-1];
-  //   const normalizedPrevNote = normalizeNote(prevNote);
-  //   const note = notes[i];
-  //   const normalizedNote = normalizeNote(note);
-  //   const { pitchClass, octave } = noteToObject(note);
-  //   const { pitchClass: prevPitchClass, octave: prevOctave } = noteToObject(prevNote);
-  //   const pcIndex = getPitchClassIndex(normalizePitchClass(pitchClass));
-  //   const prevPcIndex = getPitchClassIndex(normalizePitchClass(pitchClasses[i - 1]));
-  //   if(pitchClass[0] === 'C' && prevPitchClass[0] === 'B') {
-  //     notes[i] = `${pitchClass}${octave + 1}` as Note;
-  //   }
-  // }
-  // return notes;
   let currentOctave = octave;
   let wasNextOctave = false;
 
+  // The reason this implementation is so complicated is that it can handle any raw pitch classes given to it properly, e.g Cb, Bx, Dbbb, etc.
   const notes = pitchClasses.map((pitchClass, i) => {
     if(i !== 0) {
       const pcIndex = getPitchClassIndex(normalizePitchClass(pitchClass));
