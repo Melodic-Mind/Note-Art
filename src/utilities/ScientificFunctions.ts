@@ -17,6 +17,14 @@ export function freqFromPitch(note: Note): number {
   ) * PITCH_STANDARD.frequency;
 }
 
+export function freqToPitch(frequency: number): Note {
+  const midi = freqToMidi(frequency);
+  const pitchClass = midi % NUMBER_OF_PITCH_CLASSES;
+  const octave = Math.floor(midi / NUMBER_OF_PITCH_CLASSES) - 1;
+  const note = `${FLAT_CLASS_NOTES[pitchClass]}${octave}`;
+  return note as Note;
+}
+
 /**
  * Turns a midi value to frequency.
  * @param {Number} midi
@@ -61,4 +69,24 @@ export function centsOffFromFreq(frequency: number, midi: number): number {
  */
 export function midiToFreq(realNumber: number): number {
   return PITCH_STANDARD.frequency * (Math.pow(2, (realNumber - PITCH_STANDARD.midi) / NUMBER_OF_PITCH_CLASSES));
+}
+
+/**
+ * Convert MIDI value to pitch.
+ * @param {Number} midi
+ * @returns {Note}
+ */
+export function midiToPitch(midi: number): Note {
+  const freq = freqFromMidi(midi);
+  return freqToPitch(freq);
+}
+
+/**
+ * Convert pitch to MIDI value.
+ * @param {Note} pitch
+ * @returns {number}
+ */
+export function pitchToMidi(note: Note): number {
+  const freq = freqFromPitch(note);
+  return freqToMidi(freq);
 }
