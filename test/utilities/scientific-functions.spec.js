@@ -1,6 +1,6 @@
 import { freqFromPitch, freqToMidi, midiToFreq, freqToPitch, midiToPitch, pitchToMidi } from '../../lib/index.js';
 
-describe.only('Scientific functions', () => {
+describe('Scientific functions', () => {
   it('#freqFromPitch', () => {
     expect(freqFromPitch('A4')).to.eql(440);
     expect(Math.ceil(freqFromPitch('E5'))).to.eql(660);
