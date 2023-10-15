@@ -85,7 +85,7 @@ export function occurrencesInString(str: string, subString: string): number {
  * @param size The new size.
  * @returns {Array}
  */
-export function fitArrayToSize([...arr]: Array<unknown>, size: number): Array<unknown> {
+export function fitArrayToSize<T>([...arr]: Array<T>, size: number): Array<T> {
   while (arr.length < size) {
     arr = arr.concat([...arr]);
   }
@@ -97,7 +97,7 @@ export function fitArrayToSize([...arr]: Array<unknown>, size: number): Array<un
  * @param matrix Array of arrays
  * @returns {Array}
  */
-export function longestArray(matrix: Array<Array<unknown>>): Array<unknown> {
+export function longestArray<T>(matrix: Array<Array<T>>): Array<T> {
   if(!Array.isArray(matrix) || !matrix.every(arr => Array.isArray(arr))) {
     throw new Error(`Expected ${matrix} and each of it's elements to be an array`);
   }
