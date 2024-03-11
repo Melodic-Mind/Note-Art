@@ -146,7 +146,7 @@ export function extractPitchClass(note: string): string {
  * @param {String} pc
  * @returns {PitchClass}
  * @example
- * normalizePitchClass('CX') // 'A#'
+ * normalizePitchClass('CX') // 'D'
  */
 export function normalizePitchClass(pc: PitchClass): PitchClass {
   const pitchLetter: PitchClassLetter = firstToUpper(pc[0]) as PitchClassLetter;
@@ -419,7 +419,7 @@ export function highestNoteFromArray(notes: Array<Note>): Note {
  */
 export function getPatternFromPitchClasses(pitchClasses: Array<PitchClass>): Array<number> {
   const base = pitchClasses[0];
-  // for cases when it croses an octave, e.g C E G C E B
+  // for cases when it crosses an octave, e.g C E G C E B
   let octaveMultiplier = 0;
   return pitchClasses.map((pc, i) => {
     if(base === pc && i > 0) {

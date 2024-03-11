@@ -139,6 +139,7 @@ describe('#PureMusicUtils', () => {
       expect(getNotesInterval('C3', 'G4')).to.equal(19);
       expect(getNotesInterval('C3', 'G2')).to.equal(-5);
       expect(getNotesInterval('F3', 'Bb3')).to.equal(5);
+      expect(getNotesInterval('C3', 'Dx#3')).to.equal(5);
     });
   });
 
@@ -155,14 +156,19 @@ describe('#PureMusicUtils', () => {
   });
 
   describe('#getPatternFromNotes', () => {
-    it('should return the correct pattern for notes', () => {
+    it('arbitrary set of notes', () => {
       const notes = ['C3', 'E3', 'G3', 'B2'];
       expect(getPatternFromNotes(notes)).to.eql([0, 4, 7, -1]);
     });
 
-    it('should return the correct pattern for notes - multiple octaves', () => {
+    it('multiple octaves', () => {
       const notes = ['C3', 'E3', 'G3', 'B2', 'C3', 'G4', 'C4'];
       expect(getPatternFromNotes(notes)).to.eql([0, 4, 7, -1, 0, 19, 12]);
+    });
+
+    it('with multiple sharps', () => {
+      const notes = ['C3', 'C#3', 'Cx#3', 'Cx#4', 'Gx#4', 'Fx5'];
+      expect(getPatternFromNotes(notes)).to.eql([0, 1, 3, 15, 22, 31]);
     });
   });
 
