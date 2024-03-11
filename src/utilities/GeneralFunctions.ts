@@ -37,12 +37,12 @@ export function switchMembers([...arr]: [], i1: number, i2: number): [] {
  * @param {number} index to arrange from.
  * @returns {Array}
  */
-export function rearrangeArray([...array]: Array<any>, index: number): Array<any> {
-  const tmp = [];
+export function rearrangeArray<T>([...array]: T[], index: number): T[] {
+  const tmp: T[] = [];
   let i = 0;
 
   while (i < index) {
-    tmp.push(array.shift());
+    tmp.push((array as any).shift());
     ++i;
   }
 

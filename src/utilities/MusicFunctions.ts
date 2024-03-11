@@ -53,7 +53,7 @@ export function pitchClassesToPianoChordNotes(pitchClasses: Array<PitchClass>, o
  * const EMajorScale = ['E', 'Gb', 'Ab', 'A', 'B', 'Db', 'Eb'];
  * spellScale(EMajorScale) // => ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#']
  */
-export function spellScale(pitchClasses: any): PitchClass[] {
+export function spellScale(pitchClasses: Array<any>): PitchClass[] {
   const letters = rearrangeArray([...PITCH_CLASS_LETTERS], PITCH_CLASS_LETTERS.indexOf(pitchClasses[0][0]));
   const res = [pitchClasses[0]];
   [...pitchClasses].slice(1).forEach((pc, i) => {

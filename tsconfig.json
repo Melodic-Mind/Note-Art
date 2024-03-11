@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "lib",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "module": "ES2020",
     "target": "ES6",
     "allowJs": true,
