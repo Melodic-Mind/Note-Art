@@ -17,6 +17,7 @@ export function pitchClassesToPianoChordNotes(pitchClasses: Array<PitchClass>, o
   }
   let currentOctave = octave;
   let wasNextOctave = false;
+  let prevPitchClass = '';
 
   // The reason this implementation is so complicated is that it can handle any raw pitch classes given to it properly, e.g Cb, Bx, Dbbb, etc.
   const notes = pitchClasses.map((pitchClass, i) => {
@@ -27,7 +28,7 @@ export function pitchClassesToPianoChordNotes(pitchClasses: Array<PitchClass>, o
       // We can know it definitely needs to be incremented if the current *ABSOLUTE* pitch class is C and the raw pitch class is not B.
       const isC = normalizePitchClass(pitchClass) === 'C' && pitchClass[0] !== 'B';
       // Otherwise, we need to check if the current pitch class index is smaller than the previous one, as that would indicate that we've passed the B pitch class.
-      const isPassedB = pcIndex < prevPcIndex && pitchClass[0] !== 'B';
+      const isPassedB = pcIndex < prevPcIndex && pitchClass[0] !== 'B' && !['C', 'D'].includes(prevPitchClass[0]);
       // It should also be incremented if the raw pitch class is from the next octave regardless of the pitch class.
       const isNextOctave = ['C', 'D'].includes(pitchClass[0]) && ['A', 'B'].includes(pitchClasses[i - 1][0]);
       if((isPassedB || (isC) || isNextOctave) && !wasNextOctave) {
@@ -40,6 +41,7 @@ export function pitchClassesToPianoChordNotes(pitchClasses: Array<PitchClass>, o
         wasNextOctave = true;
       }
     }
+    prevPitchClass = pitchClass;
     return `${pitchClass}${currentOctave}`;
   }) as Array<Note>;
   return notes;

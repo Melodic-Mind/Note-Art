@@ -87,6 +87,16 @@ describe('Music addon functions', () => {
       });
     });
 
+    describe('should return the correct notes for a scale', () => {
+      it('Ab Phrygian Aeolian 2b 4b 6b', () => {
+        const scale = {
+          scale: ['Ab', 'Bbb', 'Cbb', 'Dbbb', 'Ebbb', 'Fbb', 'Gbbb', 'Abbb'],
+          stub: ['Ab3', 'Bbb3', 'Cbb4', 'Dbbb4', 'Ebbb4', 'Fbb4', 'Gbbb4', 'Abbb4'],
+        };
+        expect(pitchClassesToPianoChordNotes(scale.scale, 3)).to.eql(scale.stub);
+      });
+    });
+
     it('should invert chords when called with inversion value', () => {
       const stub = ['B3', 'D4', 'G4'];
       expect(pitchClassesToPianoChordNotes(gChord, 3, 1)).to.eql(stub);
