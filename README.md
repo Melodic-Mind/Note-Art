@@ -8,7 +8,7 @@
 &nbsp; [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 :fire:
 
-##### [Demo (outdated) :musical_note:](https://note-art-demo.netlify.com/) | [API :blue_book:](https://note-art-docs.netlify.com/)
+##### [Demo (outdated) :musical_note:](https://note-art-demo.netlify.app/) | [API :blue_book:](https://note-art-docs.netlify.app/)
 
 <br>
 
